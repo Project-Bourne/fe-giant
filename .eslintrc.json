@@ -3,9 +3,13 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "prettier/react"
+    ],
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "parser": "@babel/eslint-parser"
     },
     "rules": {
     }
