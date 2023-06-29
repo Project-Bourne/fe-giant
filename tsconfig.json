@@ -33,6 +33,15 @@
       "@/pages": [
         "./src/pages/*"
       ],
+      "@/utils": [
+        "./src/utils/*"
+      ],
+      "@/layout": [
+        "./src/layout/*"
+      ],
+      "@/global": [
+        "./src/global/*"
+      ],
       "@/styles": [
         "./src/styles/*"
       ],
