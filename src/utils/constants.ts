@@ -2,41 +2,49 @@ export const NavBarContents = [
     {
         name: "Dashboard",
         icon: "dashboard.svg",
-        id: 1
+        id: 1,
+        route: "dashboard"
     },
     {
         name: "Home",
         icon: "home.svg",
-        id: 2
+        id: 2,
+        route: "home"
     },
     {
         name: "Starred",
         icon: "starred.svg",
-        id: 1
+        id: 3,
+        route: "starred"
     },
     {
         name: "Exports",
         icon: "exports.svg",
-        id: 1
+        id: 4,
+        route: "exports"
     },
     {
         name: "Archives",
         icon: "archives.svg",
-        id: 1
+        id: 5,
+        route: "archives"
     },
     {
         name: "Users",
         icon: "users.svg",
-        id: 1
+        id: 6,
+        route: "users"
     },
     {
         name: "Training",
-        icon: "dashboard.svg",
-        id: 1
+        icon: "training.svg",
+        id: 7,
+        route: "training"
     },
     {
         name: "Settings",
         icon: "settings.svg",
-        id: 1
+        id: 8,
+        route: "settings"
     },
 ]
