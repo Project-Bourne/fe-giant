@@ -23,7 +23,7 @@ function RightCompt() {
       </div>
       <hr className="border-black h-0 my-4" />
       <div>
-        <div className="flex flex-row items-center gap-2 border-l h-28 border-black">
+        <div className="flex flex-row items-center gap-2 border-l h-28 border-black border-opacity-5">
           <div>
             <Image
               src={require("../../../assets/icons/Frame 4.svg")}
