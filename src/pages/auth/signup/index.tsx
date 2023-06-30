@@ -104,7 +104,7 @@ function SignUp() {
               size='xl'
             />
             {/* don't have account  */}
-            <p className="text-center font-light mt-5">
+            <p className="text-center font-light mt-3">
               Already have an account? <Link href="/auth/login" className="font-semibold text-sirp-primary cursor-pointer">Log in</Link>
             </p>
           </form>
