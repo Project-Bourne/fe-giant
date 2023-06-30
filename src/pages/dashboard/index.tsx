@@ -2,6 +2,8 @@ import React from "react";
 import Left from "./components/LeftCompt";
 import Right from "./components/RightCompt";
 import Group1 from "./components/Group1";
+import Group2 from "./components/Group2";
+import Group3 from "./components/Group3";
 
 const index = () => {
   return (
@@ -15,8 +17,11 @@ const index = () => {
         <Left />
         <Right />
       </div>
+      {/* this three components are all the sirp dashboard model */}
       <div className="mt-5">
         <Group1 />
+        <Group2 />
+        <Group3 />
       </div>
     </div>
   );
