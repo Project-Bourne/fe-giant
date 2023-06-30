@@ -12,31 +12,49 @@ export const NavBarContents = [
     {
         name: "Starred",
         icon: "starred.svg",
-        id: 1
+        id: 3
     },
     {
         name: "Exports",
         icon: "exports.svg",
-        id: 1
+        id: 4
     },
     {
         name: "Archives",
         icon: "archives.svg",
-        id: 1
+        id: 5
     },
     {
         name: "Users",
         icon: "users.svg",
-        id: 1
+        id: 6
     },
     {
         name: "Training",
         icon: "dashboard.svg",
-        id: 1
+        id: 7
     },
     {
         name: "Settings",
         icon: "settings.svg",
-        id: 1
+        id: 8
+    },
+]
+
+
+
+
+export const UserRoles = [
+    {
+        id: 1,
+        role: 'Desk Officer'
+    },
+    {
+        id: 2,
+        role: 'Admin'
+    },
+    {
+        id: 3,
+        role: 'Super Admin'
     },
 ]

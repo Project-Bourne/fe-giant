@@ -15,7 +15,6 @@ function NavBar() {
                 style={{marginRight: 20}}
                 priority
             />
-
             <h1 className='text-sirp-primary font-semibold text-[30px]'>SIRP</h1>
         </div>
 
