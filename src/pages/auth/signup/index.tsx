@@ -8,6 +8,7 @@ import { UserRoles } from '@/utils/constants';
 
 
 const initialFormData = {
+  name: '',
   email: '',
   role: 'Desk Officer',
   country: {
@@ -19,7 +20,7 @@ const initialFormData = {
 
 function SignUp() {
   const [ formData, setFormData ] = useState(initialFormData);
-  const [ errors, setErrors ] = useState({ email: '', password: ''})
+  const [ errors, setErrors ] = useState({ email: '', password: '', name: ''})
   const { countries } = useCountries()
 
   const handleSetCountry = (data: any) => {
@@ -48,6 +49,17 @@ function SignUp() {
         subText={'Please enter your work email and create a password to get started'}
         >
           <form className='mt-[1.5rem]' onSubmit={handleSubmit}>
+            {/* name  */}
+            <div className='mb-3 grid gap-1'>
+              <label>Name</label>
+              <Input 
+                placeholder='firstname lastname'
+                type='text'
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+              />
+              {errors.name && <small className='text-sirp-primary'>{errors.name}</small>}
+            </div>
+
             {/* email  */}
             <div className='mb-3 grid gap-1'>
               <label>Email</label>

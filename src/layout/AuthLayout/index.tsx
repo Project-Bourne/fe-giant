@@ -16,8 +16,8 @@ function AuthLayout({children, headerText, subText }) {
     return (
         <div className='.root'>
             <div className="flex w-full h-[100vh]">
-                <div style={screenWidth < 768 ? bgStyle : {}} className="w-full lg:w-[42%] bg-white"> 
-                    <div className="bg-white mx-auto w-[85%] md:w-[45%] lg:w-[80%] rounded-md mt-[15px] md:mt-[30px] p-7"> 
+                <div style={screenWidth < 768 ? bgStyle : {}} className="w-full lg:w-[42%] bg-white overflow-y-scroll"> 
+                    <div className="bg-white mx-auto w-[85%] md:w-[45%] lg:w-[80%] rounded-md mt-[15px] md:mt-[30px] px-7"> 
                         {/* logo  */}
                         <div className="mx-auto w-[25%]">
                             <Image

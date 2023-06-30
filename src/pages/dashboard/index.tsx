@@ -7,7 +7,7 @@ import Group3 from "./components/Group3";
 
 const index = () => {
   return (
-    <div>
+    <div className="h-full overflow-y-scroll">
       <h1 className="text-black text-2xl pl-10 font-bold">
         Welcome Oluanrawaju
       </h1>

@@ -5,7 +5,7 @@ import { NavBarContents } from '@/utils/constants';
 
 function NavBar() {
   return (
-    <div className='w-1/5 border-3 border-r bg-white p-10'>
+    <div className='w-[20vw] border-3 border-r bg-white p-10 fixed z-[20]'>
         <div className='flex flex-row items-center cursor-pointer mb-20'>
             <Image
                 src={require("../../../assets/svg/logo.svg")}
@@ -15,7 +15,7 @@ function NavBar() {
                 style={{marginRight: 20}}
                 priority
             />
-            <h1 className='text-sirp-primary font-semibold text-[30px]'>SIRP</h1>
+            <h1 className='text-sirp-primary font-semibold text-[30px]'>IRP</h1>
         </div>
 
         <div 
