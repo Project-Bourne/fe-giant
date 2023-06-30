@@ -20,6 +20,7 @@ module.exports = {
           lightGrey: '#F3F5F6',
           grey: '#545C62',
           greyShadow: '#F7E9EB',
+          secondary1: '#FFEE88',
         },
       },
     },
