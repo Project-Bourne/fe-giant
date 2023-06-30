@@ -75,3 +75,20 @@ export const SettingsData = [
         route: "/settings/log"
     },
 ]
+
+
+
+export const UserRoles = [
+    {
+        id: 1,
+        role: 'Desk Officer'
+    },
+    {
+        id: 2,
+        role: 'Admin'
+    },
+    {
+        id: 3,
+        role: 'Super Admin'
+    },
+]
