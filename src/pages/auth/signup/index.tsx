@@ -56,7 +56,7 @@ function SignUp() {
                 type='text'
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
-              {errors.email && <small className='text-[#B22735]'>{errors.email}</small>}
+              {errors.email && <small className='text-sirp-primary'>{errors.email}</small>}
             </div>
 
             {/* user role  */}
@@ -85,7 +85,7 @@ function SignUp() {
                 type='password'
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
               />
-              {errors.password && <small className='text-[#B22735]'>{errors.password}</small>}
+              {errors.password && <small className='text-sirp-primary'>{errors.password}</small>}
             </div>
 
             {/* forgot password  */}
@@ -105,7 +105,7 @@ function SignUp() {
             />
             {/* don't have account  */}
             <p className="text-center font-light mt-5">
-              Already have an account? <Link href="/auth/login" className="font-semibold text-[#B22735] cursor-pointer">Log in</Link>
+              Already have an account? <Link href="/auth/login" className="font-semibold text-sirp-primary cursor-pointer">Log in</Link>
             </p>
           </form>
       </AuthLayout>

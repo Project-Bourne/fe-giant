@@ -13,7 +13,7 @@ type NavBarItemType = {
 
 function NavBarItem({item, index}: NavBarItemType) {
   return (
-    <div className='flex flex-row my-8 w-[100%] items-center justify-start self-center rounded-md cursor-pointer'
+    <div className='flex flex-row my-10 w-[100%] items-center justify-start self-center rounded-md cursor-pointer'
         key={index}
     >
         <Image
@@ -26,7 +26,7 @@ function NavBarItem({item, index}: NavBarItemType) {
             priority
         />
 
-        <h2 className='text-[14px] text-sirp-grey font-semibold'>{item.name}</h2>
+        <h2 className='text-[13px] text-sirp-grey font-semibold'>{item.name}</h2>
     </div>
   )
 }

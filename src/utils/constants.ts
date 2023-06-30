@@ -2,12 +2,14 @@ export const NavBarContents = [
     {
         name: "Dashboard",
         icon: "dashboard.svg",
-        id: 1
+        id: 1,
+        route: "dashboard"
     },
     {
         name: "Home",
         icon: "home.svg",
-        id: 2
+        id: 2,
+        route: "home"
     },
     {
         name: "Starred",
@@ -27,20 +29,22 @@ export const NavBarContents = [
     {
         name: "Users",
         icon: "users.svg",
-        id: 6
+        id: 6,
+        route: "users"
     },
     {
         name: "Training",
-        icon: "dashboard.svg",
-        id: 7
+        icon: "training.svg",
+        id: 7,
+        route: "training"
     },
     {
         name: "Settings",
         icon: "settings.svg",
-        id: 8
+        id: 8,
+        route: "settings"
     },
 ]
-
 
 
 
