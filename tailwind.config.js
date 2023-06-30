@@ -17,6 +17,7 @@ module.exports = {
         sirp: {
           primary: '#B22735',
           primaryLess1: '#E0A9AE',
+          primaryLess2: '#F7E9EB',
           secondary: '#ffee88',
           lightGrey: '#F3F5F6',
           grey: '#545C62',
