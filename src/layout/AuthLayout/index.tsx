@@ -36,7 +36,7 @@ function AuthLayout({children, headerText, subText }) {
                         <div> {children}  </div>
                     </div> 
                 </div>
-                <div className="hidden lg:block lg:w-[58%] bg-green-500"></div>
+                <div className="hidden lg:block lg:w-[58%] bg-sirp-primary"></div>
             </div>
         </div>
     )
