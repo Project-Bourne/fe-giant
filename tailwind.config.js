@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/layout/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -16,6 +16,7 @@ module.exports = {
         sirp: {
           primary: '#B22735',
           primaryLess1: '#E0A9AE',
+          primaryLess2: '#F7E9EB',
           secondary: '#ffee88',
           lightGrey: '#F3F5F6',
           grey: '#545C62',

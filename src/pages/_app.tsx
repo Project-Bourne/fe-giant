@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, NavBar } from '@/components/layouts'
-import "../styles/global.css"
 import { AppLayout } from '@/layout/index';
+import "../styles/global.css"
 
 function App({Component, pageProps, ...appProps}) {
 

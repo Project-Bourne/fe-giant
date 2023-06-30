@@ -5,7 +5,7 @@ import LeftComp from './LeftComp'
 
 function Header() {
   return (
-    <div className='w-full flex flex-row items-center justify-between py-8 px-8 mb-5'>
+    <div className='w-full flex flex-row items-center justify-between py-8 px-8 mb-5 border-b-[1.3px] border-sirp-lightGrey'>
         {/* Left component */}
         <LeftComp />
 
