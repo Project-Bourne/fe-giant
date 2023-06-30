@@ -58,7 +58,7 @@ function Login() {
 
           {/* forgot password  */}
           <div className="w-full mb-[50px] flex flex-wrap justify-between">
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               <input type='checkbox' id='rememberMe' />
               <label className='font-light text-[13px]' htmlFor='rememberMe'>Remember me</label>
             </div>
