@@ -5,7 +5,7 @@ import { NavBarContents } from '@/utils/constants';
 
 function NavBar() {
   return (
-    <div className='w-[20vw] border-3 border-r bg-white p-10 fixed z-[20]'>
+    <div className='w-[20vw] h-full border-3 border-r bg-white p-10 fixed z-[20]'>
         <div className='flex flex-row items-center cursor-pointer mb-20'>
             <Image
                 src={require("../../../assets/svg/logo.svg")}

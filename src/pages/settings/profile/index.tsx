@@ -1,17 +1,25 @@
 import SettingsLayout from '@/layout/SettingsLayout';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useState } from 'react'
+import { View1, View2 } from '../components';
+import { Button, Dropdown, DropdownWithFlag } from '@/components/ui';
+import { UserRoles } from '@/utils/constants';
+import { useCountries } from 'use-react-countries';
+
+
 
 const ProfileSettings = () => {
 
-  const router = useRouter();
 
   return (
     <SettingsLayout>
-      <div className='py-8 px-8'>
-        Profilesettings
 
-      </div>
+      {/* First View Component */}
+      <View1/>
+
+      {/* Second View Component */}
+      <View2 />
     </SettingsLayout>
   )
 }

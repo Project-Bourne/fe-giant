@@ -20,14 +20,14 @@ const SettingsLayout = ({children}: LayoutType) => {
         
         {/* Header */}
         <div className='flex flex-row w-full py-7 px-7 items-center justify-between'>
-            <h1 className='text-[20px] font-semibold'>Profile Settings</h1>
+            <h1 className='text-[18px] font-semibold'>Profile Settings</h1>
         </div>
 
         {/* Settings tabs */}
-        <div className='w-[50%] flex flex-row items-center border-b'>
+        <div className='w-[100%] flex flex-row items-center border-b'>
             {
                 SettingsData.map((item, index) => (
-                    <TabComp item={item} index={index} key={index} />
+                    <TabComp item={item} index={index} key={index} route={route} />
                 ))
             }
         </div>

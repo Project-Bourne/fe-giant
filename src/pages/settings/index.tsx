@@ -12,7 +12,6 @@ function Settings() {
     router.push(
       {
         pathname: `/settings/profile`,
-        // query: { tab: value },
       },
       undefined,
       { shallow: true }

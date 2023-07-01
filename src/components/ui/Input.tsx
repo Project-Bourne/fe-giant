@@ -55,15 +55,15 @@ function Input(props: InputModel) {
 
 
 function Dropdown(props: DropdownModel){
-    const { data, onChange } = props;
+    const { data, onChange, className } = props;
 
     return(
         <>
             <select  
-                className="w-full py-2 px-3 rounded-md border-[1px] border-gray-100 focus:border-gray-100 outline-none"
+                className={`w-full py-2 px-3 rounded-md border-[1px] border-gray-100 focus:border-gray-100 outline-none ${className}` }
                 onChange={onChange}> 
             { data?.map((item: {id:number, role: string}) => (
-                <option key={item?.id} value={item?.role}>{item?.role}</option>
+                <option key={item?.id} value={item?.role} className="text-[12px]">{item?.role}</option>
             ))}
             </select>
         </>
@@ -74,7 +74,7 @@ function Dropdown(props: DropdownModel){
 
 
 function DropdownWithFlag(props: DropdownModel) {
-    const { data, onClick, selectItem } = props;
+    const { data, onClick, selectItem, className, style } = props;
     const [ dropdown, setDropdown ] = useState(false);
     const [ country, setCountry ] = useState({
         name: 'Nigeria',
@@ -88,15 +88,16 @@ function DropdownWithFlag(props: DropdownModel) {
     const handleItemSelect = (country, flag) => {
         selectItem(country)
         setCountry({ name: country, flag })
+        setDropdown(false)
     }
 
     const Menu = () => {
         return(
-            <div className="h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7">
+            <div className={`h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7 ${style}`}>
                 { data.map((item: any, index: number) => (
                     <div 
                     key={index} 
-                    className="flex gap-2 px-2 py-1 hover:bg-gray-200 cursor-pointer items-center"
+                    className={`flex gap-2 px-2 py-1 hover:bg-gray-200 cursor-pointer items-center`}
                     onClick={() => handleItemSelect(item.name, item.flags.svg)}>
                         <div>
                             <Image
@@ -108,7 +109,7 @@ function DropdownWithFlag(props: DropdownModel) {
                                 priority
                             /> 
                         </div>
-                        <div className="text-base">{item.name}</div>
+                        <div className="text-base text-[12px]">{item.name}</div>
                     </div>
                 ))}
             </div>
@@ -116,9 +117,9 @@ function DropdownWithFlag(props: DropdownModel) {
     }
 
     return(
-        <div className='relative'>
+        <div className={`relative ${style}`}>
             <div 
-                className="flex justify-between items-center py-2 px-3 rounded-md border-[1px] border-gray-100"
+                className={`flex justify-between items-center py-2 px-3 rounded-md border-[1px] border-gray-100 `}
                 onClick={handleDropdown}>
                 <div className="flex gap-2 items-center">
                     <Image
