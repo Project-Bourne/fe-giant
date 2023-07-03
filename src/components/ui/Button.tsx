@@ -1,7 +1,8 @@
 import { ButtonModel } from "@/models/ui/components.models";
+import { ClassNames } from "@emotion/react";
 
 function Button(props: ButtonModel) {
-    const  { value, type, onClick, background, size } = props;
+    const  { value, type, onClick, background, classNameStyle, size } = props;
 
     const btnSize = () => {
         if(size === 'sm') return '25%' ;
@@ -12,7 +13,7 @@ function Button(props: ButtonModel) {
 
     return(
         <button 
-            className="rounded-md p-3 text-white" 
+            className={`rounded-md ${classNameStyle}` }
             style={{ background: `${background}`, width: `${btnSize()}` }}
             type={type}
             onClick={onClick}>{value}</button>

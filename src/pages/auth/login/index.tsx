@@ -70,6 +70,7 @@ function Login() {
           <Button
             value="Sign in"
             type='submit'
+            classNameStyle='text-white p-3'
             background='#B22735'
             size='xl'
           />

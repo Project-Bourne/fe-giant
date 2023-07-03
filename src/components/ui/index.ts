@@ -1,5 +1,6 @@
 // export all ui components
 import { Input, Dropdown, DropdownWithFlag } from "./Input";
+import Tab from "./Tab";
 import Button from "./Button";
 import CustomSwitch from "./CustomSwitch";
 
@@ -9,5 +10,6 @@ export {
     Dropdown,
     DropdownWithFlag,
     Button,
-    CustomSwitch
+    CustomSwitch,
+    Tab,
 }

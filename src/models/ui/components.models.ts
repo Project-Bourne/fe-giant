@@ -1,16 +1,22 @@
-import { Dispatch } from "react"
+import { Dispatch } from "react";
 
-export interface InputModel extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputModel extends React.InputHTMLAttributes<HTMLInputElement> {
+    isDisabled?: boolean,
+    classNameStyle?: string
+}
 
 export interface DropdownModel extends React.SelectHTMLAttributes<HTMLSelectElement> {
     data: any[],
     selectItem?: any,
     className?: any,
-    style?: any
+    style?: any,
+    isDisabled?: boolean,
 }
 
 export interface ButtonModel extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    value?: any,
     background: string,
+    classNameStyle?: string,
     size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
