@@ -18,19 +18,14 @@ function NavBarItem({item, index}: NavBarItemType) {
     const route = useRouter().route;
     const isSelected = route.includes(item.route);
 
-    // useEffect(() => {
-    //     console.log({route})
-
-    // }, [])
-
 
   return (
     <Link href={item.route}>
         <div
             className={
                 !isSelected ? 
-                    'flex flex-row my-10 w-[100%] items-center justify-start self-center rounded-md cursor-pointer' 
-                    : 'flex flex-row my-10 w-[100%] items-center justify-start self-center rounded-md cursor-pointer bg-sirp-primaryLess2 py-4 px-5 border-l-4 border-sirp-primary ml-[-20px]'
+                    'flex flex-row my-5 w-[100%] items-center justify-start self-center rounded-md cursor-pointer hover:bg-sirp-primaryLess2 py-4 px-5 ml-[-20px]' 
+                    : 'flex flex-row my-5 w-[100%] items-center justify-start self-center rounded-md cursor-pointer bg-sirp-primaryLess2 py-4 px-5 border-l-4 border-sirp-primary ml-[-20px]'
             }
             key={index}
         >
