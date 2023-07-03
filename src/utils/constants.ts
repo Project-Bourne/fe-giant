@@ -84,6 +84,10 @@ export const SettingsData = [
 
 export const UserRoles = [
     {
+        id: 0,
+        role: 'Station Officer'
+    },
+    {
         id: 1,
         role: 'Desk Officer'
     },
@@ -93,7 +97,7 @@ export const UserRoles = [
     },
     {
         id: 3,
-        role: 'Super Admin'
+        role: 'Supervisor'
     },
 ];
 

@@ -30,6 +30,10 @@ function SignUp() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if(formData.name === ''){
+      setErrors({...errors, name: 'Name must not be empty!'});
+      return;
+    }
     if(formData.email === ''){
       setErrors({...errors, email: 'Email must not be empty!'});
       return
@@ -48,7 +52,7 @@ function SignUp() {
         headerText={'Create Account'}
         subText={'Please enter your work email and create a password to get started'}
         >
-          <form className='mt-[1.5rem]' onSubmit={handleSubmit}>
+          <form className='mt-[1.5rem] pb-7' onSubmit={handleSubmit}>
             {/* name  */}
             <div className='mb-3 grid gap-1'>
               <label>Name</label>
@@ -112,6 +116,7 @@ function SignUp() {
             <Button
               value="Create account"
               type='submit'
+              classNameStyle='text-white p-3'
               background='#B22735'
               size='xl'
             />

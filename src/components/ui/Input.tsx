@@ -4,7 +4,7 @@ import { InputModel, DropdownModel } from "@/models/ui/components.models";
 
 
 function Input(props: InputModel) {
-    const { type, value, onChange, placeholder } = props;
+    const { type, value, onChange, placeholder, classNameStyle, isDisabled } = props;
     const [ toggle, setToggle ] = useState(false);
 
     const handleToggle = () => {
@@ -16,10 +16,11 @@ function Input(props: InputModel) {
             {type === 'password' ?   // add toggle button, if input type is password
                 <div className="flex w-full">
                     <input
-                        className="w-[90%] py-2 px-3 rounded-l border-y-2 border-l-2 border-r-0 border-y-gray-100 border-l-gray-100 focus:border-gray-100 outline-none"
+                        className={`w-[90%] py-2 px-3 font-light rounded-l border-y-2 border-l-2 border-r-0 border-y-gray-100 border-l-gray-100 focus:border-gray-100 outline-none ${classNameStyle}`}
                         value={value}
                         placeholder={placeholder}
                         type={toggle ? 'text' : 'password'}
+                        readOnly={isDisabled}
                         onChange={onChange}
                     /> 
                     <div
@@ -40,10 +41,11 @@ function Input(props: InputModel) {
                 </div>
             :
             <input
-                className="w-full py-2 px-3 rounded-md border-[1px] border-gray-100 focus:border-gray-100 outline-none"
+                className={`w-full py-2 px-3 rounded-md border-[1px] font-light border-gray-100 focus:border-gray-100 outline-none ${classNameStyle}`}
                 value={value}
                 placeholder={placeholder}
                 type={type}
+                readOnly={isDisabled}
                 onChange={onChange}
             /> 
         }
@@ -74,7 +76,7 @@ function Dropdown(props: DropdownModel){
 
 
 function DropdownWithFlag(props: DropdownModel) {
-    const { data, onClick, selectItem, className, style } = props;
+    const { data, onClick, selectItem, className, style, isDisabled } = props;
     const [ dropdown, setDropdown ] = useState(false);
     const [ country, setCountry ] = useState({
         name: 'Nigeria',
@@ -82,7 +84,7 @@ function DropdownWithFlag(props: DropdownModel) {
     })
 
     const handleDropdown = () => {
-        setDropdown(prevState => !prevState)
+        !isDisabled && setDropdown(prevState => !prevState)
     }
 
     const handleItemSelect = (country, flag) => {
@@ -93,7 +95,7 @@ function DropdownWithFlag(props: DropdownModel) {
 
     const Menu = () => {
         return(
-            <div className={`h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7 ${style}`}>
+            <div className={`h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7`}>
                 { data.map((item: any, index: number) => (
                     <div 
                     key={index} 
@@ -109,7 +111,7 @@ function DropdownWithFlag(props: DropdownModel) {
                                 priority
                             /> 
                         </div>
-                        <div className="text-base text-[12px]">{item.name}</div>
+                        <div className="text-base font-light">{item.name}</div>
                     </div>
                 ))}
             </div>
@@ -130,7 +132,7 @@ function DropdownWithFlag(props: DropdownModel) {
                         className='rounded-full h-[20px] w-[20px]'
                         priority
                     /> 
-                    <div className="text-base">{country.name}</div>
+                    <div className="text-base font-light">{country.name}</div>
                 </div>
                 <div>&#8964; </div>
             </div>
@@ -138,5 +140,7 @@ function DropdownWithFlag(props: DropdownModel) {
         </div>
     )
 }
+
+
 
 export { Input, Dropdown, DropdownWithFlag};
