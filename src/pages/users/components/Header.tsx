@@ -16,18 +16,13 @@ const initialFormData = {
 
 
 
-function Header({ filter, showModal }: HeaderModel) {
+function Header({ filter }: HeaderModel) {
   const [ toggleModal, setToggleModal ] = useState(false);
   const [ formData, setFormData ] = useState(initialFormData);
   const [ errors, setErrors ] = useState({
     email: ''
   });
 
-    // opens the modal when 'add user' button is clicked 
-    const handleModalToggle = (e) => {
-        e.preventDefault();
-        setToggleModal(true);
-    }
 
     const handleSetCountry = (data) => { setFormData({...formData, country: data}) }
 
@@ -115,7 +110,7 @@ function Header({ filter, showModal }: HeaderModel) {
                 }
                 <Button 
                     className="flex gap-x-1 items-center" 
-                    onClick={handleModalToggle}
+                    onClick={() => setToggleModal(true)}
                     size="md"
                     background="bg-sirp-primary"
                     value={
@@ -135,13 +130,12 @@ function Header({ filter, showModal }: HeaderModel) {
                 />
             </div>
         </div>
-        {
-            toggleModal && 
-            <CustomModal 
-                style="bg-white md:w-[50%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5" 
-                openModal={toggleModal}>
-                <AddUserModal />
-            </CustomModal>
+        { toggleModal && 
+        <CustomModal 
+            style="bg-white md:w-[50%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5" 
+            closeModal={() => setToggleModal(false)}>
+            <AddUserModal />
+        </CustomModal>
         }
         </>
     )

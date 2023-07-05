@@ -14,8 +14,8 @@ function UserDetails() {
           <>
             <h1 className='font-semibold text-[24px] mb-3'> Block user </h1>
             <div className='grid pb-3'>
-                  <p className="text-sm mb-3">Are you sure you want to delete the user  <span className="text-[#9F9036]">Peter Duru</span> ?</p>
-                  <div className="px-5 py-1.5 flex gap-x-3.5 rounded-md bg-[#FFF1A0] mb-4">
+                  <p className="text-sm mb-3">Are you sure you want to delete the user  <span className="text-[#09495D]">Peter Duru</span> ?</p>
+                  <div className="px-5 py-1.5 flex gap-x-3.5 rounded-md bg-[#45C6ED] mb-4">
                       <Image
                         src={require('../../assets/images/user1.jpg')}
                         alt='user'
@@ -29,7 +29,7 @@ function UserDetails() {
                   </div>
                   <Button
                       value='No, don’t block user'
-                      classNameStyle="p-2 rounded-md text-[#9F9036] text-[14px] border-[2px] border-[#9F9036]"
+                      classNameStyle="p-2 rounded-md text-[#09495D] text-[14px] border-[1.2px] border-[#09495D]"
                       background="bg-white"
                   />
                   <Button
@@ -54,7 +54,9 @@ function UserDetails() {
       </div>
         {
           toggleModal && 
-          <CustomModal style="bg-white md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5" openModal={toggleModal}>
+          <CustomModal 
+            style="bg-white md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5" 
+            closeModal={() => setToggleModal(false)}>
               <BlockUserModal />
           </CustomModal>
         }
