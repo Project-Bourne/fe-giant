@@ -8,7 +8,7 @@ function CustomModal({ style, children, openModal }) {
 
     if(toggleModal){
         return (
-            <div className="fixed z-[1020px] w-full h-full top-0 left-0 bottom-0 bg-[#747474]/[0.1] backdrop-brightness-50">
+            <div className="fixed z-[1020] w-full h-full top-0 left-0 bottom-0 bg-[#747474]/[0.1] backdrop-brightness-50">
                 <div className={`${style} grid`}>
                     <div className="flex justify-end text-xl">
                         <button onClick={handleModalClose}> &times; </button>
