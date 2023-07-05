@@ -9,7 +9,7 @@ function AppLayout({children}) {
             {/* Nav Bar Component */}
             <NavBar/>
 
-            <div className='bg-white w-[80vw] ml-[20vw] relative h-full'>
+            <div className='bg-white w-[80vw] ml-[20vw] h-full'>
                 {/* Layout header */}
                 <Header/>
 

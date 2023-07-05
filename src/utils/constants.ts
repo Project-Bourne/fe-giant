@@ -133,3 +133,50 @@ export const PushNotificationData = [
     },
     
 ]
+
+
+export const LogData = [
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    {
+        time: "6:20pm",
+        action: "Uploaded documents to SIRP",
+        snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
+        id: 1,
+        date: "19/10/2023"
+    },
+    
+]

@@ -13,7 +13,7 @@ const SettingsLayout = ({children}: LayoutType) => {
     
     const route = useRouter().pathname;
 
-    console.log({route})
+    // console.log({route})
 
   return (
     <div className='w-full h-full'>
@@ -24,7 +24,7 @@ const SettingsLayout = ({children}: LayoutType) => {
         </div>
 
         {/* Settings tabs */}
-        <div className='w-[100%] flex flex-row items-center border-b'>
+        <div className='w-[100%] flex flex-row items-center border-b overscroll-y-auto-'>
             {
                 SettingsData.map((item, index) => (
                     <TabComp item={item} index={index} key={index} route={route} />
@@ -32,7 +32,9 @@ const SettingsLayout = ({children}: LayoutType) => {
             }
         </div>
 
-        {children}
+        {/* <div className='w-full h-full overscroll-auto flex'>
+        </div> */}
+            {children}
     </div>
   )
 }
