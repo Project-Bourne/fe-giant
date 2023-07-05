@@ -28,7 +28,7 @@ const sliceData = (data, page, rowsPerPage) => {
 
 
 
-function  CustomTable({tableHeaderData, tableBodyData, rowsPerPage}) {
+function  CustomTable({tableHeaderData, tableBodyData, rowsPerPage, usertype }) {
     const [tableRange, setTableRange] = useState([]);
     const [slice, setSlice] = useState([]);
     const [page, setPage] = useState(1);
@@ -77,7 +77,7 @@ function  CustomTable({tableHeaderData, tableBodyData, rowsPerPage}) {
                         <TableBody>
                             {slice?.map((item) => (
                                 <TableRow key={item.id} className='hover:bg-gray-50'>
-                                    <TableCell className='text-xs capitalize hover:cursor-pointer'>
+                                    <TableCell className='text-xs capitalize hover:cursor-pointer hover:underline'>
                                         <Link href={`users/${item.id}`}>{item.name}</Link>
                                     </TableCell>
                                     <TableCell className='text-xs capitalize'>{item.type}</TableCell>
@@ -88,11 +88,22 @@ function  CustomTable({tableHeaderData, tableBodyData, rowsPerPage}) {
                                             <p className='text-xs'>{item.status}</p>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="flex gap-x-4 items-center">
-                                        <button className="bg-transparent text-xs p-0 text-[#9F9036]">Chat</button>
-                                        <button className="bg-transparent text-xs p-0 text-[#9F9036]">Block</button>
-                                        <button className="bg-transparent text-xs p-0 text-sirp-primary">Delete</button>
-                                    </TableCell>
+                                    { usertype >= 0 ?
+                                        <TableCell >
+                                            <div className="flex gap-x-3 items-center">
+                                                <button className="bg-transparent text-xs p-0 text-[#9F9036]">Chat</button>
+                                                <button className="bg-transparent text-xs p-0 text-[#9F9036]">Block</button>
+                                                <button className="bg-transparent text-xs p-0 text-sirp-primary">Delete</button>
+                                            </div>
+                                        </TableCell> :
+                                        <TableCell>
+                                            <div className="flex gap-x-3 items-center">
+                                                <button className="bg-transparent text-xs p-0 text-[#9F9036]">Approve</button>
+                                                <button className="bg-transparent text-xs p-0 text-[#9F9036]">View</button>
+                                                <button className="bg-transparent text-xs p-0 text-sirp-primary">Reject</button>
+                                            </div>
+                                        </TableCell>
+                                    }
                                 </TableRow>
                                 ))} 
                         </TableBody> 

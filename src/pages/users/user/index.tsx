@@ -1,12 +1,13 @@
 import { CustomTable } from "../components";
-import { TableBodyData, TableHeaderData } from "../utils/constants";
+import { TableHeaderData } from "../utils/constants";
 
-function UsersList({tableData}) {
+function UsersList({tableData, usertype }) {
     return(
         <CustomTable
             tableHeaderData={TableHeaderData}
             tableBodyData={tableData}
             rowsPerPage={10}
+            usertype={usertype}
         />
     )
 }

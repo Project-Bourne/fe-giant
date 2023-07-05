@@ -71,7 +71,7 @@ function Login() {
             value="Sign in"
             type='submit'
             classNameStyle='text-white p-3'
-            background='#B22735'
+            background='bg-sirp-primary'
             size='xl'
           />
           {/* don't have account  */}

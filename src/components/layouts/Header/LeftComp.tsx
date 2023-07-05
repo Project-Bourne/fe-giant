@@ -3,7 +3,7 @@ import React from 'react'
 
 export const LeftComp = (props) => {
   return (
-    <div className='flex flex-row items-center w-[30%] self-start'>
+    <div className='flex relative flex-row items-center w-[30%] self-start'>
         <div className='bg-sirp-lightGrey flex flex-row w-full mr-2 py-3 px-5 h-[45px] rounded-[12px]'>
             <Image
                 src={require("../../../assets/icons/search.svg")}

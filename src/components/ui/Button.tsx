@@ -13,8 +13,8 @@ function Button(props: ButtonModel) {
 
     return(
         <button 
-            className={`rounded-md ${classNameStyle}` }
-            style={{ background: `${background}`, width: `${btnSize()}` }}
+            className={`rounded-md ${classNameStyle} ${background}` }
+            style={{ width: `${btnSize()}` }}
             type={type}
             onClick={onClick}>{value}</button>
     )

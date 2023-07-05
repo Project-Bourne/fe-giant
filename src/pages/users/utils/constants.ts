@@ -1,4 +1,4 @@
-import { TableBodyDataModel } from "../models/users.module";
+import { LogDataModel, TableBodyDataModel } from "../models/users.module";
 interface TabHeaderModel {
     id: number,
     icon?: string,
@@ -31,6 +31,8 @@ export const TabHeaderData: TabHeaderModel[] = [
         title: 'Supervisor'
     }
 ];
+
+
 
 
 
@@ -262,3 +264,64 @@ export const TableBodyDataSup: TableBodyDataModel[] = [
         status: 'Online'
     },
 ];
+
+export const LogsData = [
+    {
+        date: '12/12/2020',
+        data: [
+            {
+                id: 0,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+            {
+                id: 1,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+        ]
+    },
+    {
+        date: '12/12/2020',
+        data: [
+            {
+                id: 2,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+            {
+                id: 3,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+        ]
+    },
+    {
+        date: '12/12/2020',
+        data: [
+            {
+                id: 4,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+            {
+                id: 5,
+                docId: '0qw',
+                action: 'Uploaded documents to SIRP',
+                activity: 'Redesigned Naira: CBN launches Cash Swap Programme for rural',
+                time: '9:00PM'
+            },
+        ]
+    },
+
+]

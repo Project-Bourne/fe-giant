@@ -25,8 +25,7 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
     "react-loading-skeleton": "^3.3.1",
-    "tailwindcss": "3.3.2",
-    "use-react-countries": "^1.1.0"
+    "tailwindcss": "3.3.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.5",
