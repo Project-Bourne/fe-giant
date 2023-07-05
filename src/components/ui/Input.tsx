@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { InputModel, DropdownModel } from "@/models/ui/components.models";
 
+const countries = require('../../utils/countries.json');
+
 
 function Input(props: InputModel) {
     const { type, value, onChange, placeholder, classNameStyle, isDisabled } = props;
@@ -55,7 +57,7 @@ function Input(props: InputModel) {
 }
 
 
-
+// drop down component 
 function Dropdown(props: DropdownModel){
     const { data, onChange, className } = props;
 
@@ -74,9 +76,9 @@ function Dropdown(props: DropdownModel){
 
 
 
-
+// dropdown component of countries and flag 
 function DropdownWithFlag(props: DropdownModel) {
-    const { data, onClick, selectItem, className, style, isDisabled } = props;
+    const { onClick, selectItem, className, style, isDisabled } = props;
     const [ dropdown, setDropdown ] = useState(false);
     const [ country, setCountry ] = useState({
         name: 'Nigeria',
@@ -96,22 +98,20 @@ function DropdownWithFlag(props: DropdownModel) {
     const Menu = () => {
         return(
             <div className={`h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7`}>
-                { data.map((item: any, index: number) => (
+                {countries.map((item: any, index: number) => (
                     <div 
                     key={index} 
                     className={`flex gap-2 px-2 py-1 hover:bg-gray-200 cursor-pointer items-center`}
-                    onClick={() => handleItemSelect(item.name, item.flags.svg)}>
-                        <div>
-                            <Image
-                                src={item.flags.svg}
-                                alt="Filter"
-                                height={20}
-                                width={20}
-                                className='rounded-full h-[20px] w-[20px]'
-                                priority
-                            /> 
-                        </div>
-                        <div className="text-base font-light">{item.name}</div>
+                    onClick={() => handleItemSelect(item.name, item.image)}>
+                        <Image
+                            src={item.image}
+                            alt="Filter"
+                            height={20}
+                            width={20}
+                            className='rounded-full h-[20px] w-[20px]'
+                            priority
+                        /> 
+                        <div className="text-[15px] font-light">{item.name}</div>
                     </div>
                 ))}
             </div>
@@ -132,7 +132,7 @@ function DropdownWithFlag(props: DropdownModel) {
                         className='rounded-full h-[20px] w-[20px]'
                         priority
                     /> 
-                    <div className="text-base font-light">{country.name}</div>
+                    <div className="text-[15px] font-light">{country.name}</div>
                 </div>
                 <div>&#8964; </div>
             </div>

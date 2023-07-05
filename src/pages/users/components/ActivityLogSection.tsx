@@ -22,7 +22,7 @@ export  default function ActivityLogSection() {
                     </div>
                 </div>
                 <div className="px-2 md:mr-8 text-[12px] rounded-lg text-[#9F9036] shadow-sm shadow-gray-400/[0.3] border-[1px] border-gray-400" >
-                    <Link href={''}>See all</Link>
+                    <Link href={'/users/user/logs'}>See all</Link>
                 </div>
             </div>
             <div>

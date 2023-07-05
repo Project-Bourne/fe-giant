@@ -1,9 +1,8 @@
 import { Button, Input } from "@/components/ui";
 import Image from "next/image";
+import { PersonalInformationModel } from "../models/users.module";
 
-export  default function PersonalInfoSection() {
-
-    const handleBlockUser = () => {}
+export  default function PersonalInfoSection({ blockUser }: PersonalInformationModel) {
     const handleDeleteUser = () => {}
 
     return (
@@ -16,6 +15,7 @@ export  default function PersonalInfoSection() {
                             background="white"
                             classNameStyle="p-2 text-[12px] text-sirp-primary shadow-sm shadow-sirp-primary/[0.3] border-[1px] border-sirp-primary" 
                             size="lg"
+                            onClick={blockUser}
                         />
                         <Button
                             background="white"
@@ -40,15 +40,13 @@ export  default function PersonalInfoSection() {
                             value="Fatima"
                             type="text"
                             classNameStyle="text-[13px] px-3"
-                            onClick={handleBlockUser}
                         />
                         <Input
                             id="lastname"
                             value="Abdulkadir"
                             type="text"
                             classNameStyle="text-[13px] px-3"
-                            onClick={handleDeleteUser}
-                         />
+                        />
                     </div>
                 </div>           
                 {/* email  */}

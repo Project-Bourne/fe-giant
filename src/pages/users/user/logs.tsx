@@ -21,8 +21,8 @@ function Logs() {
                             <li key={item.id}>
                                 <ActivityCard
                                     time={item.time}
-                                    actionText={item.actionText}
-                                    activityText={item.activityText}
+                                    actionText={item.action}
+                                    activityText={item.activity}
                                     docId={item.docId}
                                 />
                             </li>

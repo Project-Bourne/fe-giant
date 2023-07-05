@@ -8,7 +8,7 @@ export interface TableBodyDataModel {
 
 export interface ActivityCardModel {
     id?: number,
-    docId: number,
+    docId: any,
     actionText: string,
     activityText: string,
     time: string
@@ -23,4 +23,9 @@ export interface LogDataModel {
     date: string,
     id: number,
     data: ActivityCardModel[]
+}
+
+export interface PersonalInformationModel {
+    blockUser?: () => void,
+    
 }

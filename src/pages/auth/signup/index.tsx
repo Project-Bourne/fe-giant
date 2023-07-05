@@ -7,7 +7,8 @@ import { UserRoles } from '@/utils/constants';
 
 
 const initialFormData = {
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   role: 'Desk Officer',
   country: {
@@ -19,7 +20,7 @@ const initialFormData = {
 
 function SignUp() {
   const [ formData, setFormData ] = useState(initialFormData);
-  const [ errors, setErrors ] = useState({ email: '', password: '', name: ''})
+  const [ errors, setErrors ] = useState({ email: '', password: '', first_name: '', last_name: ''})
 
   const handleSetCountry = (data: any) => {
     setFormData({...formData, country: data});
@@ -28,8 +29,12 @@ function SignUp() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    if(formData.name === ''){
-      setErrors({...errors, name: 'Name must not be empty!'});
+    if(formData.first_name === ''){
+      setErrors({...errors, first_name: 'First name must not be empty!'});
+      return;
+    }
+    if(formData.last_name === ''){
+      setErrors({...errors, last_name: 'Last name must not be empty!'});
       return;
     }
     if(formData.email === ''){
@@ -51,15 +56,25 @@ function SignUp() {
         subText={'Please enter your work email and create a password to get started'}
         >
           <form className='mt-[1.5rem] pb-7' onSubmit={handleSubmit}>
-            {/* name  */}
+            {/* first name  */}
             <div className='mb-3 grid gap-1'>
-              <label>Name</label>
+              <label>First Name</label>
               <Input 
-                placeholder='firstname lastname'
+                placeholder='first name'
                 type='text'
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => setFormData({...formData, first_name: e.target.value})}
               />
-              {errors.name && <small className='text-sirp-primary'>{errors.name}</small>}
+              {errors.first_name && <small className='text-sirp-primary'>{errors.first_name}</small>}
+            </div>
+            {/* last name  */}
+            <div className='mb-3 grid gap-1'>
+              <label>Last Name</label>
+              <Input 
+                placeholder='last name'
+                type='text'
+                onChange={(e) => setFormData({...formData, last_name: e.target.value})}
+              />
+              {errors.last_name && <small className='text-sirp-primary'>{errors.last_name}</small>}
             </div>
 
             {/* email  */}
@@ -114,7 +129,7 @@ function SignUp() {
               value="Create account"
               type='submit'
               classNameStyle='text-white p-3'
-              background='#B22735'
+              background='bg-sirp-primary'
               size='xl'
             />
             {/* don't have account  */}

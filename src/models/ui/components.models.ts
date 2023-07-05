@@ -1,5 +1,11 @@
 import { Dispatch } from "react";
 
+export interface TabModel {
+    tabHeaderContents: any[], 
+    tabBodyContents?: any[],
+    tabIndex?: number
+}
+
 export interface InputModel extends React.InputHTMLAttributes<HTMLInputElement> {
     isDisabled?: boolean,
     classNameStyle?: string
@@ -15,7 +21,7 @@ export interface DropdownModel extends React.SelectHTMLAttributes<HTMLSelectElem
 
 export interface ButtonModel extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     value?: any,
-    background: string,
+    background?: string,
     classNameStyle?: string,
     size?: 'sm' | 'md' | 'lg' | 'xl'
 }

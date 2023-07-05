@@ -13,5 +13,5 @@ export {
     Button,
     CustomSwitch,
     Tab,
-    CustomModal,
+    CustomModal
 }
