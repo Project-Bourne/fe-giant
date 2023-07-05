@@ -15,9 +15,9 @@ module.exports = {
       },
       colors: {
         sirp: {
-          primary: '#B22735',
-          primaryLess1: '#E0A9AE',
-          primaryLess2: '#F7E9EB',
+          primary: '#4582C4',
+          primaryLess1: '#B2CBE6',
+          primaryLess2: '#E8F8FD',
           secondary: '#ffee88',
           lightGrey: '#F3F5F6',
           grey: '#545C62',

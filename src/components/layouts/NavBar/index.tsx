@@ -20,7 +20,7 @@ function NavBar() {
 
         <div 
             className='items-center justify-center py-4 px-5 w-[100%] border-[1.3px] border-sirp-primaryLess1 rounded-xl 
-                flex flex-row self-center cursor-pointer shadow-sm shadow-sirp-primaryLess1'
+                flex flex-row self-center cursor-pointer shadow-sm shadow-sirp-primaryLess1 hover:bg-blue-50'
         >
             <Image
                 src={require("../../../assets/svg/refresh.svg")}
