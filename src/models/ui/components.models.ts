@@ -6,7 +6,7 @@ export interface InputModel extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 export interface DropdownModel extends React.SelectHTMLAttributes<HTMLSelectElement> {
-    data: any[],
+    data?: any[],
     selectItem?: any,
     className?: any,
     style?: any,
@@ -24,4 +24,9 @@ export interface CustomSwitchType extends React.ButtonHTMLAttributes<HTMLButtonE
    styles?: any,
    title: string,
    content: string
+}
+
+export  interface TabModel {
+    tabHeaderContents: any[],
+    tabBodyContents?: any[]
 }

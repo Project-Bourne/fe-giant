@@ -1,9 +1,10 @@
+import { TabModel } from "@/models/ui/components.models";
 import Image from "next/image";
 import { useState } from "react";
 
 
 
-function Tab({ tabHeaderContents, tabBodyContents }) {
+function Tab({ tabHeaderContents, tabBodyContents }: TabModel ) {
     const [ toggleIndex, setToggleIndex ] = useState<number>(0)
 
     return(

@@ -13,3 +13,14 @@ export interface ActivityCardModel {
     activityText: string,
     time: string
 }
+
+export interface HeaderModel {
+    filter?: boolean,
+    showModal?: boolean,
+}
+
+export interface LogDataModel {
+    date: string,
+    id: number,
+    data: ActivityCardModel[]
+}

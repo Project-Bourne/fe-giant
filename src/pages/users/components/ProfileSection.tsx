@@ -2,13 +2,11 @@ import { Dropdown, DropdownWithFlag } from '@/components/ui';
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { UserRoles } from '@/utils/constants';
-import { useCountries } from 'use-react-countries';
 import { useRouter } from 'next/router';
 
 export default function ProfileSection() {
 
     const router = useRouter();
-    const { countries } = useCountries()
   
     const [country, setCountry] = useState(null);
     const [role, setRole] = useState("");
@@ -63,7 +61,6 @@ export default function ProfileSection() {
                 </div>
 
                 <DropdownWithFlag
-                    data={countries}
                     selectItem={setCountry}
                     style={"md:w-[38%] md:mx-4 text-[12px]"}
                     isDisabled={true}

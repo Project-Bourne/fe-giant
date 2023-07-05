@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
-import { useCountries } from 'use-react-countries';
 
 import { AuthLayout } from '@/layout/index';
 import { Input, Button, Dropdown, DropdownWithFlag } from '@/components/ui';
@@ -21,7 +20,6 @@ const initialFormData = {
 function SignUp() {
   const [ formData, setFormData ] = useState(initialFormData);
   const [ errors, setErrors ] = useState({ email: '', password: '', name: ''})
-  const { countries } = useCountries()
 
   const handleSetCountry = (data: any) => {
     setFormData({...formData, country: data});
@@ -88,7 +86,6 @@ function SignUp() {
             <div className='mb-3 grid gap-1'>
               <label>Country</label>
               <DropdownWithFlag
-                data={countries}
                 selectItem={handleSetCountry}
               />
             </div>
