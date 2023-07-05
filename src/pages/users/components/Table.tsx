@@ -84,7 +84,7 @@ function  CustomTable({tableHeaderData, tableBodyData, rowsPerPage, usertype }) 
                                     <TableCell className=' text-xs capitalize'>{item.designation}</TableCell>
                                     <TableCell align='right'>
                                         <div className="flex gap-x-[0.2rem] items-center">
-                                            <div className={`rounded-full w-2 h-2 ${item.status === 'Online'? 'bg-green-600': 'bg-sirp-primary'}`}></div> 
+                                            <div className={`rounded-full w-2 h-2 ${item.status === 'Online'? 'bg-green-600': 'bg-[#EF4444]'}`}></div> 
                                             <p className='text-xs'>{item.status}</p>
                                         </div>
                                     </TableCell>
