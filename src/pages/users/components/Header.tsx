@@ -24,8 +24,10 @@ function Header({ filter }: HeaderModel) {
   });
 
 
-    const handleSetCountry = (data) => { setFormData({...formData, country: data}) }
-
+    const handleSetCountry = (data: any) => {
+        setFormData({...formData, country: data});
+        console.log('header', data)
+    }
     // handle modal form submit 
     const handleSubmit = () => {
         if(formData.email === ''){
@@ -35,6 +37,7 @@ function Header({ filter }: HeaderModel) {
         console.log(formData);
     }
 
+ 
 
 
     // add user modal component 
@@ -49,19 +52,19 @@ function Header({ filter }: HeaderModel) {
                     <Input />
                 </div>
                 <div className='mb-2'>
-                    <label htmlFor="email" className='text-sm'>User role</label>
+                    <label htmlFor="role" className='text-sm'>User role</label>
                     <Dropdown
                         data={UserRoles}
                         onChange={(e) => setFormData({...formData, role: e.target.value})}
                     />
                 </div>
                 <div className='mb-2'>
-                    <label htmlFor="email" className='text-sm'>Continent</label>
+                    <label htmlFor="continent" className='text-sm'>Continent</label>
                     <Input />
                 </div>
                 <div className='mb-2'>
-                    <label htmlFor="email" className='text-sm'>Country</label>
-                    <DropdownWithFlag 
+                    <label htmlFor="country" className='text-sm'>Country</label>
+                    <DropdownWithFlag
                         selectItem={handleSetCountry}
                     />
                 </div>
