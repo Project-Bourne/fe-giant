@@ -1,4 +1,4 @@
-import { Tab } from "@/components/ui";
+import { Breadcrumbs, Tab } from "@/components/ui";
 import { Header } from "../components";
 import { ActivityCard } from "../components/ActivityCard";
 import { LogsData, TabHeaderData } from "../utils/constants";
@@ -8,6 +8,7 @@ function Logs() {
         <>
             <Header filter={false} />
             <Tab tabHeaderContents={TabHeaderData} />
+            <Breadcrumbs />
             <div className="pt-1 pb-5">
                 { LogsData.map((log, index) => (
                     <div key={index}>

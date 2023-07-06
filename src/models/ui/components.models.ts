@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch, ReactNode } from "react";
 
 export interface TabModel {
     tabHeaderContents: any[], 

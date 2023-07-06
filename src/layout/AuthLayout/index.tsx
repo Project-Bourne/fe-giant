@@ -8,7 +8,7 @@ function AuthLayout({children, headerText, subText }) {
     const screenWidth = useWindowWidth();
 
     const bgStyle = { 
-        backgroundColor: `url('../../assets/images/user1.jpg')` , 
+        backgroundColor: `url('../../assets/images/Strips.svg')` , 
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover'
     }
@@ -36,7 +36,16 @@ function AuthLayout({children, headerText, subText }) {
                         <div> {children}  </div>
                     </div> 
                 </div>
-                <div className="hidden lg:block lg:w-[58%] bg-sirp-primary"></div>
+                <div className="hidden lg:block lg:w-[58%]">
+                    <Image
+                        src={require("../../assets/svg/Strips.svg")} 
+                        alt="SIRP Logo"
+                        className='object-cover w-full'
+                        width={100}
+                        height={100}
+                        priority
+                    />
+                </div>
             </div>
         </div>
     )

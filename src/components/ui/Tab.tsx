@@ -23,7 +23,7 @@ function Tab({ tabHeaderContents, tabBodyContents, tabIndex }:TabModel) {
         <>
         {   /* tab headers  */}
             <div className="w-full pt-3 border-b-[1px] border-b-gray-100">
-                <ul className="w-[80%] flex flex-wrap md:flex-nowrap gap-x-1 md:gap-x-3">
+                <ul className="w-full md:w-[80%] flex flex-wrap md:flex-nowrap gap-x-1 md:gap-x-3">
                     {tabHeaderContents.map(content => (
                         <li 
                         onClick={() => handleTabClick(content.id)}
