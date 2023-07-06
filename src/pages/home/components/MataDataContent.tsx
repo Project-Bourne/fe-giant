@@ -18,11 +18,12 @@ const MataDataContent = () => {
     return () => clearTimeout(delay);
   }, []);
 
+  
+
 
   return (
     <div className="bg-white w-[70rem] h-[100%] rounded-[1rem] mt-10 mx-10">
       {/* minimix and maximise section  */}
-      <Min_and_Max_icon />
       <div className="mx-5">
         <p className="text-gray-500">
             {isLoading ? (<Skeleton width={50}/>):('Title')}
