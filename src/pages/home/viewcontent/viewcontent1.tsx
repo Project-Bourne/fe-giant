@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddContentHeader from "../components/AddContentHeader";
 import ActionIcons from "../components/ActionIcons";
 import Image from "next/image";
@@ -7,9 +7,19 @@ import Breadcrum from "../components/Breadcrum";
 import data from "../components/data";
 import MataDataContent from "../components/MataDataContent";
 import DummyText from "../components/dummyText";
+import Min_and_Max_icon from "../components/Min_and_Max_icon";
 
-const ViewContent = (props) => {
+const ViewContent = () => {
     const { author } = data;
+
+    const [hideMeta, setHideMeta] = useState(false)
+  const handleMax = () => {
+    setHideMeta(true)
+  }
+  const handleMin = () => {
+    setHideMeta(false)
+  }
+  console.log(hideMeta)
 
   return (
     <div className="bg-sirp-contentbg h-[100%] mx-10 rounded-[1rem]">
@@ -44,7 +54,10 @@ const ViewContent = (props) => {
           {author.name}
         </h1>
         <Breadcrum />
-        <MataDataContent />
+        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin}/>
+
+        {hideMeta === false && <MataDataContent />}
+        
         <div className="mt-10 mx-10 pb-5">
             <DummyText/>
         </div>
