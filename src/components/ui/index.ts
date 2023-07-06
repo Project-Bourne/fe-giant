@@ -4,6 +4,7 @@ import Tab from "./Tab";
 import Button from "./Button";
 import CustomSwitch from "./CustomSwitch";
 import CustomModal from "./CustomModal";
+import Breadcrumbs from "./Breadcrumbs";
 
 
 export {
@@ -13,5 +14,6 @@ export {
     Button,
     CustomSwitch,
     Tab,
-    CustomModal
+    CustomModal,
+    Breadcrumbs
 }

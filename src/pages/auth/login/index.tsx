@@ -63,7 +63,7 @@ function Login() {
               <label className='font-light text-[13px]' htmlFor='rememberMe'>Remember me</label>
             </div>
             <div>
-              <p className='text-semibold text-[#B22735] cursor-pointer'>Forgot Password?</p>
+              <p className='font-light text-sirp-primary cursor-pointer'>Forgot Password?</p>
             </div>
           </div>
           {/* submit button  */}
@@ -76,7 +76,7 @@ function Login() {
           />
           {/* don't have account  */}
           <p className="text-center font-light mt-5">
-            Don't have an account? <Link href="/auth/signup" className="font-semibold text-[#B22735] cursor-pointer">Sign up</Link>
+            Don't have an account? <Link href="/auth/signup" className=" text-sirp-primary cursor-pointer">Sign up</Link>
           </p>
         </form>
       </AuthLayout>
