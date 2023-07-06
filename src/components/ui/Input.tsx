@@ -1,6 +1,7 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { InputModel, DropdownModel } from "@/models/ui/components.models";
+import { useOnClickOutside } from "../custom-hooks";
 
 const countries = require('../../utils/countries.json');
 
@@ -57,6 +58,12 @@ function Input(props: InputModel) {
 }
 
 
+
+
+
+
+
+
 // drop down component 
 function Dropdown(props: DropdownModel){
     const { data, onChange, className } = props;
@@ -76,6 +83,11 @@ function Dropdown(props: DropdownModel){
 
 
 
+
+
+
+
+
 // dropdown component of countries and flag 
 function DropdownWithFlag(props: DropdownModel) {
     const { onClick, selectItem, className, style, isDisabled } = props;
@@ -85,19 +97,25 @@ function DropdownWithFlag(props: DropdownModel) {
         flag: 'https://flagcdn.com/ng.svg'
     })
 
+    // toggle dropdown if component is not disabled 
     const handleDropdown = () => {
-        !isDisabled && setDropdown(prevState => !prevState)
+        setDropdown(!dropdown)
     }
-
+    // add a selected country from dropdown 
     const handleItemSelect = (country, flag) => {
-        selectItem(country)
         setCountry({ name: country, flag })
-        setDropdown(false)
+        setDropdown(false);
+        selectItem(country);
     }
 
+    // dropdwon compoent 
     const Menu = () => {
+        // close dropdown menu when outside is clicked 
+        const menuRef = useRef();
+        useOnClickOutside(menuRef, () => setDropdown(false));
+
         return(
-            <div className={`h-[170px] w-full shadow-md overflow-scroll bg-white absolute z-7`}>
+            <div ref={menuRef} className={`h-[170px] hover:cursor-pointer w-full shadow-md overflow-scroll bg-white absolute z-7`}>
                 {countries.map((item: any, index: number) => (
                     <div 
                     key={index} 
@@ -121,7 +139,7 @@ function DropdownWithFlag(props: DropdownModel) {
     return(
         <div className={`relative ${style}`}>
             <div 
-                className={`flex justify-between items-center py-2 px-3 rounded-md border-[1px] border-gray-100 `}
+                className={`flex justify-between items-center py-2 px-3 rounded-md border-[1px] border-gray-100 hover:cursor-pointer`}
                 onClick={handleDropdown}>
                 <div className="flex gap-2 items-center">
                     <Image
