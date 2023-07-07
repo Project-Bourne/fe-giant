@@ -7,7 +7,7 @@ function factcheck(){
   return (
     <div>
         <div className="my-5">
-            <h1 className="text-3xl font-bold ml-5">Running Fact Checker</h1>
+            <h1 className="text-3xl font-bold ml-5 text-black">Running Fact Checker</h1>
             <div className="flex gap-5 mt-5 mx-5 items-center">
               <small className="text-sm text-gray-500  mb-5">Title:</small>
               <p className="text-1xl font-sm">

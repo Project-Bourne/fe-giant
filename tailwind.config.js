@@ -15,6 +15,7 @@ module.exports = {
       colors: {
         sirp: {
           primary: '#4582C4',
+          primaryBlue: '#1293BA',
           primaryLess1: '#B2CBE6',
           primaryLess2: '#E8F8FD',
           secondary: '#ffee88',
@@ -28,6 +29,11 @@ module.exports = {
           dashbordb3: '#D17D86',
           dashbordb3a: '#B22735',
           dashbordb1: '#E8EAEC',
+          dashboardcola: '#4AC7ED',
+          keynotebg: '#A2E2F6',
+          hoverbg: '#D1F1FA',
+          counterbg:'#ECF2F9'
+
         },
       },
       screens: {
