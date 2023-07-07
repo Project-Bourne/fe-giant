@@ -16,7 +16,7 @@ function Index() {
   const filteredData = activeOption === 'All' ? dummyData : dummyData.filter((item) => item.isMarked === false);
 
   return (
-    <div className="bg-sirp-contentbg border h-[100%] my-4 mx-10 pt-5 rounded-[1rem]">
+    <div className="bg-sirp-counterbg border h-[100%] my-4 mx-10 pt-5 rounded-[1rem]">
       <HomeHeader activeOption={activeOption} onOptionChange={handleOptionChange} />
       <HomeHeaderTwo activeOption={activeOption} onOptionChange={handleOptionChange} />
       <HomeContent data={filteredData} />
