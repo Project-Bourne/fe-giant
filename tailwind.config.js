@@ -32,7 +32,8 @@ module.exports = {
           dashboardcola: '#4AC7ED',
           keynotebg: '#A2E2F6',
           hoverbg: '#D1F1FA',
-          counterbg:'#ECF2F9'
+          counterbg:'#ECF2F9',
+          listBg: '#F9FBFE',
 
         },
       },

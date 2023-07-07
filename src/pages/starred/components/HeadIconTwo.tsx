@@ -11,7 +11,6 @@ function HeadIconTwo({ activeOption, onOptionChange }) {
     onOptionChange(option);
   };
 
-  console.log(activeDiv);
   return (
     <div className="flex items-center gap-38 border-b-2">
       <div

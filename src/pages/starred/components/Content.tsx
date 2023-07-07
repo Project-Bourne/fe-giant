@@ -24,10 +24,9 @@ function Content({ data }) {
               message={item.message}
               handleChange={handleCheckboxChange}
               time={item.time}
+              buttonType="action"
               actionButtons={<ActionIcons />}
-            />
-          
-            
+            />  
           </div>
         );
       })}
