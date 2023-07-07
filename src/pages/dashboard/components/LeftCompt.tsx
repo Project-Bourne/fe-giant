@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function LeftCompt() {
   return (
-    <div className="ml-10 bg-sirp-primaryBlue drop-shadow-md  h-28 flex items-center rounded-[1.5rem] basis-1/2 gap-[1.5rem]">
+    <div className="ml-10 bg-sirp-dashboardcola drop-shadow-md  h-28 flex items-center rounded-[1.5rem] basis-1/2 gap-[1.5rem]">
       <div>
         <div className="flex flex-row items-center gap-2">
           <div>
@@ -16,8 +16,8 @@ function LeftCompt() {
             />
           </div>
           <div>
-            <p className="font-bold text-white">4000</p>
-            <span className="font-light text-white">Total documents</span>
+            <p className="font-bold text-black">4000</p>
+            <span className="font-light text-black">Total documents</span>
           </div>
         </div>
       </div>
@@ -32,8 +32,8 @@ function LeftCompt() {
             />
           </div>
           <div>
-            <p className="font-bold text-white">4000</p>
-            <span className="font-light text-white">Total export to collab</span>
+            <p className="font-bold text-black">4000</p>
+            <span className="font-light text-black">Total export to collab</span>
           </div>
         </div>
       </div>

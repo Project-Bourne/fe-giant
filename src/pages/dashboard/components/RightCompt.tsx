@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function RightCompt() {
   return (
-    <div className="mr-10 bg-sirp-primaryBlue h-28 drop-shadow-md rounded-[1.5rem] flex items-center gap-[1.5rem] basis-1/2">
+    <div className="mr-10 bg-sirp-dashboardcola h-28 drop-shadow-md rounded-[1.5rem] flex items-center gap-[1.5rem] basis-1/2">
       <div>
         <div className="flex flex-row items-center gap-2">
           <div>
@@ -16,8 +16,8 @@ function RightCompt() {
             />
           </div>
           <div>
-            <p className= "font-bold text-white">4000</p>
-            <span className="font-light text-white">Total content crawled</span>
+            <p className= "font-bold text-black">4000</p>
+            <span className="font-light text-black">Total content crawled</span>
           </div>
         </div>
       </div>
@@ -33,8 +33,8 @@ function RightCompt() {
             />
           </div>
           <div>
-            <p className="font-bold text-white">4000</p>
-            <span className="font-light text-white">Total archives</span>
+            <p className="font-bold text-black">4000</p>
+            <span className="font-light text-black">Total archives</span>
           </div>
         </div>
       </div>
