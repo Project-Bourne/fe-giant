@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 function DocumentExport() {
   const success = () => toast("Copied!");
@@ -60,7 +61,7 @@ function DocumentExport() {
               </p>
             </div>
           </div>
-
+    <Link href="../../home/dashboard/homedashboard">
           <Button
             className="flex gap-x-1 items-center mt-10 rounded-[1rem] mb-5"
             size="lg"
@@ -80,9 +81,11 @@ function DocumentExport() {
                   priority
                 />
                 <ToastContainer />
+                
               </div>
             }
           />
+          </Link>
         </div>
       </div>
     </div>
