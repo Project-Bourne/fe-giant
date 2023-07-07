@@ -19,10 +19,9 @@ const ViewContent = () => {
   const handleMin = () => {
     setHideMeta(false)
   }
-  console.log(hideMeta)
 
   return (
-    <div className="bg-sirp-contentbg h-[100%] mx-10 rounded-[1rem]">
+    <div className="bg-sirp-secondary2 h-[100%] mx-10 rounded-[1rem]">
       <div className="flex justify-between items-center">
         <div className="py-5 mx-5 flex gap-5">
           <Link href="../metadata/metadata">
@@ -54,9 +53,11 @@ const ViewContent = () => {
           {author.name}
         </h1>
         <Breadcrum />
+        <div className="bg-white rounded-[1rem] my-5 mx-5">
         <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin}/>
 
         {hideMeta === false && <MataDataContent />}
+        </div>
         
         <div className="mt-10 mx-10 pb-5">
             <DummyText/>
