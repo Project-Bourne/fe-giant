@@ -12,11 +12,14 @@ function DocumentExport() {
     navigator.clipboard.writeText(paragraphText);
     success();
   };
+  const navigateToDashboard = () => {
+    window.location.href = "../../home/dashboard/homedashboard";
+  };
 
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold ml-10">Export Content</h1>
+        <h1 className="text-3xl font-bold ml-10 text-black">Export Content</h1>
         <div className="flex flex-col justify-center items-center">
           <div className="relative mx-10 my-10">
             <Image
@@ -30,7 +33,7 @@ function DocumentExport() {
             />
             <div
               id="paragraph"
-              className="max-h-60 overflow-y-auto scrollbar-hide border rounded-[1rem] bg-sirp-dashbordb1 text-justify p-5"
+              className="max-h-60 overflow-y-auto scrollbar-hide border rounded-[1rem] text-black bg-sirp-dashbordb1 text-justify p-5"
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
@@ -61,11 +64,11 @@ function DocumentExport() {
               </p>
             </div>
           </div>
-    <Link href="../../home/dashboard/homedashboard">
           <Button
             className="flex gap-x-1 items-center mt-10 rounded-[1rem] mb-5"
             size="lg"
             background="bg-sirp-primary"
+            onClick={navigateToDashboard}
             value={
               <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
                 <label className="text-white">
@@ -81,11 +84,9 @@ function DocumentExport() {
                   priority
                 />
                 <ToastContainer />
-                
               </div>
             }
           />
-          </Link>
         </div>
       </div>
     </div>

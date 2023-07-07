@@ -38,13 +38,13 @@ function Content({ data }) {
         return (
           <div
             key={index}
-            className={`flex justify-start items-center gap-24 hover:bg-sirp-primaryLess1 p-2 rounded-lg  hover:-translate-y-1 hover:scale-100 duration-300 ${
-              isHovered ? "bg-sirp-primaryLess1" : "" // Add a different background color when hovered
+            className={`flex justify-start items-center gap-24 hover:text-gray-400 hover:bg-sirp-hoverbg p-2 rounded-lg  hover:-translate-y-1 hover:scale-100 duration-300 ${
+              isHovered ? "bg-sirp-hoverbg" : "" // Add a different background color when hovered
             }`}
             onMouseEnter={() => handleItemHover(index)} // Handle mouse enter event
             onMouseLeave={handleItemLeave} // Handle mouse leave event
           >
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center hover:text-gray-400">
               <Checkbox
                 checked={item.isMarked}
                 onChange={() => handleCheckboxChange(index)}
@@ -56,10 +56,10 @@ function Content({ data }) {
                 width={10}
                 height={10}
               />
-              <p className="text-sirp-black-500 ml-2 w-[12rem]">{item.name}</p>
+              <p className="text-sirp-black-500 ml-2 w-[12rem] hover:text-gray-400">{item.name}</p>
             </div>
-            <div>
-              <p className="text-black-100 w-[25rem] ">{truncatedDescription}</p>
+            <div className="hover:text-gray-400">
+              <p className="text-black-100 w-[25rem]  ">{truncatedDescription}</p>
             </div>
             <div>
               <div className="flex gap-4">
@@ -70,7 +70,7 @@ function Content({ data }) {
               </div>
             </div>
             {isHovered && ( // Render the options when hovered
-              <div className="absolute top-0 right-0 bg-sirp-primaryLess1 p-1">
+              <div className="absolute top-0 right-0 bg-sirp-hoverbg p-1">
                 {/* Replace with your list of options */}
                 <ActionIcons/>
               </div>
