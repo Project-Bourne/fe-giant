@@ -49,7 +49,6 @@ function Archives() {
           </div>
         );
       })}
-      <HomeContent data={filteredData} />
     </div>
   );
 }
