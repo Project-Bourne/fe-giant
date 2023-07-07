@@ -17,7 +17,7 @@ function ListItem({ name, desc, message, time, handleChange, isMarked, actionBut
 
 
   return (
-    <div onMouseOut={handleHoverOut} onMouseOver={handleHover} className="grid md:flex justify-between items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg ">
+    <div onMouseOut={handleHoverOut} onMouseOver={handleHover} className="grid md:flex justify-between items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow">
       <div className="flex gap-3 items-center hover:text-gray-400">
         <Checkbox checked={isMarked} onChange={handleChange} />
         <Image
