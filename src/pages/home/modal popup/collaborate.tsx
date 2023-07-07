@@ -32,7 +32,7 @@ function collaborate(){
                     width={50}
                   />
                   <div>
-                    <p className="font-bold">Musba’u Wasiu</p>
+                    <p className="font-bold text-black">Musba’u Wasiu</p>
                     <p className="text-gray-500 text-sm">
                       Musba’uwaasiu@gmail.com
                     </p>
