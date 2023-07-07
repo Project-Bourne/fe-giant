@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeadIcon from './components/HeadIcon';
 import HeadIconTwo from './components/HeadIconTwo';
 import Content from './components/Content';
-import dummy from '../../../dummy.json';
+import dummy from '../../utils/dummy.json';
 
 function Starred() {
   const [activeOption, setActiveOption] = useState('All');
