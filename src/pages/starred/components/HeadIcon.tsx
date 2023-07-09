@@ -5,14 +5,14 @@ import { Checkbox } from '@mui/material';
 import Link from 'next/link';
 import Pagination from './pagination';
 
-function HeadIcon({ activeOption, onOptionChange }) {
+function HeadIcon({ activeOption, onOptionChange, onClick }) {
   const showButton = activeOption === 'New';
 
   return (
     <div className="flex justify-between items-center w-[100%] mr-[3rem]">
       {/* These are the three icons to the left */}
       <div className="flex flex-row items-center pl-[1rem]">
-        <Checkbox />
+        <Checkbox onClick={onClick} />
         <Image
           src={require('../../../assets/icons/down.svg')}
           alt="documents"
