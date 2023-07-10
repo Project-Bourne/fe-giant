@@ -1,32 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import ActionIcons from "@/pages/home/components/ActionIcons";
 import ListItem from "@/pages/home/components/ListItem";
 
-function Content({ data }) {
-  const [dummyData, setDummyData] = useState(data);
-
-  const handleCheckboxChange = (index) => {
-    const updatedData = [...dummyData];
-    updatedData[index].isMarked = !updatedData[index].isMarked;
-    setDummyData(updatedData);
+function Content({ data, onCheck }) {
+  const handleCheckboxChange = (id) => {
+    onCheck(id); // Notify parent component about the checkbox change
   };
 
   return (
     <>
-      {data?.map((item, index) => {
+      {data?.map((item) => {
         return (
-          <div
-            key={index}>
-            <ListItem 
+          <div key={item.id}>
+            <ListItem
               isMarked={item.isMarked}
               name={item.name}
               desc={item.description}
               message={item.message}
-              handleChange={handleCheckboxChange}
+              handleChange={() => handleCheckboxChange(item.id)} // Pass the id to handleChange
               time={item.time}
               buttonType="action"
               actionButtons={<ActionIcons />}
-            />  
+            />
           </div>
         );
       })}

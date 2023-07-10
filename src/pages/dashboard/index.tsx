@@ -13,7 +13,7 @@ const index = () => {
       </h1>
 
       {/* the yellow navigation at the top of the dashboard page */}
-      <div className="flex items-center justify-between w-full gap-[20px] mt-5">
+      <div className="flex md:flex md:bo items-center justify-between w-full gap-[20px] mt-5">
         <Left />
         <Right />
       </div>
