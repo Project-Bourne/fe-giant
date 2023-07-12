@@ -19,10 +19,10 @@ const AllTraining = () => {
           }
         </div>
 
-        <div className='flex flex-row w-full items-start my-4'>
+        <div className='grid md:flex flex-row w-full items-start my-4'>
 
           {/* Main */}
-          <div className='w-[70%] p-6 border-sirp-primaryLess2 bg-sirp-secondary2 rounded-[30px] pb-5'>
+          <div className='w-full md:w-[70%] p-6 border-sirp-primaryLess2 bg-sirp-secondary2 rounded-[30px] pb-5'>
             <h2 className='text-[14px] font-semibold mb-2'>What you can do with Fact Checker</h2>
             <h3 className='text-[12px] font-semibold mt-4'>Interpretation: </h3>
 
@@ -57,7 +57,7 @@ const AllTraining = () => {
           </div>
           
           {/* FAQ */}
-          <div className='w-[18%] my-4 ml-5'>
+          <div className='w-full md:w-[18%] my-4 ml-5'>
             <p className='text-[13px] text-black font-semibold'>Getting Started with Fact Checker.</p>
 
             <div className='w-full mt-5'>

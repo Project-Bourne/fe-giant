@@ -13,7 +13,7 @@ function BlueButton() {
           width={20}
           onClick={() => setAdd(!add)}
         />
-        <p>Add content</p>
+        <p className='text-[14px]'>Add content</p>
       </button>
     </div>
   );

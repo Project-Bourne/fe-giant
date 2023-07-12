@@ -44,8 +44,8 @@ const TabComp = ({item, index, route}: TabCompType) => {
   return (    
     <div 
       className={
-        item.route == router.pathname ? 'px-8 pt-3 flex flex-row items-center border-b-2 border-sirp-primary pb-3 mr-10 mb-[-2px] cursor-pointer'
-        : 'px-8 pt-3 flex flex-row items-center border-b pb-3 mr-15 mb-[-2px] cursor-pointer text-sirp-grey'
+        item.route == router.pathname ? 'md:px-8 px-3 pt-3 flex flex-row items-center border-b-2 border-sirp-primary pb-2 md:pb-3 mb-[-2px] cursor-pointer'
+        : 'md:px-8 px-3  pt-3 flex items-center pb-3 mb-[-2px] cursor-pointer text-sirp-grey'
       }
       onClick={updatePath}
     >

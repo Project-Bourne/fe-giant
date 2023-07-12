@@ -96,7 +96,7 @@ function Header({ filter }: HeaderModel) {
         <>
         <div className="flex justify-between pl-5 pr-2  py-3">
             <h1 className="text-[30px]">Users</h1>
-            <div className={`flex gap-x-3 ${filter ? 'w-[25%]' : 'w-[18%]'}`}>
+            <div className={`flex gap-x-3 ${filter ? 'md:w-[25%] w-[45%]' : 'md:w-[18%] w-[45%] justify-end mr-5'}`}>
                 {filter && 
                 <div className='bg-sirp-lightGrey cursor-pointer flex gap-x-1 py-2 px-3 rounded-lg justify-center items-center content-center'>
                     <Image

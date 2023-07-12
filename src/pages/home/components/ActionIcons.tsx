@@ -11,7 +11,7 @@ const ActionIcons = () => {
   const [documents, setDocuments] = useState(false);
   return (
     <>
-      <div className="flex gap-1 mr-2 px-5">
+      <div className="flex gap-2 px-5">
         <Image
           src={require("../../../assets/icons/H3.svg")}
           alt="documents"

@@ -40,8 +40,8 @@ function Starred() {
     activeOption === "All" ? dummyData : dummyData.filter((item) => item.isMarked === false);
 
   return (
-    <div className="bg-sirp-contentbg h-[100%] border pt-5 mx-10 rounded-[1rem]">
-      <HeadIcon
+    <div className="bg-sirp-listBg h-[100%] border pt-5 mx-3 md:mx-10 rounded-[1rem]">
+      <HeadIcon 
         activeOption={activeOption}
         onOptionChange={handleOptionChange}
         onClick={handleCheckboxes}
