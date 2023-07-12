@@ -2,19 +2,26 @@ import React, { useState } from "react";
 import { useTruncate } from "@/components/custom-hooks";
 import Image from "next/image";
 import { Checkbox } from "@mui/material";
-import ActionIcons from "./ActionIcons";
 import { ListItemModels } from "../models/home.models";
 
-function ListItem({ name, desc, message, time, handleChange, isMarked, actionButtons, viewDeleteButtons, buttonType }: ListItemModels) {
+function ListItem({
+  name,
+  desc,
+  message,
+  time,
+  handleChange,
+  isMarked,
+  actionButtons,
+  viewDeleteButtons,
+  buttonType,
+}: ListItemModels) {
   const [showaction, setShowAction] = useState(0);
   const handleHover = () => {
-    setShowAction(1)
-  }
+    setShowAction(1);
+  };
   const handleHoverOut = () => {
-    setShowAction(0)
-  }
-
-
+    setShowAction(0);
+  };
 
   return (
     <div onMouseOut={handleHoverOut} onMouseOver={handleHover} className={`text-[14px] flex items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}>
@@ -22,7 +29,7 @@ function ListItem({ name, desc, message, time, handleChange, isMarked, actionBut
         <Checkbox checked={isMarked} onChange={handleChange} />
         {/* star icon  */}
         <Image
-          src={require("../../../assets/icons/bluestar.svg")}
+          src={require("../../../assets/icons/saved.svg")}
           alt="documents"
           className="cursor-pointer w-4 h-4"
           width={10}

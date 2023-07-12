@@ -32,7 +32,7 @@ const ActionIcons = () => {
           width={50}
         />
         <Image
-          src={require("../../../assets/icons/H5.svg")}
+          src={require("../../../assets/icons/on.saved.svg")}
           alt="documents"
           className="cursor-pointer"
           width={50}

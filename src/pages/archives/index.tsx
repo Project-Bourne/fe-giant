@@ -15,37 +15,63 @@ function Archives() {
     setActiveOption(option);
   };
 
-  const handleCheckboxChange = () => {}
+  const handleCheckboxChange = (id) => {
+    const updatedData = dummyData.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          isMarked: !item.isMarked, // Toggle the isMarked property
+        };
+      }
+      return item;
+    });
+    setDummyData(updatedData);
+  };
+
+  const handleCheckboxes = () => {
+    const allChecked = dummyData.every((item) => item.isMarked);
+    const updatedData = dummyData.map((item) => {
+      return {
+        ...item,
+        isMarked: !allChecked,
+      };
+    });
+    setDummyData(updatedData);
+  };
 
   const filteredData = activeOption === 'All' ? dummyData : dummyData.filter((item) => item.isMarked === false);
 
   return (
     <div className="bg-sirp-listBg border h-[100%] my-4 mx-3 md:mx-10 pt-5 rounded-[1rem]">
-      <HomeHeader activeOption={activeOption} onOptionChange={handleOptionChange} />
-      <HomeHeaderTwo activeOption={activeOption} onOptionChange={handleOptionChange} />
+      <HomeHeader
+        activeOption={activeOption}
+        onOptionChange={handleOptionChange}
+        onClick={handleCheckboxes}
+      />
+      <HomeHeaderTwo
+        activeOption={activeOption}
+        onOptionChange={handleOptionChange}
+      />
       {filteredData?.map((item, index) => {
         return (
-          <div
-            key={index}>
-            <ListItem 
+          <div key={index}>
+            <ListItem
               isMarked={item.isMarked}
               name={item.name}
               desc={item.description}
               message={item.message}
-              handleChange={handleCheckboxChange}
+              handleChange={() => handleCheckboxChange(item.id)}
               time={item.time}
-              buttonType='view'
+              buttonType="view"
               viewDeleteButtons={
                 <Image
                   src={require('../../assets/icons/Archive-delete.svg')}
-                  alt='delete-archives'
+                  alt="delete-archives"
                   height={30}
                   width={30}
                 />
               }
             />
-          
-            
           </div>
         );
       })}
