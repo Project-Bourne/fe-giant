@@ -37,13 +37,13 @@ const View1 = () => {
               type='text' 
               placeholder='First name'
               onChange={(e: any) => setFirstname(e)}
-              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-4 mx-4 w-[18%]'
+              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-4 mx-4 w-[42%] md:w-[18%]'
             />
             <input 
               type='text' 
               placeholder='Last name'
               onChange={(e: any) => setLastname(e)}
-              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-4 mx-4 w-[18%]'
+              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-4 mx-4 w-[42%] md:w-[18%]'
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ const View1 = () => {
               name='email'
               placeholder='Email Address'
               onChange={(e: any) => setEmail(e)}
-              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-7 mx-4 w-[38%]'
+              className='text-[12px] text-black border-[1.5px] rounded-md py-2 px-7 mx-4 w-full md:w-[38%]'
             />
             
           </div>

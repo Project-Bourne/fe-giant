@@ -5,7 +5,7 @@ function BlueButton() {
   const [add, setAdd] = useState(false);
   return (
     <div>
-      <button className="h-16 flex flex-row gap-2 w-44 justify-center hover:bg-sirp-primaryLess1 items-center cursor-pointer border border-sirp-primary pb-2 pt-2 rounded-[1rem] bg-sirp-primary text-white font-bold">
+      <button className="h-12 flex flex-row gap-2 px-5 justify-center hover:bg-sirp-primaryLess1 items-center cursor-pointer border border-sirp-primary pb-2 pt-2 rounded-[1rem] bg-sirp-primary text-white font-bold">
         <Image
           src={require('../../assets/icons/plus 1.svg')}
           alt="documents"
@@ -13,7 +13,7 @@ function BlueButton() {
           width={20}
           onClick={() => setAdd(!add)}
         />
-        <p>Add content</p>
+        <p className='text-[14px]'>Add content</p>
       </button>
     </div>
   );
