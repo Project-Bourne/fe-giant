@@ -5,7 +5,7 @@ function Group1() {
   return (
     <div className="flex justify-start  md:justify-evenly flex-row flex-wrap gap-x-5 md:gap-x-0">
       {/* group 1  */}
-      <div className="border mx-auto md:mx-0 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
+      {/* <div className="border mx-auto md:mx-0 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
           <div className="flex flex-row items-center gap-3 pt-5">
             <div>
               <Image
@@ -48,8 +48,8 @@ function Group1() {
             Invite collaborators
           </button>
         </div>
-      </div>
-      <div className="border mx-auto md:mx-0 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
+      </div> */}
+      <div className="border mx-auto md:mx-0  border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
         <div className="flex flex-row items-center gap-3 pt-5">
           <div>
             <Image
