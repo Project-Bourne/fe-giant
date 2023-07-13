@@ -51,8 +51,8 @@ function HeadIconTwo({ activeOption, onOptionChange }) {
         <Image
           src={
             activeDiv == "New"
-              ? require(`../../../assets/icons/newCycle.svg`)
-              : require(`../../../assets/icons/onNewCycle.svg`)
+              ? require(`../../../assets/icons/onNewCycle.svg`)
+              : require(`../../../assets/icons/newCycle.svg`)
           }
           alt="documents"
           className="cursor-pointer ml-2"
