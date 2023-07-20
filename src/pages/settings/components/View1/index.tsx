@@ -19,7 +19,10 @@ const View1 = () => {
             alt="Edit btn"
             width={18}
             height={18}
-            style={{ marginRight: 15 }}
+            style={{
+              fill: "#4582C4",
+              marginRight: 15,
+            }}
             priority
           />
           <h2 className="text-[13px] text-sirp-primary">Edit Profile</h2>
