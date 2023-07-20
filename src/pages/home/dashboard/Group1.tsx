@@ -29,7 +29,7 @@ function Group1() {
         </div>
         <div className="ml-6 pt-8 ">
           <button className=" border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold">
-            Open SIRP
+            Open IRP
           </button>
         </div>
       </div>

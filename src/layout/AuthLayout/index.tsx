@@ -22,7 +22,7 @@ function AuthLayout({children, headerText, subText }) {
                         <div className="mx-auto w-[25%]">
                             <Image
                                 src={require("../../assets/svg/logo.svg")} 
-                                alt="SIRP Logo"
+                                alt="IRP Logo"
                                 width={100}
                                 height={93}
                                 priority
@@ -39,7 +39,7 @@ function AuthLayout({children, headerText, subText }) {
                 <div className="hidden lg:block lg:w-[58%]">
                     <Image
                         src={require("../../assets/svg/Strips.svg")} 
-                        alt="SIRP Logo"
+                        alt="IRP Logo"
                         className='object-cover w-full'
                         width={100}
                         height={100}
