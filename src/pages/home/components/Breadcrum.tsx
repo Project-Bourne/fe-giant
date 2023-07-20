@@ -7,6 +7,6 @@ function Breadcrum() {
       <p className="text-slate-600">Add content</p>
     </div>
   );
-};
+}
 
 export default Breadcrum;

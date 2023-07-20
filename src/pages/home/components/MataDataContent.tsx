@@ -20,7 +20,9 @@ const MataDataContent = () => {
   return (
     <div className="bg-white w-[63rem] h-[100%] rounded-[1rem] mt-10 mx-5">
       <div className="mx-5">
-        <p className="text-gray-500">{isLoading ? <Skeleton width={50} /> : "Title"}</p>
+        <p className="text-gray-500">
+          {isLoading ? <Skeleton width={50} /> : "Title"}
+        </p>
         <h1 className="text-black text-3xl">
           {isLoading ? <Skeleton /> : title}
         </h1>

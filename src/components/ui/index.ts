@@ -6,14 +6,13 @@ import CustomSwitch from "./CustomSwitch";
 import CustomModal from "./CustomModal";
 import Breadcrumbs from "./Breadcrumbs";
 
-
 export {
-    Input,
-    Dropdown,
-    DropdownWithFlag,
-    Button,
-    CustomSwitch,
-    Tab,
-    CustomModal,
-    Breadcrumbs
-}
+  Input,
+  Dropdown,
+  DropdownWithFlag,
+  Button,
+  CustomSwitch,
+  Tab,
+  CustomModal,
+  Breadcrumbs,
+};

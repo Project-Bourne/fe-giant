@@ -7,11 +7,13 @@ function Group2() {
       <div className="border border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2 basis-1/3 h-[12rem] mt-5  pt-3">
         <div>
           <div className="flex flex-row items-center gap-3 pt-5">
-          <div className="relative">
-                {/* content counter */}
-            <div>
-            <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[1rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">20</span>
-          </div>
+            <div className="relative">
+              {/* content counter */}
+              <div>
+                <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[1rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">
+                  20
+                </span>
+              </div>
               <Image
                 src={require("../../../assets/icons/Frame 08.svg")}
                 alt="documents"
@@ -36,11 +38,13 @@ function Group2() {
       <div className="border border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2 basis-1/3 h-[12rem] mt-5  pt-3">
         <div>
           <div className="flex flex-row items-center gap-3 pt-5">
-          <div className="relative">
-                {/* content counter */}
-            <div>
-            <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[0.5rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">20</span>
-          </div>
+            <div className="relative">
+              {/* content counter */}
+              <div>
+                <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[0.5rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">
+                  20
+                </span>
+              </div>
               <Image
                 src={require("../../../assets/icons/Frame 09.svg")}
                 alt="documents"
@@ -58,7 +62,7 @@ function Group2() {
         </div>
         <div className="ml-6 pt-8 ">
           <button className=" border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold">
-          Open Interrogator
+            Open Interrogator
           </button>
         </div>
       </div>
@@ -75,14 +79,12 @@ function Group2() {
             </div>
             <div>
               <p className="font-bold">4000</p>
-              <span className="font-light text-sirp-grey">
-                Total documents
-              </span>
+              <span className="font-light text-sirp-grey">Total documents</span>
             </div>
           </div>
         </div>
         <div className="ml-6 pt-8 ">
-        <button className=" border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold">
+          <button className=" border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold">
             Open Translator
           </button>
         </div>

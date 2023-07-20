@@ -30,7 +30,7 @@ function AddContentHeaderTwo() {
       >
         <Image
           src={
-            activeDiv ===1
+            activeDiv === 1
               ? require(`../../../assets/icons/Histroy.svg`)
               : require(`../../../assets/icons/on.Histroy.svg`)
           }
@@ -57,11 +57,11 @@ function AddContentHeaderTwo() {
         }`}
       >
         <Image
-            src={
-                activeDiv ===1
-                  ? require(`../../../assets/icons/starred.svg`)
-                  : require(`../../../assets/icons/on.starred.svg`)
-              }
+          src={
+            activeDiv === 1
+              ? require(`../../../assets/icons/starred.svg`)
+              : require(`../../../assets/icons/on.starred.svg`)
+          }
           alt="documents"
           className="cursor-pointer ml-2"
           width={20}

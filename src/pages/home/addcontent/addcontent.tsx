@@ -10,13 +10,13 @@ function addcontext() {
     <div className="h-[100%] my-4 mx-10 pt-5 bg-sirp-secondary2 pb-5 border rounded-[1rem]">
       <AddContentHeader />
       {/* breadcrum  */}
-      <Breadcrum/>
+      <Breadcrum />
 
       {/* add link  */}
 
-      <AddLink/>
-      <AddContentHeaderTwo/>
-      <ContentHistory/>
+      <AddLink />
+      <AddContentHeaderTwo />
+      <ContentHistory />
     </div>
   );
 }

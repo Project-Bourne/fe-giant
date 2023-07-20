@@ -10,15 +10,15 @@ import DummyText from "../components/dummyText";
 import Min_and_Max_icon from "../components/Min_and_Max_icon";
 
 const ViewContent = () => {
-    const { author } = data;
+  const { author } = data;
 
-    const [hideMeta, setHideMeta] = useState(false)
+  const [hideMeta, setHideMeta] = useState(false);
   const handleMax = () => {
-    setHideMeta(true)
-  }
+    setHideMeta(true);
+  };
   const handleMin = () => {
-    setHideMeta(false)
-  }
+    setHideMeta(false);
+  };
 
   return (
     <div className="bg-sirp-secondary2 h-[100%] mx-10 rounded-[1rem]">
@@ -49,19 +49,17 @@ const ViewContent = () => {
         </div>
         <ActionIcons />
       </div>
-      <h1 className="text-black text-xl">
-          {author.name}
-        </h1>
-        <Breadcrum />
-        <div className="bg-white rounded-[1rem] my-5 mx-5">
-        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin}/>
+      <h1 className="text-black text-xl">{author.name}</h1>
+      <Breadcrum />
+      <div className="bg-white rounded-[1rem] my-5 mx-5">
+        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
 
         {hideMeta === false && <MataDataContent />}
-        </div>
-        
-        <div className="mt-10 mx-10 pb-5">
-            <DummyText/>
-        </div>
+      </div>
+
+      <div className="mt-10 mx-10 pb-5">
+        <DummyText />
+      </div>
     </div>
   );
 };

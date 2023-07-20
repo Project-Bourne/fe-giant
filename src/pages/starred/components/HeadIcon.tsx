@@ -1,12 +1,12 @@
-import React from 'react';
-import Image from 'next/image';
-import BlueButton from '@/components/ui/BlueButton';
-import { Checkbox } from '@mui/material';
-import Link from 'next/link';
-import Pagination from './pagination';
+import React from "react";
+import Image from "next/image";
+import BlueButton from "@/components/ui/BlueButton";
+import { Checkbox } from "@mui/material";
+import Link from "next/link";
+import Pagination from "./pagination";
 
 function HeadIcon({ activeOption, onOptionChange, onClick }) {
-  const showButton = activeOption === 'New';
+  const showButton = activeOption === "New";
 
   return (
     <div className="flex justify-between items-center w-[100%] mr-[3rem]">
@@ -14,13 +14,13 @@ function HeadIcon({ activeOption, onOptionChange, onClick }) {
       <div className="flex flex-row items-center pl-[1rem]">
         <Checkbox onClick={onClick} />
         <Image
-          src={require('../../../assets/icons/down.svg')}
+          src={require("../../../assets/icons/down.svg")}
           alt="documents"
           className="cursor-pointer ml-2"
           width={10}
         />
         <Image
-          src={require('../../../assets/icons/refresh.svg')}
+          src={require("../../../assets/icons/refresh.svg")}
           alt="documents"
           className="cursor-pointer ml-5"
           width={20}

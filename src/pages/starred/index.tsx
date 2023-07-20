@@ -37,16 +37,21 @@ function Starred() {
   };
 
   const filteredData =
-    activeOption === "All" ? dummyData : dummyData.filter((item) => item.isMarked === false);
+    activeOption === "All"
+      ? dummyData
+      : dummyData.filter((item) => item.isMarked === false);
 
   return (
     <div className="bg-sirp-listBg h-[100%] border pt-5 mx-3 md:mx-10 rounded-[1rem]">
-      <HeadIcon 
+      <HeadIcon
         activeOption={activeOption}
         onOptionChange={handleOptionChange}
         onClick={handleCheckboxes}
       />
-      <HeadIconTwo activeOption={activeOption} onOptionChange={handleOptionChange} />
+      <HeadIconTwo
+        activeOption={activeOption}
+        onOptionChange={handleOptionChange}
+      />
       <Content data={filteredData} onCheck={handleCheck} />
     </div>
   );

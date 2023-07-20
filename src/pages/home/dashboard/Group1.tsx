@@ -8,10 +8,12 @@ function Group1() {
         <div>
           <div className="flex flex-row items-center gap-3 pt-5">
             <div className="relative">
-                {/* content counter */}
-            <div>
-            <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[1rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">20</span>
-          </div>
+              {/* content counter */}
+              <div>
+                <span className="absolute  bg-sirp-counterbg bottom-[2rem] left-[1rem] text-sirp-primary border-2 border-white p-2 rounded-[3rem]">
+                  20
+                </span>
+              </div>
               <Image
                 src={require("../../../assets/icons/Frame 05.svg")}
                 alt="documents"

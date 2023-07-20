@@ -24,7 +24,11 @@ function ListItem({
   };
 
   return (
-    <div onMouseOut={handleHoverOut} onMouseOver={handleHover} className={`text-[14px] flex items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}>
+    <div
+      onMouseOut={handleHoverOut}
+      onMouseOver={handleHover}
+      className={`text-[14px] flex items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}
+    >
       <div className="flex gap-3 items-center  hover:text-gray-400">
         <Checkbox checked={isMarked} onChange={handleChange} />
         {/* star icon  */}
@@ -45,40 +49,38 @@ function ListItem({
         <p className={`text-black-100 w-[23rem]`}>{useTruncate(desc, 48)}</p>
       </div>
       {/* message  */}
-      {
-      buttonType === 'action' ?
-      <>
-      { showaction === 0  &&
-        <div className="md:w-[15%] hidden md:block">
-          <p className="text-gray-400 border-l-2 pl-2 ">
-            {useTruncate(message, 15)}
-          </p>
-        </div>
-      }
-      </>  :
-      <>
-        { (showaction === 0 || showaction === 1) &&
-          <div className="md:w-[15%] border-l-2 px-3 hidden md:block">
-            <p className="text-gray-400">
-              {useTruncate(message, 15)}
-            </p>
-          </div>
-        }
-      </>
-      }
+      {buttonType === "action" ? (
+        <>
+          {showaction === 0 && (
+            <div className="md:w-[15%] hidden md:block">
+              <p className="text-gray-400 border-l-2 pl-2 ">
+                {useTruncate(message, 15)}
+              </p>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          {(showaction === 0 || showaction === 1) && (
+            <div className="md:w-[15%] border-l-2 px-3 hidden md:block">
+              <p className="text-gray-400">{useTruncate(message, 15)}</p>
+            </div>
+          )}
+        </>
+      )}
       {/* time  */}
-      { showaction === 0 &&
+      {showaction === 0 && (
         <div className="flex w-[5%] mr-[3rem] md:mr-[5rem]">
-          <p >{time}</p>
+          <p>{time}</p>
         </div>
-      }
+      )}
       {/* overflow buttons  */}
-      {showaction === 1 &&
-        <div className="border-l-2 px-5 hover:cursor-pointer ">{viewDeleteButtons}</div>
-        }
-      {showaction === 1 &&
-        <div className="border-l-2">{actionButtons}</div>
-        }
+      {showaction === 1 && (
+        <div className="border-l-2 px-5 hover:cursor-pointer ">
+          {viewDeleteButtons}
+        </div>
+      )}
+      {showaction === 1 && <div className="border-l-2">{actionButtons}</div>}
     </div>
   );
 }

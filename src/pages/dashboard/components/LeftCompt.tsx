@@ -13,16 +13,16 @@ function LeftCompt() {
               alt="documents"
               className="pl-5 md:pl-10 cursor-pointer"
               width={100}
-
             />
-          </div>   
+          </div>
           <div>
             <p className="font-bold text-black">4000</p>
-            <span className="font-light text-black text-[14px] md:text-[16px]">Total documents</span>
+            <span className="font-light text-black text-[14px] md:text-[16px]">
+              Total documents
+            </span>
           </div>
         </div>
       </div>
-
 
       <div>
         <div className="flex flex-row items-center gap-2 border-l h-28 border-black border-opacity-5">
@@ -36,7 +36,9 @@ function LeftCompt() {
           </div>
           <div>
             <p className="font-bold text-black">4000</p>
-            <span className="font-light text-black text-[14px] md:text-[16px]">Total export to collab</span>
+            <span className="font-light text-black text-[14px] md:text-[16px]">
+              Total export to collab
+            </span>
           </div>
         </div>
       </div>

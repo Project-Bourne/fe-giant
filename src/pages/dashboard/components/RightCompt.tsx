@@ -13,17 +13,17 @@ function RightCompt() {
               alt="crawled-content"
               className="pl-5 md:pl-10 cursor-pointer"
               width={100}
-
             />
           </div>
           <div>
-            <p className= "font-bold text-black">4000</p>
-            <span className="font-light text-black text-[14px] md:text-[16px]">Total content crawled</span>
+            <p className="font-bold text-black">4000</p>
+            <span className="font-light text-black text-[14px] md:text-[16px]">
+              Total content crawled
+            </span>
           </div>
         </div>
       </div>
 
-      
       <div>
         <div className="flex items-center gap-2 border-l h-28 border-black border-opacity-5">
           <div>
@@ -36,7 +36,9 @@ function RightCompt() {
           </div>
           <div>
             <p className="font-bold text-black">4000</p>
-            <span className="font-light text-black text-[14px] md:text-[16px]">Total archives</span>
+            <span className="font-light text-black text-[14px] md:text-[16px]">
+              Total archives
+            </span>
           </div>
         </div>
       </div>

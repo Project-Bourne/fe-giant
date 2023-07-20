@@ -97,13 +97,13 @@ function ContentHistroy() {
         </div>
       ))}
       <div className="border flex items-center gap-2 cursor-pointer justify-center py-2 border-gray-500 mt-5 w-[31rem]  h-[100%] rounded-[1rem] mx-5 bg-sirp-contentbg">
-      <h2>Show all</h2>
-      <Image
-              src={require("../../../assets/icons/leftArro.svg")}
-              alt="documents"
-              className="cursor-pointer w-[2rem] h-[2rem] mt-2"
-              width={10}
-            />
+        <h2>Show all</h2>
+        <Image
+          src={require("../../../assets/icons/leftArro.svg")}
+          alt="documents"
+          className="cursor-pointer w-[2rem] h-[2rem] mt-2"
+          width={10}
+        />
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import HomeHeader from '../starred/components/HeadIcon';
-import HomeHeaderTwo from '../starred/components/HeadIconTwo';
-import HomeContent from '../starred/components/Content';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ListItem } from '../home/components';
-import dummy from '../../utils/dummy.json';
+import React, { useState } from "react";
+import HomeHeader from "../starred/components/HeadIcon";
+import HomeHeaderTwo from "../starred/components/HeadIconTwo";
+import HomeContent from "../starred/components/Content";
+import Link from "next/link";
+import Image from "next/image";
+import { ListItem } from "../home/components";
+import dummy from "../../utils/dummy.json";
 
 function Archives() {
-  const [activeOption, setActiveOption] = useState('All');
+  const [activeOption, setActiveOption] = useState("All");
   const [dummyData, setDummyData] = useState(dummy);
 
   const handleOptionChange = (option) => {
@@ -39,7 +39,10 @@ function Archives() {
     setDummyData(updatedData);
   };
 
-  const filteredData = activeOption === 'All' ? dummyData : dummyData.filter((item) => item.isMarked === false);
+  const filteredData =
+    activeOption === "All"
+      ? dummyData
+      : dummyData.filter((item) => item.isMarked === false);
 
   return (
     <div className="bg-sirp-listBg border h-[100%] my-4 mx-3 md:mx-10 pt-5 rounded-[1rem]">
@@ -65,7 +68,7 @@ function Archives() {
               buttonType="view"
               viewDeleteButtons={
                 <Image
-                  src={require('../../assets/icons/Archive-delete.svg')}
+                  src={require("../../assets/icons/Archive-delete.svg")}
                   alt="delete-archives"
                   height={30}
                   width={30}

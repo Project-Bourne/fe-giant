@@ -21,8 +21,9 @@ function metaData() {
       <Breadcrum />
       <AddLink />
       <div className="bg-white rounded-[1rem] my-5 mx-5">
-      <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
-      {hideMeta === false && <MataDataContent />}</div>
+        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
+        {hideMeta === false && <MataDataContent />}
+      </div>
       <div className="mt-5">
         <AddContentHeaderTwo />
         <ContentHistroy />
