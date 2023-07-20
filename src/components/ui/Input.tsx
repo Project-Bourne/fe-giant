@@ -210,7 +210,7 @@ function DropdownWithFlag(props: DropdownModel) {
       {dropdown && (
         <>
           <input
-            className="static w-[400px] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black"
+            className="static w-[100%] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black"
             id="country-search"
             placeholder="Search"
             type="text"

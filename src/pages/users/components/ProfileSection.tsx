@@ -55,16 +55,18 @@ export default function ProfileSection() {
       {/* Countries */}
       <div className="grid md:flex md:flex-row items-center my-[20px] w-full px-8">
         <div className="w-[80px]">
-          <label htmlFor="email" className="text-[12px] text-sirp-grey">
+          <label htmlFor="country" className="text-[12px] text-sirp-grey">
             Country:{" "}
           </label>
         </div>
 
-        <DropdownWithFlag
-          selectItem={setCountry}
-          style={"md:w-[38%] md:mx-4 text-[12px]"}
-          isDisabled={true}
-        />
+        <div className="w-[100%] md:w-[38%]">
+          <DropdownWithFlag
+            selectItem={setCountry}
+            style={"w-full md:mx-4 text-[12px]"}
+            isDisabled={true}
+          />
+        </div>
       </div>
     </div>
   );
