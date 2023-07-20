@@ -3,16 +3,16 @@ import Image from "next/image";
 
 function LeftCompt() {
   return (
-    <div className="md:ml-10 ml-0 bg-sirp-dashboardcola drop-shadow-md  h-28 flex items-center rounded-[1.5rem] basis-1/2 gap-[1.5rem]">
+    <div className="capitalize col-span-1 ml-0 bg-sirp-dashboardcola drop-shadow-md min-h-28 flex flex-wrap justify-start px-8 py-4 items-center rounded-[1.5rem] basis-1/2 gap-x-[2.5rem]">
       {/* dashbaord card 1  */}
-      <div>
+      <div className="flex flex-col justify-center h-[70px] min-w-[45%]">
         <div className="flex flex-row items-center gap-2">
           <div>
             <Image
               src={require("../../../assets/icons/Frame 01.svg")}
               alt="documents"
-              className="pl-5 md:pl-10 cursor-pointer"
-              width={100}
+              className="cursor-pointer"
+              width={50}
             />
           </div>
           <div>
@@ -24,14 +24,14 @@ function LeftCompt() {
         </div>
       </div>
 
-      <div>
-        <div className="flex flex-row items-center gap-2 border-l h-28 border-black border-opacity-5">
+      <div className="flex flex-col justify-center h-[70px] min-w-[45%]">
+        <div className="flex items-center gap-2 h-28 border-opacity-5">
           <div>
             <Image
               src={require("../../../assets/icons/Frame 02.svg")}
               alt="expor-collab"
-              className="pl-5 md:pl-10  cursor-pointer"
-              width={100}
+              className="cursor-pointer"
+              width={50}
             />
           </div>
           <div>

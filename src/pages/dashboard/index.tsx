@@ -11,7 +11,7 @@ const index = () => {
       </h1>
 
       {/* the yellow navigation at the top of the dashboard page */}
-      <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 md:items-center w-full md:gap-x-[20px] gap-y-[20px] mt-5">
+      <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 justify-between md:items-center w-full md:w-[95%] md:mx-auto md:gap-x-[20px] gap-y-[20px] mt-5">
         <Left />
         <Right />
       </div>
