@@ -13,7 +13,7 @@ function DocumentExport() {
     success();
   };
   const navigateToDashboard = () => {
-    window.location.href = "../../home/dashboard/homedashboard";
+    window.location.href = "../../home/dashboard";
   };
 
   return (
@@ -71,8 +71,8 @@ function DocumentExport() {
             onClick={navigateToDashboard}
             value={
               <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
-                <label className="text-white">
-                  Export to collab work work space
+                <label className="capitalize text-white">
+                  Export to collab workspace
                 </label>
                 <Image
                   src={require("../../../assets/icons/arrow-narrow-white-left 1.svg")}

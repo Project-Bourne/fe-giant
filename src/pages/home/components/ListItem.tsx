@@ -27,7 +27,9 @@ function ListItem({
     <div
       onMouseOut={handleHoverOut}
       onMouseOver={handleHover}
-      className={`text-[14px] flex items-center hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}
+      className={`text-[14px] flex items-center ${
+        isMarked && "bg-sirp-primaryLess2"
+      } hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}
     >
       <div className="flex gap-3 items-center  hover:text-gray-400">
         <Checkbox checked={isMarked} onChange={handleChange} />

@@ -52,6 +52,7 @@ function Index() {
       <HomeHeaderTwo
         activeOption={activeOption}
         onOptionChange={handleOptionChange}
+        onClick={handleCheckboxes}
       />
       <HomeContent data={filteredData} onCheck={handleCheck} />
     </div>

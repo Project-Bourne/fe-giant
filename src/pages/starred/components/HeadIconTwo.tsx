@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-function HeadIconTwo({ activeOption, onOptionChange }) {
+function HeadIconTwo({ activeOption, onOptionChange, onClick }) {
   const [div1TextColor, setDiv1TextColor] = useState("black");
   const [div2TextColor, setDiv2TextColor] = useState("black");
   const [activeDiv, setActiveDiv] = useState(activeOption);
@@ -12,7 +12,7 @@ function HeadIconTwo({ activeOption, onOptionChange }) {
   };
 
   return (
-    <div className="flex items-center gap-38 border-b-2">
+    <div className="flex head-icon-2 items-center gap-38 border-b-2">
       <div
         onClick={() => toggleOption("All")}
         className={`cursor-pointer ml-2 flex gap-2 p-2 ${

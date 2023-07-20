@@ -51,6 +51,7 @@ function Starred() {
       <HeadIconTwo
         activeOption={activeOption}
         onOptionChange={handleOptionChange}
+        onClick={handleCheckboxes}
       />
       <Content data={filteredData} onCheck={handleCheck} />
     </div>
