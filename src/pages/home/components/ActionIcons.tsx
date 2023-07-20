@@ -4,6 +4,7 @@ import CustomModal from "@/components/ui/CustomModal";
 import Factcheck from "../modal popup/factcheck";
 import Collaborate from "../modal popup/collaborate";
 import DocumentExport from "../modal popup/DocumentExport";
+import { Tooltip } from "@mui/material";
 
 const ActionIcons = () => {
   const [factcheck, setFactcheck] = useState(false);
@@ -12,45 +13,57 @@ const ActionIcons = () => {
   return (
     <>
       <div className="flex gap-2 px-5">
-        <Image
-          src={require("../../../assets/icons/H3.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-          onClick={() => setDocuments(true)}
-        />
-        <Image
-          src={require("../../../assets/icons/H2.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../assets/icons/H1.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../assets/icons/on.saved.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../assets/icons/H4.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-          onClick={() => setCollaborate(true)}
-        />
-        <Image
-          src={require("../../../assets/icons/H6.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-          onClick={() => setFactcheck(true)}
-        />
+        <Tooltip title="Export to Collab">
+          <Image
+            src={require("../../../assets/icons/H3.svg")}
+            alt="documents"
+            className=" cursor-pointer"
+            width={50}
+            onClick={() => setDocuments(true)}
+          />
+        </Tooltip>
+        <Tooltip title="Archive">
+          <Image
+            src={require("../../../assets/icons/H2.svg")}
+            alt="documents"
+            className=" cursor-pointer"
+            width={50}
+          />
+        </Tooltip>
+        <Tooltip title="Analyze">
+          <Image
+            src={require("../../../assets/icons/H1.svg")}
+            alt="documents"
+            className=" cursor-pointer"
+            width={50}
+          />
+        </Tooltip>
+        <Tooltip title="Save">
+          <Image
+            src={require("../../../assets/icons/on.saved.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={50}
+          />
+        </Tooltip>
+        <Tooltip title="Summarize">
+          <Image
+            src={require("../../../assets/icons/H4.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={50}
+            onClick={() => setCollaborate(true)}
+          />
+        </Tooltip>
+        <Tooltip title="Run Fact Checker">
+          <Image
+            src={require("../../../assets/icons/H6.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={50}
+            onClick={() => setFactcheck(true)}
+          />
+        </Tooltip>
       </div>
       {/* factcheck models */}
       {factcheck && (
