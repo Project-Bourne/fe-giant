@@ -33,7 +33,7 @@ function factcheck() {
             value={
               <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
                 <Image
-                  src={require("../../../assets/icons//factbtn.svg")}
+                  src={require("../../../assets/icons/factbtn.svg")}
                   alt="add user"
                   width={25}
                   height={25}
