@@ -43,7 +43,7 @@ function Index() {
       : dummyData.filter((item) => item.isMarked === false);
 
   return (
-    <div className="bg-sirp-listBg border h-[100%] my-4 mx-10 pt-5 rounded-[1rem]">
+    <div className="bg-sirp-listBg border h-[100%] my-4 md:mx-10 mx-2 pt-5 rounded-[1rem]">
       <HomeHeader
         activeOption={activeOption}
         onOptionChange={handleOptionChange}

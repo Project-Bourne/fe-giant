@@ -20,6 +20,7 @@ export const requestHeader = {
  * @param {boolean} form
  * @returns Response Data;
  */
+
 export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
