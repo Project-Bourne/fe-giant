@@ -42,7 +42,7 @@ export const NavBarContents = [
     route: "/users",
   },
   {
-    name: "Training",
+    name: "Help",
     icon: "training.svg",
     id: 8,
     route: "/training",

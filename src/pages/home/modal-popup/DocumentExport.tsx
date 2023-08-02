@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
+import { Checkbox } from "@mui/material";
+import { useTruncate } from "@/components/custom-hooks";
 
-function DocumentExport() {
+const collaborators = [
+  { name: "Patience Grey", status: false },
+  { name: "Anna Hemsworth", status: true },
+  { name: "Patience Grey", status: false },
+  { name: "Anna Hemsworth", status: true },
+  { name: "Patience Grey", status: false },
+  { name: "Anna Hemsworth", status: true },
+  { name: "Patience Grey", status: false },
+  { name: "Anna Hemsworth", status: true },
+];
+
+function DocumentExport({ doc }) {
   const success = () => toast("Copied!");
   const copyToClipboard = () => {
     const paragraphText = document.getElementById("paragraph").innerText;
@@ -13,15 +25,34 @@ function DocumentExport() {
     success();
   };
   const navigateToDashboard = () => {
+    // to be changed to collab endpoint
     window.location.href = "../../home/dashboard";
   };
 
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold ml-10 text-black">Export Content</h1>
-        <div className="flex flex-col justify-center items-center">
-          <div className="relative mx-10 my-10">
+        <h1 className="text-2xl font-bold text-black">Export Content</h1>
+        <div className="">
+          <h2 className="my-3 text-[18px] text-gray-700 font-semibold first-letter:capitalize">
+            {useTruncate(doc, 45)}
+          </h2>
+          <Input
+            type="search"
+            className="w-full my-3 py-4"
+            placeholder="Search for collaborators"
+          />
+          <ul className="h-[20vh] overflow-y-auto mt-3">
+            {collaborators.map((collaborator, index) => (
+              <li key={index} className="flex justify-between items-center">
+                <p className="text-[16px] text-black py-1">
+                  {collaborator.name}
+                </p>
+                <Checkbox />
+              </li>
+            ))}
+          </ul>
+          {/* <div className="relative mx-10 my-10">
             <Image
               src={require("../../../assets/icons/exportfram.svg")}
               alt="add user"
@@ -63,30 +94,31 @@ function DocumentExport() {
                 Quidem, blanditiis illo. Non, molestiae?
               </p>
             </div>
+          </div> */}
+          <div className="flex justify-center mt-10">
+            <Button
+              className="flex gap-x-1 items-center rounded-[1rem] mb-5"
+              size="xl"
+              background="bg-sirp-primary"
+              onClick={navigateToDashboard}
+              value={
+                <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
+                  <label className="capitalize text-white">
+                    Export to collab workspace
+                  </label>
+                  <Image
+                    src={require("../../../assets/icons/arrow-narrow-white-left 1.svg")}
+                    alt="add user"
+                    width={25}
+                    height={25}
+                    className="self-center"
+                    style={{ alignSelf: "center" }}
+                    priority
+                  />
+                </div>
+              }
+            />
           </div>
-          <Button
-            className="flex gap-x-1 items-center mt-10 rounded-[1rem] mb-5"
-            size="lg"
-            background="bg-sirp-primary"
-            onClick={navigateToDashboard}
-            value={
-              <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
-                <label className="capitalize text-white">
-                  Export to collab workspace
-                </label>
-                <Image
-                  src={require("../../../assets/icons/arrow-narrow-white-left 1.svg")}
-                  alt="add user"
-                  width={25}
-                  height={25}
-                  className="self-center"
-                  style={{ alignSelf: "center" }}
-                  priority
-                />
-                <ToastContainer />
-              </div>
-            }
-          />
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import CustomModal from "@/components/ui/CustomModal";
-import Factcheck from "../modal popup/factcheck";
-import Collaborate from "../modal popup/collaborate";
-import DocumentExport from "../modal popup/DocumentExport";
+import Factcheck from "../modal-popup/factcheck";
+import Collaborate from "../modal-popup/collaborate";
+import DocumentExport from "../modal-popup/DocumentExport";
 import { Tooltip } from "@mui/material";
 
-const ActionIcons = () => {
+const ActionIcons = ({ doc }) => {
   const [factcheck, setFactcheck] = useState(false);
   const [collaborate, setCollaborate] = useState(false);
   const [documents, setDocuments] = useState(false);
@@ -87,10 +87,10 @@ const ActionIcons = () => {
       )}
       {documents && (
         <CustomModal
-          style="bg-white md:w-[50%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          style="bg-white md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 md:px-5 px-4 pb-5"
           closeModal={() => setDocuments(false)}
         >
-          <DocumentExport />
+          <DocumentExport doc={doc} />
         </CustomModal>
       )}
     </>

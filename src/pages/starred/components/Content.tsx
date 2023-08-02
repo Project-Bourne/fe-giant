@@ -20,7 +20,7 @@ function Content({ data, onCheck }) {
               handleChange={() => handleCheckboxChange(item.id)} // Pass the id to handleChange
               time={item.time}
               buttonType="action"
-              actionButtons={<ActionIcons />}
+              actionButtons={<ActionIcons doc={item.description} />}
             />
           </div>
         );
