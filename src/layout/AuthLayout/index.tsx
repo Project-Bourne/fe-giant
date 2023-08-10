@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useWindowWidth } from "@/components/custom-hooks";
 
-function AuthLayout({ children, headerText, subText }) {
+function AuthLayout({ children, headerText, subText, isTextCenter }) {
   const screenWidth = useWindowWidth();
 
   const bgStyle = {
@@ -30,13 +30,15 @@ function AuthLayout({ children, headerText, subText }) {
               />
             </div>
             {/* heading text  */}
-            <h1 className="text-center md:text-left text-3xl md:text-4xl mt-[30px] md:mt-[40px] mb-2 font-semibold text-black">
-              {headerText}
-            </h1>
-            {/* sub-text  */}
-            <p className="text-center md:text-left text-[14px] md:text-base font-light">
-              {subText}
-            </p>
+            <div className={`${isTextCenter && "max-w-fit mx-auto"}`}>
+              <h1 className="text-center md:text-left text-3xl md:text-4xl mt-[30px] md:mt-[40px] mb-2 font-semibold text-black">
+                {headerText}
+              </h1>
+              {/* sub-text  */}
+              <p className="text-center md:text-left text-[14px] md:text-base font-light">
+                {subText}
+              </p>
+            </div>
             {/* form  */}
             <div> {children} </div>
           </div>

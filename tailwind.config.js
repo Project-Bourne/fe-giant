@@ -35,6 +35,7 @@ module.exports = {
           hoverbg: "#D1F1FA",
           counterbg: "#ECF2F9",
           listBg: "#F9FBFE",
+          success: "#00CC99",
         },
       },
       screens: {

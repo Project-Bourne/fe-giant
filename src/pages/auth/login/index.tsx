@@ -32,6 +32,7 @@ function Login() {
       <AuthLayout
         headerText={"Log In"}
         subText={"Please fill your detail to access your account"}
+        isTextCenter={false}
       >
         <form className="mt-[3rem]" onSubmit={handleSubmit}>
           {/* email  */}

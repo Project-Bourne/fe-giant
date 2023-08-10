@@ -58,6 +58,7 @@ function SignUp() {
       subText={
         "Please enter your work email and create a password to get started"
       }
+      isTextCenter={false}
     >
       <form className="mt-[1.5rem] pb-7" onSubmit={handleSubmit}>
         {/* first name  */}
