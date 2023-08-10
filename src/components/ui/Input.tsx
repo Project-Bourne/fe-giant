@@ -40,7 +40,14 @@ function Input(props: InputModel) {
                 priority
               />
             ) : (
-              <></>
+              <Image
+                src={require("../../assets/icons/show-pass.svg")}
+                alt="Filter"
+                width={20}
+                height={20}
+                className=""
+                priority
+              />
             )}
           </div>
         </div>
