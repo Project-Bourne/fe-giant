@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-function HeadIconTwo({ activeOption, onOptionChange, onClick }) {
+type HeaderIconTwoProps = {
+  activeOption?: string;
+  onOptionChange?: any;
+  onClick?: any;
+};
+
+function HeadIconTwo({
+  activeOption,
+  onOptionChange,
+  onClick,
+}: HeaderIconTwoProps) {
   const [div1TextColor, setDiv1TextColor] = useState("black");
   const [div2TextColor, setDiv2TextColor] = useState("black");
   const [activeDiv, setActiveDiv] = useState(activeOption);

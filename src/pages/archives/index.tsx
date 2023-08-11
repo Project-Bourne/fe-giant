@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import HomeHeader from "../starred/components/HeadIcon";
 import HomeHeaderTwo from "../starred/components/HeadIconTwo";
-import HomeContent from "../starred/components/Content";
-import Link from "next/link";
 import Image from "next/image";
 import { ListItem } from "../home/components";
 import dummy from "../../utils/dummy.json";

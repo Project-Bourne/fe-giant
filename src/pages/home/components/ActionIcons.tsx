@@ -15,7 +15,7 @@ const ActionIcons = ({ doc }) => {
       <div className="flex gap-2 px-5">
         <Tooltip title="Export to Collab">
           <Image
-            src={require("../../../assets/icons/H3.svg")}
+            src={require("../../../assets/icons/h3.svg")}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -24,7 +24,7 @@ const ActionIcons = ({ doc }) => {
         </Tooltip>
         <Tooltip title="Archive">
           <Image
-            src={require("../../../assets/icons/H2.svg")}
+            src={require("../../../assets/icons/h2.svg")}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -32,7 +32,7 @@ const ActionIcons = ({ doc }) => {
         </Tooltip>
         <Tooltip title="Analyze">
           <Image
-            src={require("../../../assets/icons/H1.svg")}
+            src={require("../../../assets/icons/h1.svg")}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -48,7 +48,7 @@ const ActionIcons = ({ doc }) => {
         </Tooltip>
         <Tooltip title="Summarize">
           <Image
-            src={require("../../../assets/icons/H4.svg")}
+            src={require("../../../assets/icons/h4.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -57,7 +57,7 @@ const ActionIcons = ({ doc }) => {
         </Tooltip>
         <Tooltip title="Run Fact Checker">
           <Image
-            src={require("../../../assets/icons/H6.svg")}
+            src={require("../../../assets/icons/h6.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}
