@@ -6,7 +6,11 @@ import Collaborate from "../modal-popup/collaborate";
 import DocumentExport from "../modal-popup/DocumentExport";
 import { Tooltip } from "@mui/material";
 
-const ActionIcons = ({ doc }) => {
+type ActionIconsProps = {
+  doc?: any;
+};
+
+const ActionIcons = ({ doc }: ActionIconsProps) => {
   const [factcheck, setFactcheck] = useState(false);
   const [collaborate, setCollaborate] = useState(false);
   const [documents, setDocuments] = useState(false);

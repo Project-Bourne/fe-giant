@@ -15,7 +15,7 @@ function Group2() {
                 </span>
               </div>
               <Image
-                src={require("../../../assets/icons/Frame 08.svg")}
+                src={require("../../../assets/icons/frame-08.svg")}
                 alt="documents"
                 className="pl-10 cursor-pointer"
                 width={130}
@@ -46,7 +46,7 @@ function Group2() {
                 </span>
               </div>
               <Image
-                src={require("../../../assets/icons/Frame 09.svg")}
+                src={require("../../../assets/icons/frame-09.svg")}
                 alt="documents"
                 className="pl-5 cursor-pointer"
                 width={115}
@@ -71,7 +71,7 @@ function Group2() {
           <div className="flex flex-row items-center gap-3 pt-5">
             <div>
               <Image
-                src={require("../../../assets/icons/Frame 0100.svg")}
+                src={require("../../../assets/icons/frame-0100.svg")}
                 alt="documents"
                 className="pl-10 cursor-pointer"
                 width={130}
