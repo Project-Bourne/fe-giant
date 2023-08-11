@@ -9,7 +9,7 @@ function LeftCompt() {
         <div className="flex flex-row items-center gap-2">
           <div>
             <Image
-              src={require("../../../assets/icons/Frame 01.svg")}
+              src={require("../../../assets/icons/frame-01.svg")}
               alt="documents"
               className="cursor-pointer"
               width={50}
@@ -28,7 +28,7 @@ function LeftCompt() {
         <div className="flex items-center gap-2 h-28 border-opacity-5">
           <div>
             <Image
-              src={require("../../../assets/icons/Frame 02.svg")}
+              src={require("../../../assets/icons/frame-02.svg")}
               alt="expor-collab"
               className="cursor-pointer"
               width={50}

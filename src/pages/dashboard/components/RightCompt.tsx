@@ -9,7 +9,7 @@ function RightCompt() {
         <div className="flex flex-row items-center gap-2">
           <div>
             <Image
-              src={require("../../../assets/icons/Frame 03.svg")}
+              src={require("../../../assets/icons/frame-03.svg")}
               alt="crawled-content"
               className="cursor-pointer"
               width={50}
@@ -28,7 +28,7 @@ function RightCompt() {
         <div className="flex items-center gap-2 h-28 border-opacity-5">
           <div>
             <Image
-              src={require("../../../assets/icons/Frame 04.svg")}
+              src={require("../../../assets/icons/frame-04.svg")}
               alt="total-archives"
               className="cursor-pointer"
               width={50}

@@ -6,7 +6,7 @@ import Checkbox from "@mui/material/Checkbox";
 export default function CheckboxLabels() {
   return (
     <FormGroup>
-      <FormControlLabel control={<Checkbox />} className="success" />
+      <FormControlLabel label control={<Checkbox />} className="success" />
     </FormGroup>
   );
 }

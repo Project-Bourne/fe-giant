@@ -7,7 +7,7 @@ function pagination() {
       <div className="flex flex-row items-center">
         <h2 className="text-sirp-peginationtext text-[14px]">1 - 50 of 1000</h2>
         <Image
-          src={require("../../../assets/icons/Icons-left.svg")}
+          src={require("../../../assets/icons/icons-left.svg")}
           alt="documents"
           className="cursor-pointer ml-1"
           width={20}

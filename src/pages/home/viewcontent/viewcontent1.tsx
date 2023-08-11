@@ -3,7 +3,6 @@ import AddContentHeader from "../components/AddContentHeader";
 import ActionIcons from "../components/ActionIcons";
 import Image from "next/image";
 import Link from "next/link";
-import Breadcrum from "../components/Breadcrum";
 import data from "../components/data";
 import MataDataContent from "../components/MataDataContent";
 import DummyText from "../components/dummyText";
@@ -47,10 +46,8 @@ const ViewContent = () => {
             width={20}
           />
         </div>
-        <ActionIcons />
       </div>
       <h1 className="text-black text-xl">{author.name}</h1>
-      <Breadcrum />
       <div className="bg-white rounded-[1rem] my-5 mx-5">
         <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
 
