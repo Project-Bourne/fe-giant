@@ -106,13 +106,13 @@ function SignUp() {
         </div>
 
         {/* user role  */}
-        <div className="mb-3 grid gap-1">
+        {/* <div className="mb-3 grid gap-1">
           <label>User role</label>
           <Dropdown
             data={UserRoles}
             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
           />
-        </div>
+        </div> */}
 
         {/* country  */}
         <div className="mb-3 grid gap-1">
