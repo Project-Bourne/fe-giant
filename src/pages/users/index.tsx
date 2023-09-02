@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Button, CustomModal, Input, Tab } from "@/components/ui";
+import React from "react";
+import { Tab } from "@/components/ui";
+import UsersList from "./user";
+import Header from "./components/Header";
 import {
   TabHeaderData,
   TableBodyData,
   TableBodyDataSup,
-} from "./utils/constants";
-import { UsersList } from "./user";
-import { Header } from "./components";
+} from "@/utils/users.constants";
 
 export const TabBodyContents = [
   {

@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui";
 
+import avatar_meta from "../../../../public/icons/avatarmeta.svg";
+import square_check from "../../../../public/icons/square-check1.svg";
+
 function collaborate() {
   return (
     <div>
@@ -25,7 +28,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require("../../../assets/icons/Avatarmeta.svg")}
+                src={avatar_meta}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -37,7 +40,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require("../../../assets/icons/square-check 1.svg")}
+            src={square_check}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}
@@ -47,7 +50,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require("../../../assets/icons/Avatarmeta.svg")}
+                src={avatar_meta}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -59,7 +62,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require("../../../assets/icons/square-check 1.svg")}
+            src={square_check}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}
@@ -69,7 +72,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require("../../../assets/icons/Avatarmeta.svg")}
+                src={avatar_meta}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -81,7 +84,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require("../../../assets/icons/square-check 1.svg")}
+            src={square_check}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}

@@ -1,5 +1,5 @@
+import { data } from "@/utils/home.constants";
 import React from "react";
-import data from "./data";
 
 function dummyText() {
   const { title } = data;

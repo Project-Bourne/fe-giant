@@ -3,8 +3,9 @@ import HomeHeader from "../starred/components/HeadIcon";
 import HomeHeaderTwo from "../starred/components/HeadIconTwo";
 import HomeContent from "../starred/components/Content";
 import Image from "next/image";
-import { ListItem } from "../home/components";
 import dummy from "../../utils/dummy.json";
+import archive_view from "../../../public/icons/archive-view.svg";
+import ListItem from "../home/components/ListItem";
 
 function Exports() {
   const [activeOption, setActiveOption] = useState("All");
@@ -67,7 +68,7 @@ function Exports() {
               buttonType="view"
               viewDeleteButtons={
                 <Image
-                  src={require("../../assets/icons/archive-view.svg")}
+                  src={archive_view}
                   alt="view-archives"
                   height={30}
                   width={30}

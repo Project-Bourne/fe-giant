@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import "../../../../styles/global.css";
-import Link from "next/link";
+import React, { useState } from "react";
 
 type TabCompType = {
   item: {
@@ -12,24 +10,21 @@ type TabCompType = {
     route: string;
     selectedIcon: string;
   };
-  index: number;
-  route: string;
 };
 
-const TabComp = ({ item, index, route }: TabCompType) => {
-  const router = useRouter();
+function TabComp({ item }: TabCompType) {
+  const router: any = useRouter();
 
   // States
-  const [path, setPath] = useState("");
+  // const [path, setPath] = useState<any>("");
 
   // Functions
   const updatePath = (e: any) => {
-    // e.preventDefault();
-    setPath(item.route);
-    // console.log(route, path, route, `${path}` == `${route}`, )
+    e.preventDefault();
+    // setPath(item?.route);
     router.push(
       {
-        pathname: item.route,
+        pathname: item?.route,
       },
       undefined,
       {
@@ -38,22 +33,22 @@ const TabComp = ({ item, index, route }: TabCompType) => {
     );
   };
 
+  const iconSource =
+    router?.pathname === item?.route ? item?.selectedIcon : item?.icon;
+
+  const imageSrc = iconSource ? require(`@/../public/icons/${iconSource}`) : "";
+
   return (
     <div
       className={
-        item.route == router.pathname
+        router?.pathname === item?.route
           ? "md:px-8 px-3 pt-3 flex flex-row items-center border-b-2 border-sirp-primary pb-2 md:pb-3 mb-[-2px] cursor-pointer"
           : "md:px-8 px-3  pt-3 flex items-center pb-3 mb-[-2px] cursor-pointer text-sirp-grey"
       }
       onClick={updatePath}
     >
       <Image
-        src={
-          router.pathname == item.route
-            ? require(`../../../../assets/icons/${item.selectedIcon}`)
-            : require(`../../../../assets/icons/${item.icon}`)
-        }
-        // item.route.includes(route) ? require(`../../../../assets/icons/on.${item.icon}`) :
+        src={imageSrc} // Use iconSource
         alt="settings tab"
         width={18}
         height={18}
@@ -63,15 +58,15 @@ const TabComp = ({ item, index, route }: TabCompType) => {
 
       <h2
         className={
-          router.pathname == item.route
+          router?.pathname === item?.route
             ? "text-[12px] font-semibold text-sirp-primary"
             : "text-[12px] font-semibold "
         }
       >
-        {item.name}
+        {item?.name}
       </h2>
     </div>
   );
-};
+}
 
 export default TabComp;

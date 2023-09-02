@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import HomeHeader from "../starred/components/HeadIcon";
 import HomeHeaderTwo from "../starred/components/HeadIconTwo";
 import Image from "next/image";
-import { ListItem } from "../home/components";
 import dummy from "../../utils/dummy.json";
+import archive_delete from "../../../public/icons/archive-delete.svg";
+import ListItem from "../home/components/ListItem";
 
 function Archives() {
   const [activeOption, setActiveOption] = useState("All");
@@ -66,7 +67,7 @@ function Archives() {
               buttonType="view"
               viewDeleteButtons={
                 <Image
-                  src={require("../../assets/icons/Archive-delete.svg")}
+                  src={archive_delete}
                   alt="delete-archives"
                   height={30}
                   width={30}

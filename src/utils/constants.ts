@@ -86,22 +86,81 @@ export const SettingsData = [
   },
 ];
 
+export const TrainingData = [
+  {
+    name: "All",
+    icon: "all.svg",
+    selectedIcon: "on.all.svg",
+    id: 1,
+    route: "/training/all",
+  },
+  {
+    name: "IRP",
+    icon: "irp.svg",
+    selectedIcon: "on.irp.svg",
+    id: 2,
+    route: "/training/irp",
+  },
+  {
+    name: "Fact Checker",
+    icon: "checker.svg",
+    selectedIcon: "on.checker.svg",
+    id: 3,
+    route: "/training/checker",
+  },
+  {
+    name: "Analyzer",
+    icon: "analyzer.svg",
+    selectedIcon: "on.analyzer.svg",
+    id: 4,
+    route: "/training/analyzer",
+  },
+  {
+    name: "Summarizer",
+    icon: "summarizer.svg",
+    selectedIcon: "on.summarizer.svg",
+    id: 5,
+    route: "/training/summarizer",
+  },
+  {
+    name: "Collab Workspace",
+    icon: "collab.svg",
+    selectedIcon: "on.collab.svg",
+    id: 6,
+    route: "/training/workspace",
+  },
+  {
+    name: "Translator",
+    icon: "translator.svg",
+    selectedIcon: "on.translator.svg",
+    id: 7,
+    route: "/training/translator",
+  },
+  {
+    name: "Interrogator",
+    icon: "interrogator.svg",
+    selectedIcon: "on.interrogator.svg",
+    id: 8,
+    route: "/training/interrogator",
+  },
+];
+
 export const UserRoles = [
   {
     id: 0,
-    role: "Station Officer",
+    role: "Supervisor",
   },
   {
     id: 1,
-    role: "Desk Officer",
-  },
-  {
-    id: 2,
     role: "Admin",
   },
   {
+    id: 2,
+    role: "Desk Officer",
+  },
+  {
     id: 3,
-    role: "Supervisor",
+    role: "Station Officer",
   },
 ];
 
@@ -177,65 +236,6 @@ export const LogData = [
     snippet: "Redesigned Naira: CBN launches Cash Swap Programme for rura",
     id: 1,
     date: "19/10/2023",
-  },
-];
-
-export const TrainingData = [
-  {
-    name: "All",
-    icon: "all.svg",
-    selectedIcon: "on.all.svg",
-    id: 1,
-    route: "/training/all",
-  },
-  {
-    name: "IRP",
-    icon: "irp.svg",
-    selectedIcon: "on.irp.svg",
-    id: 2,
-    route: "/training/irp",
-  },
-  {
-    name: "Fact Checker",
-    icon: "checker.svg",
-    selectedIcon: "on.checker.svg",
-    id: 3,
-    route: "/training/checker",
-  },
-  {
-    name: "Analyzer",
-    icon: "analyzer.svg",
-    selectedIcon: "on.analyzer.svg",
-    id: 4,
-    route: "/training/analyzer",
-  },
-  {
-    name: "Summarizer",
-    icon: "summarizer.svg",
-    selectedIcon: "on.summarizer.svg",
-    id: 5,
-    route: "/training/summarizer",
-  },
-  {
-    name: "Collab Workspace",
-    icon: "collab.svg",
-    selectedIcon: "on.collab.svg",
-    id: 6,
-    route: "/training/workspace",
-  },
-  {
-    name: "Translator",
-    icon: "translator.svg",
-    selectedIcon: "on.translator.svg",
-    id: 7,
-    route: "/training/translator",
-  },
-  {
-    name: "Interrogator",
-    icon: "interrogator.svg",
-    selectedIcon: "on.interrogator.svg",
-    id: 8,
-    route: "/training/interrogator",
   },
 ];
 

@@ -1,6 +1,8 @@
 import Image from "next/image";
-import { article_categories } from "../constants";
-import { MapChart } from "../charts";
+import MapChart from "../charts/map";
+
+import info from "../../../../public/icons/info.svg";
+import { article_categories } from "@/utils/reports.constants";
 
 function ThirdRow() {
   const LeftHandDisplay = () => {
@@ -20,7 +22,7 @@ function ThirdRow() {
           {/* header text lhs  */}
           <div className="flex items-start ">
             <Image
-              src={require("../../../assets/icons/info.svg")}
+              src={info}
               alt="info"
               height={25}
               width={25}
@@ -56,7 +58,7 @@ function ThirdRow() {
           {/* header text lhs  */}
           <div className="flex items-start">
             <Image
-              src={require("../../../assets/icons/info.svg")}
+              src={info}
               alt="info"
               height={25}
               width={25}

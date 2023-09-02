@@ -1,8 +1,8 @@
-import { TabComp } from "@/pages/settings/components";
 import { TrainingData } from "@/utils/constants";
 import React, { ReactNode } from "react";
 import "../../styles/global.css";
 import { useRouter } from "next/router";
+import TabComp from "@/pages/settings/components/TabComp";
 
 type LayoutType = {
   children: ReactNode;
@@ -23,7 +23,7 @@ const TrainingLayout = ({ children }: LayoutType) => {
       {/* Settings tabs */}
       <div className="w-[100%] flex flex-row flex-wrap items-center border-b overscroll-y-auto-">
         {TrainingData.map((item, index) => (
-          <TabComp item={item} index={index} key={index} route={route} />
+          <TabComp item={item} key={index} />
         ))}
       </div>
 

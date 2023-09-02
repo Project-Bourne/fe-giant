@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useOnClickOutside } from "../custom-hooks";
 
 function CustomModal({ style, children, closeModal }) {

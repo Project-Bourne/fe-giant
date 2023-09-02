@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { PolarChartComponent } from "../charts";
-import { article_sources } from "../constants";
 import ProgressBar from "@/components/ui/ProgressBar";
+import PolarChartComponent from "../charts/polar";
+
+import info from "../../../../public/icons/info.svg";
+import { article_sources } from "@/utils/reports.constants";
 
 function SecondRow() {
   const LeftHandDisplay = () => {
@@ -21,7 +23,7 @@ function SecondRow() {
           {/* header text lhs  */}
           <div className="flex items-start ">
             <Image
-              src={require("../../../assets/icons/info.svg")}
+              src={info}
               alt="info"
               height={25}
               width={25}
@@ -57,7 +59,7 @@ function SecondRow() {
           {/* header text lhs  */}
           <div className="flex items-start">
             <Image
-              src={require("../../../assets/icons/info.svg")}
+              src={info}
               alt="info"
               height={25}
               width={25}

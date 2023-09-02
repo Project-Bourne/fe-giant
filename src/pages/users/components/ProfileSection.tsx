@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { UserRoles } from "@/utils/constants";
 import { useRouter } from "next/router";
+import user_icon from "../../../../public/icons/userIcon.svg";
 
 export default function ProfileSection() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function ProfileSection() {
             {/* Profile Image */}
             <div className="flex flex-row items-center">
               <Image
-                src={require(`../../../assets/icons/userIcon.svg`)}
+                src={user_icon}
                 alt="user"
                 width={30}
                 height={30}

@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import NavBarItem from "./NavBarItem";
 import { NavBarContents } from "@/utils/constants";
+import logo from "../../../../public/images/logo.png";
+import refresh from "../../../../public/icons/refresh.svg";
 
 function NavBar() {
   const [isCrawling, setIsCrawling] = useState(false);
@@ -16,7 +18,7 @@ function NavBar() {
     <div className="w-[15vw] md:w-[20vw] h-full border-3 border-r bg-white px-3 py-10 md:p-10 fixed z-[20]">
       <div className="flex flex-row items-center cursor-pointer mb-[4rem]">
         <Image
-          src={require("../../../assets/svg/logo.svg")}
+          src={logo}
           alt="IRP Logo"
           width={50}
           height={50}
@@ -35,7 +37,7 @@ function NavBar() {
         onClick={handleCrawler}
       >
         <Image
-          src={require("../../../assets/svg/refresh.svg")}
+          src={refresh}
           alt="Start/Refresh Crawler"
           width={20}
           height={20}

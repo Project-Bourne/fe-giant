@@ -3,27 +3,35 @@ import Link from "next/link";
 
 import { AuthLayout } from "@/layout/index";
 import { Input, Button, Dropdown, DropdownWithFlag } from "@/components/ui";
-import { UserRoles } from "@/utils/constants";
+// import { UserRoles } from "@/utils/constants";
+import AuthService from "@/services/auth.service";
+import NotificationService from "@/services/notification.service";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "@/redux/reducers/auth/authReducer";
 
 const initialFormData = {
-  first_name: "",
-  last_name: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  role: "Desk Officer",
-  country: {
-    name: "Nigeria",
-  },
+  country: "Nigeria",
   password: "",
 };
 
 function SignUp() {
   const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     first_name: "",
     last_name: "",
   });
+  const authService = new AuthService();
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSetCountry = (data: any) => {
     setFormData({ ...formData, country: data });
@@ -32,11 +40,11 @@ function SignUp() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    if (formData.first_name === "") {
+    if (formData.firstName === "") {
       setErrors({ ...errors, first_name: "First name must not be empty!" });
       return;
     }
-    if (formData.last_name === "") {
+    if (formData.lastName === "") {
       setErrors({ ...errors, last_name: "Last name must not be empty!" });
       return;
     }
@@ -49,7 +57,32 @@ function SignUp() {
       return;
     }
 
-    console.log(formData);
+    setLoading(true);
+    authService
+      .signUp(formData)
+      .then((res: any) => {
+        setLoading(false);
+
+        if (res?.status === true) {
+          dispatch(setUserInfo(res?.data));
+          NotificationService.success({
+            message: "Registration Successful!",
+          });
+          router.push("/auth/login");
+        } else {
+          NotificationService.error({
+            message: "Registration Failed!",
+            addedText: res?.msg,
+          });
+        }
+      })
+      .catch((err) => {
+        NotificationService.error({
+          message: "Registration Failed!",
+          addedText: err?.message,
+        });
+        setLoading(false);
+      });
   };
 
   return (
@@ -68,7 +101,7 @@ function SignUp() {
             placeholder="first name"
             type="text"
             onChange={(e) =>
-              setFormData({ ...formData, first_name: e.target.value })
+              setFormData({ ...formData, firstName: e.target.value })
             }
           />
           {errors.first_name && (
@@ -82,7 +115,7 @@ function SignUp() {
             placeholder="last name"
             type="text"
             onChange={(e) =>
-              setFormData({ ...formData, last_name: e.target.value })
+              setFormData({ ...formData, lastName: e.target.value })
             }
           />
           {errors.last_name && (
@@ -95,7 +128,7 @@ function SignUp() {
           <label>Email</label>
           <Input
             placeholder="debra.holt@example.com"
-            type="text"
+            type="email"
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
@@ -149,6 +182,7 @@ function SignUp() {
         <Button
           value="Create account"
           type="submit"
+          loading={loading}
           classNameStyle="text-white p-3"
           background="bg-sirp-primary"
           size="xl"

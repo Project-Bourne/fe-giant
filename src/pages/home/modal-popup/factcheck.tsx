@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui";
 
+import fact_modal from "../../../../public/icons/factmodal.svg";
+import fact_btn from "../../../../public/icons/factbtn.svg";
+
 function factcheck() {
   return (
     <div>
@@ -18,7 +21,7 @@ function factcheck() {
         </div>
         <div className="flex flex-col justify-center items-center">
           <Image
-            src={require("../../../assets/icons/factmodal.svg")}
+            src={fact_modal}
             alt="add user"
             width={90}
             height={90}
@@ -33,7 +36,7 @@ function factcheck() {
             value={
               <div className="flex gap-3 text-[1rem] items-center justify-center py-5">
                 <Image
-                  src={require("../../../assets/icons/factbtn.svg")}
+                  src={fact_btn}
                   alt="add user"
                   width={25}
                   height={25}

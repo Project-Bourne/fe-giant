@@ -1,9 +1,10 @@
 import TrainingLayout from "@/layout/TrainingLayout";
-import { ActivityCard } from "@/pages/users/components/ActivityCard";
-import { FAQS, LogData, QuickSearch } from "@/utils/constants";
+import { FAQS, QuickSearch } from "@/utils/constants";
 import React from "react";
-import { SearchComp, FAQComp } from "../components";
 import Image from "next/image";
+import image_checker from "../../../../public/svg/image-checker.svg";
+import SearchComp from "../components/SearchComp";
+import FAQComp from "../components/FAQ";
 
 const AllTraining = () => {
   return (
@@ -41,7 +42,7 @@ const AllTraining = () => {
 
             <div className="w-full flex flex-row justify-center items-center my-8">
               <Image
-                src={require("../../../assets/svg/image-checker.svg")}
+                src={image_checker}
                 alt="search"
                 // width={200}
                 // height={}
@@ -74,9 +75,10 @@ const AllTraining = () => {
             </p>
 
             <div className="w-full mt-5">
-              {FAQS.map((item, index) => (
-                <FAQComp text={item} key={index} index={index} />
-              ))}
+              {FAQS?.length > 0 &&
+                FAQS?.map((item, index) => (
+                  <FAQComp text={item} key={index} index={index} />
+                ))}
             </div>
           </div>
         </div>
