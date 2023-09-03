@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+
+import link from "../../../../public/icons/Link.svg";
 
 function AddLink() {
+  // alert(2)
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       // Perform navigation to another page here
@@ -19,7 +21,7 @@ function AddLink() {
     <div>
       <div className="flex border-2 border-dotted border-black items-center p-3 mx-5 gap-2 rounded-[1rem] mt-10">
         <Image
-          src={require("../../../assets/icons/Link.svg")}
+          src={link}
           alt="documents"
           className="cursor-pointer"
           width={30}

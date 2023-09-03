@@ -3,10 +3,14 @@ import AddContentHeader from "../components/AddContentHeader";
 import ActionIcons from "../components/ActionIcons";
 import Image from "next/image";
 import Link from "next/link";
-import data from "../components/data";
 import MataDataContent from "../components/MataDataContent";
 import DummyText from "../components/dummyText";
 import Min_and_Max_icon from "../components/Min_and_Max_icon";
+
+import icons_left from "../../../../public/icons/icons-left.svg";
+import chevron_right from "../../../../public/icons/chevron-right1.svg";
+import arrow_narrow_left from "../../../../public/icons/arrow-narrow-left1.svg";
+import { data } from "@/utils/home.constants";
 
 const ViewContent = () => {
   const { author } = data;
@@ -25,7 +29,7 @@ const ViewContent = () => {
         <div className="py-5 mx-5 flex gap-5">
           <Link href="../metadata/metadata">
             <Image
-              src={require("../../../assets/icons/arrow-narrow-left 1.svg")}
+              src={arrow_narrow_left}
               alt="documents"
               className="cursor-pointer pb-5"
               width={20}
@@ -34,13 +38,13 @@ const ViewContent = () => {
 
           <h1 className="text-black text-sm">4 of 49</h1>
           <Image
-            src={require("../../../assets/icons/Icons-left.svg")}
+            src={icons_left}
             alt="documents"
             className="cursor-pointer pb-5"
             width={20}
           />
           <Image
-            src={require("../../../assets/icons/chevron-right 1.svg")}
+            src={chevron_right}
             alt="documents"
             className="cursor-pointer pb-5"
             width={20}

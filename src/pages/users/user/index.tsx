@@ -1,5 +1,5 @@
-import { CustomTable } from "../components";
-import { TableHeaderData } from "../utils/constants";
+import { TableHeaderData } from "@/utils/users.constants";
+import CustomTable from "../components/Table";
 
 function UsersList({ tableData, usertype }) {
   return (
@@ -12,4 +12,4 @@ function UsersList({ tableData, usertype }) {
   );
 }
 
-export { UsersList };
+export default UsersList;

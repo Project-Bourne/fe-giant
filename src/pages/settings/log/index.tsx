@@ -1,5 +1,5 @@
 import SettingsLayout from "@/layout/SettingsLayout";
-import { ActivityCard } from "@/pages/users/components/ActivityCard";
+import ActivityCard from "@/pages/users/components/ActivityCard";
 import { LogData } from "@/utils/constants";
 import React from "react";
 

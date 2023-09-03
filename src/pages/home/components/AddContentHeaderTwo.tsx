@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import historyIcon from "../../../../public/icons/Histroy.svg";
+import onHistoryIcon from "../../../../public/icons/on.Histroy.svg";
+import starred from "../../../../public/icons/starred.svg";
+import onStarred from "../../../../public/icons/on.starred.svg";
 
 function AddContentHeaderTwo() {
   const [div1TextColor, setDiv1TextColor] = useState("black");
@@ -29,11 +33,7 @@ function AddContentHeaderTwo() {
         }`}
       >
         <Image
-          src={
-            activeDiv === 1
-              ? require(`../../../assets/icons/Histroy.svg`)
-              : require(`../../../assets/icons/on.Histroy.svg`)
-          }
+          src={activeDiv === 1 ? historyIcon : onHistoryIcon}
           alt="documents"
           className="cursor-pointer ml-2"
           width={20}
@@ -57,11 +57,7 @@ function AddContentHeaderTwo() {
         }`}
       >
         <Image
-          src={
-            activeDiv === 1
-              ? require(`../../../assets/icons/starred.svg`)
-              : require(`../../../assets/icons/on.starred.svg`)
-          }
+          src={activeDiv === 1 ? starred : onStarred}
           alt="documents"
           className="cursor-pointer ml-2"
           width={20}

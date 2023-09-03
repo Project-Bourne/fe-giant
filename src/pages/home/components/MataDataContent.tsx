@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import data from "./data";
 import ProgressBar from "./ProgressBar";
 import Link from "next/link";
+
+import avatar_meta from "../../../../public/icons/avatarmeta.svg";
+import map from "../../../../public/icons/map.svg";
+import date_img from "../../../../public/icons/date.svg";
+import { data } from "@/utils/home.constants";
 
 const MataDataContent = () => {
   const { title, author, confidence, location, date, tags, source } = data;
@@ -38,7 +42,7 @@ const MataDataContent = () => {
                 <Skeleton circle width={50} height={50} />
               ) : (
                 <Image
-                  src={require("../../../assets/icons/Avatarmeta.svg")}
+                  src={avatar_meta}
                   alt="documents"
                   className="cursor-pointer"
                   width={50}
@@ -94,7 +98,7 @@ const MataDataContent = () => {
               <Skeleton width={50} height={50} circle />
             ) : (
               <Image
-                src={require("../../../assets/icons/map.svg")}
+                src={map}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -119,7 +123,7 @@ const MataDataContent = () => {
               <Skeleton width={50} height={50} circle />
             ) : (
               <Image
-                src={require("../../../assets/icons/date.svg")}
+                src={date_img}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}

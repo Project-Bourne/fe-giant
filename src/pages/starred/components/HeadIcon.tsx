@@ -5,6 +5,9 @@ import { Checkbox } from "@mui/material";
 import Link from "next/link";
 import Pagination from "./pagination";
 
+import down from "../../../../public/icons/down.svg";
+import refresh from "../../../../public/icons/refresh.svg";
+
 function HeadIcon({ activeOption, onOptionChange, onClick }) {
   const showButton = activeOption === "New";
 
@@ -14,13 +17,13 @@ function HeadIcon({ activeOption, onOptionChange, onClick }) {
       <div className="flex flex-row items-center pl-[1rem]">
         <Checkbox onClick={onClick} />
         <Image
-          src={require("../../../assets/icons/down.svg")}
+          src={down}
           alt="documents"
           className="cursor-pointer ml-2"
           width={10}
         />
         <Image
-          src={require("../../../assets/icons/refresh.svg")}
+          src={refresh}
           alt="documents"
           className="cursor-pointer ml-5"
           width={20}

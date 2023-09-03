@@ -1,6 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
+import frame08 from "../../../../public/icons/frame-08.svg";
+import frame09 from "../../../../public/icons/frame-09.svg";
+import frame0100 from "../../../../public/icons/frame-0100.svg";
+
 function Group2() {
   return (
     <div className="flex flex-row gap-5 ml-5 mr-5">
@@ -15,7 +19,7 @@ function Group2() {
                 </span>
               </div>
               <Image
-                src={require("../../../assets/icons/frame-08.svg")}
+                src={frame08}
                 alt="documents"
                 className="pl-10 cursor-pointer"
                 width={130}
@@ -46,7 +50,7 @@ function Group2() {
                 </span>
               </div>
               <Image
-                src={require("../../../assets/icons/frame-09.svg")}
+                src={frame09}
                 alt="documents"
                 className="pl-5 cursor-pointer"
                 width={115}
@@ -71,7 +75,7 @@ function Group2() {
           <div className="flex flex-row items-center gap-3 pt-5">
             <div>
               <Image
-                src={require("../../../assets/icons/frame-0100.svg")}
+                src={frame0100}
                 alt="documents"
                 className="pl-10 cursor-pointer"
                 width={130}

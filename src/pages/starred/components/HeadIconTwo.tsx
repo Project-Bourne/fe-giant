@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import template from "../../../../public/icons/template1.svg";
+import on_template from "../../../../public/icons/on.template.svg";
+import new_cycle from "../../../../public/icons/newCycle.svg";
+import on_new_cycle from "../../../../public/icons/onNewCycle.svg";
 
 type HeaderIconTwoProps = {
   activeOption?: string;
@@ -32,11 +36,7 @@ function HeadIconTwo({
         }`}
       >
         <Image
-          src={
-            activeDiv == "All"
-              ? require(`../../../assets/icons/on.template.svg`)
-              : require(`../../../assets/icons/template 1.svg`)
-          }
+          src={activeDiv == "All" ? on_template : template}
           alt="documents"
           className="cursor-pointer ml-2 text-green-500"
           width={20}
@@ -59,11 +59,7 @@ function HeadIconTwo({
         }`}
       >
         <Image
-          src={
-            activeDiv == "New"
-              ? require(`../../../assets/icons/onNewCycle.svg`)
-              : require(`../../../assets/icons/newCycle.svg`)
-          }
+          src={activeDiv == "New" ? on_new_cycle : new_cycle}
           alt="documents"
           className="cursor-pointer ml-2"
           width={20}

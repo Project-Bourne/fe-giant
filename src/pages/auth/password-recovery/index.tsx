@@ -5,13 +5,28 @@ import {} from "@mui/material";
 import { AuthLayout } from "@/layout/index";
 import { Input, Button } from "@/components/ui";
 import Image from "next/image";
+import AuthService from "@/services/auth.service";
+import NotificationService from "@/services/notification.service";
+import custom_list_on from "../../../../public/icons/custom-list-on.svg";
+import custom_list from "../../../../public/icons/custom-list.svg";
+
+const intialFormData = {
+  email: "",
+  password: "",
+};
 
 function PasswordRecovery() {
+  const [formData, setFormData] = useState(intialFormData);
+  const [loading, setLoading] = useState(false);
+  // password error-check states
   const [password, setPassword] = useState("");
   const [passwordStatus, setPasswordStatus] = useState(0);
   const [isSpecial, setIsSpecial] = useState(false);
   const [isUpperCase, setIsUpperCase] = useState(false);
   const [isMinimum, setIsMinimum] = useState(false);
+  // general error handling states
+  const [errors, setErrors] = useState({ email: "", password: "" });
+  const authService = new AuthService();
 
   useEffect(() => {
     if (isSpecial && isUpperCase && isMinimum) {
@@ -49,20 +64,48 @@ function PasswordRecovery() {
     }
   };
 
-  const handleChange = async (e: any) => {
-    const password_data = e.target.value;
-    checkSpecial(password_data);
-    checkUpperCase(password_data);
-    checkMinimum(password_data);
-    setPassword(password_data);
+  const handleChange = async (e: any, type: string) => {
+    const _data = e.target.value;
+    if (type === "password") {
+      checkSpecial(_data);
+      checkUpperCase(_data);
+      checkMinimum(_data);
+      setFormData({ ...formData, password: _data });
+    }
+    if (type === "email") {
+      setFormData({ ...formData, email: _data });
+    }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (passwordStatus === 1) {
-      console.log(password);
-    } else {
-      console.log("oops sorry, incorrect data");
+    setLoading(true);
+
+    if (formData.password === "") {
+      setErrors({ ...errors, password: "Password field must not empty!" });
+      return;
+    }
+    if (formData.email === "") {
+      setErrors({ ...errors, email: "Email field must not empty!" });
+      return;
+    }
+    if (passwordStatus === 1 && formData.email !== "") {
+      authService
+        .forgotPassword(formData)
+        .then((res) => {
+          setLoading(false);
+          NotificationService.success({
+            message: "Password Recovery Successful!",
+          });
+          console.log(res);
+        })
+        .catch((err) => {
+          setLoading(false);
+          NotificationService.error({
+            message: "Password Recovery Failed!",
+            addedText: err?.message,
+          });
+        });
     }
   };
 
@@ -76,14 +119,30 @@ function PasswordRecovery() {
         className="mt-[3.5rem]  max-w-[370px] mx-auto pb-7"
         onSubmit={handleSubmit}
       >
+        {/* email  */}
+        <div className="mb-3 grid gap-1">
+          <label>Email</label>
+          <Input
+            placeholder="debra.holt@example.com"
+            type="email"
+            onChange={(e) => handleChange(e, "email")}
+          />
+          {errors.email && (
+            <small className="text-sirp-primary">{errors.email}</small>
+          )}
+        </div>
+
         {/* password  */}
         <div className="grid gap-1 mb-3">
           <label>Password</label>
           <Input
             placeholder="*********"
             type="password"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChange(e, "password")}
           />
+          {errors.password && (
+            <small className="text-sirp-primary">{errors.password}</small>
+          )}
         </div>
 
         {/* error container  */}
@@ -107,11 +166,7 @@ function PasswordRecovery() {
               } flex gap-x-2 items-center`}
             >
               <Image
-                src={
-                  isSpecial
-                    ? require("../../../assets/icons/custom-list-on.svg")
-                    : require("../../../assets/icons/custom-list.svg")
-                }
+                src={isSpecial ? custom_list_on : custom_list}
                 alt="list"
                 width={15}
                 height={15}
@@ -124,11 +179,7 @@ function PasswordRecovery() {
               } flex gap-x-2 items-center`}
             >
               <Image
-                src={
-                  isUpperCase
-                    ? require("../../../assets/icons/custom-list-on.svg")
-                    : require("../../../assets/icons/custom-list.svg")
-                }
+                src={isUpperCase ? custom_list_on : custom_list}
                 alt="list"
                 width={15}
                 height={15}
@@ -141,11 +192,7 @@ function PasswordRecovery() {
               } flex gap-x-2 items-center`}
             >
               <Image
-                src={
-                  isMinimum
-                    ? require("../../../assets/icons/custom-list-on.svg")
-                    : require("../../../assets/icons/custom-list.svg")
-                }
+                src={isMinimum ? custom_list_on : custom_list}
                 alt="list"
                 width={15}
                 height={15}

@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { useWindowWidth } from "@/components/custom-hooks";
+import strips from "../../../public/svg/Strips.svg";
+import logo from "../../../public/svg/logo.svg";
 
 function AuthLayout({ children, headerText, subText, isTextCenter }) {
   const screenWidth = useWindowWidth();
 
   const bgStyle = {
-    backgroundColor: `url('../../assets/images/Strips.svg')`,
+    backgroundColor: `url('../../../public/svg/Strips.svg')`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   };
@@ -22,7 +24,7 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
             {/* logo  */}
             <div className="mx-auto w-[25%]">
               <Image
-                src={require("../../assets/svg/logo.svg")}
+                src={logo}
                 alt="IRP Logo"
                 width={100}
                 height={93}
@@ -45,7 +47,7 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
         </div>
         <div className="hidden lg:block lg:w-[58%]">
           <Image
-            src={require("../../assets/svg/Strips.svg")}
+            src={strips}
             alt="IRP Logo"
             className="object-cover w-full"
             width={100}

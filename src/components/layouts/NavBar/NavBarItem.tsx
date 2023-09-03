@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
-import { type } from "os";
-import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 
 type NavBarItemType = {
   item: {
@@ -31,8 +30,8 @@ function NavBarItem({ item, index }: NavBarItemType) {
         <Image
           src={
             isSelected
-              ? require(`../../../assets/icons/on.${item.icon}`)
-              : require(`../../../assets/icons/${item.icon}`)
+              ? require(`../../../../public/icons/on.${item.icon}`)
+              : require(`../../../../public/icons/${item.icon}`)
           }
           alt="Dashboard icon"
           width={22}

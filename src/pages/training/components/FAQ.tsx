@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import report_search from "../../../../public/icons/report-search.svg";
 
 type FAQtype = {
   text: string;
@@ -10,7 +11,7 @@ const FAQComp = ({ text, index }: FAQtype) => {
   return (
     <div className="items-center flex flex-row my-2 cursor-pointer">
       <Image
-        src={require("../../../assets/icons/report-search.svg")}
+        src={report_search}
         alt="search"
         width={13}
         height={13}

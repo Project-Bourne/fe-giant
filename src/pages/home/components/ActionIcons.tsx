@@ -5,6 +5,12 @@ import Factcheck from "../modal-popup/factcheck";
 import Collaborate from "../modal-popup/collaborate";
 import DocumentExport from "../modal-popup/DocumentExport";
 import { Tooltip } from "@mui/material";
+import h1 from "../../../../public/icons/h1.svg";
+import h2 from "../../../../public/icons/h2.svg";
+import h3 from "../../../../public/icons/h3.svg";
+import h4 from "../../../../public/icons/h4.svg";
+import h6 from "../../../../public/icons/h6.svg";
+import on_saved from "../../../../public/icons/on.saved.svg";
 
 type ActionIconsProps = {
   doc?: any;
@@ -19,7 +25,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
       <div className="flex gap-2 px-5">
         <Tooltip title="Export to Collab">
           <Image
-            src={require("../../../assets/icons/h3.svg")}
+            src={h3}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -28,7 +34,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
         </Tooltip>
         <Tooltip title="Archive">
           <Image
-            src={require("../../../assets/icons/h2.svg")}
+            src={h2}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -36,7 +42,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
         </Tooltip>
         <Tooltip title="Analyze">
           <Image
-            src={require("../../../assets/icons/h1.svg")}
+            src={h1}
             alt="documents"
             className=" cursor-pointer"
             width={50}
@@ -44,7 +50,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
         </Tooltip>
         <Tooltip title="Save">
           <Image
-            src={require("../../../assets/icons/on.saved.svg")}
+            src={on_saved}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -52,7 +58,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
         </Tooltip>
         <Tooltip title="Summarize">
           <Image
-            src={require("../../../assets/icons/h4.svg")}
+            src={h4}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -61,7 +67,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
         </Tooltip>
         <Tooltip title="Run Fact Checker">
           <Image
-            src={require("../../../assets/icons/h6.svg")}
+            src={h6}
             alt="documents"
             className="cursor-pointer"
             width={50}

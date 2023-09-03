@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Checkbox } from "@mui/material";
 import { useTruncate } from "@/components/custom-hooks";
+import arrow_narrow from "../../../../public/icons/arrow-narrow-white-left1.svg";
 
 const collaborators = [
   { name: "Patience Grey", status: false },
@@ -19,6 +20,7 @@ const collaborators = [
 
 function DocumentExport({ doc }) {
   const success = () => toast("Copied!");
+
   const copyToClipboard = () => {
     const paragraphText = document.getElementById("paragraph").innerText;
     navigator.clipboard.writeText(paragraphText);
@@ -35,7 +37,7 @@ function DocumentExport({ doc }) {
         <h1 className="text-2xl font-bold text-black">Export Content</h1>
         <div className="">
           <h2 className="my-3 text-[18px] text-gray-700 font-semibold first-letter:capitalize">
-            {useTruncate(doc, 45)}
+            {doc && useTruncate(doc, 45)}
           </h2>
           <Input
             type="search"
@@ -43,7 +45,7 @@ function DocumentExport({ doc }) {
             placeholder="Search for collaborators"
           />
           <ul className="h-[20vh] overflow-y-auto mt-3">
-            {collaborators.map((collaborator, index) => (
+            {collaborators?.map((collaborator, index) => (
               <li key={index} className="flex justify-between items-center">
                 <p className="text-[16px] text-black py-1">
                   {collaborator.name}
@@ -107,7 +109,7 @@ function DocumentExport({ doc }) {
                     Export to collab workspace
                   </label>
                   <Image
-                    src={require("../../../assets/icons/arrow-narrow-white-left 1.svg")}
+                    src={arrow_narrow}
                     alt="add user"
                     width={25}
                     height={25}

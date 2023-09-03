@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import leftArrow from "../../../../public/icons/leftArro.svg";
+import starred from "../../../../public/icons/starred.svg";
 
 const data = [
   {
@@ -62,6 +64,7 @@ const data = [
 ];
 
 function ContentHistroy() {
+  // alert(4)
   return (
     <div className="flex flex-wrap w-full flex-row h-100%">
       {data.map((item) => (
@@ -71,7 +74,7 @@ function ContentHistroy() {
         >
           <div className="flex justify-end mr-5 pt-5">
             <Image
-              src={require("../../../assets/icons/starred.svg")}
+              src={starred}
               alt="documents"
               className="cursor-pointer w-4 h-4"
               width={10}
@@ -99,7 +102,7 @@ function ContentHistroy() {
       <div className="border flex items-center gap-2 cursor-pointer justify-center py-2 border-gray-500 mt-5 w-[31rem]  h-[100%] rounded-[1rem] mx-5 bg-sirp-contentbg">
         <h2>Show all</h2>
         <Image
-          src={require("../../../assets/icons/leftArro.svg")}
+          src={leftArrow}
           alt="documents"
           className="cursor-pointer w-[2rem] h-[2rem] mt-2"
           width={10}

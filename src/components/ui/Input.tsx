@@ -3,6 +3,9 @@ import React, { useRef, useState } from "react";
 import { InputModel, DropdownModel } from "@/models/ui/components.models";
 import { useOnClickOutside } from "../custom-hooks";
 
+import hide from "../../../public/icons/hide.svg";
+import show_pass from "../../../public/icons/show-pass.svg";
+
 const countries = require("../../utils/countries.json");
 
 function Input(props: InputModel) {
@@ -32,7 +35,7 @@ function Input(props: InputModel) {
           >
             {!toggle ? (
               <Image
-                src={require("../../assets/icons/Hide.svg")}
+                src={hide}
                 alt="Filter"
                 width={20}
                 height={20}
@@ -41,7 +44,7 @@ function Input(props: InputModel) {
               />
             ) : (
               <Image
-                src={require("../../assets/icons/show-pass.svg")}
+                src={show_pass}
                 alt="Filter"
                 width={20}
                 height={20}
@@ -67,7 +70,7 @@ function Input(props: InputModel) {
 
 // drop down component
 function Dropdown(props: DropdownModel) {
-  const { data, onChange, className } = props;
+  const { data, onChange, className, isDisabled } = props;
 
   return (
     <>
@@ -105,7 +108,11 @@ function DropdownWithFlag(props: DropdownModel) {
 
   // toggle dropdown if component is not disabled
   const handleDropdown = () => {
-    setDropdown(!dropdown);
+    if (!isDisabled) {
+      setDropdown(!dropdown);
+    } else {
+      return;
+    }
     // if (dropdown) {
     //     document.getElementById('country-search').addEventListener('click', () => {
     //         document.getElementById('country-search').focus()

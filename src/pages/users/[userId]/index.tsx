@@ -1,15 +1,13 @@
 import { Breadcrumbs, Tab } from "@/components/ui";
 import { Button, CustomModal } from "@/components/ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import {
-  ActivityLogSection,
-  Header,
-  PersonalInfoSection,
-  ProfileSection,
-} from "../components";
-import { TabHeaderData } from "../utils/constants";
+import user_img from "../../../../public/images/user1.jpg";
+import Header from "../components/Header";
+import PersonalInfoSection from "../components/PersonalInfoSection";
+import ProfileSection from "../components/ProfileSection";
+import ActivityLogSection from "../components/ActivityLogSection";
+import { TabHeaderData } from "@/utils/users.constants";
 
 function UserDetails() {
   const [toggleModal, setToggleModal] = useState(false);
@@ -25,7 +23,7 @@ function UserDetails() {
           </p>
           <div className="px-5 py-1.5 flex gap-x-3.5 rounded-md bg-[#45C6ED] mb-4">
             <Image
-              src={require("../../../assets/images/user1.jpg")}
+              src={user_img}
               alt="user"
               className="rounded-full"
               width={35}

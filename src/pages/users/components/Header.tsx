@@ -8,7 +8,9 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { UserRoles } from "@/utils/constants";
-import { HeaderModel } from "../models/users.module";
+import filter_img from "../../../../public/icons/filter.svg";
+import add_user from "../../../../public/icons/add-user.svg";
+import { HeaderModel } from "@/models/users/users.model";
 
 const initialFormData = {
   email: "",
@@ -117,7 +119,7 @@ function Header({ filter }: HeaderModel) {
           {filter && (
             <div className="bg-sirp-lightGrey cursor-pointer flex gap-x-1 py-2 px-3 rounded-lg justify-center items-center content-center">
               <Image
-                src={require("../../../assets/icons/filter.svg")}
+                src={filter_img}
                 alt="Filter"
                 width={18}
                 height={18}
@@ -134,13 +136,13 @@ function Header({ filter }: HeaderModel) {
             size="md"
             background="bg-sirp-primary"
             value={
-              <div className="flex gap-x-1 text-[12px] items-center justify-center">
+              <div className="flex gap-x-1 my-auto text-[12px] items-center justify-center">
                 <Image
-                  src={require("../../../assets/icons/add-user.svg")}
+                  src={add_user}
                   alt="add user"
                   width={14}
                   height={14}
-                  className="self-center"
+                  className="flex items-center"
                   style={{ alignSelf: "center" }}
                   priority
                 />

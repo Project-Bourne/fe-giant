@@ -1,8 +1,8 @@
-import { Button, Input } from "@/components/ui";
 import Image from "next/image";
 import Link from "next/link";
-import { ActivityCard } from "./ActivityCard";
+import ActivityCard from "./ActivityCard";
 import { useRouter } from "next/router";
+import filter from "../../../../public/icons/filter.svg";
 
 export default function ActivityLogSection() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function ActivityLogSection() {
           <h2 className="font-semibold text-[14px] ">Activity Log</h2>
           <div className="bg-sirp-lightGrey cursor-pointer flex p-2 rounded-lg items-center justify-center content-center">
             <Image
-              src={require("../../../assets/icons/filter.svg")}
+              src={filter}
               alt="Filter"
               width={18}
               height={18}

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useTruncate } from "@/components/custom-hooks";
 import Image from "next/image";
 import { Checkbox } from "@mui/material";
-import { ListItemModels } from "../models/home.models";
+import ListItemModels from "../../../models/home/home.models";
+import saved from "../../../../public/icons/saved.svg";
 
 function ListItem({
   name,
@@ -35,7 +36,7 @@ function ListItem({
         <Checkbox checked={isMarked} onChange={handleChange} />
         {/* star icon  */}
         <Image
-          src={require("../../../assets/icons/saved.svg")}
+          src={saved}
           alt="documents"
           className="cursor-pointer w-4 h-4"
           width={10}
@@ -48,7 +49,9 @@ function ListItem({
       </div>
       {/* decsription  */}
       <div className="hover:text-gray-400 hidden md:block">
-        <p className={`text-black-100 w-[23rem]`}>{useTruncate(desc, 48)}</p>
+        <p className={`text-black-100 w-[23rem]`}>
+          {desc && useTruncate(desc, 48)}
+        </p>
       </div>
       {/* message  */}
       {buttonType === "action" ? (
@@ -56,7 +59,7 @@ function ListItem({
           {showaction === 0 && (
             <div className="md:w-[15%] hidden md:block">
               <p className="text-gray-400 border-l-2 pl-2 ">
-                {useTruncate(message, 15)}
+                {message && useTruncate(message, 15)}
               </p>
             </div>
           )}
@@ -65,7 +68,9 @@ function ListItem({
         <>
           {(showaction === 0 || showaction === 1) && (
             <div className="md:w-[15%] border-l-2 px-3 hidden md:block">
-              <p className="text-gray-400">{useTruncate(message, 15)}</p>
+              <p className="text-gray-400">
+                {message && useTruncate(message, 15)}
+              </p>
             </div>
           )}
         </>

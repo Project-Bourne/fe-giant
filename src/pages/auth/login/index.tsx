@@ -2,6 +2,11 @@ import { useState } from "react";
 import { Button, Input } from "@/components/ui";
 import { AuthLayout } from "@/layout/index";
 import Link from "next/link";
+import AuthService from "@/services/auth.service";
+import NotificationService from "@/services/notification.service";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setAccessToken } from "@/redux/reducers/auth/authReducer";
 
 const intialFormData = {
   email: "",
@@ -11,6 +16,10 @@ const intialFormData = {
 function Login() {
   const [formData, setFormData] = useState(intialFormData);
   const [errors, setErrors] = useState(intialFormData);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const authService = new AuthService();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -24,7 +33,34 @@ function Login() {
       return;
     }
 
-    console.log(formData);
+    setLoading(true);
+    authService
+      .login(formData)
+      .then((res) => {
+        setLoading(false);
+        console.log("login dets", res);
+        if (res?.status === true) {
+          dispatch(setAccessToken(res?.data?.accessToken));
+          NotificationService.success({
+            message: "Login Success!",
+          });
+          router.push("/dashboard");
+        } else {
+          NotificationService.error({
+            message: "Login Failed!",
+            addedText: res?.message,
+          });
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log("login", err);
+        NotificationService.error({
+          message: "Login Failed!",
+          addedText: err?.message,
+        });
+      });
+    // console.log(formData);
   };
 
   return (
@@ -40,7 +76,7 @@ function Login() {
             <label>Email</label>
             <Input
               placeholder="debra.holt@example.com"
-              type="text"
+              type="email"
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -74,15 +110,19 @@ function Login() {
               </label>
             </div>
             <div>
-              <p className="font-light text-sirp-primary cursor-pointer">
+              <Link
+                href="/auth/forgot-password"
+                className="font-light text-sirp-primary text-[15px] cursor-pointer"
+              >
                 Forgot Password?
-              </p>
+              </Link>
             </div>
           </div>
           {/* submit button  */}
           <Button
             value="Sign in"
             type="submit"
+            loading={loading}
             classNameStyle="text-white p-3"
             background="bg-sirp-primary"
             size="xl"

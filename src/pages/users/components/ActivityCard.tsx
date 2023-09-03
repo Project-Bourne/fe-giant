@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ActivityCardModel } from "../models/users.module";
 import { useTruncate } from "@/components/custom-hooks";
+import { ActivityCardModel } from "@/models/users/users.model";
 
-export function ActivityCard({
+function ActivityCard({
   time,
   actionText,
   activityText,
@@ -20,11 +20,15 @@ export function ActivityCard({
         <div className="grid md:flex justify-between items-center">
           <div className="flex gap-x-3">
             <label className="text-[13px] text-sirp-grey">Action:</label>
-            <p className="text-[14px]">{useTruncate(actionText, 35)}</p>
+            <p className="text-[14px]">
+              {actionText && useTruncate(actionText, 35)}
+            </p>
           </div>
           <div className="flex gap-x-3">
             <label className="text-[13px] text-sirp-grey">Snippet:</label>
-            <p className="text-[14px]">{useTruncate(activityText, 70)}</p>
+            <p className="text-[14px]">
+              {activityText && useTruncate(activityText, 70)}
+            </p>
           </div>
           <div className="py-1 px-2 rounded-xl bg-white text-[12px] text-sirp-primary border-[1px] border-gray-300 cursor-pointer">
             <Link href={`/${docId}`}>view doc</Link>
@@ -34,3 +38,5 @@ export function ActivityCard({
     </div>
   );
 }
+
+export default ActivityCard;
