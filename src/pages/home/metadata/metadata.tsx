@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddLink from "../components/AddLink";
+import AddLink from "../components/addLink";
 import MataDataContent from "../components/MataDataContent";
 import AddContentHeaderTwo from "../components/AddContentHeaderTwo";
 import ContentHistroy from "../components/ContentHistory";

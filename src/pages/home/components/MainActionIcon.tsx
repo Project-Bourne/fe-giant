@@ -1,5 +1,5 @@
 import React from "react";
-import AddContentHeader from "../components/AddContentHeader";
+import AddContentHeader from "../components/addContentHeader";
 import ActionIcons from "../components/ActionIcons";
 
 function MainActionIcon() {

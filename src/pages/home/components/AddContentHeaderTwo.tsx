@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import historyIcon from "../../../../public/icons/Histroy.svg";
+import historyIcon from "../../../../public/icons/histroy.svg";
 import onHistoryIcon from "../../../../public/icons/on.Histroy.svg";
 import starred from "../../../../public/icons/starred.svg";
 import onStarred from "../../../../public/icons/on.starred.svg";

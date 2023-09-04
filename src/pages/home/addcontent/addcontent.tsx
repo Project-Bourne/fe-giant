@@ -1,6 +1,6 @@
 import React from "react";
-import AddContentHeader from "../components/AddContentHeader";
-import AddLink from "../components/AddLink";
+import AddContentHeader from "../components/addContentHeader";
+import AddLink from "../components/addLink";
 import AddContentHeaderTwo from "../components/AddContentHeaderTwo";
 import ContentHistory from "../components/ContentHistory";
 
