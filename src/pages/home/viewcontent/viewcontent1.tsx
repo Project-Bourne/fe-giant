@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddContentHeader from "../components/AddContentHeader";
+import AddContentHeader from "../components/addContentHeader";
 import ActionIcons from "../components/ActionIcons";
 import Image from "next/image";
 import Link from "next/link";
