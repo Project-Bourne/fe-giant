@@ -13,20 +13,18 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const authService = new AuthService();
-  const { userAccessToken, isLoggedIn } = useSelector(
-    (state: any) => state?.auth,
-  );
+  const { accessToken, isLoggedIn } = useSelector((state: any) => state?.auth);
   const signupPage = appProps.router.pathname.includes("/auth/signup");
   const forgotPsdPage = appProps.router.pathname.includes(
     "/auth/forgot-password",
   );
 
   useEffect(() => {
-    console.log(userAccessToken, "from _app null");
-    if (userAccessToken) {
-      console.log(userAccessToken, "from _app not null");
+    console.log(accessToken, "from _app null");
+    if (accessToken) {
+      console.log(accessToken, "from _app not null");
       authService
-        .getUserViaAccessToken(userAccessToken)
+        .getUserViaAccessToken(accessToken)
         .then((res) => {
           if (res?.status) {
             console.log("user data via login", res);
@@ -40,7 +38,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
           });
         });
     }
-  }, [userAccessToken]);
+  }, [accessToken]);
 
   useEffect(() => {
     if (!isLoggedIn) {

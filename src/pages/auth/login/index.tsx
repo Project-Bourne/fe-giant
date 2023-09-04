@@ -51,6 +51,7 @@ function Login() {
           NotificationService.success({
             message: "Login Success!",
           });
+
           router.push("/dashboard");
         } else {
           NotificationService.error({
