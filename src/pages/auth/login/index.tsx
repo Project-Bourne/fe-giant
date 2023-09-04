@@ -40,7 +40,14 @@ function Login() {
         setLoading(false);
         console.log("login dets", res);
         if (res?.status === true) {
-          dispatch(setAccessToken(res?.data?.accessToken));
+          console.log(res);
+          dispatch(
+            setAccessToken({
+              accessToken: res?.data?.accessToken,
+              refreshToken: res?.data?.refreshToken,
+            }),
+          );
+          localStorage.setItem("deep-access", res?.data?.accessToken);
           NotificationService.success({
             message: "Login Success!",
           });

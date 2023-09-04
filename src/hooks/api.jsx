@@ -3,11 +3,15 @@
 /**
  * Object Request Header
  */
+let access = "";
+if (typeof window !== "undefined") {
+  access = localStorage.getItem("deep-access") || "";
+}
 export const requestHeader = {
   Accept: "application/json",
   "Cache-Control": "no-cache",
   "Content-Type": "application/json",
-  "deep-token": "",
+  "deep-token": access,
 };
 
 /**
