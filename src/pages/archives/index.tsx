@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import HomeHeader from "../starred/components/HeadIcon";
-import HomeHeaderTwo from "../starred/components/HeadIconTwo";
-import Image from "next/image";
-import dummy from "../../utils/dummy.json";
-import archive_delete from "../../../public/icons/archive-delete.svg";
-import ListItem from "../home/components/ListItem";
+import HeadIcon from "./components/HeadIcon";
+import Content from "./components/Content";
+import dummy from "@/utils/dummy.json";
+import BlueButton from "@/components/ui/BlueButton";
 
-function Archives() {
+function Starred() {
   const [activeOption, setActiveOption] = useState("All");
   const [dummyData, setDummyData] = useState(dummy);
 
@@ -14,7 +12,7 @@ function Archives() {
     setActiveOption(option);
   };
 
-  const handleCheckboxChange = (id) => {
+  const handleCheck = (id) => {
     const updatedData = dummyData.map((item) => {
       if (item.id === id) {
         return {
@@ -44,41 +42,18 @@ function Archives() {
       : dummyData.filter((item) => item.isMarked === false);
 
   return (
-    <div className="bg-sirp-listBg border h-[100%] my-4 mx-3 md:mx-10 pt-5 rounded-[1rem]">
-      <HomeHeader
-        activeOption={activeOption}
-        onOptionChange={handleOptionChange}
-        onClick={handleCheckboxes}
-      />
-      <HomeHeaderTwo
-        activeOption={activeOption}
-        onOptionChange={handleOptionChange}
-      />
-      {filteredData?.map((item, index) => {
-        return (
-          <div key={index}>
-            <ListItem
-              isMarked={item.isMarked}
-              name={item.name}
-              desc={item.description}
-              message={item.message}
-              handleChange={() => handleCheckboxChange(item.id)}
-              time={item.time}
-              buttonType="view"
-              viewDeleteButtons={
-                <Image
-                  src={archive_delete}
-                  alt="delete-archives"
-                  height={30}
-                  width={30}
-                />
-              }
-            />
-          </div>
-        );
-      })}
+    <div className="bg-sirp-listBg h-[100%] border pt-5 mx-3 md:mx-10 rounded-[1rem]">
+      <div className="mb-5 flex w-[100%] mr-[1.5rem] px-2 border-b-2 py-4 ">
+        <HeadIcon
+          activeOption={activeOption}
+          onOptionChange={handleOptionChange}
+          onClick={handleCheckboxes}
+        />
+      </div>
+
+      <Content data={filteredData} onCheck={handleCheck} />
     </div>
   );
 }
 
-export default Archives;
+export default Starred;

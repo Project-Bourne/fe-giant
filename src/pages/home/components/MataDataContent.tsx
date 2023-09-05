@@ -36,28 +36,27 @@ const MataDataContent = () => {
           <p className="text-gray-500 mt-3">
             {isLoading ? <Skeleton width={50} /> : "Author"}
           </p>
-          <Link href="../viewcontent/viewcontent1">
-            <div className="flex gap-3 items-center my-5 cursor-pointer">
-              {isLoading ? (
-                <Skeleton circle width={50} height={50} />
-              ) : (
-                <Image
-                  src={avatar_meta}
-                  alt="documents"
-                  className="cursor-pointer"
-                  width={50}
-                />
-              )}
-              <div>
-                <p className="font-bold">
-                  {isLoading ? <Skeleton width={150} /> : author.name}
-                </p>
-                <p className="text-gray-500 text-sm">
-                  {isLoading ? <Skeleton width={150} /> : author.location}
-                </p>
-              </div>
+
+          <div className="flex gap-3 items-center my-5">
+            {isLoading ? (
+              <Skeleton circle width={50} height={50} />
+            ) : (
+              <Image
+                src={avatar_meta}
+                alt="documents"
+                className="cursor-pointer"
+                width={50}
+              />
+            )}
+            <div>
+              <p className="font-bold">
+                {isLoading ? <Skeleton width={150} /> : author.name}
+              </p>
+              <p className="text-gray-500 text-sm">
+                {isLoading ? <Skeleton width={150} /> : author.location}
+              </p>
             </div>
-          </Link>
+          </div>
         </div>
         <div className="mt-3 w-[25rem]">
           <p className="text-gray-500 mt-3 pl-10">

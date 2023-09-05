@@ -1,12 +1,11 @@
 import { data } from "@/utils/home.constants";
 import React from "react";
 
-function dummyText() {
+function DummyText() {
   const { title } = data;
   return (
     <div>
       <header>
-        <h1>Content</h1>
         <h2 className="text-3xl">{title}</h2>
       </header>
       <main>
@@ -45,4 +44,4 @@ function dummyText() {
   );
 }
 
-export default dummyText;
+export default DummyText;

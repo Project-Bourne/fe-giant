@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import HomeHeader from "../starred/components/HeadIcon";
-import HomeHeaderTwo from "../starred/components/HeadIconTwo";
-import HomeContent from "../starred/components/Content";
+import HomeHeader from "../archives/components/HeadIcon";
+import HomeContent from "../archives/components/Content";
 import dummy from "../../utils/dummy.json";
-import Link from "next/link";
+import BlueButton from "@/components/ui/BlueButton";
+import { useRouter } from "next/router";
 
 function Index() {
+  const router = useRouter();
   const [activeOption, setActiveOption] = useState("All");
   const [dummyData, setDummyData] = useState(dummy);
 
   const handleOptionChange = (option) => {
     setActiveOption(option);
+  };
+
+  const handleAdd = () => {
+    router.push("/home/addcontent/addcontent");
   };
 
   const handleCheck = (id) => {
@@ -43,18 +48,20 @@ function Index() {
       : dummyData.filter((item) => item.isMarked === false);
 
   return (
-    <div className="bg-sirp-listBg border h-[100%] my-4 md:mx-10 mx-2 pt-5 rounded-[1rem]">
-      <HomeHeader
-        activeOption={activeOption}
-        onOptionChange={handleOptionChange}
-        onClick={handleCheckboxes}
-      />
-      <HomeHeaderTwo
-        activeOption={activeOption}
-        onOptionChange={handleOptionChange}
-        onClick={handleCheckboxes}
-      />
-      <HomeContent data={filteredData} onCheck={handleCheck} />
+    <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-[1rem]">
+      <div className="mb-5 flex w-[100%] mr-[1.5rem] px-2 border-b-2 py-5 ">
+        <HomeHeader
+          activeOption={activeOption}
+          onOptionChange={handleOptionChange}
+          onClick={handleCheckboxes}
+        />
+        <div onClick={handleAdd}>
+          <BlueButton />
+        </div>
+      </div>
+      <div className=" w-full">
+        <HomeContent data={filteredData} onCheck={handleCheck} />
+      </div>
     </div>
   );
 }

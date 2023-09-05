@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Checkbox } from "@mui/material";
 import ListItemModels from "../../../models/home/home.models";
 import saved from "../../../../public/icons/saved.svg";
+import { useRouter } from "next/router";
 
 function ListItem({
   name,
@@ -17,6 +18,9 @@ function ListItem({
   buttonType,
 }: ListItemModels) {
   const [showaction, setShowAction] = useState(0);
+  const router = useRouter();
+  const id = 2;
+
   const handleHover = () => {
     setShowAction(1);
   };
@@ -24,11 +28,16 @@ function ListItem({
     setShowAction(0);
   };
 
+  const handleOnClick = (e) => {
+    e.stopPropagation();
+    router.push(`/home/metadata/${id}`);
+  };
+
   return (
     <div
       onMouseOut={handleHoverOut}
       onMouseOver={handleHover}
-      className={`text-[14px] flex items-center ${
+      className={`text-[14px] flex items-center cursor-pointer ${
         isMarked && "bg-sirp-primaryLess2"
       } hover:text-gray-400 hover:bg-sirp-primaryLess2 p-2 rounded-lg hover:rounded-none hover:shadow justify-between`}
     >
@@ -43,12 +52,18 @@ function ListItem({
           height={10}
         />
         {/* name  */}
-        <p className="text-sirp-black-500 ml-2 md:w-[12rem] hover:text-gray-400">
+        <p
+          onClick={handleOnClick}
+          className="text-sirp-black-500 ml-2 md:w-[12rem] hover:text-gray-400"
+        >
           {name}
         </p>
       </div>
       {/* decsription  */}
-      <div className="hover:text-gray-400 hidden md:block">
+      <div
+        className="hover:text-gray-400 hidden md:block"
+        onClick={handleOnClick}
+      >
         <p className={`text-black-100 w-[23rem]`}>
           {desc && useTruncate(desc, 48)}
         </p>

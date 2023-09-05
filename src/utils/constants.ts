@@ -12,28 +12,16 @@ export const NavBarContents = [
     route: "/home",
   },
   {
-    name: "Starred",
-    icon: "starred.svg",
+    name: "Archives",
+    icon: "archives.svg",
     id: 3,
-    route: "/starred",
+    route: "/archives",
   },
   {
     name: "Reports",
     icon: "reports.svg",
     id: 4,
     route: "/reports",
-  },
-  {
-    name: "Exports",
-    icon: "exports.svg",
-    id: 5,
-    route: "/exports",
-  },
-  {
-    name: "Archives",
-    icon: "archives.svg",
-    id: 6,
-    route: "/archives",
   },
   {
     name: "Users",

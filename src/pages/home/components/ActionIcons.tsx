@@ -48,14 +48,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             width={50}
           />
         </Tooltip>
-        <Tooltip title="Save">
-          <Image
-            src={on_saved}
-            alt="documents"
-            className="cursor-pointer"
-            width={50}
-          />
-        </Tooltip>
+
         <Tooltip title="Summarize">
           <Image
             src={h4}
@@ -63,15 +56,6 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             className="cursor-pointer"
             width={50}
             onClick={() => setCollaborate(true)}
-          />
-        </Tooltip>
-        <Tooltip title="Run Fact Checker">
-          <Image
-            src={h6}
-            alt="documents"
-            className="cursor-pointer"
-            width={50}
-            onClick={() => setFactcheck(true)}
           />
         </Tooltip>
       </div>

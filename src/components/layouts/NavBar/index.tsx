@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NavBarItem from "./NavBarItem";
 import { NavBarContents } from "@/utils/constants";
 import logo from "../../../../public/images/logo.png";
-import refresh from "../../../../public/icons/refresh.svg";
+// import refresh from "../../../../public/icons/refresh.svg";
 
 function NavBar() {
   const [isCrawling, setIsCrawling] = useState(false);
@@ -16,7 +16,7 @@ function NavBar() {
 
   return (
     <div className="w-[15vw] md:w-[20vw] h-full border-3 border-r bg-white px-3 py-10 md:p-10 fixed z-[20]">
-      <div className="flex flex-row items-center cursor-pointer mb-[4rem]">
+      <div className="flex flex-row items-center cursor-pointer mb-[.3rem]">
         <Image
           src={logo}
           alt="IRP Logo"
@@ -25,10 +25,15 @@ function NavBar() {
           className={`md:mr-[20px]`}
           priority
         />
-        <h1 className="text-sirp-primary font-semibold text-[30px] hidden md:block">
-          IRP
-        </h1>
+        <div>
+          <h1 className="text-sirp-primary font-semibold text-[30px] hidden md:block">
+            IRP
+          </h1>
+        </div>
       </div>
+      <p className="text-sirp-primary font-semibold text-[13px] hidden md:block">
+        Intelligence Reporting Platform
+      </p>
       {/* items-center justify-center py-4 md:px-5 w-[100%] flex flex-row self-center */}
       {/* <div
         className={`${
