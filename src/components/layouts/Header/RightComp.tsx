@@ -62,7 +62,7 @@ function RightComp() {
           priority
         />
       </div>
-      <div className={`${styles.view1} hidden md:flex`}>
+      {/* <div className={`${styles.view1} hidden md:flex`}>
         <Image
           src={dashboard}
           alt="dashbaord"
@@ -72,7 +72,7 @@ function RightComp() {
           style={{ alignSelf: "center" }}
           priority
         />
-      </div>
+      </div> */}
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
         <div className="flex flex-row items-center justify-center">

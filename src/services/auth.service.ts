@@ -37,6 +37,7 @@ class AuthService {
 
   // forgot - password
   async forgotPassword(data) {
+    console.log("forgot password", data);
     try {
       const response = await request(
         "forgot-password",
@@ -103,6 +104,8 @@ class AuthService {
 
   // logout
   async logout(data, token) {
+    console.log("refresh token", data);
+    console.log("user access token", token);
     try {
       const response = await request(
         "logout",

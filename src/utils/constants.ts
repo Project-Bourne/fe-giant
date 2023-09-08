@@ -241,3 +241,18 @@ export const FAQS = [
   "How does fact checker work",
   "Exporting from fact checker",
 ];
+
+export const months = [
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
+];

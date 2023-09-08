@@ -19,26 +19,26 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
     "/auth/forgot-password",
   );
 
-  useEffect(() => {
-    console.log(accessToken, "from _app null");
-    if (accessToken) {
-      console.log(accessToken, "from _app not null");
-      authService
-        .getUserViaAccessToken(accessToken)
-        .then((res) => {
-          if (res?.status) {
-            console.log("user data via login", res);
-            dispatch(setUserInfo(res?.data));
-          }
-        })
-        .catch((err) => {
-          NotificationService.error({
-            message: "Error",
-            addedText: "Could not fetch user data",
-          });
-        });
-    }
-  }, [accessToken]);
+  // useEffect(() => {
+  //   console.log(accessToken, "from _app null");
+  //   if (accessToken) {
+  //     console.log(accessToken, "from _app not null");
+  //     authService
+  //       .getUserViaAccessToken(accessToken)
+  //       .then((res) => {
+  //         if (res?.status) {
+  //           console.log("user data via login", res);
+  //           dispatch(setUserInfo(res?.data));
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         NotificationService.error({
+  //           message: "Error",
+  //           addedText: "Could not fetch user data",
+  //         });
+  //       });
+  //   }
+  // }, [accessToken]);
 
   useEffect(() => {
     if (!isLoggedIn) {
