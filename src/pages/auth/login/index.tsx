@@ -6,7 +6,7 @@ import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { setAccessToken } from "@/redux/reducers/auth/authReducer";
+import { setAccessToken, setUserInfo } from "@/redux/reducers/auth/authReducer";
 
 const intialFormData = {
   email: "",
@@ -38,21 +38,43 @@ function Login() {
       .login(formData)
       .then((res) => {
         setLoading(false);
-        console.log("login dets", res);
-        if (res?.status === true) {
-          console.log(res);
-          dispatch(
-            setAccessToken({
-              accessToken: res?.data?.accessToken,
-              refreshToken: res?.data?.refreshToken,
-            }),
-          );
-          localStorage.setItem("deep-access", res?.data?.accessToken);
-          NotificationService.success({
-            message: "Login Success!",
-          });
-
-          router.push("/dashboard");
+        if (res?.status) {
+          // get user information using returned response 'res' containing userAccessToken
+          authService
+            .getUserViaAccessToken(res?.data?.accessToken)
+            .then((response) => {
+              setLoading(false);
+              if (response?.status) {
+                console.log("user data via login", res);
+                dispatch(setUserInfo(response?.data));
+                dispatch(
+                  setAccessToken({
+                    accessToken: res?.data?.accessToken,
+                    refreshToken: res?.data?.refreshToken,
+                  }),
+                );
+                localStorage.setItem("deep-access", res?.data?.accessToken);
+                NotificationService.success({
+                  message: "Login Successful!",
+                });
+                // NotificationService.error({
+                //   message: "Error",
+                //   addedText: "Could not fetch user data",
+                // });
+                router.push("/dashboard");
+              } else {
+                NotificationService.error({
+                  message: "Login Failed!",
+                  addedText: res?.message,
+                });
+              }
+            })
+            .catch((err) => {
+              NotificationService.error({
+                message: "Error",
+                addedText: "Could not fetch user data",
+              });
+            });
         } else {
           NotificationService.error({
             message: "Login Failed!",

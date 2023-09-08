@@ -20,7 +20,7 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
           style={screenWidth < 768 ? bgStyle : {}}
           className="w-full lg:w-[42%] bg-white overflow-y-scroll"
         >
-          <div className="bg-white mx-auto w-[85%] md:w-[45%] lg:w-[80%] rounded-md mt-[15px] md:mt-[30px] px-7">
+          <div className="bg-white mx-auto w-[85%] md:w-[45%] lg:w-[80%] rounded-md mt-[30px] md:mt-[50px] px-7">
             {/* logo  */}
             <div className="mx-auto w-[25%]">
               <Image
@@ -45,7 +45,7 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
             <div> {children} </div>
           </div>
         </div>
-        <div className="hidden lg:block lg:w-[58%]">
+        <div className="hidden lg:block lg:w-[58%] h-[100vh]">
           <Image
             src={strips}
             alt="IRP Logo"
