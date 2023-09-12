@@ -17,6 +17,7 @@ export interface ActivityCardModel {
 export interface HeaderModel {
   filter?: boolean;
   showModal?: boolean;
+  setSelectedStatus?: any;
 }
 
 export interface LogDataModel {

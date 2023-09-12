@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import { AuthLayout } from "@/layout/index";
 import { Input, Button } from "@/components/ui";
 import Image from "next/image";
-import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
-import custom_list_on from "../../../../public/icons/custom-list-on.svg";
-import custom_list from "../../../../public/icons/custom-list.svg";
+import custom_list_on from "../../../../../public/icons/custom-list-on.svg";
+import custom_list from "../../../../../public/icons/custom-list.svg";
 
-function PasswordRecovery() {
+function PasswordReset() {
+  //   const id = useParams();
+  //   console.log(id, "idd")
   const [loading, setLoading] = useState(false);
   // password error-check states
   const [password, setPassword] = useState("");
@@ -19,8 +20,8 @@ function PasswordRecovery() {
   const [isMinimum, setIsMinimum] = useState(false);
   // general error handling states
   const [errors, setErrors] = useState({ password: "" });
-  const authService = new AuthService();
   const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
     if (isSpecial && isUpperCase && isMinimum) {
@@ -66,7 +67,12 @@ function PasswordRecovery() {
     setPassword(_data);
   };
 
-  const handleSubmit = (e: any) => {
+  const headers = new Headers({
+    "Content-Type": "application/json", // Assuming you are sending JSON data
+    "deep-token": `${id}`,
+  });
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (password === "") {
@@ -76,23 +82,36 @@ function PasswordRecovery() {
 
     if (passwordStatus === 1) {
       setLoading(true);
-      authService
-        .resetPassword(password)
-        .then((res) => {
-          setLoading(false);
-          NotificationService.success({
-            message: "Password Recovery Successful!",
+
+      // Create the request body
+      const requestBody = JSON.stringify({ password });
+
+      // Define the fetch options
+      const options = {
+        method: "POST", // Change to the appropriate HTTP method
+        headers,
+        body: requestBody,
+      };
+      try {
+        await fetch("http://192.81.213.226/reset-password", options)
+          .then((res) => {
+            setLoading(false);
+            NotificationService.success({
+              message: "Password Recovery Successful!",
+            });
+            router.push("/auth/login");
+          })
+          .catch((err) => {
+            setLoading(false);
+            NotificationService.error({
+              message: "Password Recovery Failed!",
+              addedText: err?.message,
+            });
+            console.log(err?.msg);
           });
-          router.push("/login");
-          // console.log(res);
-        })
-        .catch((err) => {
-          setLoading(false);
-          NotificationService.error({
-            message: "Password Recovery Failed!",
-            addedText: err?.message,
-          });
-        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -190,4 +209,4 @@ function PasswordRecovery() {
   );
 }
 
-export default PasswordRecovery;
+export default PasswordReset;

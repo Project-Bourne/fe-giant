@@ -13,22 +13,10 @@ function PasswordRecovery() {
   const authService = new AuthService();
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (email === "") {
-      setErrors({ ...errors, email: "Email field must not empty!" });
-      return;
-    }
-
     setLoading(true);
     authService
       .forgotPassword(email)
       .then((res) => {
-        setLoading(false);
-        NotificationService.success({
-          message: "Check your mail!",
-          addedText:
-            "A password recovery link has been sent to your email address",
-        });
         console.log(res);
       })
       .catch((err) => {
@@ -40,6 +28,61 @@ function PasswordRecovery() {
       });
   };
 
+  // const email = 'example@example.com'; // Replace with the actual email you want to send
+
+  // Define the request headers
+  const headers = new Headers({
+    "Content-Type": "application/json", // Assuming you are sending JSON data
+  });
+
+  // Create the request body
+  const requestBody = JSON.stringify({ email });
+
+  // Define the fetch options
+  const options = {
+    method: "POST", // Change to the appropriate HTTP method
+    headers,
+    body: requestBody,
+  };
+
+  // Make the fetch request
+  const handleForgotPassword = async (e: any) => {
+    e.preventDefault();
+    if (email === "") {
+      setErrors({ ...errors, email: "Email field must not empty!" });
+      return;
+    }
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "http://192.81.213.226/forgot-password",
+        options,
+      );
+      setLoading(false);
+
+      if (!response.ok) {
+        // throw new Error(`HTTP error! Status: ${response.status}`);
+        NotificationService.error({
+          message: "HTTP Error!",
+          addedText: response?.status,
+        });
+      }
+
+      NotificationService.success({
+        message: "Check your mail!",
+        addedText:
+          "A password recovery link has been sent to your email address",
+      });
+    } catch (error) {
+      // Handle any errors that occurred during the fetch
+      NotificationService.error({
+        message: "Fetch Error!",
+        addedText: error?.message,
+      });
+    }
+  };
+
   return (
     <AuthLayout
       headerText={"Create Password"}
@@ -48,7 +91,8 @@ function PasswordRecovery() {
     >
       <form
         className="mt-[3.5rem]  max-w-[370px] mx-auto pb-7"
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
+        onSubmit={handleForgotPassword}
       >
         {/* email  */}
         <div className="mb-7 grid gap-1">

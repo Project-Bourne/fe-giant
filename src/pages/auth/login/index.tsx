@@ -6,7 +6,7 @@ import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { setAccessToken, setUserInfo } from "@/redux/reducers/auth/authReducer";
+import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 
 const intialFormData = {
   email: "",

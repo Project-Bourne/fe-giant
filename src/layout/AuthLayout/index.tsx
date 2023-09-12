@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useWindowWidth } from "@/components/custom-hooks";
 import strips from "../../../public/svg/Strips.svg";
 import logo from "../../../public/svg/logo.svg";
+import Link from "next/link";
 
 function AuthLayout({ children, headerText, subText, isTextCenter }) {
   const screenWidth = useWindowWidth();
@@ -22,7 +23,10 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
         >
           <div className="bg-white mx-auto w-[85%] md:w-[45%] lg:w-[80%] rounded-md mt-[30px] md:mt-[50px] px-7">
             {/* logo  */}
-            <div className="mx-auto w-[25%]">
+            <Link
+              href="/auth/login"
+              className="mx-auto flex justify-center w-[25%]"
+            >
               <Image
                 src={logo}
                 alt="IRP Logo"
@@ -30,7 +34,7 @@ function AuthLayout({ children, headerText, subText, isTextCenter }) {
                 height={93}
                 priority
               />
-            </div>
+            </Link>
             {/* heading text  */}
             <div className={`${isTextCenter && "max-w-fit mx-auto"}`}>
               <h1 className="text-center md:text-left text-3xl md:text-4xl mt-[30px] md:mt-[40px] mb-2 font-semibold text-black">

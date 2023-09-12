@@ -1,21 +1,23 @@
 import { useDuration } from "@/components/custom-hooks";
 import { Button } from "@/components/ui";
+import YearsSelect from "@/components/ui/YearSelection";
 import { useState } from "react";
 
-function DigestModal() {
+function SecurityBriefModal() {
   const [loading, setLoading] = useState(false);
   const [duration, setDuration] = useState<any>({
     start_date: null,
     end_date: null,
   });
   const [sector, setSector] = useState(null);
+  const [year, setYear] = useState("2023");
 
   const handleDurationChange = (_arg) => {
-    const res = useDuration(_arg);
-    setDuration({
-      end_date: res?.currentDate,
-      start_date: res?.duration,
-    });
+    setDuration(_arg);
+  };
+
+  const handleYearsChange = (_arg) => {
+    setYear(_arg);
   };
 
   const handleSectorChange = (_arg) => {
@@ -25,23 +27,31 @@ function DigestModal() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log({ duration, sector });
+    console.log({ duration, year, sector });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-3 font-bold text-[20px] text-center">Digest</h2>
+      <h2 className="mb-3 font-bold text-[20px] text-center">Security Brief</h2>
       <div className="grid gap-y-2 mb-4 text-[14px]">
         <label>Timeframe</label>
-        <select
-          className="w-full px-2 py-3 border-[1px] border-gray-100 rounded font-light"
-          onChange={(e: any) => handleDurationChange(e.target.value)}
-        >
-          <option selected>-- Select a duration --</option>
-          <option value={24}>Past 24 hours</option>
-          <option value={48}>Past 48 hours</option>
-          <option value={72}>Past 72 hours</option>
-        </select>
+        <div className="flex gap-x-3">
+          <select
+            className="w-full px-2 py-3 border-[1px] border-gray-100 rounded font-light"
+            onChange={(e: any) => handleDurationChange(e.target.value)}
+          >
+            <option selected>-- Select a duration --</option>
+            <option value="q1">Q1</option>
+            <option value="q2">Q2</option>
+            <option value="q3">Q3</option>
+            <option value="q4">Q4</option>
+          </select>
+          <YearsSelect
+            backDateTo={1}
+            handleYearsChange={handleYearsChange}
+            width="w-[30%]"
+          />
+        </div>
       </div>
       <div className="grid gap-y-2 mb-4 text-[14px]">
         <label>Sector</label>
@@ -49,7 +59,7 @@ function DigestModal() {
           className="w-full px-2 py-3 border-[1px] border-gray-100 rounded font-light"
           onChange={(e: any) => handleSectorChange(e.target.value)}
         >
-          <option selected>-- Select a sector --</option>
+          <option selected>-- Select a sector ---</option>
           <option value="agriculture">Agriculture</option>
           <option value="economics">Economics</option>
           <option value="medicine">Medicine</option>
@@ -60,10 +70,10 @@ function DigestModal() {
         size="xl"
         type="submit"
         background={` ${
-          !duration.start_date || !sector ? "bg-gray-100" : "bg-sirp-primary"
+          !duration || !sector ? "bg-gray-100" : "bg-sirp-primary"
         }`}
         classNameStyle={`py-3 text-white text-[14px] mt-7 ${
-          !duration.start_date || (!sector && "pointer-events-none")
+          !duration || (!sector && "pointer-events-none")
         }`}
         loading={loading}
       />
@@ -71,4 +81,4 @@ function DigestModal() {
   );
 }
 
-export default DigestModal;
+export default SecurityBriefModal;

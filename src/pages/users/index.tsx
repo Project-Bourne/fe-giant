@@ -1,48 +1,65 @@
-import React from "react";
-import { Tab } from "@/components/ui";
-import UsersList from "./user";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
-import {
-  TabHeaderData,
-  TableBodyData,
-  TableBodyDataSup,
-} from "@/utils/users.constants";
-
-export const TabBodyContents = [
-  {
-    id: 0,
-    component: <UsersList tableData={TableBodyData} usertype={-1} />,
-  },
-  {
-    id: 1,
-    component: <UsersList tableData={TableBodyData} usertype={0} />,
-  },
-  {
-    id: 2,
-    component: <UsersList tableData={TableBodyData} usertype={1} />,
-  },
-  {
-    id: 3,
-    component: <UsersList tableData={[]} usertype={2} />,
-  },
-  {
-    id: 4,
-    component: <UsersList tableData={TableBodyData} usertype={3} />,
-  },
-  {
-    id: 5,
-    component: <UsersList tableData={TableBodyDataSup} usertype={4} />,
-  },
-];
+import { TableHeaderData, TableBodyDataSup } from "@/utils/users.constants";
+import CustomTable from "./components/Table";
+import UserService from "@/services/users.service";
+import { useDispatch } from "react-redux";
+import { setUsers } from "@/redux/reducers/userReducer";
+import NotificationService from "@/services/notification.service";
 
 function Users() {
+  const userService = new UserService();
+  const dispatch = useDispatch();
+  const [status, setStatus] = useState<any>(null);
+  const [allUsers, setAllUsers] = useState([]);
+
+  useEffect(() => {
+    userService
+      .getUsers()
+      .then((res) => {
+        if (res?.status) {
+          dispatch(setUsers(res?.data));
+          setAllUsers(res?.data);
+          console.log(res?.data);
+        } else {
+          NotificationService.error({
+            message: "Unable to fetch users!",
+            addedText: res?.message,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   if(status && allUsers.length > 0){
+  //     if(typeof(status) === 'string'){
+  //       if(status === "approved"){
+  //         const verified = allUsers.filter((user) => user.verified)
+  //         setAllUsers(verified);
+  //         console.log('approved', verified)
+  //       }
+  //       if(status === 'pending'){
+  //         const verified = allUsers.filter((user) => !user.verified)
+  //         setAllUsers(verified);
+  //         console.log('pending', verified)
+
+  //       }
+  //     }
+  //   }
+  // }, [status])
+
+  const _setStatusAction = (_arg) => setStatus(_arg);
+
   return (
     <>
       <div>
-        <Header filter={true} />
-        <Tab
-          tabHeaderContents={TabHeaderData}
-          tabBodyContents={TabBodyContents}
+        <Header setSelectedStatus={_setStatusAction} filter={false} />
+        <CustomTable
+          tableHeaderData={TableHeaderData}
+          tableBodyData={allUsers}
         />
       </div>
     </>
