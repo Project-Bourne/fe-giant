@@ -7,7 +7,7 @@ import { getUserRole } from "@/components/custom-hooks";
 import SettingsLayout from "@/layout/SettingsLayout";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
-import { setUpdatedData } from "@/redux/reducers/auth/authReducer";
+import { setUpdatedData } from "@/redux/reducers/authReducer";
 
 import mail from "../../../../public/icons/mail.svg";
 import user_icon from "../../../../public/icons/userIcon.svg";

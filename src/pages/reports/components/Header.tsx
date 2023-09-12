@@ -8,6 +8,7 @@ import { useState } from "react";
 import ReportsTypeDropdown from "./ReportsTypeDropdown";
 import { CustomModal } from "@/components/ui";
 import DigestModal from "./DigestModal";
+import SecurityBriefModal from "./SecurityBriefModal";
 
 function Header() {
   const [toggleModal, setToggleModal] = useState(false);
@@ -61,15 +62,15 @@ function Header() {
 
       {secBriefModal && (
         <CustomModal
-          style="bg-white md:w-[35%] w-[80%] relative rounded-xl mx-auto pt-3 px-7 pb-5 md:mt-[7%]"
+          style="bg-white md:w-[35%] w-[80%] relative rounded-xl mx-auto pt-3 px-7 pb-[2rem] md:mt-[7%]"
           closeModal={() => setSecBriefModal(false)}
         >
-          <p>Security modal</p>
+          <SecurityBriefModal />
         </CustomModal>
       )}
       {digestModal && (
         <CustomModal
-          style="bg-white md:w-[35%] w-[80%] relative rounded-xl mx-auto pt-3 px-7 pb-5 md:mt-[7%]"
+          style="bg-white md:w-[35%] w-[80%] relative rounded-xl mx-auto pt-3 px-7 pb-[2rem] md:mt-[7%]"
           closeModal={() => setDigestModal(false)}
         >
           <DigestModal />

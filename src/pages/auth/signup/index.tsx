@@ -8,7 +8,7 @@ import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { setUserInfo } from "@/redux/reducers/auth/authReducer";
+import { setUserInfo } from "@/redux/reducers/authReducer";
 
 const initialFormData = {
   firstName: "",

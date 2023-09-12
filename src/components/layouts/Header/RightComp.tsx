@@ -1,5 +1,5 @@
 import { getUserRole, useTruncate } from "@/components/custom-hooks";
-import { logout } from "@/redux/reducers/auth/authReducer";
+import { logout } from "@/redux/reducers/authReducer";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import Image from "next/image";
@@ -19,30 +19,23 @@ function RightComp() {
   );
   const [dropdown, setDropdown] = useState(false);
 
-  const handleLogout = (event: any) => {
+  const handleLogout = async (event: any) => {
     event.stopPropagation();
-    authService
-      .logout(refreshToken, userAccessToken)
-      .then((res: any) => {
-        if (res?.status) {
-          NotificationService.success({
-            message: "Logout operation successful!",
-          });
-          dispatch(logout());
-          router.push("/auth/login");
-        } else {
-          NotificationService.error({
-            message: "Logout operation failed!",
-          });
-        }
-      })
-      .catch((error: any) => {
-        NotificationService.error({
-          message: "Logout operation failed!",
-          addedText: error?.message,
-        });
-      });
-
+    // await fetch('http://192.81.213.226/')
+    // .then((res: any) => {
+    //   console.log(res);
+    //     dispatch(logout());
+    //     router.push("/auth/login");
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
+    localStorage.clear();
+    dispatch(logout());
+    router.push("/auth/login");
+    NotificationService.success({
+      message: "Logout operation successful!",
+    });
     setDropdown(false);
   };
 

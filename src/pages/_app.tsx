@@ -7,7 +7,7 @@ import { store } from "@/redux/store";
 import { useRouter } from "next/router";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
-import { setUserInfo } from "@/redux/reducers/auth/authReducer";
+import { setUserInfo } from "@/redux/reducers/authReducer";
 
 function AppWrapper({ Component, pageProps, ...appProps }) {
   const router = useRouter();

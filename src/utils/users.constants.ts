@@ -35,7 +35,7 @@ export const TabHeaderData: TabHeaderModel[] = [
 
 export const TableHeaderData: string[] = [
   "User name",
-  "User type",
+  "User role",
   "Designation",
   "Status",
   "Action",

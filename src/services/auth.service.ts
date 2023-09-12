@@ -53,7 +53,7 @@ class AuthService {
     }
   }
 
-  // forgot - password
+  // reset - password
   async resetPassword(data) {
     try {
       const response = await request(
@@ -103,15 +103,15 @@ class AuthService {
   }
 
   // logout
-  async logout(data, token) {
+  async logout(data) {
     console.log("refresh token", data);
-    console.log("user access token", token);
+    console.log("user access token");
     try {
       const response = await request(
         "logout",
         "POST",
         data,
-        token,
+        false,
         false,
         false,
       );

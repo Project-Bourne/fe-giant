@@ -4,14 +4,14 @@
  * Object Request Header
  */
 let access = "";
-if (typeof window !== "undefined") {
-  access = localStorage.getItem("deep-access") || "";
-}
+// if (typeof window !== "undefined") {
+//   access = localStorage.getItem("deep-access") || "";
+// }
 export const requestHeader = {
   Accept: "application/json",
   "Cache-Control": "no-cache",
   "Content-Type": "application/json",
-  "deep-token": access,
+  "deep-token": "",
 };
 
 /**
@@ -32,7 +32,7 @@ export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
   requestHeader["deep-token"] = token !== null ? token : "";
-
+  console.log(requestHeader, "requestHeader");
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,

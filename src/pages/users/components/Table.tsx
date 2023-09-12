@@ -9,13 +9,9 @@ import TablePagination from "@mui/base/TablePagination";
 import { TableFooter } from "@mui/material";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getUserRole } from "@/components/custom-hooks";
 
-function CustomTable({
-  tableHeaderData,
-  tableBodyData,
-  rowsPerPage,
-  usertype,
-}) {
+function CustomTable({ tableHeaderData, tableBodyData }) {
   const [allPages, setAllPages] = useState(0);
   const [slice, setSlice] = useState([]);
   const [page, setPage] = useState(1);
@@ -56,16 +52,18 @@ function CustomTable({
         {tableBodyData?.length > 0 ? (
           <>
             <TableBody>
-              {slice?.map((item) => (
-                <TableRow key={item?.id} className="hover:bg-gray-50">
+              {tableBodyData?.map((item) => (
+                <TableRow key={item?.uuid} className="hover:bg-gray-50">
                   <TableCell className="text-xs capitalize hover:cursor-pointer hover:underline">
-                    <Link href={`users/${item?.id}`}>{item?.name}</Link>
+                    <Link href={`users/${item?.uuid}`}>
+                      {item?.firstName} {item?.lastName}
+                    </Link>
                   </TableCell>
                   <TableCell className="text-xs capitalize">
-                    {item?.type}
+                    {item?.role && getUserRole(item?.role)}
                   </TableCell>
                   <TableCell className=" text-xs capitalize">
-                    {item?.designation}
+                    {item?.country}
                   </TableCell>
                   <TableCell align="right">
                     <div className="flex gap-x-[0.2rem] items-center">
@@ -79,7 +77,7 @@ function CustomTable({
                       <p className="text-xs">{item?.status}</p>
                     </div>
                   </TableCell>
-                  {usertype >= 0 ? (
+                  {item?.verified >= 0 ? (
                     <TableCell>
                       <div className="flex gap-x-3 items-center">
                         <button className="bg-transparent text-xs p-0 text-[#9F9036]">

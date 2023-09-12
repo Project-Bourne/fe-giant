@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserInfoModel } from "../models";
+import { UserInfoModel } from "./models";
 
 interface AuthStateProps {
   userInfo: UserInfoModel | null;
