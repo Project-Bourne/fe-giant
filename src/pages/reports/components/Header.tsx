@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import on_exports from "../../../../public/icons/on.exports.svg";
-import on_bookmark from "../../../../public/icons/on.bookmark.svg";
-import on_share from "../../../../public/icons/on.share.svg";
+// import on_exports from "../../../../public/icons/on.exports.svg";
+// import on_bookmark from "../../../../public/icons/on.bookmark.svg";
+// import on_share from "../../../../public/icons/on.share.svg";
 import doc from "../../../../public/icons/doc.svg";
 import { useState } from "react";
 import ReportsTypeDropdown from "./ReportsTypeDropdown";
@@ -20,7 +20,7 @@ function Header() {
     <div className="flex flex-wrap relative justify-between items-center py-4">
       <h1 className="text-[20px] md:text-[30px] font-bold">Reports</h1>
       <div className="flex gap-x-2 items-center">
-        <Image
+        {/* <Image
           src={on_exports}
           alt="exports"
           height={35}
@@ -40,7 +40,7 @@ function Header() {
           height={35}
           width={35}
           className="p-2 border-[2px] border-gray-200 rounded-md cursor-pointer"
-        />
+        /> */}
         <div className="flex gap-x-2 items-center py-2 px-1.5 md:px-4 bg-sirp-primary text-white cursor-pointer rounded-md">
           <Image src={doc} alt="export" height={20} width={20} className="" />
           <p

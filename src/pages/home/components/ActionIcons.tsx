@@ -28,7 +28,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             src={h3}
             alt="documents"
             className=" cursor-pointer"
-            width={50}
+            width={33}
             onClick={() => setDocuments(true)}
           />
         </Tooltip>
@@ -37,7 +37,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             src={h2}
             alt="documents"
             className=" cursor-pointer"
-            width={50}
+            width={33}
           />
         </Tooltip>
         <Tooltip title="Analyze">
@@ -45,7 +45,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             src={h1}
             alt="documents"
             className=" cursor-pointer"
-            width={50}
+            width={33}
           />
         </Tooltip>
 
@@ -54,7 +54,7 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             src={h4}
             alt="documents"
             className="cursor-pointer"
-            width={50}
+            width={33}
             onClick={() => setCollaborate(true)}
           />
         </Tooltip>

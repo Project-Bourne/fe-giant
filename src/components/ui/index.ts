@@ -8,6 +8,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import CustomToast from "./CustomToast";
 import ButtonLoader from "./ButtonLoader";
 import ImagePreview from "./ImagePreview";
+import SelectTableLayout from "./SelectTableLayout";
 
 export {
   Input,
@@ -21,4 +22,5 @@ export {
   Breadcrumbs,
   ButtonLoader,
   ImagePreview,
+  SelectTableLayout,
 };
