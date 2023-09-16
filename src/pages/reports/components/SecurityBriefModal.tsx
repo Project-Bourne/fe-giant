@@ -5,10 +5,7 @@ import { useState } from "react";
 
 function SecurityBriefModal() {
   const [loading, setLoading] = useState(false);
-  const [duration, setDuration] = useState<any>({
-    start_date: null,
-    end_date: null,
-  });
+  const [duration, setDuration] = useState<any>(null);
   const [sector, setSector] = useState(null);
   const [year, setYear] = useState("2023");
 
@@ -20,9 +17,9 @@ function SecurityBriefModal() {
     setYear(_arg);
   };
 
-  const handleSectorChange = (_arg) => {
-    setSector(_arg);
-  };
+  //   const handleSectorChange = (_arg) => {
+  //     setSector(_arg);
+  //   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -53,7 +50,7 @@ function SecurityBriefModal() {
           />
         </div>
       </div>
-      <div className="grid gap-y-2 mb-4 text-[14px]">
+      {/* <div className="grid gap-y-2 mb-4 text-[14px]">
         <label>Sector</label>
         <select
           className="w-full px-2 py-3 border-[1px] border-gray-100 rounded font-light"
@@ -64,16 +61,14 @@ function SecurityBriefModal() {
           <option value="economics">Economics</option>
           <option value="medicine">Medicine</option>
         </select>
-      </div>
+      </div> */}
       <Button
         value={"Generate"}
         size="xl"
         type="submit"
-        background={` ${
-          !duration || !sector ? "bg-gray-100" : "bg-sirp-primary"
-        }`}
+        background={` ${!duration ? "bg-gray-100" : "bg-sirp-primary"}`}
         classNameStyle={`py-3 text-white text-[14px] mt-7 ${
-          !duration || (!sector && "pointer-events-none")
+          !duration && "pointer-events-none"
         }`}
         loading={loading}
       />

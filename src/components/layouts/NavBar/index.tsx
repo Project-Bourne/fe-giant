@@ -16,22 +16,22 @@ function NavBar() {
 
   return (
     <div className="w-[15vw] md:w-[20vw] h-full border-3 border-r bg-white px-3 py-10 md:p-10 fixed z-[20]">
-      <div className="flex flex-row items-center cursor-pointer mb-[.3rem]">
+      <div className="flex flex-row w-fit mx-auto cursor-pointer mb-[.1rem]">
         <Image
           src={logo}
           alt="IRP Logo"
           width={50}
           height={50}
-          className={`md:mr-[20px]`}
+          className={`md:mr-[10px] flex items-start`}
           priority
         />
-        <div>
-          <h1 className="text-sirp-primary font-semibold text-[30px] hidden md:block">
+        <div className="flex items-end">
+          <h1 className="text-sirp-primary font-semibold text-[30px] hidden md:block tracking-wider">
             IRP
           </h1>
         </div>
       </div>
-      <p className="text-sirp-primary font-semibold text-[13px] hidden md:block">
+      <p className="text-sirp-primary font-semibold text-[12.5px] hidden md:block">
         Intelligence Reporting Platform
       </p>
       {/* items-center justify-center py-4 md:px-5 w-[100%] flex flex-row self-center */}

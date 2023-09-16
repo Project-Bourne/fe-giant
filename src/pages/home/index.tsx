@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomeHeader from "../archives/components/HeadIcon";
 import HomeContent from "../archives/components/Content";
 import dummy from "../../utils/dummy.json";
 import BlueButton from "@/components/ui/BlueButton";
 import { useRouter } from "next/router";
+import DocumentService from "@/services/documents.service";
+import { SelectTableLayout } from "@/components/ui";
 
 function Index() {
   const router = useRouter();
   const [activeOption, setActiveOption] = useState("All");
+  const [tableLayout, setTableLayout] = useState("0");
   const [dummyData, setDummyData] = useState(dummy);
+  const documentService = new DocumentService();
 
-  const handleOptionChange = (option) => {
-    setActiveOption(option);
+  useEffect(() => {
+    getDocuments();
+  }, []);
+
+  const getDocuments = () => {
+    documentService
+      .getFactCheckedDocs()
+      .then((res) => {
+        if (res?.status) {
+          console.log("from home", res);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleLayoutOptionChange = (_arg) => {
+    setTableLayout(_arg);
   };
 
   const handleAdd = () => {
@@ -31,17 +52,6 @@ function Index() {
     setDummyData(updatedData);
   };
 
-  const handleCheckboxes = () => {
-    const allChecked = dummyData.every((item) => item.isMarked);
-    const updatedData = dummyData.map((item) => {
-      return {
-        ...item,
-        isMarked: !allChecked,
-      };
-    });
-    setDummyData(updatedData);
-  };
-
   const filteredData =
     activeOption === "All"
       ? dummyData
@@ -49,18 +59,25 @@ function Index() {
 
   return (
     <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-[1rem]">
-      <div className="mb-5 flex w-[100%] mr-[1.5rem] px-2 border-b-2 py-5 ">
-        <HomeHeader
+      <div className="flex gap-x-4 justify-end w-[100%] px-2 border-b-2 py-4 ">
+        {/* <HomeHeader
           activeOption={activeOption}
           onOptionChange={handleOptionChange}
           onClick={handleCheckboxes}
-        />
-        <div onClick={handleAdd}>
+        /> */}
+        <SelectTableLayout handleSelectChange={handleLayoutOptionChange} />
+
+        <div onClick={handleAdd} className="md:mr-[2rem] mr-[.7rem]">
           <BlueButton />
         </div>
       </div>
       <div className=" w-full">
-        <HomeContent data={filteredData} onCheck={handleCheck} />
+        <HomeContent
+          data={filteredData}
+          onCheck={handleCheck}
+          headerborder={false}
+          tableLayout={tableLayout}
+        />
       </div>
     </div>
   );

@@ -6,15 +6,15 @@ function BlueButton() {
   const [add, setAdd] = useState(false);
   return (
     <div>
-      <button className="h-12 flex flex-row gap-2 w-44 justify-center hover:bg-sirp-primaryLess1 items-center cursor-pointer rounded-[1rem] bg-sirp-primary text-white font-bold">
+      <button className="flex flex-row gap-2 py-2.5 px-5 justify-center hover:bg-sirp-primary/[0.9] items-center cursor-pointer rounded-md bg-sirp-primary text-[13px] text-white">
         <Image
           src={plus1}
           alt="documents"
           className="cursor-pointer ml-1"
-          width={20}
+          width={14}
           onClick={() => setAdd(!add)}
         />
-        <p className="text-[14px]">Add content</p>
+        <p>Add content</p>
       </button>
     </div>
   );

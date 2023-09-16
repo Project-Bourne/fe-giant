@@ -23,12 +23,12 @@ export const NavBarContents = [
     id: 4,
     route: "/reports",
   },
-  {
-    name: "Users",
-    icon: "users.svg",
-    id: 7,
-    route: "/users",
-  },
+  // {
+  //   name: "Users",
+  //   icon: "users.svg",
+  //   id: 7,
+  //   route: "/users",
+  // },
   {
     name: "Help",
     icon: "training.svg",

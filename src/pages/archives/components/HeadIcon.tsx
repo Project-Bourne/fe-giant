@@ -1,7 +1,5 @@
 import React from "react";
-import BlueButton from "@/components/ui/BlueButton";
 import { Checkbox } from "@mui/material";
-import Link from "next/link";
 import Pagination from "./pagination";
 
 function HeadIcon({ activeOption, onOptionChange, onClick }) {

@@ -3,17 +3,19 @@
 /**
  * Object Request Header
  */
+
 let access = "";
 if (typeof window !== "undefined") {
-  access = localStorage.getItem("deep-access") || "";
+  access =
+    // localStorage.getItem('deep-access') ||
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNjA0OTUzLTk0YzAtNGYzOC05N2I3LWFlYWEyYWI5YjRjMCIsImlhdCI6MTY5NDc2OTk5MCwiZXhwIjoxNjk0ODU2MzkwfQ.fRMjxGY7PBBrZEAbBYHQg2L8tbcN8wbA6jro9c25sME";
 }
 export const requestHeader = {
   Accept: "application/json",
   "Cache-Control": "no-cache",
   "Content-Type": "application/json",
-  "deep-token": "",
+  "deep-token": access,
 };
-
 /**
  *
  * @param {string} url
@@ -23,16 +25,21 @@ export const requestHeader = {
  * @param {boolean} text
  * @param {boolean} form
  * @returns Response Data;
+ *
  */
 
-// const API_USER_URL = 'http://localhost:4040/'
-const API_USER_URL = "http://192.81.213.226/";
-
-export async function request(url, method, payload, token, text, form) {
+let API_USER_URL = "http://192.81.213.226:84";
+export async function factCheckRequest(
+  url,
+  method,
+  payload,
+  token,
+  text,
+  form,
+) {
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
-  requestHeader["deep-token"] = token !== null ? token : "";
-  console.log(requestHeader, "requestHeader");
+
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,
@@ -49,8 +56,7 @@ export async function request(url, method, payload, token, text, form) {
       })
       .catch((err) => {
         console.error(`Request Error ${url}: `, err);
-        throw new Error(err);
-        // return err;
+        return err;
       });
   } else {
     return fetch(API_USER_URL + url, {
@@ -68,8 +74,8 @@ export async function request(url, method, payload, token, text, form) {
         }
       })
       .catch((err) => {
-        console.error(`Request Error ${url}: `, err);
-        throw new Error(err);
+        console.error(`Request Error ${url}:`, err);
+        return err;
       });
   }
 }

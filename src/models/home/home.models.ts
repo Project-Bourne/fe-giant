@@ -5,6 +5,7 @@ export default interface ListItemModels {
   desc: string;
   message: string;
   time: string;
+  tableLayout?: string;
   handleChange: (index: any) => void;
   isMarked: boolean;
   actionButtons?: React.ReactNode;

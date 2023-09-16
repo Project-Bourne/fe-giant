@@ -1,28 +1,22 @@
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
 
-export default function IndexPage() {
-  // Router
-  // const router = useRouter();
+const inter = Inter({ subsets: ["latin"] });
 
-  // function
-  // const constructor = async() => {
-  //   router.push(
-  //     {
-  //       pathname: "/dashboard",
-  //     },
-  //     undefined,
-  //     {shallow: true}
-  //   )
-  // };
+export default function Home() {
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   constructor();
-  // }, []);
+  useEffect(() => {
+    router.push(
+      {
+        pathname: `/home`,
+      },
+      undefined,
+      { shallow: true },
+    );
+  }, []);
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div></div>
-    </main>
-  );
+  return <></>;
 }
