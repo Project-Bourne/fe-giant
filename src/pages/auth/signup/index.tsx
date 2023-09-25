@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { AuthLayout } from "@/layout/index";
@@ -14,13 +14,15 @@ const initialFormData = {
   firstName: "",
   lastName: "",
   email: "",
-  country: "Nigeria",
+  country: ["Nigeria"],
   password: "",
+  roleUuid: "",
 };
 
 function SignUp() {
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
+  const [userRoles, setUserRoles] = useState([]);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -31,15 +33,32 @@ function SignUp() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  // get user roles
+  useEffect(() => {
+    authService
+      .getRoles()
+      .then((res) => {
+        if (res?.status) {
+          setUserRoles(res?.data);
+          setFormData({ ...formData, roleUuid: res?.data[0]?.uuid });
+        }
+      })
+      .catch((err) => {
+        console.log("roles error", err);
+      });
+  }, []);
+
   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSetCountry = (data: any) => {
-    setFormData({ ...formData, country: data });
+    const res = [];
+    res.push(data);
+    setFormData({ ...formData, country: res });
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
+    // console.log('sign up data:', formData)
     if (formData.firstName === "") {
       setErrors({ ...errors, first_name: "First name must not be empty!" });
       return;
@@ -73,6 +92,7 @@ function SignUp() {
           NotificationService.error({
             message: "Registration Failed!",
             addedText: res?.msg,
+            position: "top-center",
           });
         }
       })
@@ -80,6 +100,7 @@ function SignUp() {
         NotificationService.error({
           message: "Registration Failed!",
           addedText: err?.message,
+          position: "top-center",
         });
         setLoading(false);
       });
@@ -139,13 +160,15 @@ function SignUp() {
         </div>
 
         {/* user role  */}
-        {/* <div className="mb-3 grid gap-1">
+        <div className="mb-3 grid gap-1">
           <label>User role</label>
           <Dropdown
-            data={UserRoles}
-            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+            data={userRoles}
+            onChange={(e) =>
+              setFormData({ ...formData, roleUuid: e.target.value })
+            }
           />
-        </div> */}
+        </div>
 
         {/* country  */}
         <div className="mb-3 grid gap-1">

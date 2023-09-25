@@ -26,7 +26,7 @@ export const requestHeader = {
  */
 
 // const API_USER_URL = 'http://localhost:4040/'
-const API_USER_URL = "http://192.81.213.226/";
+const API_USER_URL = "http://192.81.213.226:81/80/";
 
 export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =

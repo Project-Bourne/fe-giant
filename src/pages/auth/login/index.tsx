@@ -66,6 +66,7 @@ function Login() {
                 NotificationService.error({
                   message: "Login Failed!",
                   addedText: res?.message,
+                  position: "top-center",
                 });
               }
             })
@@ -73,6 +74,7 @@ function Login() {
               NotificationService.error({
                 message: "Error",
                 addedText: "Could not fetch user data",
+                position: "top-center",
               });
             });
         } else {

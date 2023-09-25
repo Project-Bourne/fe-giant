@@ -3,6 +3,8 @@ import useTruncate from "./getTruncatedText";
 import useOnClickOutside from "./useOnClickOutside";
 import getUserRole from "./getUserRole";
 import useDuration from "./getDuration";
+import useFormatDate from "./formatDate";
+import useFormatTime from "./formatTime";
 
 export {
   useWindowWidth,
@@ -10,4 +12,6 @@ export {
   useOnClickOutside,
   getUserRole,
   useDuration,
+  useFormatDate,
+  useFormatTime,
 };

@@ -6,9 +6,7 @@
 
 let access = "";
 if (typeof window !== "undefined") {
-  access =
-    // localStorage.getItem('deep-access') ||
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNjA0OTUzLTk0YzAtNGYzOC05N2I3LWFlYWEyYWI5YjRjMCIsImlhdCI6MTY5NDc2OTk5MCwiZXhwIjoxNjk0ODU2MzkwfQ.fRMjxGY7PBBrZEAbBYHQg2L8tbcN8wbA6jro9c25sME";
+  access = localStorage.getItem("deep-access");
 }
 export const requestHeader = {
   Accept: "application/json",
@@ -28,7 +26,7 @@ export const requestHeader = {
  *
  */
 
-let API_USER_URL = "http://192.81.213.226:84";
+let API_USER_URL = "http://192.81.213.226:81/84";
 export async function factCheckRequest(
   url,
   method,

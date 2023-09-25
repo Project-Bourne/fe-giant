@@ -32,14 +32,14 @@ const ActionIcons = ({ doc }: ActionIconsProps) => {
             onClick={() => setDocuments(true)}
           />
         </Tooltip>
-        <Tooltip title="Archive">
+        {/* <Tooltip title="Archive">
           <Image
             src={h2}
             alt="documents"
             className=" cursor-pointer"
             width={33}
           />
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title="Analyze">
           <Image
             src={h1}

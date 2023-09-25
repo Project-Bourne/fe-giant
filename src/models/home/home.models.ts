@@ -1,14 +1,18 @@
 import React from "react";
 
 export default interface ListItemModels {
-  name: string;
-  desc: string;
+  id: string;
+  title: string;
+  url: string;
+  width?: string;
+  isArchived?: boolean;
+  author?: string;
   message: string;
-  time: string;
+  time?: string;
   tableLayout?: string;
-  handleChange: (index: any) => void;
-  isMarked: boolean;
+  handleClick?: any;
+  handleDoubleClick?: any;
   actionButtons?: React.ReactNode;
   viewDeleteButtons?: React.ReactNode;
-  buttonType: string;
+  buttonType?: string;
 }

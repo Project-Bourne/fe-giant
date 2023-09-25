@@ -2,17 +2,20 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function ProgressBar() {
+function ProgressBar({ value }) {
+  const color =
+    value <= 20 ? "#FF0000" : value > 20 && value <= 74 ? "#FFBF00" : "#00CC99";
+
   return (
     <div>
       <CircularProgressbar
-        value={76.6}
-        text="76.6"
+        value={value}
+        text={`${value}%`}
         strokeWidth={11}
         counterClockwise
         styles={{
           path: {
-            stroke: "#22C55E",
+            stroke: color,
           },
           trail: {
             stroke: "#d6d6d6",

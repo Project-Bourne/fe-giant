@@ -17,6 +17,21 @@ class DocumentService {
       throw error;
     }
   }
+  async getSingleFactCheckedDoc(id) {
+    try {
+      const response = await factCheckRequest(
+        `/fact/${id}`,
+        "GET",
+        {},
+        true,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default DocumentService;
