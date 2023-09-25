@@ -9,6 +9,7 @@ import CustomToast from "./CustomToast";
 import ButtonLoader from "./ButtonLoader";
 import ImagePreview from "./ImagePreview";
 import SelectTableLayout from "./SelectTableLayout";
+import TablelayoutDropdownOptions from "./TableLayoutDropdownOptions";
 
 export {
   Input,
@@ -23,4 +24,5 @@ export {
   ButtonLoader,
   ImagePreview,
   SelectTableLayout,
+  TablelayoutDropdownOptions,
 };

@@ -1,6 +1,16 @@
 import { request } from "../hooks/api";
 
 class AuthService {
+  // get user roles
+  async getRoles() {
+    try {
+      const response = await request("roles", "GET", {}, false, false, false);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // login service
   async login(data) {
     try {

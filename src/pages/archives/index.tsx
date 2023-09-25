@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import HeadIcon from "./components/HeadIcon";
-import Content from "./components/Content";
-import dummy from "@/utils/dummy.json";
-import BlueButton from "@/components/ui/BlueButton";
+// import HeadIcon from "./components/HeadIcon";
+// import dummy from "@/utils/dummy.json";
+// import BlueButton from "@/components/ui/BlueButton";
 import { SelectTableLayout } from "@/components/ui";
+import { useSelector } from "react-redux";
+import HomeContent from "./components/Content";
 
 function Starred() {
   const [activeOption, setActiveOption] = useState("All");
   const [tableLayout, setTableLayout] = useState("0");
-  const [dummyData, setDummyData] = useState(dummy);
+  const archivedFacts = useSelector(
+    (state: any) => state.documents.archivedDocs,
+  );
+  // const [archivedFacts, setArchivedFacts] = useState([]);
 
   const handleOptionChange = (option) => {
     setActiveOption(option);
@@ -17,35 +21,6 @@ function Starred() {
   const handleLayoutOptionChange = (_arg) => {
     setTableLayout(_arg);
   };
-
-  const handleCheck = (id) => {
-    const updatedData = dummyData.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          isMarked: !item.isMarked, // Toggle the isMarked property
-        };
-      }
-      return item;
-    });
-    setDummyData(updatedData);
-  };
-
-  const handleCheckboxes = () => {
-    const allChecked = dummyData.every((item) => item.isMarked);
-    const updatedData = dummyData.map((item) => {
-      return {
-        ...item,
-        isMarked: !allChecked,
-      };
-    });
-    setDummyData(updatedData);
-  };
-
-  const filteredData =
-    activeOption === "All"
-      ? dummyData
-      : dummyData.filter((item) => item.isMarked === false);
 
   return (
     <>
@@ -68,12 +43,7 @@ function Starred() {
           /> */}
         {/* </div> */}
 
-        <Content
-          data={filteredData}
-          onCheck={handleCheck}
-          headerborder={true}
-          tableLayout={tableLayout}
-        />
+        <HomeContent data={archivedFacts} headerborder={true} />
       </div>
     </>
   );

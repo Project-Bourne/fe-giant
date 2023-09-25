@@ -15,8 +15,8 @@ function homedashboard() {
 
         {/* the yellow navigation at the top of the dashboard page */}
         <div className="flex items-center justify-between w-full gap-[20px] mt-5">
-          <Left />
-          <Right />
+          {/* <Left />
+          <Right /> */}
         </div>
         {/* this three components are all the sirp dashboard model */}
         <div className="mt-5">

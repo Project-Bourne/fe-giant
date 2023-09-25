@@ -75,14 +75,18 @@ function Dropdown(props: DropdownModel) {
   return (
     <>
       <select
-        className={`w-full py-2 px-3 rounded-md border-[1px] border-gray-100 focus:border-gray-100 outline-none ${className}`}
+        className={`w-full py-2 px-3 rounded-md border-[1px] text-[13px] capitalize font-normal border-gray-100 focus:border-gray-100 outline-none ${className}`}
         onChange={onChange}
       >
-        {data?.map((item: { id: number; role: string }) => (
-          <option key={item?.id} value={item?.role} className="text-[12px]">
-            {item?.role}
-          </option>
-        ))}
+        {data.length > 0 ? (
+          data?.map((item: any) => (
+            <option key={item?.id} value={item?.uuid}>
+              {item?.roleName}
+            </option>
+          ))
+        ) : (
+          <option selected>Roles are not available</option>
+        )}
       </select>
     </>
   );
