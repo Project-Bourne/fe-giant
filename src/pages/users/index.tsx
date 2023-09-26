@@ -13,25 +13,25 @@ function Users() {
   const [status, setStatus] = useState<any>(null);
   const [allUsers, setAllUsers] = useState([]);
 
-  useEffect(() => {
-    userService
-      .getUsers()
-      .then((res) => {
-        if (res?.status) {
-          dispatch(setUsers(res?.data));
-          setAllUsers(res?.data);
-          console.log(res?.data);
-        } else {
-          NotificationService.error({
-            message: "Unable to fetch users!",
-            addedText: res?.message,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   userService
+  //     .getUsers()
+  //     .then((res) => {
+  //       if (res?.status) {
+  //         dispatch(setUsers(res?.data));
+  //         setAllUsers(res?.data);
+  //         console.log(res?.data);
+  //       } else {
+  //         NotificationService.error({
+  //           message: "Unable to fetch users!",
+  //           addedText: res?.message,
+  //         });
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // useEffect(() => {
   //   if(status && allUsers.length > 0){

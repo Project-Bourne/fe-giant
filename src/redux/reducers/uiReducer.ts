@@ -65,10 +65,12 @@ const uiSlice = createSlice({
       state: any,
       action: PayloadAction<{ name; id; key; checked }[]>,
     ) => {
-      const dropdownName = action?.payload;
-      state.dropdownButtons.map((item) =>
-        item.name === dropdownName ? { ...item, checked: !item.checked } : item,
+      const dropdownKey = action?.payload;
+      // console.log('dropdown selected', dropdownKey);
+      const updatedDropdownButtons = state.dropdownButtons.map((item) =>
+        item?.key === dropdownKey ? { ...item, checked: !item?.checked } : item,
       );
+      state.dropdownButtons = updatedDropdownButtons;
     },
   },
 });

@@ -96,13 +96,13 @@ class AuthService {
     }
   }
 
-  async getUserViaAccessToken(token) {
+  async getUserViaAccessToken() {
     try {
       const response = await request(
         `token/user`,
         "GET",
         {},
-        token,
+        true,
         false,
         false,
       );

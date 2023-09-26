@@ -5,12 +5,14 @@ interface DocStateProps {
   documents: Array<any>;
   archivedDocs: Array<any>;
   isArchived: Array<any>;
+  factcheck: any;
 }
 
 const initialState: DocStateProps = {
   documents: [],
   archivedDocs: [],
   isArchived: [],
+  factcheck: {},
 };
 
 const documentSlice = createSlice({
@@ -20,17 +22,19 @@ const documentSlice = createSlice({
     setDocuments: (state: any, action: PayloadAction<any>) => {
       const newItem = action.payload;
       // Check if the item already exists
-      // const itemExists = state.documents.some(item => item?.uuid === newItem?.uuid);
-      state.documents = newItem;
+      const itemExists = state.documents.some(
+        (item) => item?.uuid === newItem?.uuid,
+      );
+      // state.documents = newItem;
 
-      // if (!itemExists) {
-      //   state.documents.push(newItem);
-      // }
+      if (!itemExists) {
+        state.documents.push(newItem);
+      }
     },
 
     setIsArchived: (state: any, action: PayloadAction<any>) => {
       const uuid = action.payload;
-      state.documents = state.documents.map((item) => {
+      state.documents.map((item) => {
         if (item.uuid === uuid) {
           state.archivedDocs.push({ ...item, archived: true });
           return { ...item, archived: true };
@@ -43,13 +47,14 @@ const documentSlice = createSlice({
       state.items = state.items.map((item) =>
         item.selected ? { ...item, archived: true } : item,
       );
-      //   const archivedItem = []
-      //   archivedItem.push(action?.payload)
-      //   state.archivedDocs = archivedItem;
+    },
+
+    setFactCheck: (state: any, action: any) => {
+      state.factcheck = action?.payload;
     },
   },
 });
 
-export const { setDocuments, setIsArchived, setArchivedDocs } =
+export const { setDocuments, setIsArchived, setArchivedDocs, setFactCheck } =
   documentSlice.actions;
 export default documentSlice.reducer;

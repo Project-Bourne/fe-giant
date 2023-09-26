@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate, useTruncate } from "@/components/custom-hooks";
 import saved from "../../../../public/icons/saved.svg";
 import on_saved from "../../../../public/icons/on.bookmark_filled.svg";
+import options from "../../../../public/icons/options-icon.svg";
 import Image from "next/image";
 import { setIsArchived } from "@/redux/reducers/documentReducer";
 
@@ -88,11 +89,11 @@ function HomeContent({ data, headerborder }) {
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
       const cells = columnOrder.map((columnItem: any, index) => {
-        if (columnItem.key === "archive") {
+        if (columnItem?.key === "archive") {
           return (
             <div
               key={index}
-              className={`w-[${columnItem.width}] px-2 flex items-center`}
+              className={`w-[${columnItem.width}] flex px-2 items-center`}
             >
               {rowData?.archived ? (
                 <Image
@@ -119,38 +120,75 @@ function HomeContent({ data, headerborder }) {
         if (
           (rowData?.hasOwnProperty(columnItem?.key) &&
             rowData[columnItem?.key] !== undefined) ||
-          (rowData.confidence.hasOwnProperty(columnItem?.key) &&
+          (rowData?.confidence?.hasOwnProperty(columnItem?.key) &&
             rowData["confidence"][columnItem?.key] !== undefined) ||
-          columnItem.key !== "archive"
+          columnItem?.key !== "archive"
         ) {
-          if (columnItem.key === "author") {
+          if (columnItem?.key === "author") {
+            // Author
             return (
               <div
                 key={index}
-                className={`capitalize py-2 w-[${columnItem.width}]`}
+                className={`capitalize py-2 w-[${columnItem?.width}]`}
               >
-                {useTruncate(rowData["confidence"][columnItem.key], 25) ?? "--"}
+                {useTruncate(
+                  (rowData?.confidence && rowData?.confidence?.author) || "",
+                  25,
+                ) ?? "no author"}
               </div>
             );
-          } else if (columnItem.key === "updatedAt") {
-            if (showaction === 0) {
+          } else if (columnItem?.key === "updatedAt") {
+            // Time
+            if (columnItem.checked) {
+              if (showaction === 0) {
+                return (
+                  <div key={index} className={`py-2 w-[${columnItem?.width}] `}>
+                    {useFormatDate(rowData[columnItem?.key])}
+                  </div>
+                );
+              }
+              if (showaction === 1) {
+                return <ActionIcons />;
+              }
+            }
+          } else if (columnItem?.key === "content") {
+            // Content
+            if (columnItem.checked) {
               return (
-                <div key={index} className={`py-2 w-[${columnItem.width}] `}>
-                  {useFormatDate(rowData[columnItem.key])}
+                <div
+                  key={index}
+                  className={`py-2 w-[${columnItem?.width}] ${
+                    columnItem?.key === "content" && "first-letter:capitalize"
+                  }`}
+                >
+                  {useTruncate(rowData[columnItem?.key], 25) ||
+                    useTruncate(
+                      (rowData?.confidence &&
+                        rowData?.confidence[columnItem?.key]) ||
+                        "",
+                      25,
+                    )}
                 </div>
               );
             }
-            if (showaction === 1) {
-              return <ActionIcons />;
-            }
           } else if (
-            columnItem.key !== "updatedAt" ||
-            columnItem.key !== "author"
+            columnItem?.key !== "updatedAt" ||
+            columnItem?.key !== "author"
           ) {
             return (
-              <div key={index} className={`py-2 w-[${columnItem.width}]`}>
-                {useTruncate(rowData[columnItem.key], 25) ||
-                  useTruncate(rowData["confidence"][columnItem.key], 25)}
+              <div
+                key={index}
+                className={`py-2 w-[${columnItem?.width}] ${
+                  columnItem?.key === "title" && "first-letter:capitalize"
+                }`}
+              >
+                {useTruncate(rowData[columnItem?.key], 25) ||
+                  useTruncate(
+                    (rowData?.confidence &&
+                      rowData?.confidence[columnItem?.key]) ||
+                      "",
+                    25,
+                  )}
               </div>
             );
           }
@@ -161,9 +199,7 @@ function HomeContent({ data, headerborder }) {
 
       return (
         <div
-          key={rowData.uuid}
-          // onMouseOut={handleHoverOut}
-          // onMouseOver={handleHover}
+          key={rowData?.uuid}
           onClick={() =>
             handleClicks(
               rowData?.uuid,
@@ -188,7 +224,7 @@ function HomeContent({ data, headerborder }) {
       >
         {tableheader.map(
           (item, index) =>
-            item.checked && (
+            item?.checked && (
               <li
                 key={index}
                 className={`w-[${item.width}] text-[16px] font-bold`}

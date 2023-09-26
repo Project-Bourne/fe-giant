@@ -81,7 +81,10 @@ const ProfileSettings = () => {
     const img = profilePhoto?.url;
     if (firstname !== "" && lastname !== "") {
       authService
-        .updateUserInfo({ firstname, lastname, img }, userInfo?.uuid)
+        .updateUserInfo(
+          { firstName: firstname, lastName: lastname, img },
+          userInfo?.uuid,
+        )
         .then((res) => {
           if (res?.status) {
             NotificationService.success({
@@ -284,7 +287,7 @@ const ProfileSettings = () => {
           <input
             type="text"
             name="user role"
-            value={getUserRole(userInfo?.role) ?? "User Role"}
+            value={userInfo?.role?.roleName ?? "User Role"}
             placeholder="User Role"
             className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7 mx-4 w-full md:w-[38%]"
             readOnly={true}
