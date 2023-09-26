@@ -6,6 +6,7 @@ import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
 import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 
 const intialFormData = {
@@ -14,6 +15,7 @@ const intialFormData = {
 };
 
 function Login() {
+  const [, setCookie] = useCookies(["deep-access"]);
   const [formData, setFormData] = useState(intialFormData);
   const [errors, setErrors] = useState(intialFormData);
   const [loading, setLoading] = useState(false);
@@ -40,43 +42,20 @@ function Login() {
         setLoading(false);
         if (res?.status) {
           // get user information using returned response 'res' containing userAccessToken
-          authService
-            .getUserViaAccessToken(res?.data?.accessToken)
-            .then((response) => {
-              setLoading(false);
-              if (response?.status) {
-                console.log("user data via login", res);
-                dispatch(setUserInfo(response?.data));
-                dispatch(
-                  setAccessToken({
-                    accessToken: res?.data?.accessToken,
-                    refreshToken: res?.data?.refreshToken,
-                  }),
-                );
-                localStorage.setItem("deep-access", res?.data?.accessToken);
-                NotificationService.success({
-                  message: "Login Successful!",
-                });
-                // NotificationService.error({
-                //   message: "Error",
-                //   addedText: "Could not fetch user data",
-                // });
-                router.push("/dashboard");
-              } else {
-                NotificationService.error({
-                  message: "Login Failed!",
-                  addedText: res?.message,
-                  position: "top-center",
-                });
-              }
-            })
-            .catch((err) => {
-              NotificationService.error({
-                message: "Error",
-                addedText: "Could not fetch user data",
-                position: "top-center",
-              });
-            });
+          console.log(res, "yyyyy");
+          // localStorage.setItem("deep-access", res?.data?.accessToken);
+          setCookie("deep-access", res?.data?.accessToken, { path: "/" });
+          dispatch(
+            setAccessToken({
+              accessToken: res?.data?.accessToken,
+              refreshToken: res?.data?.refreshToken,
+            }),
+          );
+
+          NotificationService.success({
+            message: "Login Successful!",
+          });
+          router.push("/dashboard");
         } else {
           NotificationService.error({
             message: "Login Failed!",

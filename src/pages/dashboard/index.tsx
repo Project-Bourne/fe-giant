@@ -1,15 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Left from "./components/LeftCompt";
 import Right from "./components/RightCompt";
 import Group1 from "./components/Group1";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import AuthService from "@/services/auth.service";
+import NotificationService from "@/services/notification.service";
+import { CustomModal } from "@/components/ui";
+import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
+import { useRouter } from "next/router";
+import Loader from "@/components/ui/Loader";
 
 const index = () => {
+  const authService = new AuthService();
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state: any) => state?.auth?.userInfo);
   const { documents, archivedDocs } = useSelector(
     (state: any) => state.documents,
   );
   const collabExportsCount = 0;
+
+  useEffect(() => {
+    setLoading(true);
+    try {
+      authService
+        .getUserViaAccessToken()
+        .then((response) => {
+          setLoading(false);
+          if (response?.status) {
+            // console.log("user data via login", res);
+            dispatch(setUserInfo(response?.data));
+          }
+        })
+        .catch((err) => {
+          NotificationService.error({
+            message: "Error",
+            addedText: "Could not fetch user data",
+            position: "top-center",
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div className="h-full overflow-y-scroll mt-[10rem]">
@@ -31,6 +65,14 @@ const index = () => {
       <div className="mt-5 mb-5">
         <Group1 />
       </div>
+      {loading && (
+        <CustomModal
+          style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
+          closeBtn={false}
+        >
+          <Loader />
+        </CustomModal>
+      )}
     </div>
   );
 };

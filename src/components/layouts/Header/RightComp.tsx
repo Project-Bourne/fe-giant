@@ -96,7 +96,7 @@ function RightComp() {
             {userInfo?.firstName && useTruncate(userName(), 14)}
           </h2>
           <h2 className="text-sirp-primary text-[11px]">
-            {getUserRole(userInfo?.role)}
+            {userInfo?.role?.roleName}
           </h2>
         </div>
         <Image

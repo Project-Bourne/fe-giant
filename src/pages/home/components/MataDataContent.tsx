@@ -197,7 +197,8 @@ const MataDataContent = ({
           </div>
           {/* </div> */}
         </div>
-        <div className="w-[32rem]">
+
+        {/* <div className="w-[32rem]">
           <p className="text-gray-500 pl-10">
             {isLoading ? <Skeleton width={50} /> : "Source"}
           </p>
@@ -216,7 +217,7 @@ const MataDataContent = ({
               )
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

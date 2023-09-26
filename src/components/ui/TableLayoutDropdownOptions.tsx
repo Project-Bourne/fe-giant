@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 function TablelayoutDropdownOptions() {
   const dispatch = useDispatch();
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
-  const [buttonStates, setButtonStates] = useState([]);
+  const [buttonStates, setButtonStates] = useState(buttons);
 
   useEffect(() => {
     setButtonStates(buttons);
-    console.log("buttons", buttons);
   }, [buttons]);
 
   const swapButtons = (index1, index2) => {
@@ -21,26 +20,42 @@ function TablelayoutDropdownOptions() {
     dispatch(setDropdownButtons(updatedButtonStates));
   };
 
-  const handleChecked = (_arg) => {
-    dispatch(setChecked(_arg));
+  const handleChecked = (key) => {
+    dispatch(setChecked(key));
   };
 
   return (
     <div className=" grid gap-y-1 text-[11.5px] absolute top-10 bg-white py-2 px-3 rounded shadow">
       {buttonStates?.map((item, index) => (
         <>
-          {item.name !== "" && (
+          {item?.name !== "" && (
             <div key={index} className="flex justify-between items-center">
               <div className="flex gap-x-1 py-1 pr-5">
-                <input
-                  type="checkbox"
-                  name=""
-                  onClick={() => handleChecked(item.key)}
-                  checked={item.checked}
-                  id={item.name}
-                />
-                <label htmlFor={item.name}>{item.name}</label>
+                {/* set inputs for title, author and source to always true  */}
+                {item.key === "title" ||
+                item.key === "author" ||
+                item.key === "url" ? (
+                  <input
+                    type="checkbox"
+                    name=""
+                    // onChange={() => handleChecked(item?.key)}
+                    checked={true}
+                    disabled
+                    id={item?.name}
+                  />
+                ) : (
+                  <input
+                    type="checkbox"
+                    name=""
+                    onChange={() => handleChecked(item?.key)}
+                    checked={item?.checked}
+                    id={item?.name}
+                  />
+                )}
+                <label htmlFor={item?.name}>{item?.name}</label>
               </div>
+
+              {/* toggle dropdowns  */}
               {index === 1 ? (
                 <div
                   onClick={() =>
