@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 import interrogator from "../../../public/icons/interrogator.svg";
 import summarizer from "../../../public/icons/summarizer.svg";
 import fact_checker from "../../../public/icons/checker.svg";
@@ -7,7 +8,6 @@ import translator from "../../../public/icons/translator.svg";
 import collab from "../../../public/icons/collab.svg";
 import analyzer from "../../../public/icons/analyzer.svg";
 import deep_chat from "../../../public/icons/deep.svg";
-import Image from "next/image";
 
 const BASE_URL = "http://192.81.213.226/";
 

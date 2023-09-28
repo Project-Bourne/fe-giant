@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserInfoModel } from "./models";
 
 interface DocStateProps {
   documents: Array<any>;
