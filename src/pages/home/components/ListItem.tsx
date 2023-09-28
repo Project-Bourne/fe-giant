@@ -7,10 +7,7 @@ import saved from "../../../../public/icons/saved.svg";
 import on_saved from "../../../../public/icons/on.bookmark_filled.svg";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { setArchivedDocs } from "@/redux/reducers/documentReducer";
-// import { Button, CustomModal } from "@/components/ui";
-// import { Close } from "@mui/icons-material";
-// import { DocumentDisplayModal } from "./DocumentDisplayModal";
+// import { setArchivedDocs } from "@/redux/reducers/documentReducer";
 
 function ListItem({
   id,
@@ -65,7 +62,7 @@ function ListItem({
   const handleArchived = (e) => {
     e.stopPropagation();
     setArchived(true);
-    dispatch(setArchivedDocs(id));
+    // dispatch(setArchivedDocs(id));
   };
 
   const handleUndoArchived = (e) => {
@@ -140,73 +137,3 @@ function ListItem({
 }
 
 export default ListItem;
-
-// <div
-//   onMouseOut={handleHoverOut}
-//   onMouseOver={handleHover}
-//   className={'w-full flex flex-row'}
-// >
-//   {/* title */}
-//   <div className="flex gap-2 items-center bg-purple-300 w-[30%]">
-//     {/* star icon  */}
-//     <Image
-//       src={saved}
-//       alt="documents"
-//       className="cursor-pointer w-4 h-4"
-//       width={10}
-//       height={10}
-//     />
-//     <p
-//       onClick={handleOnClick}
-//       className="text-sirp-black-500 ml-2"
-//     >
-//       {useTruncate(name, 30)}
-//     </p>
-//   </div>
-
-//   {/* source  */}
-//   <div
-//     className="hover:text-gray-400 hidden md:block bg-blue-300 w-[28%]"
-//     onClick={handleOnClick}
-//   >
-//     <p className={`text-black-100`}>
-//       {desc && useTruncate(desc, 30)}
-//     </p>
-//   </div>
-
-//   {/* content */}
-//   {buttonType === "action" ? (
-//     <>
-//       {showaction === 0 && (
-//         <div className=" hidden md:block bg-green-300 w-[30%]">
-//           <p className="text-gray-400 border-l-2 pl-2 ">
-//             {message && useTruncate(message, 15)}
-//           </p>
-//         </div>
-//       )}
-//     </>
-//   ) : (
-//     <>
-//       {(showaction === 0 || showaction === 1) && (
-//         <div className="md:w-[15%] border-l-2 px-3 hidden md:block w-[30%]">
-//           <p className="text-gray-400">
-//             {message && useTruncate(message, 15)}
-//           </p>
-//         </div>
-//       )}
-//     </>
-//   )}
-//   {/* time  */}
-//   {showaction === 0 && (
-//     <div className="flex mr-[3rem] md:mr-[5rem] bg-yellow-300 w-[12%]">
-//       <p>{time}</p>
-//     </div>
-//   )}
-//   {/* overflow buttons  */}
-//   {showaction === 1 && (
-//     <div className="border-l-2 px-5 hover:cursor-pointer bg-orange-600">
-//       {viewDeleteButtons}
-//     </div>
-//   )}
-//   {showaction === 1 && <div className="border-l-2">{actionButtons}</div>}
-// </div>

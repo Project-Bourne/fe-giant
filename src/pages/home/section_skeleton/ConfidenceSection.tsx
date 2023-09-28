@@ -21,7 +21,13 @@ function ConfidenceSection({ fact, isLoading }) {
           {isLoading ? (
             <Skeleton width={50} height={50} circle />
           ) : (
-            <ProgressBar value={confidencePercent.replace("%", "")} /> //circular progress bar
+            <ProgressBar
+              value={
+                typeof confidencePercent === "string"
+                  ? confidencePercent.replace("%", "")
+                  : confidencePercent
+              }
+            /> //circular progress bar
           )}
         </div>
         <div>

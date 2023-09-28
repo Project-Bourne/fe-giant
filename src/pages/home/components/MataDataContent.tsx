@@ -197,27 +197,6 @@ const MataDataContent = ({
           </div>
           {/* </div> */}
         </div>
-
-        {/* <div className="w-[32rem]">
-          <p className="text-gray-500 pl-10">
-            {isLoading ? <Skeleton width={50} /> : "Source"}
-          </p>
-          <div className="flex gap-3 border-l-2 border-sirp-keynotebg  pl-10 items-center mt-3">
-            {isLoading ? (
-              <Skeleton width={50} />
-            ) : (
-              (source !== null || source !== undefined) && (
-                <Link
-                  href={source}
-                  target="_blank"
-                  className="border p-2 rounded-[0.7rem] text-[0.7rem] bg-sirp-keynotebg"
-                >
-                  {useTruncate(source, 70)}
-                </Link>
-              )
-            )}
-          </div>
-        </div> */}
       </div>
     </div>
   );
