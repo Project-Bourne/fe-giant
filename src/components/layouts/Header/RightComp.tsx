@@ -1,4 +1,4 @@
-import { getUserRole, useTruncate } from "@/components/custom-hooks";
+import { useTruncate } from "@/components/custom-hooks";
 import { logout } from "@/redux/reducers/authReducer";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
@@ -9,30 +9,26 @@ import { useDispatch, useSelector } from "react-redux";
 import notification from "../../../../public/icons/notification.svg";
 import dashboard from "../../../../public/icons/dashboard.svg";
 import down from "../../../../public/icons/down.svg";
+import { useCookies } from "react-cookie";
+import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
 
 function RightComp() {
+  const [, removeCookie] = useCookies(["deep-access"]);
   const dispatch = useDispatch();
   const router = useRouter();
   const authService = new AuthService();
-  const { userInfo, userAccessToken, refreshToken } = useSelector(
-    (state: any) => state?.auth,
-  );
+  const { userInfo } = useSelector((state: any) => state?.auth);
   const [dropdown, setDropdown] = useState(false);
+  const [toggleDashboard, setToggleDashboard] = useState(false);
 
   const handleLogout = async (event: any) => {
     event.stopPropagation();
-    // await fetch('http://192.81.213.226/')
-    // .then((res: any) => {
-    //   console.log(res);
-    //     dispatch(logout());
-    //     router.push("/auth/login");
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
-    localStorage.clear();
     dispatch(logout());
+    localStorage.clear();
+
+    removeCookie("deep-access", { path: "/" });
     router.push("/auth/login");
+
     NotificationService.success({
       message: "Logout operation successful!",
     });
@@ -55,17 +51,20 @@ function RightComp() {
           priority
         />
       </div>
-      {/* <div className={`${styles.view1} hidden md:flex`}>
+
+      <div className={`${styles.view1} hidden md:flex relative`}>
         <Image
           src={dashboard}
-          alt="dashbaord"
+          alt="dashboard"
           width={20}
           height={20}
           className="self-center"
+          onClick={() => setToggleDashboard((prevState) => !prevState)}
           style={{ alignSelf: "center" }}
           priority
         />
-      </div> */}
+        {toggleDashboard && <DashboardDropdown />}
+      </div>
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
         <div className="flex flex-row items-center justify-center">
@@ -110,7 +109,7 @@ function RightComp() {
 
         {dropdown && (
           <div
-            className="absolute bg-sirp-lightGrey text-[13px] py-2 px-2 w-[90px] text-center top-[3rem] md:mr-[7.5rem] rounded-lg items-center justify-center"
+            className="absolute bg-sirp-lightGrey text-black text-[13px] py-2 px-2 w-[90px] text-center top-[3rem] md:mr-[7.5rem] rounded-lg items-center justify-center"
             onClick={handleLogout}
           >
             <p>Log Out</p>

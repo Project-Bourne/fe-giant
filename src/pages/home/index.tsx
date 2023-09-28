@@ -64,43 +64,49 @@ function Index() {
   };
 
   return (
-    <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-t-[1rem]">
-      <div className="flex gap-x-4 items-center justify-end w-[100%] px-2 border-b-2 py-4 ">
-        <div
-          className={`h-[39px] w-[39px] relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
-            layoutOptionsToggle && "shadow"
-          }`}
-        >
-          <Image
-            src={layoutIcon}
-            alt="layout icon"
-            className="hover:cursor-pointer"
-            title="Table layout"
-            onClick={() => setLayoutOptionsToggle((prevState) => !prevState)}
-            width={23}
-          />
-          {layoutOptionsToggle && <TablelayoutDropdownOptions />}
+    <>
+      <h1 className="text-[20px] md:text-[30px] font-bold md:ml-10 ml-5 mb-5">
+        All Documents
+      </h1>
+
+      <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-t-[1rem]">
+        <div className="flex gap-x-4 items-center justify-end w-[100%] px-2 border-b-2 py-4 ">
+          <div
+            className={`h-[39px] w-[39px] relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
+              layoutOptionsToggle && "shadow"
+            }`}
+          >
+            <Image
+              src={layoutIcon}
+              alt="layout icon"
+              className="hover:cursor-pointer"
+              title="Table layout"
+              onClick={() => setLayoutOptionsToggle((prevState) => !prevState)}
+              width={23}
+            />
+            {layoutOptionsToggle && <TablelayoutDropdownOptions />}
+          </div>
+
+          {/* <SelectTableLayout handleSelectChange={handleLayoutOptionChange} /> */}
+
+          <div onClick={handleAdd} className="md:mr-[2rem] mr-[.7rem]">
+            <BlueButton />
+          </div>
         </div>
 
-        {/* <SelectTableLayout handleSelectChange={handleLayoutOptionChange} /> */}
-
-        <div onClick={handleAdd} className="md:mr-[2rem] mr-[.7rem]">
-          <BlueButton />
+        <div className=" w-full">
+          <HomeContent data={facts} headerborder={false} />
         </div>
+        {loading && (
+          <CustomModal
+            style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
+            closeBtn={false}
+          >
+            <Loader />
+          </CustomModal>
+        )}
       </div>
-
-      <div className=" w-full">
-        <HomeContent data={facts} headerborder={false} />
-      </div>
-      {loading && (
-        <CustomModal
-          style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
-          closeBtn={false}
-        >
-          <Loader />
-        </CustomModal>
-      )}
-    </div>
+    </>
   );
 }
 

@@ -53,8 +53,14 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   }, [router, isLoggedIn]);
 
   const isLayoutNeeded = appProps.router.pathname.includes("/auth");
+  const isPageNotIndex =
+    appProps.router.pathname.includes("/home") ||
+    appProps.router.pathname.includes("/archives") ||
+    appProps.router.pathname.includes("/reports") ||
+    appProps.router.pathname.includes("/training") ||
+    appProps.router.pathname.includes("/settings");
 
-  const LayoutWrapper = !isLayoutNeeded ? AppLayout : React.Fragment;
+  const LayoutWrapper = isPageNotIndex ? AppLayout : React.Fragment;
 
   return (
     <LayoutWrapper>
