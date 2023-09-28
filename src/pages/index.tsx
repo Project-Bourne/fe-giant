@@ -1,7 +1,5 @@
+// "use client"
 import React, { useEffect, useState } from "react";
-import Left from "./components/LeftCompt";
-import Right from "./components/RightCompt";
-import Group1 from "./components/Group1";
 import { useDispatch, useSelector } from "react-redux";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
@@ -9,8 +7,13 @@ import { CustomModal } from "@/components/ui";
 import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { useRouter } from "next/router";
 import Loader from "@/components/ui/Loader";
+import Group from "@/components/dashboard/Group";
+// import LeftCompDB from "@/components/dashboard/LeftComp";
+// import RightCompDB from "@/components/dashboard/RightComp";
+import logo from "../../public/images/logo.png";
+import Image from "next/image";
 
-const index = () => {
+function Index() {
   const authService = new AuthService();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -34,6 +37,7 @@ const index = () => {
           }
         })
         .catch((err) => {
+          setLoading(false);
           NotificationService.error({
             message: "Error",
             addedText: "Could not fetch user data",
@@ -41,29 +45,45 @@ const index = () => {
           });
         });
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   }, []);
 
   return (
-    <div className="h-full overflow-y-scroll mt-[10rem]">
-      <h1 className="text-black text-2xl pl-10 font-bold capitalize">
-        Welcome {user?.firstName}
-      </h1>
+    <React.Fragment>
+      {/* logo  */}
+      <div>
+        <Image
+          src={logo}
+          alt="IRP Logo"
+          className={`h-[70px] md:h-[150px] w-[70px] md:w-[150px] mx-auto mt-[2rem] flex items-center`}
+          priority
+        />
+        <h1 className="text-sirp-primary md:text-3xl text-xl font-bold text-center">
+          Deep Soul
+        </h1>
+      </div>
+
+      {user?.firstName && (
+        <h2 className="text-black text-2xl font-bold capitalize mt-[3rem] -mb-[2rem] ml-[10rem]">
+          Welcome {user?.firstName}
+        </h2>
+      )}
 
       {/* the yellow navigation at the top of the dashboard page */}
-      <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 justify-between md:items-center w-full md:w-[95%] md:mx-auto md:gap-x-[20px] gap-y-[20px] mt-5">
-        <Left
-          docsCount={documents?.length}
+      {/* <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 justify-between md:items-center w-full md:w-[95%] md:mx-auto md:gap-x-[20px] gap-y-[20px] mt-5">
+        <LeftCompDB
+          docsCount={documents[0]?.length}
           collabExportsCount={collabExportsCount}
         />
-        <Right
-          crawledContentCount={documents?.length}
+        <RightCompDB
+          crawledContentCount={documents[0]?.length}
           archivedDocsCount={archivedDocs?.length}
         />
-      </div>
-      <div className="mt-5 mb-5">
-        <Group1 />
+      </div> */}
+      <div className="mb-5 mt-0">
+        <Group />
       </div>
       {loading && (
         <CustomModal
@@ -73,8 +93,8 @@ const index = () => {
           <Loader />
         </CustomModal>
       )}
-    </div>
+    </React.Fragment>
   );
-};
+}
 
-export default index;
+export default Index;

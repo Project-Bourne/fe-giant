@@ -42,7 +42,7 @@ function Login() {
         setLoading(false);
         if (res?.status) {
           // get user information using returned response 'res' containing userAccessToken
-          console.log(res, "yyyyy");
+          // console.log(res, "yyyyy");
           // localStorage.setItem("deep-access", res?.data?.accessToken);
           setCookie("deep-access", res?.data?.accessToken, { path: "/" });
           dispatch(
@@ -55,7 +55,7 @@ function Login() {
           NotificationService.success({
             message: "Login Successful!",
           });
-          router.push("/dashboard");
+          router.push("/home");
         } else {
           NotificationService.error({
             message: "Login Failed!",

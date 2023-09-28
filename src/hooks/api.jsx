@@ -9,7 +9,8 @@ let access = "";
 if (typeof window !== "undefined") {
   access = cookies.get("deep-access") || "";
 }
-console.log(access, "access");
+// console.log(access, "access");
+
 export const requestHeader = {
   Accept: "application/json",
   "Cache-Control": "no-cache",
@@ -32,12 +33,10 @@ export const requestHeader = {
 const API_USER_URL = "http://192.81.213.226:81/80/";
 
 export async function request(url, method, payload, token, text, form) {
-  console.log(token, "ccccc");
-  console.log(payload, "hhhhh");
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
   requestHeader["deep-token"] = token ? access : "";
-  console.log(requestHeader, "requestHeader");
+  // console.log(requestHeader, "requestHeader");
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,

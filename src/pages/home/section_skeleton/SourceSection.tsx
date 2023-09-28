@@ -29,7 +29,7 @@ function SourceSection({ fact, isLoading }) {
                       target="_blank" // Opens link in a new tab
                       rel="noopener noreferrer" // Security best practice for external links
                     >
-                      {source.origin.replace("https://", "")}
+                      {source?.origin?.replace("https://", "")}
                     </a>
                   </li>
                 )}

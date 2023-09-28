@@ -161,13 +161,10 @@ function HomeContent({ data, headerborder }) {
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
-                  {useTruncate(rowData[columnItem?.key], 25) ||
-                    useTruncate(
-                      (rowData?.confidence &&
-                        rowData?.confidence[columnItem?.key]) ||
-                        "",
-                      25,
-                    )}
+                  {useTruncate(
+                    rowData?.confidence?.content || "No Content",
+                    25,
+                  )}
                 </div>
               );
             }
@@ -186,7 +183,7 @@ function HomeContent({ data, headerborder }) {
                   useTruncate(
                     (rowData?.confidence &&
                       rowData?.confidence[columnItem?.key]) ||
-                      "",
+                      `No ${columnItem?.key}`,
                     25,
                   )}
               </div>
