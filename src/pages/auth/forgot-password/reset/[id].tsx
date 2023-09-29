@@ -9,8 +9,6 @@ import custom_list_on from "../../../../../public/icons/custom-list-on.svg";
 import custom_list from "../../../../../public/icons/custom-list.svg";
 
 function PasswordReset() {
-  //   const id = useParams();
-  //   console.log(id, "idd")
   const [loading, setLoading] = useState(false);
   // password error-check states
   const [password, setPassword] = useState("");
@@ -107,10 +105,12 @@ function PasswordReset() {
               message: "Password Recovery Failed!",
               addedText: err?.message,
             });
-            console.log(err?.msg);
           });
       } catch (error) {
-        console.log(error);
+        NotificationService.error({
+          message: "Password Recovery Failed!",
+          addedText: error?.message,
+        });
       }
     }
   };

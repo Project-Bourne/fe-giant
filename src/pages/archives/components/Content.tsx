@@ -53,7 +53,6 @@ function HomeContent({ data, headerborder }) {
       clearTimeout(clickTimeout);
       setClickTimeout(null);
     } else {
-      console.log("single click");
       const timeout = setTimeout(() => {
         // alert('first click executes');
         handleClick(_arg, _arg1, _arg2);

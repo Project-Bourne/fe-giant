@@ -42,7 +42,6 @@ function Login() {
         setLoading(false);
         if (res?.status) {
           // get user information using returned response 'res' containing userAccessToken
-          // console.log(res, "yyyyy");
           // localStorage.setItem("deep-access", res?.data?.accessToken);
           setCookie("deep-access", res?.data?.accessToken, { path: "/" });
           dispatch(
@@ -65,13 +64,11 @@ function Login() {
       })
       .catch((err) => {
         setLoading(false);
-        console.log("login", err);
         NotificationService.error({
           message: "Login Failed!",
           addedText: err?.message,
         });
       });
-    // console.log(formData);
   };
 
   return (

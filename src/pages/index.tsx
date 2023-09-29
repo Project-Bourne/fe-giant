@@ -32,7 +32,6 @@ function Index() {
         .then((response) => {
           setLoading(false);
           if (response?.status) {
-            // console.log("user data via login", res);
             dispatch(setUserInfo(response?.data));
           }
         })
@@ -46,7 +45,11 @@ function Index() {
         });
     } catch (err) {
       setLoading(false);
-      console.log(err);
+      NotificationService.error({
+        message: "Error",
+        addedText: err?.message,
+        position: "top-center",
+      });
     }
   }, []);
 
