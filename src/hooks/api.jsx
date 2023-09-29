@@ -9,7 +9,6 @@ let access = "";
 if (typeof window !== "undefined") {
   access = cookies.get("deep-access") || "";
 }
-// console.log(access, "access");
 
 export const requestHeader = {
   Accept: "application/json",
@@ -36,7 +35,6 @@ export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
   requestHeader["deep-token"] = token ? access : "";
-  // console.log(requestHeader, "requestHeader");
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,
