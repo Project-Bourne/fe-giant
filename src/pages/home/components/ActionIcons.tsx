@@ -25,13 +25,13 @@ const ActionIcons = ({ docId }: ActionIconsProps) => {
 
   const handleRoute = (id: string, to: string) => {
     if (to === "collab") {
-      router.push(`http://192.81.213.226/36/documents/${id}&collab`);
+      router.push(`http://192.81.213.226:36/documents/${id}&collab`);
     }
     if (to === "analyzer") {
-      router.push(`http://192.81.213.226/31/home/${id}&analyzer`);
+      router.push(`http://192.81.213.226:31/home/${id}&analyzer`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226/32/home/${id}&summarizer`);
+      router.push(`http://192.81.213.226:32/home/${id}&summarizer`);
     }
   };
 
