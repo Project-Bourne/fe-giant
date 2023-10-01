@@ -30,34 +30,34 @@ function Group() {
     <div className="px-[5rem] py-7">
       <div className=" flex flex-wrap gap-y-3 md:gap-x-[3.4rem]  w-[90%] mx-auto">
         {/* IRP */}
-        {permissions?.includes("irp") && (
-          <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
-            <div className="flex flex-row items-center gap-3 pt-5">
-              <div>
-                <Image
-                  src={frame7}
-                  alt="documents"
-                  className="cursor-pointer"
-                  width={100}
-                />
-              </div>
-              <div>
-                <p className="font-bold">{collabExports ?? 0}</p>
-                <span className="capitalize font-light text-sirp-grey text-[15px]">
-                  Total Documents
-                </span>
-              </div>
+        {/* {permissions?.includes("irp") && ( */}
+        <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
+          <div className="flex flex-row items-center gap-3 pt-5">
+            <div>
+              <Image
+                src={frame7}
+                alt="documents"
+                className="cursor-pointer"
+                width={100}
+              />
             </div>
-            <div className="pt-8 ">
-              <button
-                onClick={() => router.push("http://192.81.213.226/30/home")}
-                className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
-              >
-                Open IRP
-              </button>
+            <div>
+              <p className="font-bold">{collabExports ?? 0}</p>
+              <span className="capitalize font-light text-sirp-grey text-[15px]">
+                Total Documents
+              </span>
             </div>
           </div>
-        )}
+          <div className="pt-8 ">
+            <button
+              onClick={() => router.push("http://192.81.213.226:30/home")}
+              className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
+            >
+              Open IRP
+            </button>
+          </div>
+        </div>
+        {/* )} */}
 
         {/* collab */}
         {permissions?.includes("collab") && (
@@ -80,7 +80,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/36/home")}
+                onClick={() => router.push("http://192.81.213.226:36/home")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
               >
                 Open Collab Workspace
@@ -110,7 +110,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/31/home")}
+                onClick={() => router.push("http://192.81.213.226:31/home")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Analyzer
@@ -140,7 +140,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/31/home")} // to be changed / officer
+                onClick={() => router.push("http://192.81.213.226:31/home")} // to be changed / officer
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Interrogator
@@ -170,7 +170,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/33/home")}
+                onClick={() => router.push("http://192.81.213.226:33/home")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Translator
@@ -200,7 +200,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/34/home")} //change route
+                onClick={() => router.push("http://192.81.213.226:34/home")} //change route
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Fact Checker
@@ -230,7 +230,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/32/home")}
+                onClick={() => router.push("http://192.81.213.226:32/home")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Summarizer
@@ -260,7 +260,7 @@ function Group() {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226/35/home")}
+                onClick={() => router.push("http://192.81.213.226:35/home")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Deep Chat

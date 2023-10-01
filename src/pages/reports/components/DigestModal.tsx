@@ -25,7 +25,6 @@ function DigestModal() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log({ duration, sector });
   };
 
   return (
