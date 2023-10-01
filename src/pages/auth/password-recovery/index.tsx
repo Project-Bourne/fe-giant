@@ -97,7 +97,6 @@ function PasswordRecovery() {
           NotificationService.success({
             message: "Password Recovery Successful!",
           });
-          console.log(res);
         })
         .catch((err) => {
           setLoading(false);

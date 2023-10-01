@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDocuments } from "@/redux/reducers/documentReducer";
 import HomeContent from "../archives/components/Content";
 import Loader from "@/components/ui/Loader";
+import NotificationService from "@/services/notification.service";
 
 function Index() {
   const router = useRouter();
@@ -32,7 +33,6 @@ function Index() {
 
   useEffect(() => {
     setFacts(docs);
-    // console.log("res", docs);
   }, [docs]);
 
   const getDocuments = () => {
@@ -45,14 +45,23 @@ function Index() {
           if (res?.status) {
             dispatch(setDocuments(res?.data));
             setFacts(res?.data);
-            // console.log(res?.data);
           }
         })
         .catch((err) => {
           setLoading(false);
-          console.log(err);
+          NotificationService.error({
+            message: "Error",
+            addedText: err?.message,
+            position: "top-center",
+          });
         });
-    } catch (err) {}
+    } catch (err) {
+      NotificationService.error({
+        message: "Error",
+        addedText: err?.message,
+        position: "top-center",
+      });
+    }
   };
 
   // const handleLayoutOptions = () => {

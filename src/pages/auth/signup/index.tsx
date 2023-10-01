@@ -43,9 +43,7 @@ function SignUp() {
           setFormData({ ...formData, roleUuid: res?.data[0]?.uuid });
         }
       })
-      .catch((err) => {
-        console.log("roles error", err);
-      });
+      .catch((err) => {});
   }, []);
 
   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -58,7 +56,6 @@ function SignUp() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // console.log('sign up data:', formData)
     if (formData.firstName === "") {
       setErrors({ ...errors, first_name: "First name must not be empty!" });
       return;

@@ -24,7 +24,6 @@ function SecurityBriefModal() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log({ duration, year, sector });
   };
 
   return (

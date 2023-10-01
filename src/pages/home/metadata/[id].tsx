@@ -26,7 +26,6 @@ function Meta() {
       .getSingleFactCheckedDoc(id)
       .then((res) => {
         if (res?.status) {
-          console.log(res?.data);
           setSelectedDoc(res?.data);
           dispatch(setFactCheck(res?.data));
         }

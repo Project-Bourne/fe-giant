@@ -14,7 +14,6 @@ function Addcontext() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-    console.log("Loading...");
   };
 
   return (

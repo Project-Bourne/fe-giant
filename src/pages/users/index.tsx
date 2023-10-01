@@ -20,7 +20,6 @@ function Users() {
   //       if (res?.status) {
   //         dispatch(setUsers(res?.data));
   //         setAllUsers(res?.data);
-  //         console.log(res?.data);
   //       } else {
   //         NotificationService.error({
   //           message: "Unable to fetch users!",
@@ -29,7 +28,6 @@ function Users() {
   //       }
   //     })
   //     .catch((err) => {
-  //       console.log(err);
   //     });
   // }, []);
 
@@ -39,12 +37,10 @@ function Users() {
   //       if(status === "approved"){
   //         const verified = allUsers.filter((user) => user.verified)
   //         setAllUsers(verified);
-  //         console.log('approved', verified)
   //       }
   //       if(status === 'pending'){
   //         const verified = allUsers.filter((user) => !user.verified)
   //         setAllUsers(verified);
-  //         console.log('pending', verified)
 
   //       }
   //     }

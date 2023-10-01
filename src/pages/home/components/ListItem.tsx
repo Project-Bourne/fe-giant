@@ -41,7 +41,6 @@ function ListItem({
       clearTimeout(clickTimeout);
       setClickTimeout(null);
     } else {
-      console.log("single click");
       const timeout = setTimeout(() => {
         // alert('first click executes');
         handleClick();

@@ -20,7 +20,6 @@ function AddUserModal() {
 
   const handleSetCountry = (data: any) => {
     setFormData({ ...formData, country: data });
-    console.log("header", data);
   };
   // handle modal form submit
   const handleSubmit = () => {
@@ -28,7 +27,6 @@ function AddUserModal() {
       setErrors({ ...errors, email: "Email must not be empty!" });
       return;
     }
-    console.log(formData);
   };
 
   return (

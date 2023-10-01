@@ -35,6 +35,16 @@ function RightComp() {
     setDropdown(false);
   };
 
+  const handleLogoutToggle = () => {
+    setDropdown((prevState) => !prevState);
+    setToggleDashboard(false);
+  };
+
+  const handleDashboardToggle = () => {
+    setToggleDashboard((prevState) => !prevState);
+    setDropdown(false);
+  };
+
   const userName = () => userInfo?.firstName + " " + userInfo?.lastName;
   const userInitials = () => userInfo?.firstName[0] + userInfo?.lastName[0];
 
@@ -59,7 +69,7 @@ function RightComp() {
           width={20}
           height={20}
           className="self-center"
-          onClick={() => setToggleDashboard((prevState) => !prevState)}
+          onClick={handleDashboardToggle}
           style={{ alignSelf: "center" }}
           priority
         />
@@ -83,7 +93,7 @@ function RightComp() {
             height={18}
             className="mx-3 object-contain hidden md:block"
             priority
-            onClick={() => setDropdown((prevState) => !prevState)}
+            onClick={handleLogoutToggle}
           />
         </div>
 
