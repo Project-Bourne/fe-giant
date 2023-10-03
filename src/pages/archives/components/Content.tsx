@@ -88,34 +88,6 @@ function HomeContent({ data, headerborder }) {
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
       const cells = columnOrder.map((columnItem: any, index) => {
-        if (columnItem?.key === "archive") {
-          return (
-            <div
-              key={index}
-              className={`w-[${columnItem.width}] flex px-2 items-center`}
-            >
-              {rowData?.archived ? (
-                <Image
-                  src={on_saved}
-                  alt="documents"
-                  className="cursor-pointer w-4 h-4"
-                  onClick={(e) => handleUndoArchived(e, rowData?.uuid)}
-                  width={13}
-                  height={13}
-                />
-              ) : (
-                <Image
-                  src={saved}
-                  alt="documents"
-                  className="cursor-pointer w-4 h-4"
-                  onClick={(e) => handleArchived(e, rowData?.uuid)}
-                  width={10}
-                  height={10}
-                />
-              )}
-            </div>
-          );
-        }
         if (
           (rowData?.hasOwnProperty(columnItem?.key) &&
             rowData[columnItem?.key] !== undefined) ||
@@ -128,7 +100,7 @@ function HomeContent({ data, headerborder }) {
             return (
               <div
                 key={index}
-                className={`capitalize py-2 w-[${columnItem?.width}]`}
+                className={`capitalize p-2 w-[${columnItem?.width}]`}
               >
                 {useTruncate(
                   (rowData?.confidence && rowData?.confidence?.author) || "",
@@ -141,7 +113,7 @@ function HomeContent({ data, headerborder }) {
             if (columnItem.checked) {
               if (showaction === 0) {
                 return (
-                  <div key={index} className={`py-2 w-[${columnItem?.width}] `}>
+                  <div key={index} className={`p-2 w-[${columnItem?.width}] `}>
                     {useFormatDate(rowData[columnItem?.key])}
                   </div>
                 );
@@ -156,7 +128,7 @@ function HomeContent({ data, headerborder }) {
               return (
                 <div
                   key={index}
-                  className={`py-2 w-[${columnItem?.width}] ${
+                  className={`p-2 w-[${columnItem?.width}] ${
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
@@ -174,7 +146,7 @@ function HomeContent({ data, headerborder }) {
             return (
               <div
                 key={index}
-                className={`py-2 w-[${columnItem?.width}] ${
+                className={`p-2 w-[${columnItem?.width}] ${
                   columnItem?.key === "title" && "first-letter:capitalize"
                 }`}
               >

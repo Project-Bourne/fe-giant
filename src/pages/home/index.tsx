@@ -23,7 +23,7 @@ function Index() {
   const dispatch = useDispatch();
   const docs = useSelector((state: any) => state.documents.documents);
   const [tableLayout, setTableLayout] = useState("0");
-  const [facts, setFacts] = useState(docs);
+  const [facts, setFacts] = useState([]);
   const [layoutOptionsToggle, setLayoutOptionsToggle] = useState(false);
   const [loading, setLoading] = useState(false);
 
