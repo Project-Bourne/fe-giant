@@ -56,7 +56,7 @@ function PasswordRecovery() {
 
     try {
       const response = await fetch(
-        "http://192.81.213.226/forgot-password",
+        "http://192.81.213.226:81/80/forgot-password",
         options,
       );
       setLoading(false);
@@ -76,6 +76,7 @@ function PasswordRecovery() {
       });
     } catch (error) {
       // Handle any errors that occurred during the fetch
+      setLoading(false);
       NotificationService.error({
         message: "Fetch Error!",
         addedText: error?.message,
