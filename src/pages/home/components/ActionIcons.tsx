@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import CustomModal from "@/components/ui/CustomModal";
-import Factcheck from "../modal-popup/factcheck";
-import Collaborate from "../modal-popup/collaborate";
-import DocumentExport from "../modal-popup/DocumentExport";
 import { Tooltip } from "@mui/material";
 import archive from "../../../../public/icons/action_archive.svg";
 import analyzer from "../../../../public/icons/action_analyzer.svg";
@@ -13,207 +9,188 @@ import deepchat from "../../../../public/icons/action_deepchat.svg";
 import factchecker from "../../../../public/icons/action_factchecker.svg";
 import translator from "../../../../public/icons/action_translator.svg";
 import interrogator from "../../../../public/icons/action_interrogator.svg";
-// import h6 from "../../../../public/icons/h6.svg";
-import on_saved from "../../../../public/icons/on.saved.svg";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import DocumentService from "@/services/documents.service";
+import NotificationService from "@/services/notification.service";
 
 type ActionIconsProps = {
+  showArchive?: boolean;
   docId?: string;
+  archiveId?: string;
 };
 
-const ActionIcons = ({ docId }: ActionIconsProps) => {
+const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
+  const { userInfo } = useSelector((state: any) => state.auth);
   const [factcheck, setFactcheck] = useState(false);
   const [collaborate, setCollaborate] = useState(false);
   const [documents, setDocuments] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const docService = new DocumentService();
+
+  const permissions = userInfo?.role?.permissions;
 
   const handleRoute = (id: string, to: string) => {
     if (to === "collab") {
-      router.push(`http://192.81.213.226:36/documents/${id}&collab`);
+      router.push(`http://192.81.213.226:36/documents/${id}&irp`);
     }
     if (to === "analyzer") {
-      router.push(`http://192.81.213.226:31/home/${id}&analyzer`);
+      router.push(`http://192.81.213.226:31/home/${id}&irp`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226:32/home/${id}&summarizer`);
+      router.push(`http://192.81.213.226:32/home/${id}&irp`);
     }
     if (to === "factcheck") {
-      router.push(`http://192.81.213.226:34/home/${id}&factcheck`);
+      router.push(`http://192.81.213.226:34/home/${id}&irp`);
     }
     if (to === "deepchat") {
-      router.push(`http://192.81.213.226:35/home/${id}&deepchat`);
+      router.push(`http://192.81.213.226:35/home/${id}&irp`);
     }
     if (to === "interrogator") {
-      router.push(`http://192.81.213.226:37/home/${id}&interrogator`);
+      router.push(`http://192.81.213.226:37/home/${id}&irp`);
     }
     if (to === "translator") {
-      router.push(`http://192.81.213.226:33/home/${id}&translator`);
+      router.push(`http://192.81.213.226:33/home/${id}&irp`);
     }
+  };
+
+  const handleArchive = (_arg) => {
+    try {
+      docService
+        .archiveDocument(_arg)
+        .then((res) => {
+          if (res?.status) {
+            // dispatch(setArc)
+            NotificationService.success({
+              message: "Added to archives!",
+              position: "top-center",
+            });
+          } else {
+            NotificationService.error({
+              message: res?.message,
+              position: "top-center",
+            });
+          }
+        })
+        .catch((err) => {
+          NotificationService.error({
+            message: err?.message,
+            position: "top-center",
+          });
+        });
+    } catch (error) {}
   };
 
   return (
     <>
       <div className="flex gap-2 ">
         {/* archive  */}
-        <Tooltip title="Archive">
-          <Image
-            src={archive}
-            alt="documents"
-            className=" cursor-pointer"
-            width={33}
-          />
-        </Tooltip>
+        {showArchive && (
+          <Tooltip title="Archive">
+            <Image
+              src={archive}
+              alt="documents"
+              className=" cursor-pointer"
+              onClick={() => handleArchive(archiveId)}
+              width={33}
+            />
+          </Tooltip>
+        )}
 
         {/* collab  */}
-        <Tooltip title="Export to Collab">
-          <Image
-            src={collab}
-            alt="documents"
-            className=" cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "collab")}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("collab") && (
+          <Tooltip title="Export to Collab">
+            <Image
+              src={collab}
+              alt="documents"
+              className=" cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "collab")}
+            />
+          </Tooltip>
+        )}
 
         {/* Translator  */}
-        <Tooltip title="Export to Translator">
-          <Image
-            src={translator}
-            alt="translator"
-            className="cursor-pointer"
-            onClick={() => handleRoute(docId, "translator")}
-            width={33}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("translator") && (
+          <Tooltip title="Export to Translator">
+            <Image
+              src={translator}
+              alt="translator"
+              className="cursor-pointer"
+              onClick={() => handleRoute(docId, "translator")}
+              width={33}
+            />
+          </Tooltip>
+        )}
 
         {/* analyzer  */}
-        <Tooltip title="Export to Analyzer">
-          <Image
-            src={analyzer}
-            alt="analyzer"
-            className=" cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "analyzer")}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("analyser") && (
+          <Tooltip title="Export to Analyzer">
+            <Image
+              src={analyzer}
+              alt="analyzer"
+              className=" cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "analyzer")}
+            />
+          </Tooltip>
+        )}
 
         {/* factchecker  */}
-        <Tooltip title="Export to Factchecker">
-          <Image
-            src={factchecker}
-            alt="factcheck"
-            className="cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "factcheck")}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("fact checker") && (
+          <Tooltip title="Export to Factchecker">
+            <Image
+              src={factchecker}
+              alt="factcheck"
+              className="cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "factcheck")}
+            />
+          </Tooltip>
+        )}
 
         {/* summarizer  */}
-        <Tooltip title="Export to Summarizer">
-          <Image
-            src={summarizer}
-            alt="summarizer"
-            className="cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "summarizer")}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("summarizer") && (
+          <Tooltip title="Export to Summarizer">
+            <Image
+              src={summarizer}
+              alt="summarizer"
+              className="cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "summarizer")}
+            />
+          </Tooltip>
+        )}
 
         {/* deepchat  */}
-        <Tooltip title="Export to Deepchat">
-          <Image
-            src={deepchat}
-            alt="deep chat"
-            className="cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "deepchat")}
-          />
-        </Tooltip>
+        {permissions && permissions?.includes("deep chat") && (
+          <Tooltip title="Export to Deepchat">
+            <Image
+              src={deepchat}
+              alt="deep chat"
+              className="cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "deepchat")}
+            />
+          </Tooltip>
+        )}
 
-        {/* deepchat  */}
-        <Tooltip title="Export to Interrogator">
-          <Image
-            src={interrogator}
-            alt="interrogator"
-            className="cursor-pointer"
-            width={33}
-            onClick={() => handleRoute(docId, "interrogator")}
-          />
-        </Tooltip>
+        {/* interrogator  */}
+        {permissions && permissions?.includes("interrogator") && (
+          <Tooltip title="Export to Interrogator">
+            <Image
+              src={interrogator}
+              alt="interrogator"
+              className="cursor-pointer"
+              width={33}
+              onClick={() => handleRoute(docId, "interrogator")}
+            />
+          </Tooltip>
+        )}
       </div>
     </>
   );
 };
 
 export default ActionIcons;
-
-// const ActionIcons = () => {
-//   const handleCollab = () => {
-//     console.log("collabe");
-//   };
-
-//   return (
-//     <>
-//       <div className="flex flex-row justify-end gap-[0.5rem] mr-5">
-//         <Tooltip title="Export to Collab">
-//           <Image
-//             src={require("../../../../../public/icons/action_collab.svg")}
-//             alt="documents"
-//             className=" cursor-pointer"
-//             width={60}
-//             onClick={handleCollab}
-//           />
-//         </Tooltip>
-
-//
-
-//         <Tooltip title="Export to Summarizer">
-//           <Image
-//             src={require("../../../../../public/icons/action_summarizer.svg")}
-//             alt="documents"
-//             className="cursor-pointer"
-//             width={60}
-//           />
-//         </Tooltip>
-
-//         <Tooltip title="Export to Analyzer">
-//           <Image
-//             src={require("../../../../../public/icons/action_analyzer.svg")}
-//             alt="documents"
-//             className=" cursor-pointer"
-//             width={60}
-//           />
-//         </Tooltip>
-
-//         <Tooltip title="Export to translator">
-//           <Image
-//             src={require("../../../../../public/icons/action_translator.svg")}
-//             alt="documents"
-//             className="cursor-pointer"
-//             width={60}
-//           />
-//         </Tooltip>
-
-//         <Tooltip title="Export to Deep chat">
-//           <Image
-//             src={require("../../../../../public/icons/action_deepchat.svg")}
-//             alt="documents"
-//             className="cursor-pointer"
-//             width={60}
-//           />
-//         </Tooltip>
-
-//         <Tooltip title="Export to Interrogator">
-//           <Image
-//             src={require("../../../../../public/icons/action_interrogator.svg")}
-//             alt="documents"
-//             className="cursor-pointer"
-//             width={60}
-//           />
-//         </Tooltip>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default ActionIcons;

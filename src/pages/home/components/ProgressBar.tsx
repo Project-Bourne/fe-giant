@@ -12,7 +12,6 @@ function ProgressBar({ value }) {
         value={value}
         text={`${value}%`}
         strokeWidth={11}
-        counterClockwise
         styles={{
           path: {
             stroke: color,

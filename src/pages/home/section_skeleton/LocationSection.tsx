@@ -10,7 +10,7 @@ function LocationSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
   const location =
     fact?.countries && fact?.countries?.length > 0
-      ? fact?.countries[0]
+      ? fact?.countries
       : "No location";
 
   return (
@@ -30,7 +30,25 @@ function LocationSection({ fact, isLoading }) {
             {isLoading ? <Skeleton width={150} /> : "Nigeria"}
           </p> */}
           <p className="text-gray-500 text-sm">
-            {isLoading ? <Skeleton width={150} /> : location}
+            {isLoading ? (
+              <Skeleton width={150} />
+            ) : (
+              <div className="flex gap-x-1">
+                {fact?.fact?.countries && fact?.fact?.countries?.length > 0
+                  ? fact?.fact?.countries.map(
+                      (
+                        country,
+                        index, // display all array countries and dynamically add comma "," to each element except the last item
+                      ) => (
+                        <div key={index}>
+                          {country}
+                          {index !== fact?.countries?.length - 1 && ","}
+                        </div>
+                      ),
+                    )
+                  : "No location"}
+              </div>
+            )}
           </p>
         </div>
       </div>

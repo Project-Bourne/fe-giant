@@ -9,7 +9,7 @@ import { useFormatDate, useFormatTime } from "@/components/custom-hooks";
 
 function DateSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
-  const time = fact?.updatedAt ? fact?.updatedAt : "No Date";
+  const time = fact?.fact?.updatedAt ? fact?.fact?.updatedAt : "No Date";
 
   // const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
   // const parsedDate = DateTime?.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone

@@ -91,7 +91,7 @@ function PasswordReset() {
         body: requestBody,
       };
       try {
-        await fetch("http://192.81.213.226/reset-password", options)
+        await fetch("http://192.81.213.226:81/80/reset-password", options)
           .then((res) => {
             setLoading(false);
             NotificationService.success({

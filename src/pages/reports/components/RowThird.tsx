@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MapChart from "../charts/map";
+import PolarChartComponent from "../charts/polar";
 
 import info from "../../../../public/icons/info.svg";
 import { article_categories } from "@/utils/reports.constants";
@@ -13,10 +13,10 @@ function ThirdRow() {
           {/* header text rhs  */}
           <div>
             <h3 className="md:text-[14px] text-[12px] font-light md:tracking-[.7px]">
-              LOCATION
+              ARTICLE CONFIDENCE
             </h3>
             <h3 className="md:text-[14px] text-[12px]  font-normal md:tracking-[.7px]">
-              Location of articles crawled
+              Average confidence level of articles crawled
             </h3>
           </div>
           {/* header text lhs  */}
@@ -33,8 +33,8 @@ function ThirdRow() {
 
         {/* body and graph  */}
         <div className="border-[2px] border-sirp-lightGrey h-[300px]">
-          <div className="h-[270px]">
-            <MapChart />
+          <div className="flex justify-center h-[350px] w-[75%] mx-auto">
+            <PolarChartComponent />
           </div>
         </div>
       </div>

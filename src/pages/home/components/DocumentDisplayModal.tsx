@@ -25,7 +25,7 @@ function DocumentDisplayModal({ closeModal, selectedItem, id }) {
           </h2>
 
           <div className="w-full flex justify-between items-center mt-5">
-            <ActionIcons docId={id} />
+            <ActionIcons showArchive={false} docId={id} />
             <p
               onClick={handleOnClick}
               className="first-letter:capitalize hover:cursor-pointer text-sirp-primary text-[11px] bg-sirp-primaryLess2 py-1 px-2 rounded-md"
@@ -35,7 +35,7 @@ function DocumentDisplayModal({ closeModal, selectedItem, id }) {
           </div>
         </div>
         <div className="w-full h-[47vh] p-2 bg-gray-50 overflow-y-auto mt-[1.5rem] font-normal text-[13.5px] first-letter:capitalize break-all rounded">
-          {useTruncate(selectedItem?.content, 1200)}
+          {useTruncate(selectedItem?.content, 1100)}
         </div>
       </div>
     </div>

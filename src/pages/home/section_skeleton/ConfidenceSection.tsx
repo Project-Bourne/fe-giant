@@ -7,9 +7,11 @@ import ProgressBar from "../components/ProgressBar";
 function ConfidenceSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
   const confidencePercent =
-    fact?.confidence?.level && fact?.confidence?.level !== "unknown"
-      ? fact?.confidence?.level
-      : 0;
+    fact?.fact?.confidence?.level &&
+    fact?.fact?.confidence?.level !== "unknown" &&
+    fact?.fact?.confidence?.level.toLowerCase() !== "nan%"
+      ? fact?.fact?.confidence?.level
+      : "0%";
 
   return (
     <div className="mt-3 w-[25rem]">
@@ -31,20 +33,20 @@ function ConfidenceSection({ fact, isLoading }) {
           )}
         </div>
         <div>
-          <p className="font-bold">
+          <p className="font-bold flex items-center">
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              `${confidencePercent} Confidence Level`
+              <p>{confidencePercent} Confidence Level</p>
             )}
           </p>
-          {isLoading ? (
+          {/* {isLoading ? (
             <Skeleton width={150} />
           ) : (
             <p className="text-sirp-primary2 text-xs rounded-[1rem] border text-center w-[8rem]">
               Review confidence
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>

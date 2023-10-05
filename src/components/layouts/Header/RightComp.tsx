@@ -50,7 +50,7 @@ function RightComp() {
 
   return (
     <div className="flex flex-row items-center self-start">
-      <div className={`${styles.view1} bg-white`}>
+      {/* <div className={`${styles.view1} bg-white`}>
         <Image
           src={notification}
           alt="notification"
@@ -60,7 +60,7 @@ function RightComp() {
           style={{ alignSelf: "center" }}
           priority
         />
-      </div>
+      </div> */}
 
       <div className={`${styles.view1} hidden md:flex relative`}>
         <Image
@@ -104,7 +104,7 @@ function RightComp() {
           <h2 className="text-sirp-grey text-[13px] capitalize">
             {userInfo?.firstName && useTruncate(userName(), 14)}
           </h2>
-          <h2 className="text-sirp-primary text-[11px]">
+          <h2 className="text-sirp-primary text-[11px] capitalize">
             {userInfo?.role?.roleName}
           </h2>
         </div>

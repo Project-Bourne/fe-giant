@@ -56,11 +56,14 @@ function Meta() {
           onClick={() => router.back()}
         />
 
-        <ActionIcons docId={selectedDoc?.uuid} />
+        <ActionIcons
+          showArchive={true}
+          docId={selectedDoc?.fact?.uuid}
+          archiveId={selectedDoc?.irpId}
+        />
       </div>
 
       <div className="bg-white my-[3rem] mx-5 rounded-[1rem] w-[96%] py-7">
-        {/* <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> */}
         {hideMeta === true && (
           <div>
             <MetaData data={selectedDoc} />
@@ -70,15 +73,14 @@ function Meta() {
           <h1 className="md:text-lg font-bold pl-5 pb-2"></h1> // {title}</h1>
         )}
       </div>
-      {/* </div> */}
 
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
         <div className="mx-5 my-5">
           <MainContent
-            title={selectedDoc?.confidence?.title}
+            title={selectedDoc?.fact?.confidence?.title}
             content={
-              selectedDoc?.confidence?.content5wh ||
-              selectedDoc?.confidence?.content
+              selectedDoc?.fact?.confidence?.content5wh ||
+              selectedDoc?.fact?.confidence?.content
             }
           />
         </div>

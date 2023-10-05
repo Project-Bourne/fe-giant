@@ -88,7 +88,7 @@ function SignUp() {
         } else {
           NotificationService.error({
             message: "Registration Failed!",
-            addedText: res?.msg,
+            addedText: res?.message,
             position: "top-center",
           });
         }

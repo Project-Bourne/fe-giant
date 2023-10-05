@@ -8,7 +8,7 @@ function TagsKeywordsSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
 
   // Check if data.url exists using optional chaining
-  const source = fact?.url ? fact?.url : "No Title";
+  const source = fact?.fact?.url ? fact?.fact?.url : "No Source";
 
   return (
     <div className="w-[25rem]">

@@ -17,10 +17,43 @@ class DocumentService {
       throw error;
     }
   }
+
   async getSingleFactCheckedDoc(id) {
     try {
       const response = await factCheckRequest(
-        `/fact/${id}`,
+        `/irp/${id}`,
+        "GET",
+        {},
+        true,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async archiveDocument(id) {
+    try {
+      const response = await factCheckRequest(
+        `/bookmark/fact/${id}`,
+        "PUT",
+        {},
+        true,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getArchivedDocuments() {
+    try {
+      const response = await factCheckRequest(
+        "/fact/user",
         "GET",
         {},
         true,
