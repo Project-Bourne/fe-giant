@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ActionIcons from "@/pages/home/components/ActionIcons";
-import ListItem from "@/pages/home/components/ListItem";
 import DocumentDisplayModal from "@/pages/home/components/DocumentDisplayModal";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate, useTruncate } from "@/components/custom-hooks";
-import saved from "../../../../public/icons/saved.svg";
-import on_saved from "../../../../public/icons/on.bookmark_filled.svg";
-import options from "../../../../public/icons/options-icon.svg";
-import Image from "next/image";
-import { setIsArchived } from "@/redux/reducers/documentReducer";
 
 function HomeContent({ data, headerborder }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
-  const isArchived = useSelector((state: any) => state.documents.isArchived);
   const [contentModal, setContentModal] = useState(false);
   const [modalContents, setModalContents] = useState({
     title: "",
@@ -21,11 +13,8 @@ function HomeContent({ data, headerborder }) {
   });
   const [selectedId, setSelectedId] = useState(null);
   const [tableheader, setTableheader] = useState(buttons);
-  const [showaction, setShowAction] = useState(0);
-  const [archived, setArchived] = useState(false);
   const [clickTimeout, setClickTimeout] = useState(null);
   const router = useRouter();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setTableheader(buttons);
@@ -45,6 +34,9 @@ function HomeContent({ data, headerborder }) {
   const handleClick = (id, title, content) => {
     handleModalOpen(id, title, content);
   };
+  const handleDoubleClick = (id) => {
+    router.push(`/home/metadata/${id}`);
+  };
 
   const handleClicks = (_arg, _arg1, _arg2) => {
     if (clickTimeout !== null) {
@@ -63,64 +55,58 @@ function HomeContent({ data, headerborder }) {
     }
   };
 
-  const handleHover = () => {
-    setShowAction(1);
-  };
-  const handleHoverOut = () => {
-    setShowAction(0);
-  };
-
-  const handleArchived = (e, id) => {
-    e.stopPropagation();
-    // setArchived(true);
-    dispatch(setIsArchived(id));
-  };
-
-  const handleUndoArchived = (e, id) => {
-    e.stopPropagation();
-    setArchived(false);
-  };
-
-  const handleDoubleClick = (id) => {
-    router.push(`/home/metadata/${id}`);
-  };
-
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
       const cells = columnOrder.map((columnItem: any, index) => {
+        if (columnItem?.key === "archive") {
+          return (
+            <div
+              key={index}
+              className={`w-[${columnItem.width}] flex  items-center`}
+            ></div>
+          );
+        }
         if (
           (rowData?.hasOwnProperty(columnItem?.key) &&
             rowData[columnItem?.key] !== undefined) ||
+          (rowData?.fact?.hasOwnProperty(columnItem?.key) &&
+            rowData?.fact[columnItem?.key] !== undefined) ||
           (rowData?.confidence?.hasOwnProperty(columnItem?.key) &&
             rowData["confidence"][columnItem?.key] !== undefined) ||
+          (rowData?.fact?.confidence?.hasOwnProperty(columnItem?.key) &&
+            rowData?.fact["confidence"][columnItem?.key] !== undefined) ||
           columnItem?.key !== "archive"
         ) {
           if (columnItem?.key === "author") {
             // Author
+            const uniqueAuthor =
+              rowData?.confidence?.author || rowData?.fact?.confidence?.author
+                ? rowData?.confidence?.author ||
+                  rowData?.fact?.confidence?.author
+                : "No Author";
+            const author =
+              typeof uniqueAuthor !== "string"
+                ? useTruncate(uniqueAuthor[0], 25)
+                : useTruncate(uniqueAuthor, 25);
             return (
               <div
                 key={index}
-                className={`capitalize p-2 w-[${columnItem?.width}]`}
+                className={`capitalize py-2 px-3 w-[${columnItem?.width}]`}
               >
-                {useTruncate(
-                  (rowData?.confidence && rowData?.confidence?.author) || "",
-                  25,
-                ) ?? "no author"}
+                {author}
               </div>
             );
           } else if (columnItem?.key === "updatedAt") {
             // Time
             if (columnItem.checked) {
-              if (showaction === 0) {
-                return (
-                  <div key={index} className={`p-2 w-[${columnItem?.width}] `}>
-                    {useFormatDate(rowData[columnItem?.key])}
-                  </div>
-                );
-              }
-              if (showaction === 1) {
-                return <ActionIcons />;
-              }
+              return (
+                <div
+                  key={index}
+                  className={`py-2 px-2 w-[${columnItem?.width}] `}
+                >
+                  {useFormatDate(rowData[columnItem?.key])}
+                </div>
+              );
             }
           } else if (columnItem?.key === "content") {
             // Content
@@ -128,12 +114,14 @@ function HomeContent({ data, headerborder }) {
               return (
                 <div
                   key={index}
-                  className={`p-2 w-[${columnItem?.width}] ${
+                  className={`py-2 px-2 w-[${columnItem?.width}] ${
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
                   {useTruncate(
-                    rowData?.confidence?.content || "No Content",
+                    rowData?.confidence?.content ||
+                      rowData?.fact?.confidence?.content ||
+                      "No Content",
                     25,
                   )}
                 </div>
@@ -143,20 +131,22 @@ function HomeContent({ data, headerborder }) {
             columnItem?.key !== "updatedAt" ||
             columnItem?.key !== "author"
           ) {
+            const item = rowData?.fact
+              ? rowData?.fact[columnItem?.key] ||
+                rowData?.fact?.confidence[columnItem?.key]
+              : !rowData?.fact
+              ? rowData[columnItem?.key] ||
+                rowData?.confidence?.title ||
+                `No ${columnItem?.key}`
+              : `No ${columnItem?.key}`;
             return (
               <div
                 key={index}
-                className={`p-2 w-[${columnItem?.width}] ${
-                  columnItem?.key === "title" && "first-letter:capitalize"
+                className={`py-2 w-[${columnItem?.width}] ${
+                  columnItem?.key === "title" && "px-3 first-letter:capitalize"
                 }`}
               >
-                {useTruncate(rowData[columnItem?.key], 25) ||
-                  useTruncate(
-                    (rowData?.confidence &&
-                      rowData?.confidence[columnItem?.key]) ||
-                      `No ${columnItem?.key}`,
-                    25,
-                  )}
+                {useTruncate(item, 25)}
               </div>
             );
           }
@@ -195,7 +185,7 @@ function HomeContent({ data, headerborder }) {
             item?.checked && (
               <li
                 key={index}
-                className={`w-[${item.width}] text-[16px] font-bold`}
+                className={`w-[${item.width}] text-[16px] px-[2px] font-bold`}
               >
                 {item.name}
               </li>

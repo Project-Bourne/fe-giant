@@ -1,26 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import HeadIcon from "./components/HeadIcon";
 // import dummy from "@/utils/dummy.json";
 // import BlueButton from "@/components/ui/BlueButton";
-import { SelectTableLayout } from "@/components/ui";
-import { useSelector } from "react-redux";
+import { CustomModal, SelectTableLayout } from "@/components/ui";
+import { useDispatch, useSelector } from "react-redux";
 import HomeContent from "./components/Content";
+import { toast } from "react-toastify";
+import DocumentService from "@/services/documents.service";
+import { setArchived } from "@/redux/reducers/documentReducer";
+import Loader from "@/components/ui/Loader";
 
 function Starred() {
-  const [activeOption, setActiveOption] = useState("All");
-  const [tableLayout, setTableLayout] = useState("0");
-  const archivedFacts = useSelector(
-    (state: any) => state.documents.archivedDocs,
-  );
-  // const [archivedFacts, setArchivedFacts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [archivedData, setArchivedData] = useState([]);
+  const docService = new DocumentService();
+  const dispatch = useDispatch();
 
-  const handleOptionChange = (option) => {
-    setActiveOption(option);
-  };
-
-  const handleLayoutOptionChange = (_arg) => {
-    setTableLayout(_arg);
-  };
+  useEffect(() => {
+    setLoading(true);
+    try {
+      docService.getArchivedDocuments().then((res) => {
+        setLoading(false);
+        if (res?.data) {
+          const docs = res?.data;
+          const isArchived = docs?.filter((doc) => doc?.bookmark === true);
+          setArchivedData(isArchived);
+          dispatch(setArchived(isArchived));
+        } else {
+          toast.error(res?.msg);
+        }
+      });
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.msg);
+    }
+  }, []);
 
   return (
     <>
@@ -28,23 +42,20 @@ function Starred() {
         <h1 className="text-[20px] md:text-[30px] font-bold md:ml-10 ml-5 mb-5">
           Archives
         </h1>
-        {/* <SelectTableLayout
-          handleSelectChange={handleLayoutOptionChange}
-          classNameStyle="mr-10"
-        /> */}
       </div>
 
       <div className="bg-sirp-listBg h-[100%] border mx-3 md:mx-10 rounded-[1rem]">
-        {/* <div className=" flex w-[100%] mr-[1.5rem] px-2 border-b-2 py-4 "> */}
-        {/* <HeadIcon
-            activeOption={activeOption}
-            onOptionChange={handleOptionChange}
-            onClick={handleCheckboxes}
-          /> */}
-        {/* </div> */}
-
-        <HomeContent data={archivedFacts} headerborder={true} />
+        <HomeContent data={archivedData} headerborder={true} />
       </div>
+
+      {loading && (
+        <CustomModal
+          style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
+          closeBtn={false}
+        >
+          <Loader />
+        </CustomModal>
+      )}
     </>
   );
 }

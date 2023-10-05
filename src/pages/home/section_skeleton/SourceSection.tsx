@@ -6,9 +6,10 @@ import { useSelector } from "react-redux";
 function SourceSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
   const sources =
-    fact?.confidence?.backedBy && fact?.confidence?.backedBy?.length > 0
-      ? fact?.confidence?.backedBy
-      : ["Source not found"];
+    fact?.fact?.confidence?.backedBy &&
+    fact?.fact?.confidence?.backedBy?.length > 0
+      ? fact?.fact?.confidence?.backedBy
+      : [];
 
   return (
     <div className="w-[25rem] border-l-2 border-sirp-keynotebg pl-10">

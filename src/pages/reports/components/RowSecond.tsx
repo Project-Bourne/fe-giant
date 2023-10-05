@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ProgressBar from "@/components/ui/ProgressBar";
-import PolarChartComponent from "../charts/polar";
+import MapChart from "../charts/map";
 
 import info from "../../../../public/icons/info.svg";
 import { article_sources } from "@/utils/reports.constants";
@@ -14,10 +14,10 @@ function SecondRow() {
           {/* header text rhs  */}
           <div>
             <h3 className="md:text-[14px] text-[12px] font-light md:tracking-[.7px]">
-              ARTICLE CONFIDENCE
+              LOCATION
             </h3>
             <h3 className="md:text-[14px] text-[12px]  font-normal md:tracking-[.7px]">
-              Average confidence level of articles crawled
+              Location of articles crawled
             </h3>
           </div>
           {/* header text lhs  */}
@@ -34,8 +34,8 @@ function SecondRow() {
 
         {/* body and graph  */}
         <div className="border-[2px] border-sirp-lightGrey h-[300px]">
-          <div className="flex justify-center h-[350px] w-[75%] mx-auto">
-            <PolarChartComponent />
+          <div className="h-[270px]">
+            <MapChart />
           </div>
         </div>
       </div>

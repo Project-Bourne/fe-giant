@@ -41,15 +41,17 @@ function Header() {
           width={35}
           className="p-2 border-[2px] border-gray-200 rounded-md cursor-pointer"
         /> */}
-        <div className="flex gap-x-2 items-center py-2 px-1.5 md:px-4 bg-sirp-primary text-white cursor-pointer rounded-md">
+
+        {/* <div 
+            onClick={() => setToggleModal((prevState) => !prevState)}
+             className="flex gap-x-2 items-center py-2 px-1.5 md:px-4 bg-sirp-primary text-white cursor-pointer rounded-md">
           <Image src={doc} alt="export" height={20} width={20} className="" />
           <p
             className="text-[12px] md:text-[14px]"
-            onClick={() => setToggleModal((prevState) => !prevState)}
           >
             Generate report
           </p>
-        </div>
+        </div> */}
       </div>
 
       {toggleModal && (

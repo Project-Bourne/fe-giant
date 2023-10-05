@@ -8,6 +8,12 @@ interface UiStateProps {
 const initialState: UiStateProps = {
   dropdownButtons: [
     {
+      name: "",
+      width: "2",
+      key: "archive",
+      checked: true,
+    },
+    {
       name: "Title",
       width: "22%",
       key: "title",
@@ -21,13 +27,13 @@ const initialState: UiStateProps = {
     },
     {
       name: "Source",
-      width: "23%",
+      width: "22%",
       key: "url",
       checked: true,
     },
     {
       name: "Content",
-      width: "24%",
+      width: "23%",
       key: "content",
       checked: true,
     },

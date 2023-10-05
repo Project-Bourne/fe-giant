@@ -73,7 +73,7 @@ function Index() {
   };
 
   return (
-    <>
+    <div className="pb-7">
       <h1 className="text-[20px] md:text-[30px] font-bold md:ml-10 ml-5 mb-5">
         All Documents
       </h1>
@@ -103,7 +103,7 @@ function Index() {
           </div>
         </div>
 
-        <div className=" w-full">
+        <div className="w-full">
           <HomeContent data={facts} headerborder={false} />
         </div>
         {loading && (
@@ -115,7 +115,7 @@ function Index() {
           </CustomModal>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

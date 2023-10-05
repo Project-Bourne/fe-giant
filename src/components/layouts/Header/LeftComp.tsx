@@ -6,7 +6,7 @@ import filter from "../../../../public/icons/filter.svg";
 export const LeftComp = (props) => {
   return (
     <div className="flex relative flex-row items-center w-full self-start">
-      <div className="bg-sirp-lightGrey flex flex-row w-full mr-2 py-3 px-5 h-[45px] rounded-[12px]">
+      {/* <div className="bg-sirp-lightGrey flex flex-row w-full mr-2 py-3 px-5 h-[45px] rounded-[12px]">
         <Image src={search} alt="Search" width={18} height={18} priority />
 
         <div className="ml-3 bg-sirp-lightGrey w-full self-center">
@@ -28,7 +28,7 @@ export const LeftComp = (props) => {
           style={{ alignSelf: "center" }}
           priority
         />
-      </div>
+      </div> */}
     </div>
   );
 };
