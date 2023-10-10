@@ -11,6 +11,7 @@ import dashboard from "../../../../public/icons/dashboard.svg";
 import down from "../../../../public/icons/down.svg";
 import { useCookies } from "react-cookie";
 import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
+import { CustomModal } from "@/components/ui";
 
 function RightComp() {
   const [, removeCookie] = useCookies(["deep-access"]);
@@ -20,6 +21,7 @@ function RightComp() {
   const { userInfo } = useSelector((state: any) => state?.auth);
   const [dropdown, setDropdown] = useState(false);
   const [toggleDashboard, setToggleDashboard] = useState(false);
+  const [logoutConfirmation, setLogoutConfirmation] = useState(false);
 
   const handleLogout = async (event: any) => {
     event.stopPropagation();
@@ -32,6 +34,11 @@ function RightComp() {
     NotificationService.success({
       message: "Logout operation successful!",
     });
+    setDropdown(false);
+  };
+
+  const handleCancelLogout = () => {
+    setLogoutConfirmation(false);
     setDropdown(false);
   };
 
@@ -120,10 +127,35 @@ function RightComp() {
         {dropdown && (
           <div
             className="absolute bg-sirp-lightGrey text-black text-[13px] py-2 px-2 w-[90px] text-center top-[3rem] md:mr-[7.5rem] rounded-lg items-center justify-center"
-            onClick={handleLogout}
+            onClick={() => setLogoutConfirmation(true)}
           >
             <p>Log Out</p>
           </div>
+        )}
+
+        {logoutConfirmation && (
+          <CustomModal
+            style="bg-white md:w-[30%] w-[50%] relative top-[25%] rounded-xl mx-auto  px-5 py-5"
+            closeModal={() => setLogoutConfirmation(false)}
+          >
+            <div className="grid gap-y-7">
+              <p>Do you wish to Logout of Deepsoul?</p>
+              <div className="flex gap-x-7">
+                <button
+                  onClick={handleLogout}
+                  className="w-[50%] bg-red-600 text-white rounded-lg py-3 text-[14px]"
+                >
+                  Logout
+                </button>
+                <button
+                  onClick={handleCancelLogout}
+                  className="w-[50%] bg-gray-200 text-black rounded-lg py-3 text-[14px]"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </CustomModal>
         )}
       </div>
     </div>

@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 // import BlueButton from "@/components/ui/BlueButton";
 import { CustomModal, SelectTableLayout } from "@/components/ui";
 import { useDispatch, useSelector } from "react-redux";
-import HomeContent from "./components/Content";
 import { toast } from "react-toastify";
 import DocumentService from "@/services/documents.service";
 import { setArchived } from "@/redux/reducers/documentReducer";
 import Loader from "@/components/ui/Loader";
+import ArchiveContent from "./components/ArchiveContent";
 
 function Starred() {
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,7 @@ function Starred() {
         if (res?.data) {
           const docs = res?.data;
           const isArchived = docs?.filter((doc) => doc?.bookmark === true);
+          console.log(isArchived);
           setArchivedData(isArchived);
           dispatch(setArchived(isArchived));
         } else {
@@ -45,7 +46,7 @@ function Starred() {
       </div>
 
       <div className="bg-sirp-listBg h-[100%] border mx-3 md:mx-10 rounded-[1rem]">
-        <HomeContent data={archivedData} headerborder={true} />
+        <ArchiveContent data={archivedData} headerborder={true} />
       </div>
 
       {loading && (

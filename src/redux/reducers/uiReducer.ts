@@ -9,45 +9,40 @@ const initialState: UiStateProps = {
   dropdownButtons: [
     {
       name: "",
-      width: "2%",
+      width: "w-[2%]",
       key: "archive",
       checked: true,
     },
     {
       name: "Title",
-      width: "22%",
+      width: "w-[22%]",
       key: "title",
       checked: true,
     },
     {
       name: "Author",
-      width: "22%",
+      width: "w-[22%]",
       key: "author",
       checked: true,
     },
     {
       name: "Source",
-      width: "22%",
+      width: "w-[22%]",
       key: "url",
       checked: true,
     },
     {
       name: "Content",
-      width: "23%",
+      width: "w-[23%]",
       key: "content",
       checked: true,
     },
     {
       name: "Time",
-      width: "9%",
+      width: "w-[9%]",
       key: "updatedAt",
       checked: true,
     },
-    // { name: 'Title', id: 0 },
-    // { name: 'Author', id: 1 },
-    // { name: 'Source', id: 2 },
-    // { name: 'Content', id: 3 },
-    // { name: 'Time', id: 4 },
   ],
 };
 

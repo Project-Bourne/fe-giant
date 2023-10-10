@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import ActionIcons from "./ActionIcons";
 import { useTruncate } from "@/components/custom-hooks";
 
-function DocumentDisplayModal({ closeModal, selectedItem, id }) {
+function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
   const router = useRouter();
 
   const handleOnClick = (e) => {
     e.stopPropagation();
-    router.push(`/home/metadata/${id}`);
+    router.push(`${to}/${id}`);
   };
 
   return (

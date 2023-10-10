@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Min_and_Max_icon from "../components/Min_and_Max_icon";
-import ActionIcons from "../components/ActionIcons";
-import MetaData from "../components/MetaData";
-// import DummyText from "../components/dummyText";
+// import Min_and_Max_icon from "../components/Min_and_Max_icon";
+import MetaData from "./components/MetaData";
 import Image from "next/image";
 import { Tooltip } from "@mui/material";
-import backArrow from "../../../../public/icons/arrow-narrow-left1.svg";
+import backArrow from "../../../public/icons/arrow-narrow-left1.svg";
 import { useRouter } from "next/router";
-import MainContent from "../components/MainContent";
 import DocumentService from "@/services/documents.service";
 import NotificationService from "@/services/notification.service";
 import { useDispatch } from "react-redux";
 import { setFactCheck } from "@/redux/reducers/documentReducer";
+import ActionIcons from "@/pages/home/components/ActionIcons";
+import MainContent from "@/pages/home/components/MainContent";
 
 function Meta() {
   const router = useRouter();
@@ -27,7 +26,13 @@ function Meta() {
       .then((res) => {
         if (res?.status) {
           setSelectedDoc(res?.data);
+          console.log("archive", res?.data);
           dispatch(setFactCheck(res?.data));
+        } else {
+          NotificationService.error({
+            message: "Failed to get document details!",
+            addedText: res?.message,
+          });
         }
       })
       .catch((err) => {
@@ -57,7 +62,7 @@ function Meta() {
         />
 
         <ActionIcons
-          showArchive={true}
+          showArchive={false}
           docId={selectedDoc?.fact?.uuid}
           archiveId={selectedDoc?.irpId}
         />

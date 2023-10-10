@@ -13,9 +13,9 @@ import Image from "next/image";
 import layoutIcon from "../../../public/icons/layout.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setDocuments } from "@/redux/reducers/documentReducer";
-import HomeContent from "../archives/components/Content";
 import Loader from "@/components/ui/Loader";
 import NotificationService from "@/services/notification.service";
+import HomeContent from "./components/HomeContent";
 
 function Index() {
   const router = useRouter();

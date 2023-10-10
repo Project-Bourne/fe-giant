@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -6,10 +6,30 @@ import { useSelector } from "react-redux";
 import PersonIcon from "@mui/icons-material/Person";
 
 function AuthorSection({ fact, isLoading }) {
-  // const { data } = useSelector((state: any) => state.factcheck);
-  const author = fact?.fact?.confidence?.author
+  const [source, setSource] = useState(null);
+
+  useEffect(() => {
+    if (fact?.url) {
+      const domain = new URL(fact?.url).hostname;
+      setSource(domain);
+    }
+    if (fact?.fact?.url) {
+      const domain = new URL(fact?.fact?.url).hostname;
+      setSource(domain);
+    }
+  }, [fact]);
+
+  const author = fact?.confidence?.author
+    ? fact?.confidence?.author // if there's no author, use hostname
+    : fact?.fact?.confidence?.author
     ? fact?.fact?.confidence?.author
-    : "Author not found";
+    : "author";
+
+  const newAuthor =
+    typeof author !== "string" && author[0] !== ""
+      ? author[0]
+      : source && source;
+
   return (
     <div className="mt-3 w-[25rem]">
       <p className="text-gray-500 mt-3">
@@ -22,8 +42,8 @@ function AuthorSection({ fact, isLoading }) {
           <PersonIcon />
         )}
         <div>
-          <p className="font-bold">
-            {isLoading ? <Skeleton width={150} /> : author}
+          <p className="font-semibold first-letter:capitalize">
+            {isLoading ? <Skeleton width={150} /> : newAuthor}
           </p>
         </div>
       </div>
