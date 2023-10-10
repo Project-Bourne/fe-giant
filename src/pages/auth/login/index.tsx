@@ -23,7 +23,7 @@ function Login() {
   const authService = new AuthService();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (formData.email === "") {
@@ -36,39 +36,37 @@ function Login() {
     }
 
     setLoading(true);
-    authService
-      .login(formData)
-      .then((res) => {
-        setLoading(false);
-        if (res?.status) {
-          // get user information using returned response 'res' containing userAccessToken
-          // localStorage.setItem("deep-access", res?.data?.accessToken);
-          setCookie("deep-access", res?.data?.accessToken, { path: "/" });
-          dispatch(
-            setAccessToken({
-              accessToken: res?.data?.accessToken,
-              refreshToken: res?.data?.refreshToken,
-            }),
-          );
+    try {
+      const res = await authService.login(formData);
+      setLoading(false);
+      if (res?.status) {
+        // get user information using returned response 'res' containing userAccessToken
+        // localStorage.setItem("deep-access", res?.data?.accessToken);
+        setCookie("deep-access", res?.data?.accessToken, { path: "/" });
+        dispatch(
+          setAccessToken({
+            accessToken: res?.data?.accessToken,
+            refreshToken: res?.data?.refreshToken,
+          }),
+        );
 
-          NotificationService.success({
-            message: "Login Successful!",
-          });
-          router.push("/");
-        } else {
-          NotificationService.error({
-            message: "Login Failed!",
-            addedText: res?.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
+        NotificationService.success({
+          message: "Login Successful!",
+        });
+        router.push("/");
+      } else {
         NotificationService.error({
           message: "Login Failed!",
-          addedText: err?.message,
+          addedText: res?.message,
         });
+      }
+    } catch (err) {
+      setLoading(false);
+      NotificationService.error({
+        message: "Login Failed!",
+        addedText: err?.message,
       });
+    }
   };
 
   return (

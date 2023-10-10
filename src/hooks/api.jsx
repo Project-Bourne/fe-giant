@@ -71,7 +71,7 @@ export async function request(url, method, payload, token, text, form) {
       })
       .catch((err) => {
         console.error(`Request Error ${url}: `, err);
-        throw new Error(err);
+        return err;
       });
   }
 }

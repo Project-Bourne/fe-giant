@@ -18,31 +18,40 @@ function Index() {
   const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
   const user = useSelector((state: any) => state?.auth?.userInfo);
+  const userAccessToken = useSelector(
+    (state: any) => state?.auth?.userAccessToken,
+  );
   const { documents, archivedDocs } = useSelector(
     (state: any) => state.documents,
   );
   const collabExportsCount = 0;
 
   useEffect(() => {
+    setUserData(user);
+  }, [user]);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [userAccessToken]);
+
+  const getUserInfo = async () => {
     setLoading(true);
     try {
-      authService
-        .getUserViaAccessToken()
-        .then((response) => {
-          setLoading(false);
-          if (response?.status) {
-            dispatch(setUserInfo(response?.data));
-          }
-        })
-        .catch((err) => {
-          setLoading(false);
-          NotificationService.error({
-            message: "Error",
-            addedText: "Could not fetch user data",
-            position: "top-center",
-          });
+      const response = await authService.getUserViaAccessToken();
+      setLoading(false);
+      if (response?.status) {
+        dispatch(setUserInfo(response?.data));
+        setUserData(response?.data);
+      } else {
+        setLoading(false);
+        NotificationService.error({
+          message: "Error",
+          addedText: "Could not fetch user data",
+          position: "top-center",
         });
+      }
     } catch (err) {
       setLoading(false);
       NotificationService.error({
@@ -51,7 +60,7 @@ function Index() {
         position: "top-center",
       });
     }
-  }, []);
+  };
 
   return (
     <React.Fragment>
@@ -70,7 +79,7 @@ function Index() {
 
       {user?.firstName && (
         <h2 className="text-black text-2xl font-bold capitalize mt-[3rem] -mb-[2rem] ml-[10rem]">
-          Welcome {user?.firstName}
+          Welcome {userData?.firstName}
         </h2>
       )}
 
@@ -86,7 +95,7 @@ function Index() {
         />
       </div> */}
       <div className="mb-5 mt-0">
-        <Group />
+        <Group userData={userData} />
       </div>
       {loading && (
         <CustomModal
