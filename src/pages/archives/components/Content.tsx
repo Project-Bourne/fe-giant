@@ -175,30 +175,34 @@ function HomeContent({ data, headerborder }) {
 
   return (
     <>
-      <ul
-        className={`w-full flex flex-row px-3 py-4 ${
-          headerborder && "rounded-t-2xl"
-        }  bg-gray-100`}
-      >
-        {tableheader.map(
-          (item, index) =>
-            item?.checked && (
-              <li
-                key={index}
-                className={`w-[${item.width}] text-[16px] px-[2px] font-bold`}
-              >
-                {item.name}
-              </li>
-            ),
-        )}
-      </ul>
+      {data?.length > 0 && (
+        <ul
+          className={`w-full flex flex-row px-3 py-4 ${
+            headerborder && "rounded-t-2xl"
+          }  bg-gray-100`}
+        >
+          {tableheader.map(
+            (item, index) =>
+              item?.checked && (
+                <li
+                  key={index}
+                  className={`w-[${item.width}] text-[16px] px-[2px] font-bold`}
+                >
+                  {item.name}
+                </li>
+              ),
+          )}
+        </ul>
+      )}
       <>
         {data?.length > 0 ? (
           generateTableRows(data, tableheader)
         ) : (
           <div className="p-3">
             {" "}
-            <i>You have no documents yet!</i>{" "}
+            <p className="text-center py-7">
+              <i>You have no documents yet!</i>
+            </p>{" "}
           </div>
         )}
       </>

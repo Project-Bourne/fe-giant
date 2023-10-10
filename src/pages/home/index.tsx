@@ -43,8 +43,8 @@ function Index() {
         .then((res) => {
           setLoading(false);
           if (res?.status) {
-            dispatch(setDocuments(res?.data));
-            setFacts(res?.data);
+            dispatch(setDocuments(res?.data?.facts));
+            setFacts(res?.data?.facts);
           }
         })
         .catch((err) => {
@@ -80,21 +80,25 @@ function Index() {
 
       <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-t-[1rem]">
         <div className="flex gap-x-4 items-center justify-end w-[100%] px-2 border-b-2 py-4 ">
-          <div
-            className={`h-[39px] w-[39px] relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
-              layoutOptionsToggle && "shadow"
-            }`}
-          >
-            <Image
-              src={layoutIcon}
-              alt="layout icon"
-              className="hover:cursor-pointer"
-              title="Table layout"
-              onClick={() => setLayoutOptionsToggle((prevState) => !prevState)}
-              width={23}
-            />
-            {layoutOptionsToggle && <TablelayoutDropdownOptions />}
-          </div>
+          {facts?.length > 0 && (
+            <div
+              className={`h-[39px] w-[39px] relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
+                layoutOptionsToggle && "shadow"
+              }`}
+            >
+              <Image
+                src={layoutIcon}
+                alt="layout icon"
+                className="hover:cursor-pointer"
+                title="Table layout"
+                onClick={() =>
+                  setLayoutOptionsToggle((prevState) => !prevState)
+                }
+                width={23}
+              />
+              {layoutOptionsToggle && <TablelayoutDropdownOptions />}
+            </div>
+          )}
 
           {/* <SelectTableLayout handleSelectChange={handleLayoutOptionChange} /> */}
 
