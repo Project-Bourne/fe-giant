@@ -9,7 +9,7 @@ const initialState: UiStateProps = {
   dropdownButtons: [
     {
       name: "",
-      width: "2",
+      width: "2%",
       key: "archive",
       checked: true,
     },
