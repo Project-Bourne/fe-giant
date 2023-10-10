@@ -11,7 +11,7 @@ import frame013 from "../../../public/icons/frame-013.svg";
 import frame0100 from "../../../public/icons/frame-0100.svg";
 import { useSelector } from "react-redux";
 
-function Group() {
+function Group({ userData }) {
   const router = useRouter();
   const { documents, archivedDocs } = useSelector(
     (state: any) => state.documents,
@@ -24,7 +24,7 @@ function Group() {
   const analyzedDocs = 0;
   const collabExports = 0;
 
-  const permissions = userInfo?.role?.permissions;
+  const permissions = userData?.role?.permissions;
 
   return (
     <div className="px-[5rem] py-7">

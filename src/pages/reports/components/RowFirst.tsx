@@ -89,7 +89,7 @@ function FirstRow() {
               } rounded-lg cursor-pointer`}
               onClick={() => showChart("bar")}
             />
-            <Image
+            {/* <Image
               src={isActive === "scatter" ? on_scatter : scatter}
               alt="scatter chart"
               height={32}
@@ -100,8 +100,8 @@ function FirstRow() {
                   : `bg-gray-50 border-gray-200`
               } rounded-lg cursor-pointer`}
               onClick={() => showChart("scatter")}
-            />
-            <Image
+            /> */}
+            {/* <Image
               src={isActive === "line" ? on_line : line}
               alt="line chart"
               height={32}
@@ -112,7 +112,7 @@ function FirstRow() {
                   : `bg-gray-50 border-gray-200`
               } rounded-lg cursor-pointer`}
               onClick={() => showChart("line")}
-            />
+            /> */}
           </div>
           {/* date picker  */}
           <div className="flex gap-x-4">
