@@ -8,10 +8,7 @@ import { useSelector } from "react-redux";
 
 function LocationSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
-  const location =
-    fact?.countries && fact?.countries?.length > 0
-      ? fact?.countries
-      : "No location";
+  const location = fact?.fact?.countries || "No location";
 
   return (
     <div className="w-[25rem]">
@@ -34,15 +31,15 @@ function LocationSection({ fact, isLoading }) {
               <Skeleton width={150} />
             ) : (
               <div className="flex gap-x-1">
-                {fact?.fact?.countries && fact?.fact?.countries?.length > 0
-                  ? fact?.fact?.countries.map(
+                {typeof location !== "string" && location?.length > 0
+                  ? location.map(
                       (
                         country,
                         index, // display all array countries and dynamically add comma "," to each element except the last item
                       ) => (
                         <div key={index}>
                           {country}
-                          {index !== fact?.countries?.length - 1 && ","}
+                          {index !== location?.length - 1 && ","}
                         </div>
                       ),
                     )

@@ -23,7 +23,7 @@ function DateSection({ fact, isLoading }) {
       <p className="text-gray-500 pl-10">
         {isLoading ? <Skeleton width={50} /> : "Date"}
       </p>
-      <div className="flex gap-3 border-l-2 border-sirp-keynotebg pl-10 items-center my-5">
+      <div className="flex gap-3 border-l-2 border-sirp-keynotebg pl-10 items-center my-3">
         {isLoading ? (
           <Skeleton width={50} height={50} circle />
         ) : (
@@ -31,7 +31,7 @@ function DateSection({ fact, isLoading }) {
         )}
 
         <div>
-          <p className="font-bold">
+          <p className="font-semibold text-[14px]">
             {isLoading ? <Skeleton width={150} /> : formattedDate}
           </p>
           <p className="text-gray-500 text-sm">

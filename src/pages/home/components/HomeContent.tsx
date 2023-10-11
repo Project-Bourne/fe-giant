@@ -20,6 +20,11 @@ function HomeContent({ data, headerborder }) {
     setTableheader(buttons);
   }, [buttons]);
 
+  const getAuthor = (arg) => {
+    const domain = new URL(arg).hostname;
+    return domain;
+  };
+
   const handleModalClose = () => {
     setContentModal(false);
     setSelectedId(null);
@@ -60,10 +65,7 @@ function HomeContent({ data, headerborder }) {
       const cells = columnOrder.map((columnItem: any, index) => {
         if (columnItem?.key === "archive") {
           return (
-            <div
-              key={index}
-              className={`w-[${columnItem.width}] flex  items-center`}
-            ></div>
+            <div key={index} className={`w-[2%] flex  items-center`}></div>
           );
         }
         if (
@@ -79,20 +81,19 @@ function HomeContent({ data, headerborder }) {
         ) {
           if (columnItem?.key === "author") {
             // Author
+
             const uniqueAuthor =
               rowData?.confidence?.author || rowData?.fact?.confidence?.author
                 ? rowData?.confidence?.author ||
                   rowData?.fact?.confidence?.author
-                : "No Author";
+                : "No Author"; // getAuthor(rowData?.url) || getAuthor(rowData?.fact?.url);
             const author =
               typeof uniqueAuthor !== "string"
                 ? useTruncate(uniqueAuthor[0], 25)
                 : useTruncate(uniqueAuthor, 25);
+
             return (
-              <div
-                key={index}
-                className={`capitalize py-2 px-3 w-[${columnItem?.width}]`}
-              >
+              <div key={index} className={`capitalize py-2 px-3 w-[22%]`}>
                 {author}
               </div>
             );
@@ -100,10 +101,7 @@ function HomeContent({ data, headerborder }) {
             // Time
             if (columnItem.checked) {
               return (
-                <div
-                  key={index}
-                  className={`py-2 px-2 w-[${columnItem?.width}] `}
-                >
+                <div key={index} className={`py-2 w-[9%]`}>
                   {useFormatDate(rowData[columnItem?.key])}
                 </div>
               );
@@ -114,7 +112,7 @@ function HomeContent({ data, headerborder }) {
               return (
                 <div
                   key={index}
-                  className={`py-2 px-2 w-[${columnItem?.width}] ${
+                  className={`py-2 w-[23%] ${
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
@@ -142,7 +140,7 @@ function HomeContent({ data, headerborder }) {
             return (
               <div
                 key={index}
-                className={`py-2 w-[${columnItem?.width}] ${
+                className={`py-2 w-[22%] ${
                   columnItem?.key === "title" && "px-3 first-letter:capitalize"
                 }`}
               >
@@ -173,6 +171,8 @@ function HomeContent({ data, headerborder }) {
     });
   };
 
+  console.log("table headewr", tableheader);
+
   return (
     <>
       {data?.length > 0 && (
@@ -186,7 +186,14 @@ function HomeContent({ data, headerborder }) {
               item?.checked && (
                 <li
                   key={index}
-                  className={`w-[${item.width}] text-[16px] px-[2px] font-bold`}
+                  className={`
+                  ${item.key === "archive" && "w-[2%]"}
+                  ${item.key === "title" && "w-[22%]"}
+                  ${item.key === "author" && "w-[22%]"}
+                  ${item.key === "url" && "w-[22%]"}
+                  ${item.key === "content" && "w-[23%]"}
+                  ${item.key === "updatedAt" && "w-[9%]"}
+                   text-[16px] px-[2px] font-bold`}
                 >
                   {item.name}
                 </li>
@@ -210,6 +217,7 @@ function HomeContent({ data, headerborder }) {
       {/* document content preview pane; fixed display at the right hand side when a document is  clicked */}
       {contentModal && (
         <DocumentDisplayModal
+          to={"home/metadata"}
           closeModal={handleModalClose}
           selectedItem={modalContents}
           id={selectedId}
