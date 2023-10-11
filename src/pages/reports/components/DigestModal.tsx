@@ -31,7 +31,7 @@ function DigestModal() {
     const data = { timeline: timelineNum, sector };
     console.log(data);
     try {
-      const response = await reportService.generateDigest(data);
+      const response = await reportService?.generateDigest(data);
       setLoading(false);
       if (response?.status) {
         console.log("successful response", response);

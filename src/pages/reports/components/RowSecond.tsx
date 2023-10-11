@@ -23,7 +23,7 @@ function SecondRow() {
   // eslint-disable-next-line no-underscore-dangle
   const _constructor = async () => {
     try {
-      const res = await reportService.getSources();
+      const res = await reportService?.getSources();
       console.log({ res });
 
       let t = 0;

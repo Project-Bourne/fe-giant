@@ -33,8 +33,8 @@ function FirstRow() {
         startDate: "",
         endDate: "",
       };
-      const res = await reportService.getReports();
-      console.log({ res });
+      // const res = await reportService?.getReports();
+      // console.log({ res });
     } catch (e) {
       toast.error("Something went wrong...");
       console.log(e.message, "on._constructor.rowfirst");
