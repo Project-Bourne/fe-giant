@@ -3,10 +3,17 @@ import FirstRow from "./RowFirst";
 import FourthRow from "./RowFourth";
 import SecondRow from "./RowSecond";
 import ThirdRow from "./RowThird";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReportDetails from "./ReportDetails";
 
 function Main() {
+  useEffect(() => {
+    _constructor();
+  }, []);
+
+  // eslint-disable-next-line no-underscore-dangle
+  const _constructor = async () => {};
+
   const [modalToggle, setModalToggle] = useState(false);
 
   return (

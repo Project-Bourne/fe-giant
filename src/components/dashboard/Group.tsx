@@ -27,8 +27,8 @@ function Group({ userData }) {
   const permissions = userData?.role?.permissions;
 
   return (
-    <div className="px-[5rem] py-7">
-      <div className=" flex flex-wrap gap-y-3 md:gap-x-[3.4rem]  w-[90%] mx-auto">
+    <div className="px-[5rem] py-7 flex items-center w-[90%] justify-center self-center">
+      <div className=" flex flex-wrap gap-y-3 md:gap-x-[3.4rem] w-[90%] mx-auto">
         {/* IRP */}
         {/* {permissions?.includes("irp") && ( */}
         <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
@@ -50,7 +50,8 @@ function Group({ userData }) {
           </div>
           <div className="pt-8 ">
             <button
-              onClick={() => router.push("http://192.81.213.226:30/home")}
+              // onClick={() => router.push("http://192.81.213.226:30/home")}
+              onClick={() => router.push("/home")}
               className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
             >
               Open IRP

@@ -12,6 +12,7 @@ import Group from "@/components/dashboard/Group";
 // import RightCompDB from "@/components/dashboard/RightComp";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
+import RightComp from "@/components/layouts/Header/RightComp";
 
 function Index() {
   const authService = new AuthService();
@@ -65,23 +66,35 @@ function Index() {
   return (
     <React.Fragment>
       {/* logo  */}
-      <div>
-        <Image
-          src={logo}
-          alt="IRP Logo"
-          className={`h-[70px] md:h-[150px] w-[70px] md:w-[150px] mx-auto mt-[2rem] flex items-center`}
-          priority
-        />
-        <h1 className="text-sirp-primary md:text-3xl text-xl font-bold text-center">
-          Deep Soul
-        </h1>
+      <div
+        className={
+          "mb-[60px] border-b-[2px] p-[25px] w-full flex items-center justify-center"
+        }
+      >
+        <div>
+          <Image
+            src={logo}
+            alt="IRP Logo"
+            className={`h-[70px] md:h-[60px] w-[70px] md:w-[60px] mx-auto mt-[2rem] flex items-center`}
+            priority
+          />
+          <h1 className="text-sirp-primary md:text-2xl text-xl mt-[2px] font-bold text-center">
+            Deep Soul
+          </h1>
+        </div>
+
+        <div className={"absolute right-3 top-10"}>
+          <RightComp dashboard />
+        </div>
       </div>
 
-      {user?.firstName && (
-        <h2 className="text-black text-2xl font-bold capitalize mt-[3rem] -mb-[2rem] ml-[10rem]">
-          Welcome {userData?.firstName}
-        </h2>
-      )}
+      <div className={"flex self-center content-center items-center"}>
+        {user?.firstName && (
+          <h2 className="text-black text-2xl font-bold capitalize mt-[3rem] -mb-[2rem] ml-[18rem] mb-[20px] ">
+            Welcome {userData?.firstName}
+          </h2>
+        )}
+      </div>
 
       {/* the yellow navigation at the top of the dashboard page */}
       {/* <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 justify-between md:items-center w-full md:w-[95%] md:mx-auto md:gap-x-[20px] gap-y-[20px] mt-5">
@@ -94,7 +107,7 @@ function Index() {
           archivedDocsCount={archivedDocs?.length}
         />
       </div> */}
-      <div className="mb-5 mt-0">
+      <div className="mb-5 mt-0 flex justify-center items-center ">
         <Group userData={userData} />
       </div>
       {loading && (

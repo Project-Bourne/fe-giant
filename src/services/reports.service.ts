@@ -17,6 +17,23 @@ class ReportService {
       throw error;
     }
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  async getReports(data) {
+    try {
+      return await factCheckRequest("/report", "GET", data, true, false, false);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getSources() {
+    try {
+      return await factCheckRequest("/domains", "GET", undefined, true);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ReportService;

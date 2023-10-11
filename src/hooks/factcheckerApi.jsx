@@ -40,6 +40,7 @@ export async function factCheckRequest(
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
 
+  console.log({ access });
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,

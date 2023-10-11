@@ -4,9 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 
-const DateComponent = ({ placeholder }) => {
-  const [selectedDate, setSelectedDate] = useState(null);
-
+const DateComponent = ({ placeholder, selectedDate, setSelectedDate }) => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };

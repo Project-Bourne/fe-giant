@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateComponent from "./DatePicker";
 import BarChartComponent from "../charts/bar";
 import ScatterChartComponent from "../charts/scatter";
@@ -14,16 +14,42 @@ import line from "../../../../public/icons/chart-line.svg";
 import calendar from "../../../../public/icons/calendar.svg";
 import right_arrow from "../../../../public/icons/right-arrow.svg";
 import info from "../../../../public/icons/info.svg";
+import ReportService from "@/services/reports.service";
+import { toast } from "react-toastify";
 
 const articlesCrawled = 1000;
 
 function FirstRow() {
+  const reportService = new ReportService();
+
+  useEffect(() => {
+    _constructor();
+  }, []);
+
+  // eslint-disable-next-line no-underscore-dangle
+  const _constructor = async () => {
+    try {
+      const data = {
+        startDate: "",
+        endDate: "",
+      };
+      const res = await reportService.getReports();
+      console.log({ res });
+    } catch (e) {
+      toast.error("Something went wrong...");
+      console.log(e.message, "on._constructor.rowfirst");
+    }
+  };
+
   const [isActive, setIsActive] = useState("bar");
   const [display, setDisplay] = useState({
     bar: true,
     line: false,
     scatter: false,
   });
+  const [reports, setReports] = useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const showChart = (chartType) => {
     // show each chart depending on state change
@@ -77,18 +103,19 @@ function FirstRow() {
         <div className="hidden md:flex gap-x-[8rem] md:gap-x-[12rem]">
           {/* clickable icons  */}
           <div className="flex gap-x-3 items-start">
-            <Image
-              src={isActive === "bar" ? on_bar : bar}
-              alt="bar chart"
-              height={32}
-              width={32}
-              className={`p-1.5 border-[2px] ${
-                isActive === "bar"
-                  ? `bg-blue-100 border-sirp-primary`
-                  : `bg-gray-50 border-gray-200`
-              } rounded-lg cursor-pointer`}
-              onClick={() => showChart("bar")}
-            />
+            {/*<Image*/}
+            {/*  src={isActive === "bar" ? on_bar : bar}*/}
+            {/*  alt="bar chart"*/}
+            {/*  height={32}*/}
+            {/*  width={32}*/}
+            {/*  className={`p-1.5 border-[2px] ${*/}
+            {/*    isActive === "bar"*/}
+            {/*      ? `bg-blue-100 border-sirp-primary`*/}
+            {/*      : `bg-gray-50 border-gray-200`*/}
+            {/*  } rounded-lg cursor-pointer`}*/}
+            {/*  onClick={() => showChart("bar")}*/}
+            {/*/>*/}
+
             {/* <Image
               src={isActive === "scatter" ? on_scatter : scatter}
               alt="scatter chart"
@@ -118,9 +145,17 @@ function FirstRow() {
           <div className="flex gap-x-4">
             <div className="flex items-center gap-x-1 border-[2px] border-gray-100 rounded-md h-0 py-4 px-3">
               <Image src={calendar} alt="" height={20} width={20} />
-              <DateComponent placeholder={"start date"} />
+              <DateComponent
+                placeholder={"start date"}
+                selectedDate={startDate}
+                setSelectedDate={setStartDate}
+              />
               <Image src={right_arrow} alt="" width={20} /> &nbsp;
-              <DateComponent placeholder={"stop date"} />
+              <DateComponent
+                placeholder={"stop date"}
+                selectedDate={endDate}
+                setSelectedDate={setEndDate}
+              />
             </div>
             <div className="flex items-start mt-2">
               <Image

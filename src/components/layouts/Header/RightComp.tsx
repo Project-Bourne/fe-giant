@@ -13,7 +13,9 @@ import { useCookies } from "react-cookie";
 import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
 import { CustomModal } from "@/components/ui";
 
-function RightComp() {
+function RightComp(props) {
+  const { dashboard } = props;
+
   const [, removeCookie] = useCookies(["deep-access"]);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -69,19 +71,21 @@ function RightComp() {
         />
       </div> */}
 
-      <div className={`${styles.view1} hidden md:flex relative`}>
-        <Image
-          src={dashboard}
-          alt="dashboard"
-          width={20}
-          height={20}
-          className="self-center"
-          onClick={handleDashboardToggle}
-          style={{ alignSelf: "center" }}
-          priority
-        />
-        {toggleDashboard && <DashboardDropdown />}
-      </div>
+      {!dashboard && (
+        <div className={`${styles.view1} hidden md:flex relative`}>
+          <Image
+            src={dashboard}
+            alt="dashboard"
+            width={20}
+            height={20}
+            className="self-center"
+            onClick={handleDashboardToggle}
+            style={{ alignSelf: "center" }}
+            priority
+          />
+          {toggleDashboard && <DashboardDropdown />}
+        </div>
+      )}
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
         <div className="flex flex-row items-center justify-center">

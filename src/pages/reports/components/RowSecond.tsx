@@ -4,8 +4,46 @@ import MapChart from "../charts/map";
 
 import info from "../../../../public/icons/info.svg";
 import { article_sources } from "@/utils/reports.constants";
+import ReportService from "@/services/reports.service";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function SecondRow() {
+  const reportService = new ReportService();
+
+  //States
+  const [sources, setSources] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    _constructor();
+  }, []);
+
+  // eslint-disable-next-line no-underscore-dangle
+  const _constructor = async () => {
+    try {
+      const res = await reportService.getSources();
+      console.log({ res });
+
+      let t = 0;
+      if (res.status === true) {
+        const data = res.data;
+        setSources(data);
+
+        data.forEach((d) => {
+          t += d.count;
+        });
+
+        setTotal(t);
+      } else {
+        toast.error(res.message);
+      }
+    } catch (e) {
+      toast.error("Something went wrong...");
+      console.log(e.message, "on._constructor.rowfirst");
+    }
+  };
   const LeftHandDisplay = () => {
     return (
       <div className="grid w-full rounded-xl bg-white">
@@ -71,16 +109,28 @@ function SecondRow() {
         {/* body and graph  */}
         <div className="border-[2px] border-sirp-lightGrey  md:px-8 px-2 md:py-5 py-3 h-[300px]">
           <div className="h-[250px] overflow-y-auto">
-            {article_sources.map((article, index) => (
-              <div key={index} className="mb-4">
-                <p className="capitalize mb-1 text-[14px]">{article.source}</p>
-                <ProgressBar
-                  percentage={article.qty}
-                  progressColor="bg-[#4AC7ED]"
-                  classNameStyle="h-2 bg-gray-100 "
-                />
+            {sources.length > 0 ? (
+              sources.map((source, index) => (
+                <div key={index} className="mb-4">
+                  <p className="mb-1 text-[14px]">
+                    {source.domain.toLowerCase()}
+                  </p>
+                  <ProgressBar
+                    percentage={(source.count / total) * 100}
+                    progressColor="bg-[#4AC7ED]"
+                    classNameStyle="h-2 bg-gray-100 "
+                  />
+                </div>
+              ))
+            ) : (
+              <div
+                className={
+                  "flex w-full items-center justify-center h-full w-full"
+                }
+              >
+                <CircularProgress color={"primary"} size={50} />
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
@@ -88,8 +138,8 @@ function SecondRow() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 rounded-xl">
-      <LeftHandDisplay />
+    <div className="grid grid-cols-1 md:grid-cols-1 gap-3 rounded-xl">
+      {/*<LeftHandDisplay />*/}
       <RightHandDisplay />
     </div>
   );
