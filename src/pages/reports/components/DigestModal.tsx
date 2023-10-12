@@ -29,7 +29,7 @@ function DigestModal() {
     if (!sector || timeline === 0) return;
     const timelineNum = parseInt(timeline.toString(), 10);
     const data = { timeline: timelineNum, sector };
-    console.log(data);
+
     try {
       const response = await reportService?.generateDigest(data);
       setLoading(false);

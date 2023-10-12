@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 function LocationSection({ fact, isLoading }) {
   // const { data } = useSelector((state: any) => state.factcheck);
-  const location = fact?.fact?.countries || "No location";
+  const location = fact?.fact?.countries || fact?.countries || "No location";
 
   return (
     <div className="w-[25rem]">

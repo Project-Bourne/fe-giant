@@ -24,7 +24,6 @@ function Starred() {
         if (res?.data) {
           const docs = res?.data;
           const isArchived = docs?.filter((doc) => doc?.bookmark === true);
-          console.log(isArchived);
           setArchivedData(isArchived);
           dispatch(setArchived(isArchived));
         } else {

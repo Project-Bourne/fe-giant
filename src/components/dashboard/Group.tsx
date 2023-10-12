@@ -81,7 +81,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:36/home")}
+                onClick={() => router.push("http://192.81.213.226:36/chats")}
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
               >
                 Open Collab Workspace

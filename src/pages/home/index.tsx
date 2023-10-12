@@ -102,9 +102,9 @@ function Index() {
 
           {/* <SelectTableLayout handleSelectChange={handleLayoutOptionChange} /> */}
 
-          <div onClick={handleAdd} className="md:mr-[2rem] mr-[.7rem]">
+          {/* <div onClick={handleAdd} className="md:mr-[2rem] mr-[.7rem]">
             <BlueButton />
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full">

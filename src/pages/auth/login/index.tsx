@@ -42,13 +42,14 @@ function Login() {
       if (res?.status) {
         // get user information using returned response 'res' containing userAccessToken
         // localStorage.setItem("deep-access", res?.data?.accessToken);
-        setCookie("deep-access", res?.data?.accessToken, { path: "/" });
-        dispatch(
+        await setCookie("deep-access", res?.data?.accessToken, { path: "/" });
+        await dispatch(
           setAccessToken({
             accessToken: res?.data?.accessToken,
             refreshToken: res?.data?.refreshToken,
           }),
         );
+        await getUserInfo();
 
         NotificationService.success({
           message: "Login Successful!",
@@ -65,6 +66,31 @@ function Login() {
       NotificationService.error({
         message: "Login Failed!",
         addedText: err?.message,
+      });
+    }
+  };
+
+  const getUserInfo = async () => {
+    setLoading(true);
+    try {
+      const response = await authService.getUserViaAccessToken();
+      setLoading(false);
+      if (response?.status) {
+        dispatch(setUserInfo(response?.data));
+      } else {
+        setLoading(false);
+        NotificationService.error({
+          message: "Error",
+          addedText: "Could not fetch user data",
+          position: "top-center",
+        });
+      }
+    } catch (err) {
+      setLoading(false);
+      NotificationService.error({
+        message: "Error",
+        addedText: err?.message,
+        position: "top-center",
       });
     }
   };

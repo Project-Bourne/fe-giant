@@ -1,16 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
 import ProgressBar from "../components/ProgressBar";
 
 function ConfidenceSection({ fact, isLoading }) {
-  // const { data } = useSelector((state: any) => state.factcheck);
+  const [confidence, setConfidence] = useState<any>();
+
+  useEffect(() => {
+    if (fact?.confidence?.level) {
+      if (
+        fact?.confidence?.level !== "unknown" &&
+        fact?.confidence?.level.toLowerCase() !== "nan%"
+      ) {
+        setConfidence(fact?.confidence?.level);
+      } else {
+        setConfidence("0%");
+      }
+    }
+
+    if (fact?.fact?.confidence?.level) {
+      console.log(fact?.fact?.confidence?.level);
+      if (
+        fact?.fact?.confidence?.level !== "unknown" &&
+        fact?.fact?.confidence?.level.toLowerCase() !== "nan%"
+      ) {
+        setConfidence(fact?.fact?.confidence?.level);
+      } else {
+        setConfidence("0%");
+      }
+    }
+  }, [fact]);
+
   const confidencePercent =
-    fact?.fact?.confidence?.level &&
-    fact?.fact?.confidence?.level !== "unknown" &&
-    fact?.fact?.confidence?.level.toLowerCase() !== "nan%"
-      ? fact?.fact?.confidence?.level
+    confidence &&
+    confidence !== "unknown" &&
+    confidence.toLowerCase() !== "nan%"
+      ? confidence
       : "0%";
 
   return (

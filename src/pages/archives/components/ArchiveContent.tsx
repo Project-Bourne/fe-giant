@@ -44,7 +44,6 @@ function ArchiveContent({ data, headerborder }) {
   };
 
   const handleClicks = (_arg, _arg1, _arg2) => {
-    console.log(_arg, _arg1, _arg2);
     if (clickTimeout !== null) {
       // alert('double click executes');
       handleDoubleClick(_arg);
