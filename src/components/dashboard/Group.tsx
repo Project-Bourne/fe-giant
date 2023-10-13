@@ -27,8 +27,8 @@ function Group({ userData }) {
   const permissions = userData?.role?.permissions;
 
   return (
-    <div className="px-[5rem] py-7 flex items-center w-[90%] justify-center self-center">
-      <div className=" flex flex-wrap gap-y-3 md:gap-x-[3.4rem] w-[90%] mx-auto">
+    <div className="px-[4rem] py-7 flex items-center w-[90%] justify-center self-center">
+      <div className="flex flex-wrap gap-y-3 md:gap-x-[2rem] w-[95%]  mx-auto">
         {/* IRP */}
         {/* {permissions?.includes("irp") && ( */}
         <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">

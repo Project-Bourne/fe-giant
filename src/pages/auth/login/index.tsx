@@ -42,14 +42,15 @@ function Login() {
       if (res?.status) {
         // get user information using returned response 'res' containing userAccessToken
         // localStorage.setItem("deep-access", res?.data?.accessToken);
-        await setCookie("deep-access", res?.data?.accessToken, { path: "/" });
-        await dispatch(
+        setCookie("deep-access", res?.data?.accessToken, { path: "/" });
+        dispatch(
           setAccessToken({
             accessToken: res?.data?.accessToken,
             refreshToken: res?.data?.refreshToken,
           }),
         );
-        await getUserInfo();
+
+        await getUserInfo(res?.data?.accessToken);
 
         NotificationService.success({
           message: "Login Successful!",
@@ -70,25 +71,36 @@ function Login() {
     }
   };
 
-  const getUserInfo = async () => {
+  const getUserInfo = async (token) => {
     setLoading(true);
     try {
-      const response = await authService.getUserViaAccessToken();
+      const response: any = await fetch(
+        "http://192.81.213.226:81/80/token/user",
+        {
+          method: "GET",
+          headers: {
+            "deep-token": token,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      console.log("user info", response);
       setLoading(false);
-      if (response?.status) {
-        dispatch(setUserInfo(response?.data));
+      if (response?.ok) {
+        const data = await response.json();
+        dispatch(setUserInfo(data?.data));
       } else {
-        setLoading(false);
+        const data = await response.json();
         NotificationService.error({
-          message: "Error",
-          addedText: "Could not fetch user data",
+          message: "Error: failed to fetch user data",
+          addedText: data?.message,
           position: "top-center",
         });
       }
     } catch (err) {
       setLoading(false);
       NotificationService.error({
-        message: "Error",
+        message: "Error: failed to fetch user data ",
         addedText: err?.message,
         position: "top-center",
       });
