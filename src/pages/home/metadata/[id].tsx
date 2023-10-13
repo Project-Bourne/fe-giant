@@ -63,7 +63,7 @@ function Meta() {
         />
       </div>
 
-      <div className="bg-white mt-[2rem] mx-5 rounded-[1rem] w-[96%] pt-7 pb-3">
+      <div className="bg-white mt-[1rem] mx-5 rounded-[1rem] w-[96%] pt-7 pb-3">
         {hideMeta === true && (
           <div>
             <MetaData data={selectedDoc} />

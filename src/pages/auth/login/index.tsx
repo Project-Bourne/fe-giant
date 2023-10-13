@@ -50,6 +50,8 @@ function Login() {
           }),
         );
 
+        await getUserInfo(res?.data?.accessToken);
+
         NotificationService.success({
           message: "Login Successful!",
         });
@@ -65,6 +67,42 @@ function Login() {
       NotificationService.error({
         message: "Login Failed!",
         addedText: err?.message,
+      });
+    }
+  };
+
+  const getUserInfo = async (token) => {
+    setLoading(true);
+    try {
+      const response: any = await fetch(
+        "http://192.81.213.226:81/80/token/user",
+        {
+          method: "GET",
+          headers: {
+            "deep-token": token,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      console.log("user info", response);
+      setLoading(false);
+      if (response?.ok) {
+        const data = await response.json();
+        dispatch(setUserInfo(data?.data));
+      } else {
+        const data = await response.json();
+        NotificationService.error({
+          message: "Error: failed to fetch user data",
+          addedText: data?.message,
+          position: "top-center",
+        });
+      }
+    } catch (err) {
+      setLoading(false);
+      NotificationService.error({
+        message: "Error: failed to fetch user data ",
+        addedText: err?.message,
+        position: "top-center",
       });
     }
   };

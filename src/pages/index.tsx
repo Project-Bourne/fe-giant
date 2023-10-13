@@ -20,10 +20,8 @@ function Index() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<any>(null);
+  // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth?.userInfo);
-  const userAccessToken = useSelector(
-    (state: any) => state?.auth?.userAccessToken,
-  );
   const { documents, archivedDocs } = useSelector(
     (state: any) => state.documents,
   );
@@ -32,36 +30,6 @@ function Index() {
   useEffect(() => {
     setUserData(user);
   }, [user]);
-
-  useEffect(() => {
-    getUserInfo();
-  }, [userAccessToken]);
-
-  const getUserInfo = async () => {
-    setLoading(true);
-    try {
-      const response = await authService.getUserViaAccessToken();
-      setLoading(false);
-      if (response?.status) {
-        dispatch(setUserInfo(response?.data));
-        setUserData(response?.data);
-      } else {
-        setLoading(false);
-        NotificationService.error({
-          message: "Error",
-          addedText: "Could not fetch user data",
-          position: "top-center",
-        });
-      }
-    } catch (err) {
-      setLoading(false);
-      NotificationService.error({
-        message: "Error",
-        addedText: err?.message,
-        position: "top-center",
-      });
-    }
-  };
 
   return (
     <React.Fragment>
@@ -90,7 +58,7 @@ function Index() {
 
       <div className={"flex self-center content-center items-center"}>
         {user?.firstName && (
-          <h2 className="text-black text-2xl font-bold capitalize mt-[3rem] -mb-[2rem] ml-[18rem] mb-[20px] ">
+          <h2 className="text-black text-2xl font-bold capitalize mt-[1rem] lg:ml-[11rem] md:ml-[14rem] ml-[19rem] ">
             Welcome {userData?.firstName}
           </h2>
         )}

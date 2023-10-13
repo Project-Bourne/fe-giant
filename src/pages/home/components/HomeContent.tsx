@@ -171,8 +171,6 @@ function HomeContent({ data, headerborder }) {
     });
   };
 
-  console.log("table headewr", tableheader);
-
   return (
     <>
       {data?.length > 0 && (

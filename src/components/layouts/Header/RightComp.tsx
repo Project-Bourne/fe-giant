@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import notification from "../../../../public/icons/notification.svg";
-import dashboard from "../../../../public/icons/dashboard.svg";
+import dashboardIcon from "../../../../public/icons/dashboard.svg";
 import down from "../../../../public/icons/down.svg";
 import { useCookies } from "react-cookie";
 import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
@@ -74,7 +74,7 @@ function RightComp(props) {
       {!dashboard && (
         <div className={`${styles.view1} hidden md:flex relative`}>
           <Image
-            src={dashboard}
+            src={dashboardIcon}
             alt="dashboard"
             width={20}
             height={20}
