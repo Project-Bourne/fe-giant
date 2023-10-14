@@ -16,6 +16,7 @@ export interface ToastModel {
     | "top-left"
     | "top-center";
   type: "success" | "error" | "warn" | "";
+  delay?: number;
 }
 
 function CustomToast({ message, addedText, position, type }: ToastModel) {
