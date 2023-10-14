@@ -176,7 +176,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:31/home")} // to be changed / officer
+                onClick={() => router.push("http://192.81.213.226:82/home")} // to be changed / officer
                 className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold"
               >
                 Open Interrogator
