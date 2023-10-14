@@ -40,8 +40,6 @@ function Login() {
       const res = await authService.login(formData);
       setLoading(false);
       if (res?.status) {
-        // get user information using returned response 'res' containing userAccessToken
-        // localStorage.setItem("deep-access", res?.data?.accessToken);
         setCookie("deep-access", res?.data?.accessToken, { path: "/" });
         dispatch(
           setAccessToken({
@@ -84,7 +82,7 @@ function Login() {
           },
         },
       );
-      console.log("user info", response);
+
       setLoading(false);
       if (response?.ok) {
         const data = await response.json();
