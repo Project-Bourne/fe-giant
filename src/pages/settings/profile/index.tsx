@@ -289,7 +289,7 @@ const ProfileSettings = () => {
             name="user role"
             value={userInfo?.role?.roleName ?? "User Role"}
             placeholder="User Role"
-            className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7 mx-4 w-full md:w-[38%]"
+            className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7 mx-4 w-full md:w-[38%] capitalize"
             readOnly={true}
           />
         </div>
@@ -304,7 +304,7 @@ const ProfileSettings = () => {
 
           <DropdownWithFlag
             data={countries}
-            selectItem={setCountry}
+            selectItem={userInfo?.country[0]}
             className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7  w-[38%]"
             style={"w-[38%] mx-4"}
             isDisabled={true}

@@ -31,9 +31,9 @@ function Index() {
     getDocuments();
   }, []);
 
-  useEffect(() => {
-    setFacts(docs);
-  }, [docs]);
+  // useEffect(() => {
+  //   setFacts(docs);
+  // }, [docs]);
 
   const getDocuments = () => {
     setLoading(true);
@@ -62,10 +62,6 @@ function Index() {
           });
         });
     } catch (err) {
-      console.log("catch__", err);
-      if (err?.message === "Access Denied: No token provided.") {
-        router.push("auth/login");
-      }
       NotificationService.error({
         message: "Error",
         addedText: err?.message,

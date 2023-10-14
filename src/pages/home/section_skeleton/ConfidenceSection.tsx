@@ -20,7 +20,6 @@ function ConfidenceSection({ fact, isLoading }) {
     }
 
     if (fact?.fact?.confidence?.level) {
-      console.log(fact?.fact?.confidence?.level);
       if (
         fact?.fact?.confidence?.level !== "unknown" &&
         fact?.fact?.confidence?.level.toLowerCase() !== "nan%"
