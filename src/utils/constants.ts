@@ -58,20 +58,20 @@ export const SettingsData = [
     id: 2,
     route: "/settings/notification",
   },
-  {
-    name: "Personalization",
-    icon: "personalization.svg",
-    selectedIcon: "on.personalization.svg",
-    id: 3,
-    route: "/settings/personalization",
-  },
-  {
-    name: "Audit Log",
-    icon: "log.svg",
-    selectedIcon: "on.log.svg",
-    id: 4,
-    route: "/settings/log",
-  },
+  // {
+  //   name: "Personalization",
+  //   icon: "personalization.svg",
+  //   selectedIcon: "on.personalization.svg",
+  //   id: 3,
+  //   route: "/settings/personalization",
+  // },
+  // {
+  //   name: "Audit Log",
+  //   icon: "log.svg",
+  //   selectedIcon: "on.log.svg",
+  //   id: 4,
+  //   route: "/settings/log",
+  // },
 ];
 
 export const TrainingData = [

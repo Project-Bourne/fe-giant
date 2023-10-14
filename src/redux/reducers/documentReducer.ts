@@ -4,12 +4,14 @@ interface DocStateProps {
   documents: Array<any>;
   archivedDocs: Array<any>;
   factcheck: any;
+  currentDocId: any;
 }
 
 const initialState: DocStateProps = {
   documents: [],
   archivedDocs: [],
   factcheck: {},
+  currentDocId: null,
 };
 
 const documentSlice = createSlice({
@@ -35,9 +37,13 @@ const documentSlice = createSlice({
     setFactCheck: (state: any, action: any) => {
       state.factcheck = action?.payload;
     },
+
+    setCurrentDocId: (state: any, action: any) => {
+      state.currentDocId = action?.payload;
+    },
   },
 });
 
-export const { setDocuments, setArchived, setFactCheck } =
+export const { setDocuments, setArchived, setFactCheck, setCurrentDocId } =
   documentSlice.actions;
 export default documentSlice.reducer;

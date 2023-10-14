@@ -10,40 +10,50 @@ import { useRouter } from "next/router";
 import MainContent from "../components/MainContent";
 import DocumentService from "@/services/documents.service";
 import NotificationService from "@/services/notification.service";
-import { useDispatch } from "react-redux";
-import { setFactCheck } from "@/redux/reducers/documentReducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentDocId,
+  setFactCheck,
+} from "@/redux/reducers/documentReducer";
 
 function Meta() {
   const router = useRouter();
   const [hideMeta, setHideMeta] = useState(true);
   const [selectedDoc, setSelectedDoc] = useState<any>({});
   const documentService = new DocumentService();
-  const { id } = router.query;
+  const { id }: any = router.query;
   const dispatch = useDispatch();
+  const idFromState = useSelector(
+    (state: any) => state?.documents?.currentDocId,
+  );
 
   useEffect(() => {
-    documentService
-      .getSingleFactCheckedDoc(id)
-      .then((res) => {
-        if (res?.status) {
-          setSelectedDoc(res?.data);
-          dispatch(setFactCheck(res?.data));
-        }
-      })
-      .catch((err) => {
-        NotificationService.error({
-          message: "Failed to get document details!",
-          addedText: err?.message,
+    if (id || idFromState) {
+      documentService
+        .getSingleFactCheckedDoc(id || idFromState)
+        .then((res) => {
+          if (res?.status) {
+            setSelectedDoc(res?.data);
+            dispatch(setFactCheck(res?.data));
+          }
+        })
+        .catch((err) => {
+          NotificationService.error({
+            message: "Failed to get document details!",
+            addedText: err?.message,
+          });
         });
-      });
+
+      dispatch(setCurrentDocId(id));
+    }
   }, []);
 
-  const handleMax = () => {
-    setHideMeta(true);
-  };
-  const handleMin = () => {
-    setHideMeta(false);
-  };
+  // const handleMax = () => {
+  //   setHideMeta(true);
+  // };
+  // const handleMin = () => {
+  //   setHideMeta(false);
+  // };
 
   return (
     <div className="bg-sirp-contentbg border bg-sirp-secondary2  h-[100%] mx-10 rounded-[1rem]">

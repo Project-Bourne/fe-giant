@@ -26,13 +26,11 @@ function Starred() {
           const isArchived = docs?.filter((doc) => doc?.bookmark === true);
           setArchivedData(isArchived);
           dispatch(setArchived(isArchived));
-        } else {
-          toast.error(res?.msg);
         }
       });
     } catch (error) {
       setLoading(false);
-      toast.error(error?.msg);
+      // toast.error(error?.msg);
     }
   }, []);
 
