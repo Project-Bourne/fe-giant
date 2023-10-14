@@ -12,12 +12,20 @@ interface Props {
     | "top-right"
     | "top-left"
     | "top-center";
+  delay?: number;
 }
 
 class NotificationService {
-  static showCustomToast({ type, message, addedText, position }: ToastModel) {
+  static showCustomToast({
+    type,
+    message,
+    addedText,
+    position,
+    delay,
+  }: ToastModel) {
     const container = document.createElement("div");
     document.body.appendChild(container);
+    const toastDelay = delay || 3000;
 
     ReactDOM.render(
       <CustomToast
@@ -33,33 +41,36 @@ class NotificationService {
     setTimeout(() => {
       ReactDOM.unmountComponentAtNode(container);
       document.body.removeChild(container);
-    }, 3000);
+    }, toastDelay);
   }
 
-  static success({ message, addedText, position }: Props) {
+  static success({ message, addedText, position, delay }: Props) {
     this.showCustomToast({
       type: "success",
       message,
       addedText,
       position,
+      delay,
     });
   }
 
-  static error({ message, addedText, position }: Props) {
+  static error({ message, addedText, position, delay }: Props) {
     this.showCustomToast({
       type: "error",
       message,
       addedText,
       position,
+      delay,
     });
   }
 
-  static warn({ message, addedText, position }: Props) {
+  static warn({ message, addedText, position, delay }: Props) {
     this.showCustomToast({
       type: "warn",
       message,
       addedText,
       position,
+      delay,
     });
   }
 

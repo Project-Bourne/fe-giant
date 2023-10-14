@@ -46,9 +46,6 @@ function Index() {
             dispatch(setDocuments(res?.data?.facts));
             setFacts(res?.data?.facts);
           } else {
-            // if(res?.message === "Access Denied: No token provided."){
-            //   router.push('auth/login');
-            // }
             NotificationService.error({
               message: "Error",
               addedText: res?.message,
@@ -58,12 +55,9 @@ function Index() {
         })
         .catch((err) => {
           setLoading(false);
-          // if(err?.message === "Access Denied: No token provided."){
-          //   router.push('auth/login');
-          // }
           NotificationService.error({
             message: "Error",
-            addedText: err?.msg,
+            addedText: err?.message,
             position: "top-center",
           });
         });

@@ -37,34 +37,46 @@ function Login() {
 
     setLoading(true);
     try {
-      const res = await authService.login(formData);
-      setLoading(false);
-      if (res?.status) {
-        setCookie("deep-access", res?.data?.accessToken, { path: "/" });
-        dispatch(
-          setAccessToken({
-            accessToken: res?.data?.accessToken,
-            refreshToken: res?.data?.refreshToken,
-          }),
-        );
+      authService
+        .login(formData)
+        .then((res) => {
+          setLoading(false);
+          if (res?.status) {
+            setCookie("deep-access", res?.data?.accessToken, { path: "/" });
+            dispatch(
+              setAccessToken({
+                accessToken: res?.data?.accessToken,
+                refreshToken: res?.data?.refreshToken,
+              }),
+            );
+            getUserInfo(res?.data?.accessToken);
 
-        await getUserInfo(res?.data?.accessToken);
-
-        NotificationService.success({
-          message: "Login Successful!",
+            NotificationService.success({
+              message: "Login Successful!",
+            });
+            router.push("/");
+          } else {
+            NotificationService.error({
+              message: "Login Failed!",
+              addedText: res?.message,
+              delay: 7000,
+            });
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+          NotificationService.error({
+            message: "Login Failed!",
+            addedText: err?.message,
+            delay: 7000,
+          });
         });
-        router.push("/");
-      } else {
-        NotificationService.error({
-          message: "Login Failed!",
-          addedText: res?.message,
-        });
-      }
     } catch (err) {
       setLoading(false);
       NotificationService.error({
         message: "Login Failed!",
         addedText: err?.message,
+        delay: 7000,
       });
     }
   };
