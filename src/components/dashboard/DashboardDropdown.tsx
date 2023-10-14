@@ -44,7 +44,7 @@ const dropdownItems = [
   },
   {
     name: "Interrogator",
-    to: `${BASE_URL}:82/home`, // change route
+    to: `${BASE_URL}:82/home`,
     key: "interrogator",
     icon: interrogator,
   },
