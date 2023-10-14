@@ -34,7 +34,7 @@ function DigestModal() {
       const response = await reportService?.generateDigest(data);
       setLoading(false);
       if (response?.status) {
-        console.log("successful response", response);
+        // console.log("successful response", response);
       } else {
         NotificationService.error({
           message: "Failed to Generate digest!",

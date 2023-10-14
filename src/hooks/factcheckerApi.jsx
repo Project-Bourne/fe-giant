@@ -1,4 +1,4 @@
-// import { API_USER_URL } from '@env';
+// import { useRouter } from 'next/router';
 
 /**
  * Object Request Header
@@ -40,24 +40,26 @@ export async function factCheckRequest(
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
 
-  console.log({ access });
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,
       headers: Object.assign(requestHeader),
     })
-      .then((res) => {
-        if (text === true) {
+      .then(async (res) => {
+        if (res.status === 403) {
+          console.error("403 Forbidden: Redirecting to login page");
+          // Redirect to the login page
+          window.location.href = "/auth/login";
+          throw new Error("Access forbidden. Redirecting to login page.");
+        } else if (text === true) {
           return res.text();
-        } else if (res) {
-          return res.json();
         } else {
           return res.json();
         }
       })
       .catch((err) => {
         console.error(`Request Error ${url}: `, err);
-        return err;
+        return Promise.reject(err);
       });
   } else {
     return fetch(API_USER_URL + url, {
@@ -65,18 +67,20 @@ export async function factCheckRequest(
       headers: Object.assign(requestHeader),
       body: form === true ? payload : JSON.stringify(payload),
     })
-      .then((res) => {
-        if (text === true) {
+      .then(async (res) => {
+        if (res.status === 403) {
+          // Redirect to the login page
+          window.location.href = "/auth/login";
+          throw new Error("Access forbidden. Redirecting to login page.");
+        } else if (text === true) {
           return res.text();
-        } else if (res) {
-          return res.json();
         } else {
           return res.json();
         }
       })
       .catch((err) => {
         console.error(`Request Error ${url}:`, err);
-        return err;
+        return Promise.reject(err);
       });
   }
 }

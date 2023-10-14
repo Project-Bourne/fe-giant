@@ -45,17 +45,33 @@ function Index() {
           if (res?.status) {
             dispatch(setDocuments(res?.data?.facts));
             setFacts(res?.data?.facts);
+          } else {
+            // if(res?.message === "Access Denied: No token provided."){
+            //   router.push('auth/login');
+            // }
+            NotificationService.error({
+              message: "Error",
+              addedText: res?.message,
+              position: "top-center",
+            });
           }
         })
         .catch((err) => {
           setLoading(false);
+          // if(err?.message === "Access Denied: No token provided."){
+          //   router.push('auth/login');
+          // }
           NotificationService.error({
             message: "Error",
-            addedText: err?.message,
+            addedText: err?.msg,
             position: "top-center",
           });
         });
     } catch (err) {
+      console.log("catch__", err);
+      if (err?.message === "Access Denied: No token provided.") {
+        router.push("auth/login");
+      }
       NotificationService.error({
         message: "Error",
         addedText: err?.message,
