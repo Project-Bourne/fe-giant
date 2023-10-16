@@ -15,7 +15,7 @@ function LocationSection({ fact, isLoading }) {
       <p className="text-gray-500">
         {isLoading ? <Skeleton width={50} /> : "Location"}
       </p>
-      <div className="flex gap-3 items-center mt-3">
+      <div className="flex gap-3 items-start mt-3">
         {isLoading ? (
           <Skeleton width={50} height={50} circle />
         ) : (
@@ -30,7 +30,7 @@ function LocationSection({ fact, isLoading }) {
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              <div className="flex gap-x-1">
+              <div className="flex flex-wrap gap-x-1">
                 {typeof location !== "string" && location?.length > 0
                   ? location.map(
                       (

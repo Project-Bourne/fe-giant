@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input } from "@/components/ui";
 import { AuthLayout } from "@/layout/index";
 import Link from "next/link";
@@ -8,10 +8,12 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
+import { messaging, requestForToken } from "@/utils/firebase";
 
 const intialFormData = {
   email: "",
   password: "",
+  deviceToken: null,
 };
 
 function Login() {
@@ -19,9 +21,20 @@ function Login() {
   const [formData, setFormData] = useState(intialFormData);
   const [errors, setErrors] = useState(intialFormData);
   const [loading, setLoading] = useState(false);
+  const [deviceToken, setDeviceToken] = useState<any>(null);
   const router = useRouter();
   const authService = new AuthService();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (messaging) {
+      const token: any = requestForToken();
+      // token && setFormData({...formData, deviceToken: token})
+      token.then((res) => {
+        setDeviceToken(res);
+      });
+    }
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -33,6 +46,9 @@ function Login() {
     if (formData.password === "") {
       setErrors({ ...errors, password: "Password must not be empty!" });
       return;
+    }
+    if (deviceToken) {
+      setFormData({ ...formData, deviceToken });
     }
 
     setLoading(true);

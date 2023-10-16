@@ -88,7 +88,10 @@ function RightComp(props) {
       )}
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
-        <div className="flex flex-row items-center justify-center">
+        <div
+          className="flex flex-row items-center justify-center"
+          onClick={handleLogoutToggle}
+        >
           <img
             src={userInfo?.image ?? userInitials()}
             alt="userImage"
@@ -104,14 +107,16 @@ function RightComp(props) {
             height={18}
             className="mx-3 object-contain hidden md:block"
             priority
-            onClick={handleLogoutToggle}
           />
         </div>
 
         {/* line break */}
         <div className="h-[100%] w-[0.5px] bg-sirp-grey hidden md:block" />
 
-        <div className="ml-3 bg-sirp-lightGrey w-full self-center hidden md:block">
+        <div
+          className="ml-3 bg-sirp-lightGrey w-full self-center hidden md:block"
+          onClick={() => router.push("/settings/profile")}
+        >
           <h2 className="text-sirp-grey text-[13px] capitalize">
             {userInfo?.firstName && useTruncate(userName(), 14)}
           </h2>
@@ -119,6 +124,7 @@ function RightComp(props) {
             {userInfo?.role?.roleName}
           </h2>
         </div>
+
         <Image
           src={down}
           alt="ellipsis"
