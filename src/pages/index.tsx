@@ -2,14 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthService from "@/services/auth.service";
-import NotificationService from "@/services/notification.service";
 import { CustomModal } from "@/components/ui";
-import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { useRouter } from "next/router";
 import Loader from "@/components/ui/Loader";
 import Group from "@/components/dashboard/Group";
-// import LeftCompDB from "@/components/dashboard/LeftComp";
-// import RightCompDB from "@/components/dashboard/RightComp";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
 import RightComp from "@/components/layouts/Header/RightComp";

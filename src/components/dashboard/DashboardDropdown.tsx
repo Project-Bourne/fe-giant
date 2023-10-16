@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import admin from "../../../public/icons/admin-gray.svg";
 import interrogator from "../../../public/icons/interrogator.svg";
 import summarizer from "../../../public/icons/summarizer.svg";
 import fact_checker from "../../../public/icons/checker.svg";
@@ -12,6 +13,12 @@ import deep_chat from "../../../public/icons/deep.svg";
 const BASE_URL = "http://192.81.213.226";
 
 const dropdownItems = [
+  {
+    name: "Admin",
+    to: `${BASE_URL}:38/home`,
+    key: "admin",
+    icon: admin,
+  },
   {
     name: "Analyzer",
     to: `${BASE_URL}:31/home`,
