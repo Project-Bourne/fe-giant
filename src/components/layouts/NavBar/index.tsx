@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import NavBarItem from "./NavBarItem";
 import { NavBarContents } from "@/utils/constants";
 import logo from "../../../../public/images/logo.png";
+import Link from "next/link";
 // import refresh from "../../../../public/icons/refresh.svg";
 
 function NavBar() {
@@ -17,7 +18,10 @@ function NavBar() {
   return (
     <div className="w-[15vw] md:w-[20vw] h-full border-3 border-r bg-white px-3 py-10 md:p-10 fixed z-[20]">
       <div className={"flex flex-col items-center justify-center "}>
-        <div className="flex flex-row w-fit mx-auto cursor-pointer mb-[.1rem]">
+        <Link
+          href={"/"}
+          className="flex flex-row w-fit mx-auto cursor-pointer mb-[.1rem]"
+        >
           <Image
             src={logo}
             alt="IRP Logo"
@@ -31,7 +35,8 @@ function NavBar() {
               IRP
             </h1>
           </div>
-        </div>
+        </Link>
+
         <p className="text-sirp-primary font-semibold text-[12.5px] hidden md:block">
           Intelligence Reporting Platform
         </p>

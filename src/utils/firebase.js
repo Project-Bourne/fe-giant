@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps } from "firebase/app";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,7 +25,8 @@ export const messaging =
 const VAPID_KEY =
   "BNo0hLxW1RzYSpuS1GonIcvGRRpCPu0i68KXt-6QDiIfjiP7rhbCyeUAsJzrAdD3KChVZGsAqNl0W-fx3zyOZ74";
 
-export const requestForToken = () => getToken(messaging, { vapidKey: VAPID_KEY })
+export const requestForToken = () =>
+  getToken(messaging, { vapidKey: VAPID_KEY })
     .then((currentToken) => {
       if (currentToken) {
         //   console.log('current token for client: ', currentToken);
@@ -35,5 +36,14 @@ export const requestForToken = () => getToken(messaging, { vapidKey: VAPID_KEY }
       return null;
     })
     .catch((err) => {
-      console.log("An error occurred while retrieving token. ", err);
+      throw new Error(err);
+      // console.log(err)
     });
+
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      // console.log("payload", payload)
+      resolve(payload);
+    });
+  });
