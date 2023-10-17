@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+import frame5 from "../../../public/icons/frame-05.svg";
 import frame7 from "../../../public/icons/frame-07.svg";
 import frame8 from "../../../public/icons/frame-08.svg";
 import frame9 from "../../../public/icons/frame-09.svg";
@@ -33,45 +34,40 @@ function Group({ userData }) {
     <div className="px-[4rem] py-7 flex items-center w-[90%] justify-center self-center">
       <div className="flex flex-wrap gap-y-3 md:gap-x-[2rem] w-[95%]  mx-auto">
         {/* admin */}
-        {userData?.role?.roleName === "admin" && (
-          <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
-            <div className="flex flex-row items-center gap-3 pt-5">
-              {/* admin icon  */}
-              <div className="px-4 py-3 rounded-2xl bg-[#F3F5F6]">
-                <div className="px-4 py-2 bg-white rounded-[2rem]">
-                  <Image
-                    src={admin}
-                    alt="documents"
-                    className="cursor-pointer"
-                    width={30}
-                  />
+        {userData?.role?.roleName === "admin" ||
+          (userData?.role?.roleName === "Superadmin" && (
+            <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
+              <div className="flex justify-center items-center pt-5">
+                {/* admin icon  */}
+                <div className="px-4 py-3 rounded-2xl bg-[#F3F5F6]">
+                  <div className="px-4 py-2 bg-white rounded-[2rem]">
+                    <Image
+                      src={admin}
+                      alt="documents"
+                      className="cursor-pointer"
+                      width={30}
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <p className="font-bold">{collabExports ?? 0}</p>
-                <span className="capitalize font-light text-sirp-grey text-[15px]">
-                  Total Documents
-                </span>
+              <div className="pt-8 ">
+                <button
+                  onClick={() => router.push("http://192.81.213.226:38/home")}
+                  className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
+                >
+                  Open Admin Panel
+                </button>
               </div>
             </div>
-            <div className="pt-8 ">
-              <button
-                onClick={() => router.push("http://192.81.213.226:38/home")}
-                className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
-              >
-                Open Admin Panel
-              </button>
-            </div>
-          </div>
-        )}
+          ))}
 
         {/* IRP */}
         <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
           <div className="flex flex-row items-center gap-3 pt-5">
             <div>
               <Image
-                src={frame7}
+                src={frame5}
                 alt="documents"
                 className="cursor-pointer"
                 width={100}

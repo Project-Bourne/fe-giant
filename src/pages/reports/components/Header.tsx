@@ -1,20 +1,31 @@
 import Image from "next/image";
 
-// import on_exports from "../../../../public/icons/on.exports.svg";
-// import on_bookmark from "../../../../public/icons/on.bookmark.svg";
-// import on_share from "../../../../public/icons/on.share.svg";
 import doc from "../../../../public/icons/doc.svg";
 import { useState } from "react";
 import ReportsTypeDropdown from "./ReportsTypeDropdown";
 import { CustomModal } from "@/components/ui";
 import DigestModal from "./DigestModal";
 import SecurityBriefModal from "./SecurityBriefModal";
+import DigestPreview from "./DigestPreview";
 
 function Header() {
   const [toggleModal, setToggleModal] = useState(false);
   const [secBriefModal, setSecBriefModal] = useState(false);
   const [digestModal, setDigestModal] = useState(false);
+  const [digestPreview, setDigestPreview] = useState(false);
+  const [previewData, setPreviewData] = useState({ title: "", text: "" });
   const closeModal = () => setToggleModal(false);
+
+  const handleDigestClose = (showPreview) => {
+    setDigestModal(false);
+    if (showPreview) {
+      setDigestPreview(true);
+    }
+  };
+
+  const handleDataPreview = (title, text) => {
+    setPreviewData({ title, text });
+  };
 
   return (
     <div className="flex flex-wrap relative justify-between items-center py-4">
@@ -72,7 +83,18 @@ function Header() {
           style="bg-white md:w-[35%] w-[60%] relative rounded-xl mx-auto pt-3 px-7 pb-[2rem] md:mt-[7%] mt-[20%]"
           closeModal={() => setDigestModal(false)}
         >
-          <DigestModal />
+          <DigestModal
+            closeModal={handleDigestClose}
+            previewData={handleDataPreview}
+          />
+        </CustomModal>
+      )}
+      {digestPreview && (
+        <CustomModal
+          style="bg-white md:w-[40%] w-[80%] relative rounded-xl mx-auto pt-2 px-5 pb-[1rem] md:mt-[3%] mt-[10%]"
+          closeModal={() => setDigestPreview(false)}
+        >
+          <DigestPreview title={previewData.title} text={previewData.text} />
         </CustomModal>
       )}
     </div>

@@ -4,7 +4,7 @@ import NotificationService from "@/services/notification.service";
 import ReportService from "@/services/reports.service";
 import { useState } from "react";
 
-function DigestModal() {
+function DigestModal({ closeModal, previewData }) {
   const [loading, setLoading] = useState(false);
   const [timeline, setTimeline] = useState(0);
   const [sector, setSector] = useState(null);
@@ -34,12 +34,28 @@ function DigestModal() {
       const response = await reportService?.generateDigest(data);
       setLoading(false);
       if (response?.status) {
-        // console.log("successful response", response);
+        console.log("successful response", response);
+        if (
+          response?.data?.length > 0 ||
+          response?.data?.hasOwnProperty("uuid")
+        ) {
+          const title = response?.data?.report[0]?.title;
+          const text = response?.data?.report[0]?.text;
+          previewData(title, text);
+          closeModal(true);
+        } else {
+          NotificationService.warn({
+            message: response?.message,
+            position: "top-center",
+          });
+          closeModal(false);
+        }
       } else {
         NotificationService.error({
           message: "Failed to Generate digest!",
           addedText: response?.message,
         });
+        closeModal(false);
       }
     } catch (error) {
       setLoading(false);
@@ -47,6 +63,8 @@ function DigestModal() {
         message: "Failed to Generate digest!",
         addedText: error?.message,
       });
+
+      closeModal(false);
     }
   };
 
