@@ -3,14 +3,14 @@ import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 let access = "";
 if (typeof window !== "undefined") {
-  access = cookies.get("deep-access") || "";
+  access = cookies.get("deep-access");
 }
 
 export const requestHeader = {
   Accept: "application/json",
   "Cache-Control": "no-cache",
   "Content-Type": "application/json",
-  "deep-token": "",
+  "deep-token": access,
 };
 
 /**

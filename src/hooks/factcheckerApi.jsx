@@ -8,7 +8,7 @@ const cookies = new Cookies();
 let access = "";
 
 if (typeof window !== "undefined") {
-  access = cookies.get("deep-access") || "";
+  access = cookies.get("deep-access");
 }
 export const requestHeader = {
   Accept: "application/json",
