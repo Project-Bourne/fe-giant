@@ -34,7 +34,7 @@ function Login() {
         setDeviceToken(res);
       });
     }
-  }, []);
+  }, [messaging]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

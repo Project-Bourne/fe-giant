@@ -5,14 +5,14 @@ const useWindowWidth = () => {
 
   useEffect(() => {
     function handleResize() {
-      setWidth(window.innerWidth);
+      setWidth(window?.innerWidth);
     }
-    window.addEventListener("resize", handleResize);
+    window?.addEventListener("resize", handleResize);
 
     handleResize();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window?.removeEventListener("resize", handleResize);
     };
   }, [setWidth]);
 
