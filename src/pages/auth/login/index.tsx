@@ -47,9 +47,10 @@ function Login() {
       setErrors({ ...errors, password: "Password must not be empty!" });
       return;
     }
-    if (deviceToken) {
-      setFormData({ ...formData, deviceToken });
-    }
+    // if (deviceToken) {
+    //   setFormData({ ...formData, deviceToken });
+    //   return
+    // }
 
     setLoading(true);
     try {
