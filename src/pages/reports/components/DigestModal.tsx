@@ -41,7 +41,8 @@ function DigestModal({ closeModal, previewData }) {
         ) {
           const title = response?.data?.report[0]?.title;
           const text = response?.data?.report[0]?.text;
-          previewData(title, text);
+          const uuid = response?.data?.uuid;
+          previewData(title, text, uuid);
           closeModal(true);
         } else {
           NotificationService.warn({

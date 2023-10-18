@@ -13,7 +13,11 @@ function Header() {
   const [secBriefModal, setSecBriefModal] = useState(false);
   const [digestModal, setDigestModal] = useState(false);
   const [digestPreview, setDigestPreview] = useState(false);
-  const [previewData, setPreviewData] = useState({ title: "", text: "" });
+  const [previewData, setPreviewData] = useState({
+    title: "",
+    text: "",
+    uuid: "",
+  });
   const closeModal = () => setToggleModal(false);
 
   const handleDigestClose = (showPreview) => {
@@ -23,8 +27,8 @@ function Header() {
     }
   };
 
-  const handleDataPreview = (title, text) => {
-    setPreviewData({ title, text });
+  const handleDataPreview = (title, text, uuid) => {
+    setPreviewData({ title, text, uuid });
   };
 
   return (
@@ -94,7 +98,11 @@ function Header() {
           style="bg-white md:w-[40%] w-[80%] relative rounded-xl mx-auto pt-2 px-5 pb-[1rem] md:mt-[3%] mt-[10%]"
           closeModal={() => setDigestPreview(false)}
         >
-          <DigestPreview title={previewData.title} text={previewData.text} />
+          <DigestPreview
+            id={previewData.uuid}
+            title={previewData.title}
+            text={previewData.text}
+          />
         </CustomModal>
       )}
     </div>

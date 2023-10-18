@@ -33,9 +33,9 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
 
   const handleRoute = (id: string, to: string) => {
     if (to === "collab") {
-      router.push(`http://192.81.213.226:36/documents/${id}&irp`);
+      router.push(`http://192.81.213.226:36/document/${id}&irp`);
     }
-    if (to === "analyzer") {
+    if (to === "analyser") {
       router.push(`http://192.81.213.226:31/home/${id}&irp`);
     }
     if (to === "summarizer") {
@@ -132,7 +132,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               alt="analyzer"
               className=" cursor-pointer"
               width={33}
-              onClick={() => handleRoute(docId, "analyzer")}
+              onClick={() => handleRoute(docId, "analyser")}
             />
           </Tooltip>
         )}
