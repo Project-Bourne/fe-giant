@@ -26,15 +26,15 @@ function Login() {
   const authService = new AuthService();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (messaging) {
-      const token: any = requestForToken();
-      // token && setFormData({...formData, deviceToken: token})
-      token.then((res) => {
-        setDeviceToken(res);
-      });
-    }
-  }, [messaging]);
+  // useEffect(() => {
+  //   if (messaging) {
+  //     const token: any = requestForToken();
+  //     // token && setFormData({...formData, deviceToken: token})
+  //     token.then((res) => {
+  //       setDeviceToken(res);
+  //     });
+  //   }
+  // }, [messaging]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
