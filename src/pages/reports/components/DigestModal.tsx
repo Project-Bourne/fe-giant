@@ -34,7 +34,6 @@ function DigestModal({ closeModal, previewData }) {
       const response = await reportService?.generateDigest(data);
       setLoading(false);
       if (response?.status) {
-        console.log("successful response", response);
         if (
           response?.data?.length > 0 ||
           response?.data?.hasOwnProperty("uuid")
