@@ -62,6 +62,8 @@ function HomeContent({ data, headerborder }) {
 
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
+      const res = JSON.parse(rowData?.confidence);
+      console.log(res);
       const cells = columnOrder.map((columnItem: any, index) => {
         if (columnItem?.key === "archive") {
           return (
@@ -73,7 +75,7 @@ function HomeContent({ data, headerborder }) {
             rowData[columnItem?.key] !== undefined) ||
           (rowData?.fact?.hasOwnProperty(columnItem?.key) &&
             rowData?.fact[columnItem?.key] !== undefined) ||
-          (rowData?.confidence?.hasOwnProperty(columnItem?.key) &&
+          (res?.hasOwnProperty(columnItem?.key) &&
             rowData["confidence"][columnItem?.key] !== undefined) ||
           (rowData?.fact?.confidence?.hasOwnProperty(columnItem?.key) &&
             rowData?.fact["confidence"][columnItem?.key] !== undefined) ||
@@ -83,10 +85,7 @@ function HomeContent({ data, headerborder }) {
             // Author
 
             const uniqueAuthor =
-              rowData?.confidence?.author || rowData?.fact?.confidence?.author
-                ? rowData?.confidence?.author ||
-                  rowData?.fact?.confidence?.author
-                : "No Author"; // getAuthor(rowData?.url) || getAuthor(rowData?.fact?.url);
+              res?.author || rowData?.fact?.confidence?.author || "No Author"; // getAuthor(rowData?.url) || getAuthor(rowData?.fact?.url);
             const author =
               typeof uniqueAuthor !== "string"
                 ? useTruncate(uniqueAuthor[0], 25)
@@ -117,7 +116,7 @@ function HomeContent({ data, headerborder }) {
                   }`}
                 >
                   {useTruncate(
-                    rowData?.confidence?.content ||
+                    res?.content ||
                       rowData?.fact?.confidence?.content ||
                       "No Content",
                     25,
@@ -134,7 +133,7 @@ function HomeContent({ data, headerborder }) {
                 rowData?.fact?.confidence[columnItem?.key]
               : !rowData?.fact
               ? rowData[columnItem?.key] ||
-                rowData?.confidence?.title ||
+                res?.title ||
                 `No ${columnItem?.key}`
               : `No ${columnItem?.key}`;
             return (
@@ -156,13 +155,7 @@ function HomeContent({ data, headerborder }) {
       return (
         <div
           key={rowData?.uuid}
-          onClick={() =>
-            handleClicks(
-              rowData?.uuid,
-              rowData?.confidence?.title,
-              rowData?.confidence?.content,
-            )
-          }
+          onClick={() => handleClicks(rowData?.uuid, res?.title, res?.content)}
           className="flex text-[13px] hover:bg-sirp-primaryLess2/[0.7] hover:cursor-pointer"
         >
           {cells}

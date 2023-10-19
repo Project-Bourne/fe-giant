@@ -23,12 +23,14 @@ function AuthorSection({ fact, isLoading }) {
     ? fact?.confidence?.author // if there's no author, use hostname
     : fact?.fact?.confidence?.author
     ? fact?.fact?.confidence?.author
-    : "author";
+    : "No Author";
 
   const newAuthor =
     typeof author !== "string" && author[0] !== ""
       ? author[0]
-      : source && source;
+      : source
+      ? source
+      : "No Author";
 
   return (
     <div className="mt-3 w-[25rem]">

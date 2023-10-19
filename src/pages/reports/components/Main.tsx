@@ -5,16 +5,49 @@ import SecondRow from "./RowSecond";
 import ThirdRow from "./RowThird";
 import { useEffect, useState } from "react";
 import ReportDetails from "./ReportDetails";
+import NotificationService from "@/services/notification.service";
+import ReportService from "@/services/reports.service";
+import { useDispatch } from "react-redux";
+import { setReports } from "@/redux/reducers/reportReducer";
 
 function Main() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalToggle, setModalToggle] = useState(false);
+  const reportsService = new ReportService();
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    _constructor();
+    fetchReports();
   }, []);
 
-  // eslint-disable-next-line no-underscore-dangle
-  const _constructor = async () => {};
-
-  const [modalToggle, setModalToggle] = useState(false);
+  const fetchReports = async () => {
+    setIsLoading(true);
+    try {
+      // Set isLoading to true before making the request
+      const response = await reportsService.getAllReports();
+      setIsLoading(false);
+      if (response?.status) {
+        const data = response?.data;
+        dispatch(setReports(data));
+        console.log("reports", data);
+      } else {
+        NotificationService.error({
+          message: "Error!",
+          addedText: response?.message,
+          position: "top-center",
+        });
+      }
+    } catch (error: any) {
+      setIsLoading(false);
+      NotificationService.error({
+        message: "Error!",
+        addedText: <p>{error}, please try again</p>,
+        position: "top-center",
+      });
+    } finally {
+      setIsLoading(false); // Set isLoading to false when data fetching is complete (whether it succeeds or fails)
+    }
+  };
 
   return (
     <div className="grid gap-y-3 md:h-[78vh] overflow-y-auto w-[78vw] md:px-5 px-2 pt-4 pb-7 bg-sirp-lightGrey rounded-xl">
