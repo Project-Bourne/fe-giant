@@ -15,41 +15,70 @@ import calendar from "../../../../public/icons/calendar.svg";
 import right_arrow from "../../../../public/icons/right-arrow.svg";
 import info from "../../../../public/icons/info.svg";
 import ReportService from "@/services/reports.service";
-import { toast } from "react-toastify";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import NotificationService from "@/services/notification.service";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormatDate } from "@/components/custom-hooks";
+import { setReports } from "@/redux/reducers/reportReducer";
 
 const articlesCrawled = 1000;
 
 function FirstRow() {
-  const reportService = new ReportService();
-
-  useEffect(() => {
-    _constructor();
-  }, []);
-
-  // eslint-disable-next-line no-underscore-dangle
-  const _constructor = async () => {
-    try {
-      const data = {
-        startDate: "",
-        endDate: "",
-      };
-      // const res = await reportService?.getReports();
-      // console.log({ res });
-    } catch (e) {
-      toast.error("Something went wrong...");
-      console.log(e.message, "on._constructor.rowfirst");
-    }
-  };
-
+  const { reports } = useSelector((state: any) => state?.reports);
+  const totalArticlesCrawled = reports?.report?.totalItems;
   const [isActive, setIsActive] = useState("bar");
   const [display, setDisplay] = useState({
     bar: true,
     line: false,
     scatter: false,
   });
-  const [reports, setReports] = useState([]);
+  // const [reports, setReports] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [activateFilterButton, setActivateFilterButton] = useState(false);
+  const reportService = new ReportService();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      setActivateFilterButton(true);
+    }
+  }, [startDate, endDate]);
+
+  const handleReportFilter = async (e) => {
+    e.preventDefault();
+    if (!startDate || !endDate) return;
+
+    let formattedStartDate = "";
+    let formattedEndDate = "";
+
+    // Format the dates in the desired format: YYYY/MM/DD
+    formattedStartDate = useFormatDate(startDate);
+    formattedEndDate = useFormatDate(endDate);
+
+    try {
+      const reports = await reportService.getReportsByDate(
+        formattedStartDate,
+        formattedEndDate,
+      );
+      if (reports?.status) {
+        const data = reports.data;
+        dispatch(setReports(data));
+      } else {
+        NotificationService.error({
+          message: "Error!",
+          addedText: <p>{reports.message}, please try again</p>,
+          position: "top-center",
+        });
+      }
+    } catch (error: any) {
+      NotificationService.error({
+        message: "Error!",
+        addedText: <p>{error}, please try again</p>,
+        position: "top-center",
+      });
+    }
+  };
 
   const showChart = (chartType) => {
     // show each chart depending on state change
@@ -93,7 +122,7 @@ function FirstRow() {
             ARTICLES
           </h3>
           <h3 className="md:text-[24px] text-[14px] font-bold md:tracking-[.7px]">
-            {articlesCrawled}
+            {totalArticlesCrawled || 0}
           </h3>
           <h3 className="text-[14px]  font-normal md:tracking-[.7px]">
             Articles crawled
@@ -157,14 +186,15 @@ function FirstRow() {
                 setSelectedDate={setEndDate}
               />
             </div>
-            <div className="flex items-start mt-2">
-              <Image
-                src={info}
-                alt="info"
-                height={20}
-                width={20}
-                className="cursor-pointer"
-              />
+            <div
+              className={`h-fit flex items-start ${
+                activateFilterButton
+                  ? "bg-sirp-primary hover:cursor-pointer"
+                  : "bg-gray-200 pointer-events-none"
+              } p-1.5 mt-[.2rem] rounded`}
+              onClick={handleReportFilter}
+            >
+              <FilterListIcon fontSize="small" className="text-white" />
             </div>
           </div>
         </div>

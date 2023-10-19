@@ -27,6 +27,29 @@ class ReportService {
     }
   }
 
+  async getAllReports() {
+    try {
+      return await factCheckRequest("/reports", "GET", {}, true, false, false);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getReportsByDate(startDate, endDate) {
+    try {
+      return await factCheckRequest(
+        `/reports?startDate=${startDate}&endDate=${endDate}`,
+        "GET",
+        {},
+        true,
+        false,
+        false,
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getSources() {
     try {
       return await factCheckRequest("/domains", "GET", undefined, true);

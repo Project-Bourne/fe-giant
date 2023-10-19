@@ -8,6 +8,8 @@ import ReportService from "@/services/reports.service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
+import NotificationService from "@/services/notification.service";
+import { Tooltip } from "@mui/material";
 
 function SecondRow() {
   const reportService = new ReportService();
@@ -27,8 +29,8 @@ function SecondRow() {
       console.log({ res });
 
       let t = 0;
-      if (res.status === true) {
-        const data = res.data;
+      if (res?.status === true) {
+        const data = res?.data;
         setSources(data);
 
         data.forEach((d) => {
@@ -37,11 +39,16 @@ function SecondRow() {
 
         setTotal(t);
       } else {
-        toast.error(res.message);
+        NotificationService.error({
+          message: "Something went wrong...",
+          addedText: res?.message,
+        });
       }
-    } catch (e) {
-      toast.error("Something went wrong...");
-      console.log(e.message, "on._constructor.rowfirst");
+    } catch (err) {
+      NotificationService.error({
+        message: "Something went wrong...",
+        addedText: err?.message,
+      });
     }
   };
   const LeftHandDisplay = () => {
@@ -60,13 +67,15 @@ function SecondRow() {
           </div>
           {/* header text lhs  */}
           <div className="flex items-start ">
-            <Image
-              src={info}
-              alt="info"
-              height={25}
-              width={25}
-              className="cursor-pointer"
-            />
+            <Tooltip title="location for data source">
+              <Image
+                src={info}
+                alt="info"
+                height={25}
+                width={25}
+                className="cursor-pointer"
+              />
+            </Tooltip>
           </div>
         </div>
 
@@ -96,13 +105,15 @@ function SecondRow() {
           </div>
           {/* header text lhs  */}
           <div className="flex items-start">
-            <Image
-              src={info}
-              alt="info"
-              height={25}
-              width={25}
-              className="cursor-pointer"
-            />
+            <Tooltip title="Top five news sources">
+              <Image
+                src={info}
+                alt="info"
+                height={25}
+                width={25}
+                className="cursor-pointer"
+              />
+            </Tooltip>
           </div>
         </div>
 
@@ -123,11 +134,7 @@ function SecondRow() {
                 </div>
               ))
             ) : (
-              <div
-                className={
-                  "flex w-full items-center justify-center h-full w-full"
-                }
-              >
+              <div className={"flex w-full items-center justify-center h-full"}>
                 <CircularProgress color={"primary"} size={50} />
               </div>
             )}
