@@ -13,6 +13,7 @@ import { setReports } from "@/redux/reducers/reportReducer";
 function Main() {
   const [isLoading, setIsLoading] = useState(false);
   const [modalToggle, setModalToggle] = useState(false);
+  const [countries, setCountries] = useState([]);
   const reportsService = new ReportService();
   const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ function Main() {
       if (response?.status) {
         const data = response?.data;
         dispatch(setReports(data));
-        console.log("reports", data);
+        setCountries(data?.countries);
       } else {
         NotificationService.error({
           message: "Error!",
@@ -52,7 +53,7 @@ function Main() {
   return (
     <div className="grid gap-y-3 md:h-[78vh] overflow-y-auto w-[78vw] md:px-5 px-2 pt-4 pb-7 bg-sirp-lightGrey rounded-xl">
       <FirstRow />
-      <SecondRow />
+      <SecondRow countries={countries} />
       {/* <ThirdRow /> */}
       {/* <FourthRow showReportDetails={() => setModalToggle(true)} /> */}
       {modalToggle && (

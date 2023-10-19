@@ -63,7 +63,7 @@ function HomeContent({ data, headerborder }) {
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
       const res = JSON.parse(rowData?.confidence);
-      console.log(res);
+
       const cells = columnOrder.map((columnItem: any, index) => {
         if (columnItem?.key === "archive") {
           return (
