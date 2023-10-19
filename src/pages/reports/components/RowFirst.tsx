@@ -35,8 +35,15 @@ function FirstRow() {
   // const [reports, setReports] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [activateFilterButton, setActivateFilterButton] = useState(false);
   const reportService = new ReportService();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      setActivateFilterButton(true);
+    }
+  }, [startDate, endDate]);
 
   const handleReportFilter = async (e) => {
     e.preventDefault();
@@ -180,7 +187,11 @@ function FirstRow() {
               />
             </div>
             <div
-              className="h-fit flex items-start bg-sirp-primary p-1.5 mt-[.2rem] rounded hover:cursor-pointer"
+              className={`h-fit flex items-start ${
+                activateFilterButton
+                  ? "bg-sirp-primary hover:cursor-pointer"
+                  : "bg-gray-200 pointer-events-none"
+              } p-1.5 mt-[.2rem] rounded`}
               onClick={handleReportFilter}
             >
               <FilterListIcon fontSize="small" className="text-white" />
