@@ -10,17 +10,32 @@ import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 import NotificationService from "@/services/notification.service";
 import { Tooltip } from "@mui/material";
+const countriesData = require("../../../utils/countries.json");
 
-function SecondRow() {
-  const reportService = new ReportService();
-
+function SecondRow({ countries }) {
   //States
   const [sources, setSources] = useState([]);
   const [total, setTotal] = useState(0);
+  const [countryInfo, setCountryInfo] = useState([]);
+  const reportService = new ReportService();
 
   useEffect(() => {
     _constructor();
   }, []);
+
+  useEffect(() => {
+    if (countries && countries?.length > 0) {
+      let filteredCountries = [];
+      for (let i = 0; i < countries.length; i++) {
+        for (let j = 0; j < countriesData.length; j++) {
+          if (countriesData[j].name === countries[i]) {
+            filteredCountries.push(countriesData[j]);
+          }
+        }
+      }
+      setCountryInfo(filteredCountries);
+    }
+  }, [countries]);
 
   // eslint-disable-next-line no-underscore-dangle
   const _constructor = async () => {
@@ -34,7 +49,7 @@ function SecondRow() {
         setSources(data);
 
         data.forEach((d) => {
-          t += d.count;
+          t += d?.percentage;
         });
 
         setTotal(t);
@@ -82,7 +97,7 @@ function SecondRow() {
         {/* body and graph  */}
         <div className="border-[2px] border-sirp-lightGrey h-[300px]">
           <div className="h-[270px]">
-            <MapChart />
+            <MapChart userCountries={countryInfo} />
           </div>
         </div>
       </div>
@@ -121,18 +136,21 @@ function SecondRow() {
         <div className="border-[2px] border-sirp-lightGrey  md:px-8 px-2 md:py-5 py-3 h-[300px]">
           <div className="h-[250px] overflow-y-auto">
             {sources.length > 0 ? (
-              sources.map((source, index) => (
-                <div key={index} className="mb-4">
-                  <p className="mb-1 text-[14px]">
-                    {source.domain.toLowerCase()}
-                  </p>
-                  <ProgressBar
-                    percentage={(source.count / total) * 100}
-                    progressColor="bg-[#4AC7ED]"
-                    classNameStyle="h-2 bg-gray-100 "
-                  />
-                </div>
-              ))
+              sources.map((source, index) => {
+                // const domain = new URL(source?.domain).hostname
+                return (
+                  <div key={index} className="mb-4">
+                    <p className="mb-1 text-[14px] first-letter:capitalize">
+                      {source?.domain.replace("www.", "")}
+                    </p>
+                    <ProgressBar
+                      percentage={(source?.percentage / total) * 100}
+                      progressColor="bg-[#4AC7ED]"
+                      classNameStyle="h-2 bg-gray-100 "
+                    />
+                  </div>
+                );
+              })
             ) : (
               <div className={"flex w-full items-center justify-center h-full"}>
                 <CircularProgress color={"primary"} size={50} />
