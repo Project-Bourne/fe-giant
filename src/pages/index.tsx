@@ -13,7 +13,6 @@ import RightComp from "@/components/layouts/Header/RightComp";
 function Index() {
   const authService = new AuthService();
   const dispatch = useDispatch();
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<any>(null);
   // const [reload, setReload] = useState(false);
@@ -60,17 +59,6 @@ function Index() {
         )}
       </div>
 
-      {/* the yellow navigation at the top of the dashboard page */}
-      {/* <div className="grid grid-cols-1 px-[5px] md:px-0 md:grid-cols-2 justify-between md:items-center w-full md:w-[95%] md:mx-auto md:gap-x-[20px] gap-y-[20px] mt-5">
-        <LeftCompDB
-          docsCount={documents[0]?.length}
-          collabExportsCount={collabExportsCount}
-        />
-        <RightCompDB
-          crawledContentCount={documents[0]?.length}
-          archivedDocsCount={archivedDocs?.length}
-        />
-      </div> */}
       <div className="mb-5 mt-0 flex justify-center items-center ">
         <Group userData={userData} />
       </div>

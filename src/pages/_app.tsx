@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useEffect, useState } from "react";
 import { AppLayout } from "@/layout/index";
 import "../styles/global.css";
@@ -6,8 +6,6 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "@/redux/store";
 import { useRouter } from "next/router";
 import AuthService from "@/services/auth.service";
-import NotificationService from "@/services/notification.service";
-import { setUserInfo } from "@/redux/reducers/authReducer";
 
 function AppWrapper({ Component, pageProps, ...appProps }) {
   const router = useRouter();
