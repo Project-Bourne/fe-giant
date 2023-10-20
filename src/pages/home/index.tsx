@@ -84,11 +84,19 @@ function Index() {
         All Documents
       </h1>
 
-      <div className="bg-sirp-listBg border h-[100%] my-5 md:mx-10  rounded-t-[1rem]">
-        <div className="flex gap-x-4 items-center justify-end w-[100%] px-2 border-b-2 py-4 ">
+      <div
+        className={`${
+          !loading && "bg-sirp-listBg border"
+        }  h-[100%] my-5 md:mx-10  rounded-t-[1rem]`}
+      >
+        <div
+          className={`flex gap-x-4 items-center justify-end w-[100%] px-2 ${
+            !loading && "border-b-2"
+          } py-4 `}
+        >
           {facts?.length > 0 && (
             <div
-              className={`h-[39px] w-[39px] relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
+              className={`h-[39px] w-[39px] mr-5 relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
                 layoutOptionsToggle && "shadow"
               }`}
             >
@@ -100,7 +108,7 @@ function Index() {
                 onClick={() =>
                   setLayoutOptionsToggle((prevState) => !prevState)
                 }
-                width={23}
+                width={25}
               />
               {layoutOptionsToggle && <TablelayoutDropdownOptions />}
             </div>
@@ -114,16 +122,8 @@ function Index() {
         </div>
 
         <div className="w-full">
-          <HomeContent data={facts} headerborder={false} />
+          <HomeContent data={facts} headerborder={false} loading={loading} />
         </div>
-        {loading && (
-          <CustomModal
-            style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
-            closeBtn={false}
-          >
-            <Loader />
-          </CustomModal>
-        )}
       </div>
     </div>
   );

@@ -20,6 +20,7 @@ import NotificationService from "@/services/notification.service";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate } from "@/components/custom-hooks";
 import { setReports } from "@/redux/reducers/reportReducer";
+import { ButtonLoader } from "@/components/ui";
 
 const articlesCrawled = 1000;
 
@@ -36,6 +37,7 @@ function FirstRow() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [activateFilterButton, setActivateFilterButton] = useState(false);
+  const [filterLoading, setFilterLoading] = useState(false);
   const reportService = new ReportService();
   const dispatch = useDispatch();
 
@@ -47,6 +49,7 @@ function FirstRow() {
 
   const handleReportFilter = async (e) => {
     e.preventDefault();
+    setFilterLoading(true);
     if (!startDate || !endDate) return;
 
     let formattedStartDate = "";
@@ -61,6 +64,7 @@ function FirstRow() {
         formattedStartDate,
         formattedEndDate,
       );
+      setFilterLoading(false);
       if (reports?.status) {
         const data = reports.data;
         dispatch(setReports(data));
@@ -72,6 +76,7 @@ function FirstRow() {
         });
       }
     } catch (error: any) {
+      setFilterLoading(false);
       NotificationService.error({
         message: "Error!",
         addedText: <p>{error}, please try again</p>,
@@ -194,7 +199,17 @@ function FirstRow() {
               } p-1.5 mt-[.2rem] rounded`}
               onClick={handleReportFilter}
             >
-              <FilterListIcon fontSize="small" className="text-white" />
+              {filterLoading ? (
+                <ButtonLoader
+                  height="20px"
+                  width="20px"
+                  borderTopWidth="2px"
+                  borderTopColor="white"
+                  borderWidth="0px"
+                />
+              ) : (
+                <FilterListIcon fontSize="small" className="text-white" />
+              )}
             </div>
           </div>
         </div>
