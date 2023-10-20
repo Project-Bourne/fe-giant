@@ -1,19 +1,11 @@
 import { Tooltip } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-} from "react-simple-maps";
-
-const geoUrl = require("../../../utils/geography-file.json");
 
 export default function MapChart({ userCountries }) {
   return (
     <ul className="flex flex-wrap gap-x-3 pl-5">
-      {userCountries.map((country, index) => (
+      {userCountries?.map((country, index) => (
         <li key={index}>
           <Tooltip title={country.name}>
             <Image
