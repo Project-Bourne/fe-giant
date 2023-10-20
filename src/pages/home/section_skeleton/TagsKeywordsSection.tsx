@@ -9,20 +9,25 @@ function TagsKeywordsSection({ fact, isLoading }) {
 
   // Check if data.url exists using optional chaining
   const source = fact?.fact?.url ? fact?.fact?.url : "No Source";
+  const nSource =
+    (source !== "No Source" && source !== "" && source.includes("www.")) ||
+    source.includes("https")
+      ? new URL(source).hostname
+      : source;
 
   return (
     <div className="w-[25rem]">
       <p className="text-gray-500">
         {isLoading ? <Skeleton width={50} /> : "Source"}
       </p>
-      <div className="flex gap-3 items-center mt-3 p-2 overflow-hidden text-[0.8rem] hover:text-sirp-primary">
+      <div className="flex items-center mt-1 p-2 overflow-hidden text-[0.8rem]  hover:text-sirp-primary">
         <a
           href={source}
           target="_blank"
           rel="noopener noreferrer"
-          className="truncate" // This class truncates the text if it overflows
+          className="truncate uppercase" // This class truncates the text if it overflows
         >
-          {source}
+          {nSource}
         </a>
       </div>
     </div>
