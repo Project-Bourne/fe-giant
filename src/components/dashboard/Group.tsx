@@ -34,33 +34,32 @@ function Group({ userData }) {
     <div className="px-[4rem] py-7 flex items-center w-[90%] justify-center self-center">
       <div className="flex flex-wrap gap-y-3 md:gap-x-[2rem] w-[95%]  mx-auto">
         {/* admin */}
-        {userData?.role?.roleName === "admin" ||
-          (userData?.role?.roleName === "Superadmin" && (
-            <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
-              <div className="flex justify-center items-center pt-5">
-                {/* admin icon  */}
-                <div className="px-4 py-3 rounded-2xl bg-[#F3F5F6]">
-                  <div className="px-4 py-2 bg-white rounded-[2rem]">
-                    <Image
-                      src={admin}
-                      alt="documents"
-                      className="cursor-pointer"
-                      width={30}
-                    />
-                  </div>
+        {permissions?.includes("admin") && (
+          <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">
+            <div className="flex justify-center items-center pt-5">
+              {/* admin icon  */}
+              <div className="px-4 py-3 rounded-2xl bg-[#F3F5F6]">
+                <div className="px-4 py-2 bg-white rounded-[2rem]">
+                  <Image
+                    src={admin}
+                    alt="documents"
+                    className="cursor-pointer"
+                    width={30}
+                  />
                 </div>
               </div>
-
-              <div className="pt-8 ">
-                <button
-                  onClick={() => router.push("http://192.81.213.226:38/home")}
-                  className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
-                >
-                  Open Admin Panel
-                </button>
-              </div>
             </div>
-          ))}
+
+            <div className="pt-8 ">
+              <button
+                onClick={() => router.push("http://192.81.213.226:38/home")}
+                className="capitalize border border-sirp-dashboardcola w-[20rem] pb-2 pt-2 rounded-[1rem] hover:bg-sirp-dashboardcola hover:text-white text-sirp-dashboardcola font-bold "
+              >
+                Open Admin Panel
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* IRP */}
         <div className="border mx-auto md:mx-0 shadow shadow-sirp-primaryLess1 border-sirp-dashbordb1 rounded-[1.5rem] bg-sirp-secondary2  h-[12rem] mt-5  p-3">

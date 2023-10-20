@@ -42,18 +42,17 @@ function Starred() {
         </h1>
       </div>
 
-      <div className="bg-sirp-listBg h-[100%] border mx-3 md:mx-10 rounded-[1rem]">
-        <ArchiveContent data={archivedData} headerborder={true} />
+      <div
+        className={`${
+          !loading && "bg-sirp-listBg border"
+        } h-[100%]  mx-3 md:mx-10 rounded-[1rem]`}
+      >
+        <ArchiveContent
+          data={archivedData}
+          headerborder={true}
+          loading={loading}
+        />
       </div>
-
-      {loading && (
-        <CustomModal
-          style="bg-transparent w-full relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5 flex justify-center"
-          closeBtn={false}
-        >
-          <Loader />
-        </CustomModal>
-      )}
     </>
   );
 }

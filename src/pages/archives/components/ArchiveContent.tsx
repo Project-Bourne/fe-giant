@@ -3,8 +3,9 @@ import DocumentDisplayModal from "@/pages/home/components/DocumentDisplayModal";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate, useTruncate } from "@/components/custom-hooks";
+import Loader from "@/components/ui/Loader";
 
-function ArchiveContent({ data, headerborder }) {
+function ArchiveContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
   const [contentModal, setContentModal] = useState(false);
   const [modalContents, setModalContents] = useState({
@@ -173,45 +174,54 @@ function ArchiveContent({ data, headerborder }) {
 
   return (
     <>
-      {data?.length > 0 && (
-        <ul
-          className={`w-full flex flex-row px-3 py-4 ${
-            headerborder && "rounded-t-2xl"
-          }  bg-gray-100`}
-        >
-          {tableheader.map(
-            (item, index) =>
-              item?.checked && (
-                <li
-                  key={index}
-                  className={`
-                  ${item.key === "archive" && "w-[2%]"}
-                  ${item.key === "title" && "w-[22%]"}
-                  ${item.key === "author" && "w-[22%]"}
-                  ${item.key === "url" && "w-[22%]"}
-                  ${item.key === "content" && "w-[23%]"}
-                  ${item.key === "updatedAt" && "w-[9%]"}
-                   text-[16px] px-[2px] font-bold`}
-                >
-                  {item.name}
-                </li>
-              ),
-          )}
-        </ul>
+      {!loading ? (
+        <>
+          <>
+            {data?.length > 0 && (
+              <ul
+                className={`w-full flex flex-row px-3 py-4 ${
+                  headerborder && "rounded-t-2xl"
+                }  ${!loading && "bg-gray-100"}`}
+              >
+                {tableheader.map(
+                  (item, index) =>
+                    item?.checked && (
+                      <li
+                        key={index}
+                        className={`
+                            ${item.key === "archive" && "w-[2%]"}
+                            ${item.key === "title" && "w-[22%]"}
+                            ${item.key === "author" && "w-[22%]"}
+                            ${item.key === "url" && "w-[22%]"}
+                            ${item.key === "content" && "w-[23%]"}
+                            ${item.key === "updatedAt" && "w-[9%]"}
+                            text-[16px] px-[2px] font-bold`}
+                      >
+                        {item.name}
+                      </li>
+                    ),
+                )}
+              </ul>
+            )}
+          </>
+          <>
+            {data?.length > 0 ? (
+              generateTableRows(data, tableheader)
+            ) : (
+              <div className="p-3">
+                {" "}
+                <p className="text-center py-7">
+                  <i>You have no documents yet!</i>
+                </p>{" "}
+              </div>
+            )}
+          </>
+        </>
+      ) : (
+        <div className="mx-auto flex justify-center md:mt-10 mt-5">
+          <Loader />
+        </div>
       )}
-      <>
-        {data?.length > 0 ? (
-          generateTableRows(data, tableheader)
-        ) : (
-          <div className="p-3">
-            {" "}
-            <p className="text-center py-7">
-              <i>You have no documents yet!</i>
-            </p>{" "}
-          </div>
-        )}
-      </>
-
       {/* document content preview pane; fixed display at the right hand side when a document is  clicked */}
       {contentModal && (
         <DocumentDisplayModal

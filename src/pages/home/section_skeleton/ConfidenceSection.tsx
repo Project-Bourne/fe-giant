@@ -35,7 +35,7 @@ function ConfidenceSection({ fact, isLoading }) {
     confidence &&
     confidence !== "unknown" &&
     confidence.toLowerCase() !== "nan%"
-      ? confidence
+      ? Math.ceil(parseFloat(confidence))
       : "0%";
 
   return (
@@ -52,7 +52,7 @@ function ConfidenceSection({ fact, isLoading }) {
               value={
                 typeof confidencePercent === "string"
                   ? confidencePercent.replace("%", "")
-                  : confidencePercent
+                  : Math.ceil(confidencePercent)
               }
             /> //circular progress bar
           )}
@@ -62,7 +62,12 @@ function ConfidenceSection({ fact, isLoading }) {
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              <p>{confidencePercent} Confidence Level</p>
+              <p>
+                {typeof confidencePercent === "string"
+                  ? confidencePercent
+                  : Math.ceil(confidencePercent) + "%"}{" "}
+                Confidence Level
+              </p>
             )}
           </p>
           {/* {isLoading ? (
