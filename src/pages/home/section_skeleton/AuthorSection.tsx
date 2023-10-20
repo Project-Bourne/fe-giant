@@ -9,11 +9,11 @@ function AuthorSection({ fact, isLoading }) {
   const [source, setSource] = useState(null);
 
   useEffect(() => {
-    if (fact?.url && fact?.url.contains("www.")) {
+    if (fact?.url && fact?.url.includes("www.")) {
       const domain = new URL(fact?.url).hostname;
       setSource(domain);
     }
-    if (fact?.fact?.url && fact?.fact?.url.contains("www.")) {
+    if (fact?.fact?.url && fact?.fact?.url.includes("www.")) {
       const domain = new URL(fact?.fact?.url).hostname;
       setSource(domain);
     }
