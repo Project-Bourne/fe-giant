@@ -48,7 +48,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
       router.push(`http://192.81.213.226:35/home/${id}&irp`);
     }
     if (to === "interrogator") {
-      router.push(`http://localhost:3001/home/query/${id}&irp`);
+      router.push(`http://192.81.213.226:82/home/query/${id}&irp`);
     }
     if (to === "translator") {
       router.push(`http://192.81.213.226:33/home/${id}&irp`);
