@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -11,11 +11,17 @@ import frame012 from "../../../public/icons/frame-012.svg";
 import frame013 from "../../../public/icons/frame-013.svg";
 import frame0100 from "../../../public/icons/frame-0100.svg";
 import admin from "../../../public/icons/admin.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { setDocsLength, setDocuments } from "@/redux/reducers/documentReducer";
+import DocumentService from "@/services/documents.service";
 
 function Group({ userData }) {
   const router = useRouter();
-  const { documents, archivedDocs } = useSelector(
+  const dispatch = useDispatch();
+  const documentService = new DocumentService();
+
+  const { documents, docsLength, archivedDocs } = useSelector(
     (state: any) => state.documents,
   );
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -27,6 +33,33 @@ function Group({ userData }) {
   const collabExports = 0;
 
   const permissions = userData?.role?.permissions;
+
+  useEffect(() => {
+    _constructor();
+  }, []);
+
+  const _constructor = async () => {
+    await getTotalFactsDoc();
+    // await getTotalSummarisedDoc();
+    // await getTotalAnalyzedDoc();
+    // await getTotalCollabDoc();
+    // await getTotalInterrogatedDoc();
+    // await getTotalDeepchats();
+  };
+
+  const API_URL = "http://192.81.213.226:81/84";
+
+  const getTotalFactsDoc = async () => {
+    try {
+      const response = await documentService.getFactCheckedDocs();
+      // console.log("response==: ", response.data.totalItems);
+      if (response?.status === true) {
+        dispatch(setDocsLength(response.data.totalItems));
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
   // userInfo?.role?.roleName
 
@@ -73,7 +106,7 @@ function Group({ userData }) {
               />
             </div>
             <div>
-              <p className="font-bold">{collabExports ?? 0}</p>
+              <p className="font-bold">{docsLength ?? 0}</p>
               <span className="capitalize font-light text-sirp-grey text-[15px]">
                 Total Documents
               </span>

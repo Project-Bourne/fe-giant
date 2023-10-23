@@ -9,6 +9,8 @@ import Group from "@/components/dashboard/Group";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
 import RightComp from "@/components/layouts/Header/RightComp";
+import { toast } from "react-toastify";
+import DocumentService from "@/services/documents.service";
 
 function Index() {
   const authService = new AuthService();
@@ -17,9 +19,11 @@ function Index() {
   const [userData, setUserData] = useState<any>(null);
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth?.userInfo);
+  const documentService = new DocumentService();
 
   useEffect(() => {
     setUserData(user);
+    // _constructor();
   }, [user]);
 
   const apiRequest = (url) => {
@@ -34,46 +38,70 @@ function Index() {
     return res;
   };
 
+  const _constructor = async () => {
+    await getTotalFactsDoc();
+    // await getTotalSummarisedDoc();
+    // await getTotalAnalyzedDoc();
+    // await getTotalCollabDoc();
+    // await getTotalInterrogatedDoc();
+    // await getTotalDeepchats();
+  };
+
+  const API_URL = "http://192.81.213.226:81/84";
+
   const getTotalFactsDoc = async () => {
     try {
-      const response = await apiRequest("");
+      const response = await documentService.getFactCheckedDocs();
+      console.log({ response });
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getTotalAnalyzedDoc = async () => {
     try {
       const response = await apiRequest("");
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getTotalSummarisedDoc = async () => {
     try {
       const response = await apiRequest("");
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getTotalCollabDoc = async () => {
     try {
       const response = await apiRequest("");
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getTotalInterrogatedDoc = async () => {
     try {
       const response = await apiRequest("");
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getTotalDeepchats = async () => {
     try {
       const response = await apiRequest("");
       if (!response?.status) return;
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (

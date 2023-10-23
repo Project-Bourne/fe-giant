@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface DocStateProps {
   documents: Array<any>;
+  docsLength: number;
   archivedDocs: Array<any>;
   factcheck: any;
   currentDocId: any;
@@ -9,6 +10,7 @@ interface DocStateProps {
 
 const initialState: DocStateProps = {
   documents: [],
+  docsLength: 0,
   archivedDocs: [],
   factcheck: {},
   currentDocId: null,
@@ -30,6 +32,9 @@ const documentSlice = createSlice({
         state.documents.push(newItem);
       }
     },
+    setDocsLength: (state: any, action: PayloadAction<any>) => {
+      state.docsLength = action?.payload;
+    },
     setArchived: (state: any, action: PayloadAction<any>) => {
       state.archivedDocs = action?.payload;
     },
@@ -44,6 +49,11 @@ const documentSlice = createSlice({
   },
 });
 
-export const { setDocuments, setArchived, setFactCheck, setCurrentDocId } =
-  documentSlice.actions;
+export const {
+  setDocuments,
+  setDocsLength,
+  setArchived,
+  setFactCheck,
+  setCurrentDocId,
+} = documentSlice.actions;
 export default documentSlice.reducer;
