@@ -16,7 +16,7 @@ function TitleSection({ fact, isLoading }) {
       <p className="text-gray-500">
         {isLoading ? <Skeleton width={50} /> : "Title"}
       </p>
-      <h1 className="text-black text-3xl px-1 first-letter:capitalize">
+      <h1 className="text-black text-2xl first-letter:capitalize px-2">
         {isLoading ? <Skeleton /> : title}
       </h1>
     </div>
