@@ -17,14 +17,64 @@ function Index() {
   const [userData, setUserData] = useState<any>(null);
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth?.userInfo);
-  const { documents, archivedDocs } = useSelector(
-    (state: any) => state.documents,
-  );
-  const collabExportsCount = 0;
 
   useEffect(() => {
     setUserData(user);
   }, [user]);
+
+  const apiRequest = (url) => {
+    const res = fetch(url, {
+      method: "GET",
+      headers: {
+        "deep-token": user.userAccessToken,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res;
+  };
+
+  const getTotalFactsDoc = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
+
+  const getTotalAnalyzedDoc = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
+
+  const getTotalSummarisedDoc = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
+
+  const getTotalCollabDoc = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
+
+  const getTotalInterrogatedDoc = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
+
+  const getTotalDeepchats = async () => {
+    try {
+      const response = await apiRequest("");
+      if (!response?.status) return;
+    } catch (err) {}
+  };
 
   return (
     <React.Fragment>
