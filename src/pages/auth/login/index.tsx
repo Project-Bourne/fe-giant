@@ -9,6 +9,12 @@ import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { messaging, requestForToken } from "@/utils/firebase";
+import {
+  setAnalyzedTotal,
+  setFactsTotal,
+  setSummarizedTotal,
+  setTranslatedTotal,
+} from "@/redux/reducers/documentReducer";
 
 const intialFormData = {
   email: "",
@@ -42,8 +48,7 @@ function Login() {
     try {
       authService
         .login(formData)
-        .then((res) => {
-          setLoading(false);
+        .then(async (res) => {
           if (res?.status) {
             setCookie("deep-access", res?.data?.accessToken, { path: "/" });
             dispatch(
@@ -52,7 +57,11 @@ function Login() {
                 refreshToken: res?.data?.refreshToken,
               }),
             );
-            getUserInfo(res?.data?.accessToken);
+            await getUserInfo(res?.data?.accessToken);
+            await getTotalFactsDoc(res?.data?.accessToken);
+            await getTotalSummarisedDoc(res?.data?.accessToken);
+            await getTotalTranslatedDoc(res?.data?.accessToken);
+            await getTotalAnalyzedDoc(res?.data?.accessToken);
 
             NotificationService.success({
               message: "Login Successful!",
@@ -65,6 +74,7 @@ function Login() {
               delay: 7000,
             });
           }
+          setLoading(false);
         })
         .catch((err) => {
           setLoading(false);
@@ -119,6 +129,115 @@ function Login() {
       });
     }
   };
+
+  const BASE_URL = "http://192.81.213.226:81/";
+
+  const apiRequest = async (url, token) => {
+    if (token) {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "deep-token": token,
+          "Content-Type": "application/json",
+        },
+      });
+
+      return res;
+    }
+  };
+
+  const getTotalFactsDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/84/fact/user`, token);
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setFactsTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  const getTotalAnalyzedDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/81/analysis/user`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setAnalyzedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  const getTotalSummarisedDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/82/summary/user`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setSummarizedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  // const getTotalCollabDoc = async (token) => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
+  //     if (response?.status){
+  //       const data = await response.json();
+  // dispatch(setCollabTotal(data?.data?.totalItems))
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
+
+  // const getTotalInterrogatedDoc = async (token) => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //     dispatch(setInterrogatedTotal(data?.data?.totalItems))
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
+
+  const getTotalTranslatedDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/83/translation/user`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setTranslatedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  // const getTotalDeepchats = async (token) => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //      dispatch(setDeepTotal(data?.data?.totalItems))
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
 
   return (
     <>

@@ -13,12 +13,19 @@ import { toast } from "react-toastify";
 import DocumentService from "@/services/documents.service";
 
 function Index() {
-  const authService = new AuthService();
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<any>(null);
+  const [total, setTotal] = useState({
+    facts: 0,
+    summarized: 0,
+    interrogated: 0,
+    translated: 0,
+    analyzed: 0,
+    collabs: 0,
+    deep_convo: 0,
+  });
   // const [reload, setReload] = useState(false);
-  const user = useSelector((state: any) => state?.auth?.userInfo);
+  const user = useSelector((state: any) => state?.auth);
   const documentService = new DocumentService();
 
   useEffect(() => {
@@ -26,83 +33,110 @@ function Index() {
     // _constructor();
   }, [user]);
 
-  const apiRequest = (url) => {
-    const res = fetch(url, {
-      method: "GET",
-      headers: {
-        "deep-token": user.userAccessToken,
-        "Content-Type": "application/json",
-      },
-    });
-
-    return res;
-  };
+  useEffect(() => {
+    _constructor();
+  }, []);
 
   const _constructor = async () => {
     await getTotalFactsDoc();
-    // await getTotalSummarisedDoc();
+    await getTotalSummarisedDoc();
     // await getTotalAnalyzedDoc();
     // await getTotalCollabDoc();
     // await getTotalInterrogatedDoc();
     // await getTotalDeepchats();
   };
 
-  const API_URL = "http://192.81.213.226:81/84";
+  const BASE_URL = "http://192.81.213.226:81/";
+
+  console.log("token", userData?.userAccessToken);
+
+  const apiRequest = async (url) => {
+    if (userData.userAccessToken) {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "deep-token": userData?.userAccessToken,
+          "Content-Type": "application/json",
+        },
+      });
+
+      return res;
+    }
+  };
 
   const getTotalFactsDoc = async () => {
     try {
-      const response = await documentService.getFactCheckedDocs();
-      console.log({ response });
-      if (!response?.status) return;
+      const response: any = await apiRequest(`${BASE_URL}/84/fact/user`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, facts: data?.data?.totalItems });
+      }
     } catch (err) {
-      toast.error(err.message);
+      // throw new Error(err);
     }
   };
 
-  const getTotalAnalyzedDoc = async () => {
-    try {
-      const response = await apiRequest("");
-      if (!response?.status) return;
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  // const getTotalAnalyzedDoc = async () => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //       setTotal({...total, analyzed: data.data.totalItems })
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
 
   const getTotalSummarisedDoc = async () => {
     try {
-      const response = await apiRequest("");
-      if (!response?.status) return;
+      const response: any = await apiRequest(`${BASE_URL}/82/summary/user`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, summarized: data?.data?.totalItems });
+      }
     } catch (err) {
-      toast.error(err.message);
+      // throw new Error(err);
     }
   };
 
-  const getTotalCollabDoc = async () => {
-    try {
-      const response = await apiRequest("");
-      if (!response?.status) return;
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  // const getTotalCollabDoc = async () => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //       setTotal({...total, collabs: data.data.totalItems })
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
 
-  const getTotalInterrogatedDoc = async () => {
-    try {
-      const response = await apiRequest("");
-      if (!response?.status) return;
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  // const getTotalInterrogatedDoc = async () => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //       setTotal({...total, interrogated: data.data.totalItems })
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
 
-  const getTotalDeepchats = async () => {
-    try {
-      const response = await apiRequest("");
-      if (!response?.status) return;
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  // const getTotalDeepchats = async () => {
+  //   try {
+  //     const response: any = await apiRequest(`${BASE_URL}/`);
+  //     if (response?.status){
+  //       const data = await response.json();
+  //       setTotal({...total, deep_convo: data.data.totalItems })
+  //     }
+  //   } catch (err) {
+  //     // throw new Error(err);
+  //   }
+  // };
+
+  // console.log('home token', user.userAccessToken)
 
   return (
     <React.Fragment>
@@ -132,7 +166,7 @@ function Index() {
       <div className={"flex self-center content-center items-center"}>
         {user?.firstName && (
           <h2 className="text-black text-2xl font-bold capitalize mt-[1rem] lg:ml-[11rem] md:ml-[14rem] ml-[19rem] ">
-            Welcome {userData?.firstName}
+            Welcome {userData?.userInfo?.firstName}
           </h2>
         )}
       </div>

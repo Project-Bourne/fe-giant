@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -12,56 +12,22 @@ import frame013 from "../../../public/icons/frame-013.svg";
 import frame0100 from "../../../public/icons/frame-0100.svg";
 import admin from "../../../public/icons/admin.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { setDocsLength, setDocuments } from "@/redux/reducers/documentReducer";
 import DocumentService from "@/services/documents.service";
 
 function Group({ userData }) {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const documentService = new DocumentService();
 
-  const { documents, docsLength, archivedDocs } = useSelector(
-    (state: any) => state.documents,
-  );
-  const { userInfo } = useSelector((state: any) => state.auth);
-  const conversationsCount = 0;
-  const interrogatedDocs = 0;
-  const summarizedDocs = 0;
-  const translatedDocs = 0;
-  const analyzedDocs = 0;
-  const collabExports = 0;
+  const {
+    summarizedTotal,
+    factsTotal,
+    collabsTotal,
+    analyzedTotal,
+    interrogatedTotal,
+    translatedTotal,
+    deepChatTotal,
+  } = useSelector((state: any) => state.documents);
 
-  const permissions = userData?.role?.permissions;
-
-  useEffect(() => {
-    _constructor();
-  }, []);
-
-  const _constructor = async () => {
-    await getTotalFactsDoc();
-    // await getTotalSummarisedDoc();
-    // await getTotalAnalyzedDoc();
-    // await getTotalCollabDoc();
-    // await getTotalInterrogatedDoc();
-    // await getTotalDeepchats();
-  };
-
-  const API_URL = "http://192.81.213.226:81/84";
-
-  const getTotalFactsDoc = async () => {
-    try {
-      const response = await documentService.getFactCheckedDocs();
-      // console.log("response==: ", response.data.totalItems);
-      if (response?.status === true) {
-        dispatch(setDocsLength(response.data.totalItems));
-      }
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
-
-  // userInfo?.role?.roleName
+  const permissions = userData?.userInfo?.role?.permissions;
 
   return (
     <div className="px-[4rem] py-7 flex items-center w-[90%] justify-center self-center">
@@ -106,7 +72,7 @@ function Group({ userData }) {
               />
             </div>
             <div>
-              <p className="font-bold">{docsLength ?? 0}</p>
+              <p className="font-bold">{factsTotal ?? 0}</p>
               <span className="capitalize font-light text-sirp-grey text-[15px]">
                 Total Documents
               </span>
@@ -136,9 +102,9 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{collabExports ?? 0}</p>
+                <p className="font-bold">{collabsTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px]">
-                  Total Exports to Collab
+                  Total Collab Documents
                 </span>
               </div>
             </div>
@@ -166,7 +132,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{analyzedDocs ?? 0}</p>
+                <p className="font-bold">{analyzedTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px]">
                   Analyzed Documents
                 </span>
@@ -196,7 +162,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{interrogatedDocs ?? 0}</p>
+                <p className="font-bold">{interrogatedTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px] ">
                   Interrogated Documents
                 </span>
@@ -226,7 +192,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{translatedDocs ?? 0}</p>
+                <p className="font-bold">{translatedTotal ?? 0}</p>
                 <span className="font-light text-sirp-grey">
                   Translated Documents
                 </span>
@@ -256,7 +222,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{documents?.length ?? 0}</p>
+                <p className="font-bold">{factsTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px] ">
                   Fact-Checked Documents
                 </span>
@@ -286,7 +252,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{summarizedDocs ?? 0}</p>
+                <p className="font-bold">{summarizedTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px] ">
                   Summarized Documents
                 </span>
@@ -316,7 +282,7 @@ function Group({ userData }) {
                 />
               </div>
               <div>
-                <p className="font-bold">{conversationsCount ?? 0}</p>
+                <p className="font-bold">{deepChatTotal ?? 0}</p>
                 <span className="capitalize font-light text-sirp-grey text-[15px] ">
                   Total Documents
                 </span>
