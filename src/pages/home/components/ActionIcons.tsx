@@ -93,7 +93,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               alt="documents"
               className=" cursor-pointer"
               onClick={() => handleArchive(archiveId)}
-              width={33}
+              width={50}
             />
           </Tooltip>
         )}
@@ -105,7 +105,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               src={collab}
               alt="documents"
               className=" cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "collab")}
             />
           </Tooltip>
@@ -119,7 +119,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               alt="translator"
               className="cursor-pointer"
               onClick={() => handleRoute(docId, "translator")}
-              width={33}
+              width={50}
             />
           </Tooltip>
         )}
@@ -131,7 +131,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               src={analyzer}
               alt="analyzer"
               className=" cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "analyser")}
             />
           </Tooltip>
@@ -139,12 +139,12 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
 
         {/* factchecker  */}
         {permissions && permissions?.includes("fact checker") && (
-          <Tooltip title="Export to Factchecker">
+          <Tooltip title="Export to Fact Checker">
             <Image
               src={factchecker}
               alt="factcheck"
               className="cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "factcheck")}
             />
           </Tooltip>
@@ -157,7 +157,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               src={summarizer}
               alt="summarizer"
               className="cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "summarizer")}
             />
           </Tooltip>
@@ -165,12 +165,12 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
 
         {/* deepchat  */}
         {permissions && permissions?.includes("deep chat") && (
-          <Tooltip title="Export to Deepchat">
+          <Tooltip title="Export to Deep Chat">
             <Image
               src={deepchat}
               alt="deep chat"
               className="cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "deepchat")}
             />
           </Tooltip>
@@ -183,7 +183,7 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
               src={interrogator}
               alt="interrogator"
               className="cursor-pointer"
-              width={33}
+              width={50}
               onClick={() => handleRoute(docId, "interrogator")}
             />
           </Tooltip>

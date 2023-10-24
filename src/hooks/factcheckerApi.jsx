@@ -17,6 +17,21 @@ export const requestHeader = {
   "Content-Type": "application/json",
   "deep-token": access,
 };
+
+const logout = () => {
+  const access = cookies.get("deep-access");
+  fetch("http://192.81.213.226:81/80/logout", {
+    method: "POST",
+    body: {
+      refreshToken: access,
+    },
+  }).then((res) => {
+    cookies.remove("deep-access");
+    localStorage.clear();
+    window.location.href = "/auth/login";
+  });
+};
+
 /**
  *
  * @param {string} url
@@ -49,7 +64,9 @@ export async function factCheckRequest(
       .then(async (res) => {
         if (res.status === 403) {
           // Redirect to the login page
-          window.location.href = "/auth/login";
+          // window.location.href = "/auth/login";
+          // throw new Error("Access forbidden. Redirecting to login page.");
+          logout();
           throw new Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
@@ -69,8 +86,7 @@ export async function factCheckRequest(
     })
       .then(async (res) => {
         if (res.status === 403) {
-          // Redirect to the login page
-          window.location.href = "/auth/login";
+          logout();
           throw new Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
