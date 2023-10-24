@@ -24,17 +24,17 @@ function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
             {useTruncate(selectedItem?.title, 110)}
           </h2>
 
-          <div className="w-full flex justify-between items-center mt-5">
+          <div className="w-full grid items-center mt-5 gap-y-3">
             <ActionIcons showArchive={false} docId={id} />
             <p
               onClick={handleOnClick}
-              className="first-letter:capitalize hover:cursor-pointer text-sirp-primary text-[11px] bg-sirp-primaryLess2 py-1 px-2 rounded-md"
+              className="flex justify-end first-letter:capitalize w-fit hover:cursor-pointer text-sirp-primary text-[11px] bg-sirp-primaryLess2 py-3 px-5 rounded-md "
             >
               View document &rarr;
             </p>
           </div>
         </div>
-        <div className="w-full h-[47vh] p-2 bg-gray-50 overflow-y-auto mt-[1.5rem] font-normal text-[13.5px] first-letter:capitalize break-all rounded">
+        <div className="w-full h-[40vh] p-2 bg-gray-50 overflow-y-auto  font-normal text-[13.5px] first-letter:capitalize break-all rounded">
           {useTruncate(selectedItem?.content, 1100)}
         </div>
       </div>

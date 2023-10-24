@@ -20,21 +20,32 @@ function RightComp(props) {
   const dispatch = useDispatch();
   const router = useRouter();
   const authService = new AuthService();
-  const { userInfo } = useSelector((state: any) => state?.auth);
+  const { userInfo, userAccessToken } = useSelector(
+    (state: any) => state?.auth,
+  );
   const [dropdown, setDropdown] = useState(false);
   const [toggleDashboard, setToggleDashboard] = useState(false);
   const [logoutConfirmation, setLogoutConfirmation] = useState(false);
 
   const handleLogout = async (event: any) => {
     event.stopPropagation();
-    dispatch(logout());
-    localStorage.clear();
+    const refreshToken = userAccessToken;
+    authService.logout({ refreshToken }).then((res) => {
+      if (res) {
+        dispatch(logout());
+        localStorage.clear();
 
-    removeCookie("deep-access", { path: "/" });
-    router.push("/auth/login");
+        removeCookie("deep-access", { path: "/" });
+        router.push("/auth/login");
 
-    NotificationService.success({
-      message: "Logout operation successful!",
+        NotificationService.success({
+          message: "Logout operation successful!",
+        });
+      } else {
+        NotificationService.error({
+          message: "Logout Failed!",
+        });
+      }
     });
     setDropdown(false);
   };
@@ -72,17 +83,30 @@ function RightComp(props) {
       </div> */}
 
       {!dashboard && (
-        <div className={`${styles.view1} hidden md:flex relative`}>
-          <Image
-            src={dashboardIcon}
-            alt="dashboard"
-            width={20}
-            height={20}
-            className="self-center"
+        <div className="relative">
+          <div
+            className="grid justify-center mt-3.5"
             onClick={handleDashboardToggle}
-            style={{ alignSelf: "center" }}
-            priority
-          />
+          >
+            <div className={`${styles.view1} hidden md:flex`}>
+              <Image
+                src={dashboardIcon}
+                alt="dashboard"
+                width={20}
+                height={20}
+                className="self-center"
+                style={{ alignSelf: "center" }}
+                id="dashboard"
+                priority
+              />
+            </div>
+            <label
+              className="text-[12px] mx-2 hover:cursor-pointer"
+              htmlFor="dashboard"
+            >
+              Menu
+            </label>
+          </div>
           {toggleDashboard && <DashboardDropdown />}
         </div>
       )}
@@ -174,7 +198,7 @@ function RightComp(props) {
 
 const styles = {
   view1:
-    "bg-sirp-lightGrey cursor-pointer flex py-2 px-2 rounded-[15px] w-[45px] h-[45px] items-center justify-center content-center mr-4",
+    "bg-sirp-lightGrey cursor-pointer flex py-1 px-1 rounded-[15px] w-[45px] h-[40px] items-center justify-center content-center mr-4",
 };
 
 export default RightComp;
