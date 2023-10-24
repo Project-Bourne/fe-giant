@@ -7,10 +7,8 @@ import Loader from "@/components/ui/Loader";
 
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
-  const [displayState, setDisplayState] = useState({
-    context: true,
-    time: true,
-  });
+  const [timeState, setTimeState] = useState(true);
+  const [contentState, setContentState] = useState(true);
   const [contentModal, setContentModal] = useState(false);
   const [modalContents, setModalContents] = useState({
     title: "",
@@ -26,34 +24,34 @@ function HomeContent({ data, headerborder, loading }) {
     setTableheader(buttons);
 
     buttons.map((btn) => {
-      if (btn.key === "content") {
-        setDisplayState({ ...displayState, context: btn.checked });
+      if (btn.name.toLowerCase() === "content") {
+        setContentState(btn.checked);
       }
       if (btn.key === "updatedAt") {
-        setDisplayState({ ...displayState, time: btn.checked });
+        setTimeState(btn.checked);
       }
     });
   }, [buttons]);
 
   useEffect(() => {
-    if (displayState.time === true && displayState.context === true) {
+    if (timeState && contentState) {
       setTableAdjust(0);
       console.log("both true");
     }
-    if (!displayState.time && !displayState.context) {
+    if (!timeState && !contentState) {
       setTableAdjust(3);
       console.log("both false");
     }
 
-    if (displayState.time === true && !displayState.context) {
+    if (timeState && !contentState) {
       setTableAdjust(1);
       console.log("context false");
     }
-    if (!displayState.time && displayState.context === true) {
+    if (!timeState && contentState) {
       setTableAdjust(2);
       console.log("time false");
     }
-  }, [displayState]);
+  }, [timeState, contentState]);
 
   const getAuthor = (arg) => {
     const domain = new URL(arg).hostname;
