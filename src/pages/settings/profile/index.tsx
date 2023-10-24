@@ -114,6 +114,8 @@ const ProfileSettings = () => {
     setProfilePhoto(null);
   };
 
+  console.log(userInfo);
+
   return (
     <SettingsLayout>
       {/* First View Component */}

@@ -8,7 +8,7 @@ import Loader from "@/components/ui/Loader";
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
   const [displayState, setDisplayState] = useState({
-    content: true,
+    context: true,
     time: true,
   });
   const [contentModal, setContentModal] = useState(false);
@@ -27,7 +27,7 @@ function HomeContent({ data, headerborder, loading }) {
 
     buttons.map((btn) => {
       if (btn.key === "content") {
-        setDisplayState({ ...displayState, content: btn.checked });
+        setDisplayState({ ...displayState, context: btn.checked });
       }
       if (btn.key === "updatedAt") {
         setDisplayState({ ...displayState, time: btn.checked });
@@ -36,17 +36,22 @@ function HomeContent({ data, headerborder, loading }) {
   }, [buttons]);
 
   useEffect(() => {
-    if (displayState.time && displayState.content) {
+    if (displayState.time === true && displayState.context === true) {
       setTableAdjust(0);
+      console.log("both true");
     }
-    if (displayState.time && !displayState.content) {
-      setTableAdjust(1);
-    }
-    if (!displayState.time && displayState.content) {
-      setTableAdjust(2);
-    }
-    if (!displayState.time && !displayState.content) {
+    if (!displayState.time && !displayState.context) {
       setTableAdjust(3);
+      console.log("both false");
+    }
+
+    if (displayState.time === true && !displayState.context) {
+      setTableAdjust(1);
+      console.log("context false");
+    }
+    if (!displayState.time && displayState.context === true) {
+      setTableAdjust(2);
+      console.log("time false");
     }
   }, [displayState]);
 
@@ -113,7 +118,6 @@ function HomeContent({ data, headerborder, loading }) {
         ) {
           if (columnItem?.key === "author") {
             // Author
-
             const uniqueAuthor =
               res?.author || rowData?.fact?.confidence?.author || "No Author"; // getAuthor(rowData?.url) || getAuthor(rowData?.fact?.url);
             const author =
@@ -122,7 +126,7 @@ function HomeContent({ data, headerborder, loading }) {
                 : useTruncate(uniqueAuthor, 25);
 
             return (
-              <div key={index} className={`capitalize py-2 px-3 w-[13%]`}>
+              <div key={index} className={`capitalize py-2 w-[13%]`}>
                 {author}
               </div>
             );
@@ -146,8 +150,8 @@ function HomeContent({ data, headerborder, loading }) {
                   }`}
                 >
                   {useTruncate(
-                    res?.content ||
-                      rowData?.fact?.confidence?.content ||
+                    res?.content5wh ||
+                      rowData?.fact?.confidence?.content5wh ||
                       "No Content",
                     35,
                   )}
@@ -168,7 +172,7 @@ function HomeContent({ data, headerborder, loading }) {
               tableAdjust === 3
                 ? 35
                 : tableAdjust === 2
-                ? 25
+                ? 23
                 : tableAdjust === 1
                 ? 33
                 : 25;
@@ -182,10 +186,10 @@ function HomeContent({ data, headerborder, loading }) {
                     : tableAdjust === 2
                     ? "w-[21%]"
                     : tableAdjust === 1
-                    ? "w-[26%]"
+                    ? "w-[21%]"
                     : "w-[21%]"
                 } 
-                ${columnItem?.key === "url" && "px-3"}`}
+               `}
               >
                 {useTruncate(item, trcNum)}
               </div>
@@ -204,7 +208,7 @@ function HomeContent({ data, headerborder, loading }) {
               tableAdjust === 3
                 ? 80
                 : tableAdjust === 2
-                ? 60
+                ? 55
                 : tableAdjust === 1
                 ? 70
                 : 30;
@@ -251,7 +255,7 @@ function HomeContent({ data, headerborder, loading }) {
           <>
             {data?.length > 0 && (
               <ul
-                className={`w-full flex flex-row px-3 py-4 ${
+                className={`w-full flex flex-row py-4 ${
                   headerborder && "rounded-t-2xl"
                 }  ${!loading && "bg-gray-100"}`}
               >
@@ -272,7 +276,7 @@ function HomeContent({ data, headerborder, loading }) {
                                   : tableAdjust === 1
                                   ? "w-[50%]"
                                   : "w-[30%]"
-                              }`
+                              } px-[10px]`
                             }
                             ${item.key === "author" && "w-[13%]"}
                             ${
@@ -283,7 +287,7 @@ function HomeContent({ data, headerborder, loading }) {
                                   : tableAdjust === 2
                                   ? "w-[21%]"
                                   : tableAdjust === 1
-                                  ? "w-[26%]"
+                                  ? "w-[21%]"
                                   : "w-[21%]"
                               }`
                             }

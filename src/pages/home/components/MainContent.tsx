@@ -13,7 +13,7 @@ function MainContent({
   return (
     <div>
       <header>
-        <h2 className="text-2xl capitalize">{title}</h2>
+        <h2 className="text-2xl capitalize mb-3">{title}</h2>
       </header>
       <main>
         <p className="first-letter:capitalize text-justify leading-6 text-[1rem] mb-10">

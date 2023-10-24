@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputModel, DropdownModel } from "@/models/ui/components.models";
 import { useOnClickOutside } from "../custom-hooks";
 
@@ -103,6 +103,15 @@ function DropdownWithFlag(props: DropdownModel) {
   const [filteredCountries, setFilteredCountries] = useState(countries);
   const [countrySearch, setCountrySearch] = useState("");
   const searchInput = useRef();
+
+  useEffect(() => {
+    let cty = selectItem;
+    const countryObj = countries.filter(
+      (country) => country.name.toLowerCase() === selectItem.toLowerCase(),
+    );
+    console.log(countryObj);
+    setCountry({ name: countryObj[0].name, flag: countryObj[0].image });
+  }, [selectItem]);
 
   const dropdownRef = useRef();
   useOnClickOutside(dropdownRef, () => {

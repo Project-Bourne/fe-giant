@@ -91,8 +91,8 @@ function Meta() {
           <MainContent
             title={selectedDoc?.fact?.confidence?.title}
             content={
-              selectedDoc?.fact?.confidence?.content ||
-              selectedDoc?.fact?.confidence?.content5wh
+              selectedDoc?.fact?.confidence?.content5wh ||
+              selectedDoc?.fact?.confidence?.content
             }
           />
         </div>

@@ -86,7 +86,7 @@ function PasswordRecovery() {
 
   return (
     <AuthLayout
-      headerText={"Create Password"}
+      headerText={"Forgot Password"}
       subText={"Kindly provide your email address in the field below"}
       isTextCenter={true}
     >
