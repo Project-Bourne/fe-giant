@@ -40,7 +40,7 @@ export async function request(url, method, payload, token, text, form) {
         if (res.status === 403) {
           // Redirect to the login page
           window.location.href = "/auth/login";
-          throw new Error("Access forbidden. Redirecting to login page.");
+          throw Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
         } else {
@@ -62,7 +62,7 @@ export async function request(url, method, payload, token, text, form) {
         if (res.status === 403) {
           // Redirect to the login page
           window.location.href = "/auth/login";
-          throw new Error("Access forbidden. Redirecting to login page.");
+          throw Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
         } else {
@@ -71,7 +71,7 @@ export async function request(url, method, payload, token, text, form) {
       })
       .catch((err) => {
         console.error(`Request Error ${url}: `, err);
-        return err;
+        throw new Error(err);
       });
   }
 }

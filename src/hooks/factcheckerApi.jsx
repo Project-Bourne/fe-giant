@@ -3,6 +3,7 @@
 /**
  * Object Request Header
  */
+import NotificationService from "@/services/notification.service";
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 let access = "";
@@ -47,7 +48,6 @@ export async function factCheckRequest(
     })
       .then(async (res) => {
         if (res.status === 403) {
-          console.error("403 Forbidden: Redirecting to login page");
           // Redirect to the login page
           window.location.href = "/auth/login";
           throw new Error("Access forbidden. Redirecting to login page.");

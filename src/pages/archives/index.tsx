@@ -21,8 +21,10 @@ function Starred() {
     try {
       docService.getArchivedDocuments().then((res) => {
         setLoading(false);
-        if (res?.data) {
-          const docs = res?.data;
+        console.log(res);
+        if (res?.data?.facts) {
+          // console.log(res?.data?.facts)
+          const docs = res?.data?.facts;
           const isArchived = docs?.filter((doc) => doc?.bookmark === true);
           setArchivedData(isArchived);
           dispatch(setArchived(isArchived));

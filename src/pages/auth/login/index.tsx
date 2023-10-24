@@ -34,6 +34,7 @@ function Login() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (formData.email === "") {
       setErrors({ ...errors, email: "Email must not be empty!" });
@@ -48,7 +49,7 @@ function Login() {
     try {
       authService
         .login(formData)
-        .then(async (res) => {
+        .then((res) => {
           if (res?.status) {
             setCookie("deep-access", res?.data?.accessToken, { path: "/" });
             dispatch(
@@ -57,11 +58,11 @@ function Login() {
                 refreshToken: res?.data?.refreshToken,
               }),
             );
-            await getUserInfo(res?.data?.accessToken);
-            await getTotalFactsDoc(res?.data?.accessToken);
-            await getTotalSummarisedDoc(res?.data?.accessToken);
-            await getTotalTranslatedDoc(res?.data?.accessToken);
-            await getTotalAnalyzedDoc(res?.data?.accessToken);
+            getUserInfo(res?.data?.accessToken);
+            getTotalFactsDoc(res?.data?.accessToken);
+            getTotalSummarisedDoc(res?.data?.accessToken);
+            getTotalTranslatedDoc(res?.data?.accessToken);
+            getTotalAnalyzedDoc(res?.data?.accessToken);
 
             NotificationService.success({
               message: "Login Successful!",
@@ -77,12 +78,14 @@ function Login() {
           setLoading(false);
         })
         .catch((err) => {
-          setLoading(false);
+          console.log(err?.message);
           NotificationService.error({
             message: "Login Failed!",
             addedText: err?.message,
             delay: 7000,
           });
+
+          setLoading(false);
         });
     } catch (err) {
       setLoading(false);
