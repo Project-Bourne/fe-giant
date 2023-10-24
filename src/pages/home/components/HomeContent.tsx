@@ -7,11 +7,16 @@ import Loader from "@/components/ui/Loader";
 
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
+  const [displayState, setDisplayState] = useState({
+    content: true,
+    time: true,
+  });
   const [contentModal, setContentModal] = useState(false);
   const [modalContents, setModalContents] = useState({
     title: "",
     content: "",
   });
+  const [tableAdjust, setTableAdjust] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
   const [tableheader, setTableheader] = useState(buttons);
   const [clickTimeout, setClickTimeout] = useState(null);
@@ -19,7 +24,31 @@ function HomeContent({ data, headerborder, loading }) {
 
   useEffect(() => {
     setTableheader(buttons);
+
+    buttons.map((btn) => {
+      if (btn.key === "content") {
+        setDisplayState({ ...displayState, content: btn.checked });
+      }
+      if (btn.key === "updatedAt") {
+        setDisplayState({ ...displayState, time: btn.checked });
+      }
+    });
   }, [buttons]);
+
+  useEffect(() => {
+    if (displayState.time && displayState.content) {
+      setTableAdjust(0);
+    }
+    if (displayState.time && !displayState.content) {
+      setTableAdjust(1);
+    }
+    if (!displayState.time && displayState.content) {
+      setTableAdjust(2);
+    }
+    if (!displayState.time && !displayState.content) {
+      setTableAdjust(3);
+    }
+  }, [displayState]);
 
   const getAuthor = (arg) => {
     const domain = new URL(arg).hostname;
@@ -93,7 +122,7 @@ function HomeContent({ data, headerborder, loading }) {
                 : useTruncate(uniqueAuthor, 25);
 
             return (
-              <div key={index} className={`capitalize py-2 px-3 w-[22%]`}>
+              <div key={index} className={`capitalize py-2 px-3 w-[13%]`}>
                 {author}
               </div>
             );
@@ -112,7 +141,7 @@ function HomeContent({ data, headerborder, loading }) {
               return (
                 <div
                   key={index}
-                  className={`py-2 w-[23%] ${
+                  className={`py-2 w-[25%] ${
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
@@ -120,15 +149,12 @@ function HomeContent({ data, headerborder, loading }) {
                     res?.content ||
                       rowData?.fact?.confidence?.content ||
                       "No Content",
-                    25,
+                    35,
                   )}
                 </div>
               );
             }
-          } else if (
-            columnItem?.key !== "updatedAt" ||
-            columnItem?.key !== "author"
-          ) {
+          } else if (columnItem?.key === "url") {
             const item = rowData?.fact
               ? rowData?.fact[columnItem?.key] ||
                 rowData?.fact?.confidence[columnItem?.key]
@@ -137,14 +163,67 @@ function HomeContent({ data, headerborder, loading }) {
                 res?.title ||
                 `No ${columnItem?.key}`
               : `No ${columnItem?.key}`;
+
+            const trcNum =
+              tableAdjust === 3
+                ? 35
+                : tableAdjust === 2
+                ? 25
+                : tableAdjust === 1
+                ? 33
+                : 25;
             return (
               <div
                 key={index}
-                className={`py-2 w-[22%] ${
+                className={`py-2 
+                ${
+                  tableAdjust === 3
+                    ? "w-[30%]"
+                    : tableAdjust === 2
+                    ? "w-[21%]"
+                    : tableAdjust === 1
+                    ? "w-[26%]"
+                    : "w-[21%]"
+                } 
+                ${columnItem?.key === "url" && "px-3"}`}
+              >
+                {useTruncate(item, trcNum)}
+              </div>
+            );
+          } else if (columnItem?.key === "title") {
+            const item = rowData?.fact
+              ? rowData?.fact[columnItem?.key] ||
+                rowData?.fact?.confidence[columnItem?.key]
+              : !rowData?.fact
+              ? rowData[columnItem?.key] ||
+                res?.title ||
+                `No ${columnItem?.key}`
+              : `No ${columnItem?.key}`;
+
+            const trcNum =
+              tableAdjust === 3
+                ? 80
+                : tableAdjust === 2
+                ? 60
+                : tableAdjust === 1
+                ? 70
+                : 30;
+            return (
+              <div
+                key={index}
+                className={`py-2 ${
+                  tableAdjust === 3
+                    ? "w-[55%]"
+                    : tableAdjust === 2
+                    ? "w-[39%]"
+                    : tableAdjust === 1
+                    ? "w-[50%]"
+                    : "w-[30%]"
+                } ${
                   columnItem?.key === "title" && "px-3 first-letter:capitalize"
                 }`}
               >
-                {useTruncate(item, 25)}
+                {useTruncate(item, trcNum)}
               </div>
             );
           }
@@ -183,10 +262,32 @@ function HomeContent({ data, headerborder, loading }) {
                         key={index}
                         className={`
                             ${item.key === "archive" && "w-[2%]"}
-                            ${item.key === "title" && "w-[22%]"}
-                            ${item.key === "author" && "w-[22%]"}
-                            ${item.key === "url" && "w-[22%]"}
-                            ${item.key === "content" && "w-[23%]"}
+                            ${
+                              item.key === "title" &&
+                              `${
+                                tableAdjust === 3
+                                  ? "w-[55%]"
+                                  : tableAdjust === 2
+                                  ? "w-[39%]"
+                                  : tableAdjust === 1
+                                  ? "w-[50%]"
+                                  : "w-[30%]"
+                              }`
+                            }
+                            ${item.key === "author" && "w-[13%]"}
+                            ${
+                              item.key === "url" &&
+                              `${
+                                tableAdjust === 3
+                                  ? "w-[30%]"
+                                  : tableAdjust === 2
+                                  ? "w-[21%]"
+                                  : tableAdjust === 1
+                                  ? "w-[26%]"
+                                  : "w-[21%]"
+                              }`
+                            }
+                            ${item.key === "content" && "w-[25%]"}
                             ${item.key === "updatedAt" && "w-[9%]"}
                             text-[16px] px-[2px] font-bold`}
                       >
