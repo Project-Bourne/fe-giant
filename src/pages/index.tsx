@@ -1,5 +1,8 @@
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable react/jsx-filename-extension */
 // "use client"
 import React, { useEffect, useState } from "react";
+import { Router } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import AuthService from "@/services/auth.service";
 import { CustomModal } from "@/components/ui";
@@ -26,6 +29,7 @@ function Index() {
   });
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth);
+  const router = useRouter();
   const documentService = new DocumentService();
 
   useEffect(() => {
@@ -40,10 +44,10 @@ function Index() {
   const _constructor = async () => {
     await getTotalFactsDoc();
     await getTotalSummarisedDoc();
-    // await getTotalAnalyzedDoc();
-    // await getTotalCollabDoc();
-    // await getTotalInterrogatedDoc();
-    // await getTotalDeepchats();
+    await getTotalAnalyzedDoc();
+    await getTotalCollabDoc();
+    await getTotalInterrogatedDoc();
+    await getTotalDeepchats();
   };
 
   const BASE_URL = "http://192.81.213.226:81/";
@@ -61,6 +65,9 @@ function Index() {
       });
 
       return res;
+    } else {
+      // route to /auth/login
+      router.push("/auth/login");
     }
   };
 
@@ -76,17 +83,17 @@ function Index() {
     }
   };
 
-  // const getTotalAnalyzedDoc = async () => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //       setTotal({...total, analyzed: data.data.totalItems })
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalAnalyzedDoc = async () => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, analyzed: data.data.totalItems });
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   const getTotalSummarisedDoc = async () => {
     try {
@@ -100,53 +107,58 @@ function Index() {
     }
   };
 
-  // const getTotalCollabDoc = async () => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //       setTotal({...total, collabs: data.data.totalItems })
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalCollabDoc = async () => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, collabs: data.data.totalItems });
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
-  // const getTotalInterrogatedDoc = async () => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //       setTotal({...total, interrogated: data.data.totalItems })
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalInterrogatedDoc = async () => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, interrogated: data.data.totalItems });
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
-  // const getTotalDeepchats = async () => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //       setTotal({...total, deep_convo: data.data.totalItems })
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalDeepchats = async () => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/`);
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, deep_convo: data.data.totalItems });
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   // console.log('home token', user.userAccessToken)
 
   return (
     <React.Fragment>
       {/* logo  */}
-      <div
-        className={
-          "mb-[60px] border-b-[2px] p-[25px] w-full flex items-center justify-center"
-        }
-      >
-        <div>
+      <div className="p-[25px] w-full flex items-center bg-sirp-primary justify-center max-h-[90vh] overflow-y-hidden">
+        <div className="flex self-center content-center items-center text-white">
+          {userData?.userInfo?.firstName && userData?.userInfo?.lastName && (
+            <h2 className="text-white text-2xl font-bold capitalize mt-[1rem]">
+              <span className="text-black">Welcome </span>
+              {userData.userInfo.lastName} {userData.userInfo.firstName}
+            </h2>
+          )}
+        </div>
+
+        {/* <div>
           <Image
             src={logo}
             alt="IRP Logo"
@@ -156,22 +168,14 @@ function Index() {
           <h1 className="text-sirp-primary md:text-2xl text-xl mt-[2px] font-bold text-center">
             Deep Soul
           </h1>
-        </div>
+      </div> */}
 
-        <div className={"absolute right-3 top-10"}>
+        {/* <div className={"absolute right-3 top-10"}>
           <RightComp dashboard />
-        </div>
+        </div> */}
       </div>
 
-      <div className={"flex self-center content-center items-center"}>
-        {user?.firstName && (
-          <h2 className="text-black text-2xl font-bold capitalize mt-[1rem] lg:ml-[11rem] md:ml-[14rem] ml-[19rem] ">
-            Welcome {userData?.userInfo?.firstName}
-          </h2>
-        )}
-      </div>
-
-      <div className="mb-5 mt-0 flex justify-center items-center ">
+      <div className="mb-5 mt-0 flex flex-col justify-start items-center">
         <Group userData={userData} />
       </div>
       {loading && (
