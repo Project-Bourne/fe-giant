@@ -172,7 +172,7 @@ function HomeContent({ data, headerborder, loading }) {
                 : tableAdjust === 2
                 ? 23
                 : tableAdjust === 1
-                ? 33
+                ? 27
                 : 25;
             return (
               <div

@@ -10,6 +10,7 @@ import ButtonLoader from "./ButtonLoader";
 import ImagePreview from "./ImagePreview";
 import SelectTableLayout from "./SelectTableLayout";
 import TablelayoutDropdownOptions from "./TableLayoutDropdownOptions";
+import SectorSelect from "./SectorSelect";
 
 export {
   Input,
@@ -25,4 +26,5 @@ export {
   ImagePreview,
   SelectTableLayout,
   TablelayoutDropdownOptions,
+  SectorSelect,
 };

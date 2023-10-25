@@ -1,5 +1,5 @@
 import { useDuration } from "@/components/custom-hooks";
-import { Button } from "@/components/ui";
+import { Button, SectorSelect } from "@/components/ui";
 import NotificationService from "@/services/notification.service";
 import ReportService from "@/services/reports.service";
 import { useState } from "react";
@@ -85,7 +85,7 @@ function DigestModal({ closeModal, previewData }) {
       </div>
       <div className="grid gap-y-2 mb-4 text-[14px]">
         <label>Sector</label>
-        <select
+        {/* <select
           className="w-full px-2 py-3 border-[1px] border-gray-100 rounded font-light"
           onChange={(e: any) => handleSectorChange(e.target.value)}
         >
@@ -93,7 +93,8 @@ function DigestModal({ closeModal, previewData }) {
           <option value="agriculture">Agriculture</option>
           <option value="economics">Economics</option>
           <option value="medicine">Medicine</option>
-        </select>
+        </select> */}
+        <SectorSelect sector={handleSectorChange} />
       </div>
       <Button
         value={"Generate"}

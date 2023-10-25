@@ -143,11 +143,13 @@ function SecondRow({ countries }) {
                     <p className="mb-1 text-[14px] first-letter:capitalize">
                       {source?.domain.replace("www.", "")}
                     </p>
-                    <ProgressBar
-                      percentage={(source?.percentage / total) * 100}
-                      progressColor="bg-[#4AC7ED]"
-                      classNameStyle="h-2 bg-gray-100 "
-                    />
+                    <Tooltip title={(source?.percentage / total) * 100}>
+                      <ProgressBar
+                        percentage={(source?.percentage / total) * 100}
+                        progressColor="bg-[#4AC7ED]"
+                        classNameStyle="h-2 bg-gray-100 "
+                      />
+                    </Tooltip>
                   </div>
                 );
               })
