@@ -11,6 +11,7 @@ import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { messaging, requestForToken } from "@/utils/firebase";
 import {
   setAnalyzedTotal,
+  setCollabTotal,
   setDeepChatTotal,
   setFactsTotal,
   setInterrogatedTotal,
@@ -158,7 +159,6 @@ function Login() {
       if (response?.status) {
         const data = await response.json();
         dispatch(setFactsTotal(data?.data?.totalItems));
-        console.log(data?.data?.totalItems);
       }
     } catch (err) {
       // throw new Error(err);
@@ -195,17 +195,21 @@ function Login() {
     }
   };
 
-  // const getTotalCollabDoc = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  // dispatch(setCollabTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalCollabDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `http://192.81.213.226:86/api/v1/doc/docs/`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setCollabTotal(data?.data?.totalItems));
+        console.log("collab total", data);
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   const getTotalInterrogatedDoc = async (token) => {
     try {
@@ -228,7 +232,6 @@ function Login() {
       if (response?.status) {
         const data = await response.json();
         dispatch(setDeepChatTotal(data?.data?.totalItems));
-        console.log("deep", data?.data?.totalItems);
       }
     } catch (err) {
       // throw new Error(err);

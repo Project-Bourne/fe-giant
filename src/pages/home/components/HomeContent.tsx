@@ -20,8 +20,6 @@ function HomeContent({ data, headerborder, loading }) {
   const [clickTimeout, setClickTimeout] = useState(null);
   const router = useRouter();
 
-  console.log("dattttttt", data);
-
   useEffect(() => {
     setTableheader(buttons);
 
@@ -94,7 +92,6 @@ function HomeContent({ data, headerborder, loading }) {
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
       const res = rowData?.fact?.confidence;
-      console.log("res", res);
 
       const cells = columnOrder.map((columnItem: any, index) => {
         if (columnItem?.key === "archive") {

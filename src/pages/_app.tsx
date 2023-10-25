@@ -43,7 +43,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const LayoutWrapper = isPageNotIndex ? AppLayout : React.Fragment;
 
   return (
-    <LayoutWrapper suppressHydrationWarning={true}>
+    <LayoutWrapper>
       <Component {...pageProps} />
     </LayoutWrapper>
   );
@@ -51,7 +51,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
 
 function App({ Component, pageProps, ...appProps }) {
   return (
-    <Provider store={store} suppressHydrationWarning={true}>
+    <Provider store={store}>
       <AppWrapper Component={Component} pageProps={pageProps} {...appProps} />
     </Provider>
   );
