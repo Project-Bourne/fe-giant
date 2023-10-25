@@ -148,11 +148,11 @@ function Index() {
   return (
     <React.Fragment>
       {/* logo  */}
-      <div className="p-[25px] w-full flex items-center bg-sirp-primary justify-center max-h-[90vh] overflow-y-hidden">
+      <div className="p-[25px] w-full flex items-center bg-white bg-opacity-25 justify-center max-h-[90vh] overflow-y-hidden">
         <div className="flex self-center content-center items-center text-white">
           {userData?.userInfo?.firstName && userData?.userInfo?.lastName && (
-            <h2 className="text-white text-2xl font-bold capitalize mt-[1rem]">
-              <span className="text-black">Welcome </span>
+            <h2 className="text-sirp-primary text-xl font-bold capitalize mt-[1rem]">
+              <span className="text-black">Welcome to Deep Soul </span>
               {userData.userInfo.lastName} {userData.userInfo.firstName}
             </h2>
           )}
@@ -175,7 +175,7 @@ function Index() {
         </div> */}
       </div>
 
-      <div className="mb-5 mt-0 flex flex-col justify-start items-center">
+      <div className="mb-5 mt-0 flex flex-col justify-start items-center bg-logo bg-center bg-contain bg-no-repeat">
         <Group userData={userData} />
       </div>
       {loading && (
