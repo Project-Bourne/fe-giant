@@ -20,6 +20,8 @@ function HomeContent({ data, headerborder, loading }) {
   const [clickTimeout, setClickTimeout] = useState(null);
   const router = useRouter();
 
+  console.log("dattttttt", data);
+
   useEffect(() => {
     setTableheader(buttons);
 
@@ -91,7 +93,8 @@ function HomeContent({ data, headerborder, loading }) {
 
   const generateTableRows = (_arg, columnOrder) => {
     return _arg.map((rowData: any) => {
-      const res = JSON.parse(rowData?.confidence);
+      const res = rowData?.fact?.confidence;
+      console.log("res", res);
 
       const cells = columnOrder.map((columnItem: any, index) => {
         if (columnItem?.key === "archive") {
@@ -104,8 +107,7 @@ function HomeContent({ data, headerborder, loading }) {
             rowData[columnItem?.key] !== undefined) ||
           (rowData?.fact?.hasOwnProperty(columnItem?.key) &&
             rowData?.fact[columnItem?.key] !== undefined) ||
-          (res?.hasOwnProperty(columnItem?.key) &&
-            rowData["confidence"][columnItem?.key] !== undefined) ||
+          res?.hasOwnProperty(columnItem?.key) ||
           (rowData?.fact?.confidence?.hasOwnProperty(columnItem?.key) &&
             rowData?.fact["confidence"][columnItem?.key] !== undefined) ||
           columnItem?.key !== "archive"
@@ -232,9 +234,9 @@ function HomeContent({ data, headerborder, loading }) {
 
       return (
         <div
-          key={rowData?.uuid}
+          key={rowData?.fact?.uuid}
           onClick={() =>
-            handleClicks(rowData?.uuid, res?.title, res?.content5wh)
+            handleClicks(rowData?.fact?.uuid, res?.title, res?.content5wh)
           }
           className={`flex text-[13px] hover:bg-sirp-primaryLess2/[0.7] hover:cursor-pointer`}
         >

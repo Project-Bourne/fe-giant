@@ -24,7 +24,7 @@ function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
             {useTruncate(selectedItem?.title, 110)}
           </h2>
 
-          <div className="w-full grid items-center mt-5 gap-y-3">
+          <div className="w-full grid items-center mt-3 gap-y-3">
             <ActionIcons showArchive={false} docId={id} />
             <p
               onClick={handleOnClick}

@@ -68,7 +68,7 @@ function NavBar() {
         ))}
       </div>
 
-      <div className="absolute bottom-10 text-[10px] px-5 -left-3">
+      <div className="absolute bottom-10 text-[10px] px-5 -left-2">
         <div className="bg-gray-50 p-3 rounded">
           <h3 className="justify-center font-semibold flex items-center mb-2">
             <Image

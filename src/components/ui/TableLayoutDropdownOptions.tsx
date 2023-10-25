@@ -25,7 +25,7 @@ function TablelayoutDropdownOptions() {
   };
 
   return (
-    <div className=" grid gap-y-1 text-[11.5px] absolute top-10 bg-white py-2 px-3 rounded shadow">
+    <div className=" grid gap-y-1 text-[11.5px] absolute top-10 z-30 bg-white py-2 px-3 rounded shadow">
       {buttonStates?.map((item, index) => (
         <>
           {item?.name !== "" && (

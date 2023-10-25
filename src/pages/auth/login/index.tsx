@@ -11,7 +11,9 @@ import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { messaging, requestForToken } from "@/utils/firebase";
 import {
   setAnalyzedTotal,
+  setDeepChatTotal,
   setFactsTotal,
+  setInterrogatedTotal,
   setSummarizedTotal,
   setTranslatedTotal,
 } from "@/redux/reducers/documentReducer";
@@ -63,6 +65,8 @@ function Login() {
             getTotalSummarisedDoc(res?.data?.accessToken);
             getTotalTranslatedDoc(res?.data?.accessToken);
             getTotalAnalyzedDoc(res?.data?.accessToken);
+            getTotalChats(res?.data?.accessToken);
+            getTotalInterrogatedDoc(res?.data?.accessToken);
 
             NotificationService.success({
               message: "Login Successful!",
@@ -132,7 +136,7 @@ function Login() {
     }
   };
 
-  const BASE_URL = "http://192.81.213.226:81/";
+  const BASE_URL = "http://192.81.213.226:81";
 
   const apiRequest = async (url, token) => {
     if (token) {
@@ -203,17 +207,33 @@ function Login() {
   //   }
   // };
 
-  // const getTotalInterrogatedDoc = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //     dispatch(setInterrogatedTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalInterrogatedDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/87/interrogation`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setInterrogatedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  const getTotalChats = async (token) => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/85/deepchat`, token);
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setDeepChatTotal(data?.data?.totalItems));
+        console.log("deep", data?.data?.totalItems);
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   const getTotalTranslatedDoc = async (token) => {
     try {
