@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "media",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,10 +13,13 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        logo: "url(/images/logo.png)",
       },
       colors: {
         sirp: {
           primary: "#4582C4",
+          primaryContainer: "#003546",
+          secondaryContainer: "#001f2a",
           primaryBlue: "#1293BA",
           primaryLess1: "#B2CBE6",
           primaryLess2: "#E8F8FD",
