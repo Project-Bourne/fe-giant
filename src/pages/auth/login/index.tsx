@@ -78,7 +78,6 @@ function Login() {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err?.message);
           NotificationService.error({
             message: "Login Failed!",
             addedText: err?.message,
@@ -155,6 +154,7 @@ function Login() {
       if (response?.status) {
         const data = await response.json();
         dispatch(setFactsTotal(data?.data?.totalItems));
+        console.log(data?.data?.totalItems);
       }
     } catch (err) {
       // throw new Error(err);

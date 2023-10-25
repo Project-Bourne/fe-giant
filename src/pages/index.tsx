@@ -52,8 +52,6 @@ function Index() {
 
   const BASE_URL = "http://192.81.213.226:81/";
 
-  console.log("token", userData?.userAccessToken);
-
   const apiRequest = async (url) => {
     if (userData.userAccessToken) {
       const res = await fetch(url, {

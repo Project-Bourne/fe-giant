@@ -7,7 +7,7 @@ import { getUserRole } from "@/components/custom-hooks";
 import SettingsLayout from "@/layout/SettingsLayout";
 import AuthService from "@/services/auth.service";
 import NotificationService from "@/services/notification.service";
-import { setUpdatedData } from "@/redux/reducers/authReducer";
+import { setUpdatedData, setUserInfo } from "@/redux/reducers/authReducer";
 
 import mail from "../../../../public/icons/mail.svg";
 import user_icon from "../../../../public/icons/userIcon.svg";
@@ -22,6 +22,7 @@ const ProfileSettings = () => {
   const authService = new AuthService();
   const hiddenFileInput = useRef(null);
   const userInfo = useSelector((state: any) => state?.auth?.userInfo);
+  const accessToken = useSelector((state: any) => state?.auth?.userAccessToken);
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -77,7 +78,7 @@ const ProfileSettings = () => {
     setProfilePhoto(null);
   };
 
-  const handleProfileSubmit = (e: any) => {
+  const handleProfileSubmit = async (e: any) => {
     const img = profilePhoto?.url;
     if (firstname !== "" && lastname !== "") {
       authService
@@ -85,7 +86,7 @@ const ProfileSettings = () => {
           { firstName: firstname, lastName: lastname, img },
           userInfo?.uuid,
         )
-        .then((res) => {
+        .then(async (res) => {
           if (res?.status) {
             NotificationService.success({
               message: res?.message,
@@ -97,6 +98,7 @@ const ProfileSettings = () => {
                 image: img,
               }),
             );
+            await getUserInfo();
           } else {
             NotificationService.error({
               message: "Profile update failed!",
@@ -114,7 +116,38 @@ const ProfileSettings = () => {
     setProfilePhoto(null);
   };
 
-  console.log(userInfo);
+  const getUserInfo = async () => {
+    try {
+      const response: any = await fetch(
+        "http://192.81.213.226:81/80/token/user",
+        {
+          method: "GET",
+          headers: {
+            "deep-token": accessToken,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (response?.ok) {
+        const data = await response.json();
+        dispatch(setUserInfo(data?.data));
+      } else {
+        const data = await response.json();
+        NotificationService.error({
+          message: "Error: failed to fetch user data",
+          addedText: data?.message,
+          position: "top-center",
+        });
+      }
+    } catch (err) {
+      NotificationService.error({
+        message: "Error: failed to fetch user data ",
+        addedText: err?.message,
+        position: "top-center",
+      });
+    }
+  };
 
   return (
     <SettingsLayout>
@@ -304,13 +337,34 @@ const ProfileSettings = () => {
             </label>
           </div>
 
-          <DropdownWithFlag
+          <div className="text-[12px] text-black border-[1.5px] flex flex-wrap gap-x-3 rounded-md py-2 px-2 ml-4  w-[38%]">
+            {userInfo?.country.map((item, index) => {
+              const countryObj = countries.filter(
+                (country) => country.name.toLowerCase() === item.toLowerCase(),
+              );
+              return (
+                <div className="flex items-center gap-x-2">
+                  <Image
+                    src={countryObj[0].image}
+                    alt={countryObj[0].name}
+                    width={20}
+                    height={20}
+                  />
+                  <span>
+                    {countryObj[0].name}
+                    {index < userInfo.country.length - 1 ? "," : ""}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          {/* <DropdownWithFlag
             data={countries}
             selectItem={userInfo?.country[0]}
             className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7  w-[38%]"
             style={"w-[38%] mx-4"}
             isDisabled={true}
-          />
+          /> */}
         </div>
       </div>
       {/* <View2 /> */}

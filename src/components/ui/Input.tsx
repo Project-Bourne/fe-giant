@@ -109,7 +109,6 @@ function DropdownWithFlag(props: DropdownModel) {
     const countryObj = countries.filter(
       (country) => country.name.toLowerCase() === selectItem.toLowerCase(),
     );
-    console.log(countryObj);
     setCountry({ name: countryObj[0].name, flag: countryObj[0].image });
   }, [selectItem]);
 

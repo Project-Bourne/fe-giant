@@ -36,20 +36,16 @@ function HomeContent({ data, headerborder, loading }) {
   useEffect(() => {
     if (timeState && contentState) {
       setTableAdjust(0);
-      console.log("both true");
     }
     if (!timeState && !contentState) {
       setTableAdjust(3);
-      console.log("both false");
     }
 
     if (timeState && !contentState) {
       setTableAdjust(1);
-      console.log("context false");
     }
     if (!timeState && contentState) {
       setTableAdjust(2);
-      console.log("time false");
     }
   }, [timeState, contentState]);
 
@@ -237,7 +233,9 @@ function HomeContent({ data, headerborder, loading }) {
       return (
         <div
           key={rowData?.uuid}
-          onClick={() => handleClicks(rowData?.uuid, res?.title, res?.content)}
+          onClick={() =>
+            handleClicks(rowData?.uuid, res?.title, res?.content5wh)
+          }
           className={`flex text-[13px] hover:bg-sirp-primaryLess2/[0.7] hover:cursor-pointer`}
         >
           {cells}
