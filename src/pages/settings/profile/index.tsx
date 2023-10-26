@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { CustomModal, DropdownWithFlag, ImagePreview } from "@/components/ui";
+import {
+  ButtonLoader,
+  CustomModal,
+  DropdownWithFlag,
+  ImagePreview,
+} from "@/components/ui";
 import { getUserRole } from "@/components/custom-hooks";
 import SettingsLayout from "@/layout/SettingsLayout";
 import AuthService from "@/services/auth.service";
@@ -13,6 +18,7 @@ import mail from "../../../../public/icons/mail.svg";
 import user_icon from "../../../../public/icons/userIcon.svg";
 import delete_icon from "../../../../public/icons/delete.svg";
 import edit_icon from "../../../../public/icons/edit.svg";
+import CheckIcon from "@mui/icons-material/Check";
 
 const countries = require("../../../utils/countries.json");
 
@@ -31,6 +37,7 @@ const ProfileSettings = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isTooLarge, setIsTooLarge] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     setFirstname(userInfo?.firstName);
@@ -52,9 +59,9 @@ const ProfileSettings = () => {
   };
   const handleImageSelection = (event) => {
     setSelectedPhoto({
-      url: URL.createObjectURL(event.target.files[0]),
-      name: event.target.files[0].name,
-      size: event.target.files[0].size,
+      url: event.target.files[0],
+      name: event.target?.files[0]?.name,
+      size: event.target?.files[0]?.size,
     });
   };
 
@@ -70,7 +77,6 @@ const ProfileSettings = () => {
     setIsTooLarge(false);
     setProfilePhoto(selectedPhoto);
     setSelectedPhoto(null);
-    setIsReadOnly(false);
   };
 
   const handleUploadCancel = () => {
@@ -78,12 +84,76 @@ const ProfileSettings = () => {
     setProfilePhoto(null);
   };
 
+  const handlePhotoUpload = async () => {
+    if (profilePhoto) {
+      const formData = new FormData();
+      const user_name = userInfo.firstName + userInfo.lastName;
+      formData.append("files", profilePhoto.url);
+      formData.append("userId", userInfo.uuid);
+      formData.append("userName", user_name);
+      setUploading(true);
+      // make request to uploads endpoint, get blob string
+      try {
+        const response = await fetch(
+          "http://192.81.213.226:81/89/api/v1/uploads",
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
+
+        if (response.status) {
+          const data = await response.json();
+          const fileUrl = data.data[0].url;
+
+          if (fileUrl) {
+            // send image url to backend and re-fetch user data on success
+            const img: any = JSON.stringify({ uri: fileUrl });
+            try {
+              const response = await fetch(
+                "http://192.81.213.226:81/80/avatar",
+                {
+                  method: "PUT",
+                  body: img,
+                  headers: {
+                    "deep-token": accessToken,
+                    "Content-Type": "application/json",
+                  },
+                },
+              );
+              const res = await response.json();
+              if (res?.status) {
+                setUploading(false);
+                NotificationService.success({
+                  message: "Upload Successul!",
+                });
+                // re-fetch user info
+                getUserInfo();
+                setProfilePhoto(null);
+              }
+            } catch (err) {
+              setUploading(false);
+            }
+          }
+        } else {
+          NotificationService.error({
+            message: "Error!",
+            addedText: "failed to upload. Please try again.",
+            position: "top-center",
+          });
+        }
+      } catch (err) {
+        setUploading(false);
+      }
+    }
+  };
+
   const handleProfileSubmit = async (e: any) => {
-    const img = profilePhoto?.url;
+    // const img = profilePhoto?.url;
     if (firstname !== "" && lastname !== "") {
       authService
         .updateUserInfo(
-          { firstName: firstname, lastName: lastname, img },
+          { firstName: firstname, lastName: lastname },
           userInfo?.uuid,
         )
         .then(async (res) => {
@@ -95,7 +165,6 @@ const ProfileSettings = () => {
               setUpdatedData({
                 firstName: firstname,
                 lastName: lastname,
-                image: img,
               }),
             );
             await getUserInfo();
@@ -132,6 +201,7 @@ const ProfileSettings = () => {
       if (response?.ok) {
         const data = await response.json();
         dispatch(setUserInfo(data?.data));
+        // console.log(data?.data)
       } else {
         const data = await response.json();
         NotificationService.error({
@@ -155,7 +225,7 @@ const ProfileSettings = () => {
       <div className="py-4 px-8 w-full mt-3 border-b-[1.5px]">
         <div className="flex flex-row w-full items-center justify-between">
           <h2 className="font-semibold text-[13px]">Personal Information</h2>
-          {!isReadOnly || profilePhoto ? (
+          {!isReadOnly ? (
             <div className="flex items-center gap-x-3">
               <div
                 onClick={handleCancelAll}
@@ -285,10 +355,30 @@ const ProfileSettings = () => {
                   priority
                   onClick={handleUploadCancel}
                 />
+
+                {profilePhoto && (
+                  <div
+                    className="px-3.5 py-1.5 cursor-pointer border-sirp-success bg-sirp-success flex gap-x-1 items-center text-white rounded-md"
+                    onClick={handlePhotoUpload}
+                  >
+                    <p className="text-[11px] font-semibold">Upload</p>
+                    {uploading ? (
+                      <ButtonLoader
+                        height="10px"
+                        width="10px"
+                        borderTopWidth="2px"
+                        borderTopColor="white"
+                        borderWidth="0px"
+                      />
+                    ) : (
+                      <CheckIcon fontSize="small" />
+                    )}
+                  </div>
+                )}
               </div>
 
               {profilePhoto && (
-                <p className="text-[11px] text-center text-sirp-success my-1">
+                <p className="text-[11px] text-center text-sirp-success my-1 mr-[5rem]">
                   {profilePhoto.name}
                 </p>
               )}
@@ -296,7 +386,7 @@ const ProfileSettings = () => {
               <p
                 className={`text-[11px] text-center ${
                   isTooLarge ? "text-red-600" : "text-gray-400"
-                }  my-1`}
+                }  my-1 ${profilePhoto && "mr-[5rem]"}`}
               >
                 JPG, PNG or GIF - 1MB Max
               </p>
@@ -338,6 +428,7 @@ const ProfileSettings = () => {
           </div>
 
           <div className="text-[12px] text-black border-[1.5px] flex flex-wrap gap-x-3 rounded-md py-2 px-2 ml-4  w-[38%]">
+            {/* use countries array from user info to get name and flag pair from countriesObj json file  */}
             {userInfo?.country.map((item, index) => {
               const countryObj = countries.filter(
                 (country) => country.name.toLowerCase() === item.toLowerCase(),
@@ -358,13 +449,6 @@ const ProfileSettings = () => {
               );
             })}
           </div>
-          {/* <DropdownWithFlag
-            data={countries}
-            selectItem={userInfo?.country[0]}
-            className="text-[12px] text-black border-[1.5px] rounded-md py-2 px-7  w-[38%]"
-            style={"w-[38%] mx-4"}
-            isDisabled={true}
-          /> */}
         </div>
       </div>
       {/* <View2 /> */}
@@ -375,7 +459,7 @@ const ProfileSettings = () => {
           closeModal={() => setSelectedPhoto(null)}
         >
           <ImagePreview
-            file={selectedPhoto?.url}
+            file={URL.createObjectURL(selectedPhoto?.url)}
             handleAddPhoto={handleAddPhoto}
             handleUploadCancel={handleUploadCancel}
           />

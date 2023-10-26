@@ -119,6 +119,7 @@ function Login() {
       if (response?.ok) {
         const data = await response.json();
         dispatch(setUserInfo(data?.data));
+        getTotalCollabDoc(data?.data?.uuid, token);
       } else {
         const data = await response.json();
         NotificationService.error({
@@ -195,16 +196,15 @@ function Login() {
     }
   };
 
-  const getTotalCollabDoc = async (token) => {
+  const getTotalCollabDoc = async (id, token) => {
     try {
       const response: any = await apiRequest(
-        `http://192.81.213.226:86/api/v1/doc/docs/`,
+        `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
         token,
       );
-      if (response?.status) {
+      if (response?.ok) {
         const data = await response.json();
-        dispatch(setCollabTotal(data?.data?.totalItems));
-        console.log("collab total", data);
+        dispatch(setCollabTotal(data?.data?.totalDocuments));
       }
     } catch (err) {
       // throw new Error(err);
@@ -252,18 +252,6 @@ function Login() {
       // throw new Error(err);
     }
   };
-
-  // const getTotalDeepchats = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //      dispatch(setDeepTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
 
   return (
     <>
