@@ -29,9 +29,9 @@ function BarChartComponent() {
   // Transform the sorted data into the format expected by recharts
   const data = sortedData?.map((report) => ({
     month: report.month,
-    "Credible Articles": report.percentageCredible || 0,
-    "Relevant Articles": report.percentageRelevant || 0,
-    "Popular Articles": report.percentagePopular || 0,
+    "Credible Articles": report.percentageCredible / 100 || 0,
+    "Relevant Articles": report.percentageRelevant / 100 || 0,
+    "Popular Articles": report.percentagePopular / 100 || 0,
   }));
 
   // Custom formatter for Tooltip to add % symbol

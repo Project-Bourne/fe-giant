@@ -16,6 +16,7 @@ import { setDocuments } from "@/redux/reducers/documentReducer";
 import Loader from "@/components/ui/Loader";
 import NotificationService from "@/services/notification.service";
 import HomeContent from "./components/HomeContent";
+import { Pagination } from "@mui/material";
 
 function Index() {
   const router = useRouter();
@@ -23,17 +24,19 @@ function Index() {
   const dispatch = useDispatch();
   const docs = useSelector((state: any) => state.documents.documents);
   const [tableLayout, setTableLayout] = useState("0");
-  const [facts, setFacts] = useState([]);
+  const [facts, setFacts] = useState<any>([]);
   const [layoutOptionsToggle, setLayoutOptionsToggle] = useState(false);
   const [loading, setLoading] = useState(false);
+  const itemsPerPage = docs?.itemsPerPage || 10;
+  const [currentPage, setCurrentPage] = useState(docs?.currentPage || 1);
 
   useEffect(() => {
     getDocuments();
   }, []);
 
-  // useEffect(() => {
-  //   setFacts(docs);
-  // }, [docs]);
+  useEffect(() => {
+    setFacts(docs);
+  }, [docs]);
 
   const getDocuments = () => {
     setLoading(true);
@@ -43,8 +46,9 @@ function Index() {
         .then((res) => {
           setLoading(false);
           if (res?.status) {
-            dispatch(setDocuments(res?.data?.facts));
-            setFacts(res?.data?.facts);
+            dispatch(setDocuments(res?.data));
+            setFacts(res?.data);
+            console.log("data", res?.data);
           } else {
             NotificationService.error({
               message: "Error",
@@ -68,6 +72,24 @@ function Index() {
         position: "top-center",
       });
     }
+  };
+
+  // // const [loading, setLoading] = useState(false);
+  // // const dispatch = useDispatch();
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+
+  const handlePageChange = async (event, page) => {
+    setLoading(true);
+    setCurrentPage(page);
+    try {
+      const res = await documentService.getFactCheckedDocs(page);
+      dispatch(setDocuments(res?.data));
+      setFacts(res?.data);
+    } catch (error) {
+      throw new Error(error);
+    }
+    setLoading(false);
   };
 
   // const handleLayoutOptions = () => {
@@ -94,7 +116,7 @@ function Index() {
             !loading && "border-b-2"
           } py-4 `}
         >
-          {facts?.length > 0 && (
+          {facts?.facts?.length > 0 && (
             <div
               className={`h-[39px] w-[39px] mr-5 relative flex items-center justify-center bg-transparent rounded-md hover:shadow ${
                 layoutOptionsToggle && "shadow"
@@ -122,8 +144,22 @@ function Index() {
         </div>
 
         <div className="w-full">
-          <HomeContent data={facts} headerborder={false} loading={loading} />
+          <HomeContent
+            data={facts?.facts}
+            headerborder={false}
+            loading={loading}
+          />
         </div>
+      </div>
+
+      <div className="me:w-[100%] my-5 mr-10 flex justify-end items-center ">
+        <Pagination
+          count={Math.ceil(facts?.totalItems / itemsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+          variant="outlined"
+          color="primary"
+        />
       </div>
     </div>
   );

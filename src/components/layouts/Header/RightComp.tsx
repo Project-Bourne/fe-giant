@@ -101,7 +101,7 @@ function RightComp(props) {
               />
             </div>
             <label
-              className="text-[12px] mx-2 hover:cursor-pointer"
+              className="text-[12px] mx-2 hover:cursor-pointer md:block hidden"
               htmlFor="dashboard"
             >
               Menu
@@ -117,7 +117,7 @@ function RightComp(props) {
           onClick={handleLogoutToggle}
         >
           <img
-            src={userInfo?.image ?? userInitials()}
+            src={userInfo?.image || userInitials()}
             alt="userImage"
             width={25}
             height={25}

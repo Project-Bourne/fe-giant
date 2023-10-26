@@ -90,7 +90,7 @@ function DigestPreview({ title, text, id }) {
             </>
           }
           onClick={() =>
-            router.push(`http://192.81.213.226:36/documents/${id}&irp`)
+            router.push(`http://192.81.213.226:36/documents/${id}&digest`)
           }
           classNameStyle="text-white text-[14px] py-2 "
           background="bg-sirp-primary"

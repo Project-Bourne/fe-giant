@@ -2,10 +2,10 @@ import { factCheckRequest } from "../hooks/factcheckerApi";
 
 class DocumentService {
   // get factchecked docs service
-  async getFactCheckedDocs() {
+  async getFactCheckedDocs(page = 1) {
     try {
       const response = await factCheckRequest(
-        "/facts",
+        `/fact/user?page=${page}`,
         "GET",
         {},
         true,

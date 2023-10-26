@@ -5,8 +5,8 @@ function ImagePreview(props) {
 
   return (
     <div>
-      <img src={file} alt="image" className="flex justify-center" />
-      <div className="flex gap-x-5 justify-end mt-4">
+      <img src={file} alt="image" className="flex justify-center mx-auto" />
+      <div className="flex gap-x-5 justify-end mt-5">
         <div
           onClick={addPhoto}
           className="flex flex-row items-center border border-sirp-primary bg-sirp-primary rounded-md px-4 py-2 cursor-pointer"

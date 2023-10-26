@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface DocStateProps {
-  documents: Array<any>;
+  documents: any | null;
   archivedDocs: Array<any>;
   factcheck: any;
   currentDocId: any;
@@ -15,7 +15,7 @@ interface DocStateProps {
 }
 
 const initialState: DocStateProps = {
-  documents: [],
+  documents: null,
   archivedDocs: [],
   factcheck: {},
   currentDocId: null,
@@ -33,16 +33,7 @@ const documentSlice = createSlice({
   initialState,
   reducers: {
     setDocuments: (state: any, action: PayloadAction<any>) => {
-      const newItem = action.payload;
-      // Check if the item already exists
-      const itemExists = state.documents.some(
-        (item) => item?.uuid === newItem?.uuid,
-      );
-      // state.documents = newItem;
-
-      if (!itemExists) {
-        state.documents.push(newItem);
-      }
+      state.documents = action?.payload;
     },
     setArchived: (state: any, action: PayloadAction<any>) => {
       state.archivedDocs = action?.payload;

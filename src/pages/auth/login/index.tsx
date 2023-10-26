@@ -11,7 +11,10 @@ import { setAccessToken, setUserInfo } from "@/redux/reducers/authReducer";
 import { messaging, requestForToken } from "@/utils/firebase";
 import {
   setAnalyzedTotal,
+  setCollabTotal,
+  setDeepChatTotal,
   setFactsTotal,
+  setInterrogatedTotal,
   setSummarizedTotal,
   setTranslatedTotal,
 } from "@/redux/reducers/documentReducer";
@@ -63,6 +66,8 @@ function Login() {
             getTotalSummarisedDoc(res?.data?.accessToken);
             getTotalTranslatedDoc(res?.data?.accessToken);
             getTotalAnalyzedDoc(res?.data?.accessToken);
+            getTotalChats(res?.data?.accessToken);
+            getTotalInterrogatedDoc(res?.data?.accessToken);
 
             NotificationService.success({
               message: "Login Successful!",
@@ -78,7 +83,6 @@ function Login() {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err?.message);
           NotificationService.error({
             message: "Login Failed!",
             addedText: err?.message,
@@ -115,6 +119,7 @@ function Login() {
       if (response?.ok) {
         const data = await response.json();
         dispatch(setUserInfo(data?.data));
+        getTotalCollabDoc(data?.data?.uuid, token);
       } else {
         const data = await response.json();
         NotificationService.error({
@@ -133,7 +138,7 @@ function Login() {
     }
   };
 
-  const BASE_URL = "http://192.81.213.226:81/";
+  const BASE_URL = "http://192.81.213.226:81";
 
   const apiRequest = async (url, token) => {
     if (token) {
@@ -191,29 +196,47 @@ function Login() {
     }
   };
 
-  // const getTotalCollabDoc = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  // dispatch(setCollabTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalCollabDoc = async (id, token) => {
+    try {
+      const response: any = await apiRequest(
+        `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
+        token,
+      );
+      if (response?.ok) {
+        const data = await response.json();
+        dispatch(setCollabTotal(data?.data?.totalDocuments));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
-  // const getTotalInterrogatedDoc = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //     dispatch(setInterrogatedTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
+  const getTotalInterrogatedDoc = async (token) => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/87/interrogation`,
+        token,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setInterrogatedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
+
+  const getTotalChats = async (token) => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/85/deepchat`, token);
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setDeepChatTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   const getTotalTranslatedDoc = async (token) => {
     try {
@@ -229,18 +252,6 @@ function Login() {
       // throw new Error(err);
     }
   };
-
-  // const getTotalDeepchats = async (token) => {
-  //   try {
-  //     const response: any = await apiRequest(`${BASE_URL}/`, token);
-  //     if (response?.status){
-  //       const data = await response.json();
-  //      dispatch(setDeepTotal(data?.data?.totalItems))
-  //     }
-  //   } catch (err) {
-  //     // throw new Error(err);
-  //   }
-  // };
 
   return (
     <>

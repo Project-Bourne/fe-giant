@@ -95,6 +95,15 @@ class AuthService {
     }
   }
 
+  async editPhoto(data) {
+    try {
+      const response = await request(`avatar`, "PUT", data, true, false, false);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getUserViaAccessToken() {
     try {
       const response = await request(

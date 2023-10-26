@@ -41,7 +41,6 @@ function SecondRow({ countries }) {
   const _constructor = async () => {
     try {
       const res = await reportService?.getSources();
-      console.log({ res });
 
       let t = 0;
       if (res?.status === true) {
@@ -139,17 +138,18 @@ function SecondRow({ countries }) {
               sources.map((source, index) => {
                 // const domain = new URL(source?.domain).hostname
                 return (
-                  <div key={index} className="mb-4">
+                  <div key={index} className="mb-4 relative">
                     <p className="mb-1 text-[14px] first-letter:capitalize">
                       {source?.domain.replace("www.", "")}
                     </p>
-                    <Tooltip title={(source?.percentage / total) * 100}>
-                      <ProgressBar
-                        percentage={(source?.percentage / total) * 100}
-                        progressColor="bg-[#4AC7ED]"
-                        classNameStyle="h-2 bg-gray-100 "
-                      />
-                    </Tooltip>
+                    <ProgressBar
+                      percentage={(source?.percentage / total) * 100}
+                      progressColor="bg-[#4AC7ED]"
+                      classNameStyle="h-2 bg-gray-100 "
+                    />
+                    <div className="absolute top-3  left-0 text-[16px] w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                      {source.percentage}% {/* Display percentage */}
+                    </div>
                   </div>
                 );
               })

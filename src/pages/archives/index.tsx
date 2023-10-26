@@ -21,7 +21,6 @@ function Starred() {
     try {
       docService.getArchivedDocuments().then((res) => {
         setLoading(false);
-        console.log(res);
         if (res?.data?.facts) {
           // console.log(res?.data?.facts)
           const docs = res?.data?.facts;
