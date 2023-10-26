@@ -101,7 +101,7 @@ function RightComp(props) {
               />
             </div>
             <label
-              className="text-[12px] mx-2 hover:cursor-pointer"
+              className="text-[12px] mx-2 hover:cursor-pointer md:block hidden"
               htmlFor="dashboard"
             >
               Menu

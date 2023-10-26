@@ -104,7 +104,8 @@ const ProfileSettings = () => {
 
         if (response.status) {
           const data = await response.json();
-          const fileUrl = data.data[0].url;
+          const fileUrl = data.data[0].uri;
+          console.log("jfskbs", data);
 
           if (fileUrl) {
             // send image url to backend and re-fetch user data on success
@@ -123,6 +124,7 @@ const ProfileSettings = () => {
               );
               const res = await response.json();
               if (res?.status) {
+                console.log("img", res);
                 setUploading(false);
                 NotificationService.success({
                   message: "Upload Successul!",
@@ -427,7 +429,7 @@ const ProfileSettings = () => {
             </label>
           </div>
 
-          <div className="text-[12px] text-black border-[1.5px] flex flex-wrap gap-x-3 rounded-md py-2 px-2 ml-4  w-[38%]">
+          <div className="text-[12px] text-black border-[1.5px] flex flex-wrap gap-x-3 rounded-md py-2 px-2 ml-4  md:w-[38%] w-[83%]">
             {/* use countries array from user info to get name and flag pair from countriesObj json file  */}
             {userInfo?.country.map((item, index) => {
               const countryObj = countries.filter(
@@ -455,7 +457,7 @@ const ProfileSettings = () => {
 
       {selectedPhoto && (
         <CustomModal
-          style="bg-white md:w-[25%] w-[70%] relative top-[20%] rounded-xl mx-auto pt-3 md:px-5 px-4 pb-5"
+          style="bg-white md:w-[25%] w-[50%] relative top-[20%] rounded-xl mx-auto pt-3 md:px-5 px-4 pb-5"
           closeModal={() => setSelectedPhoto(null)}
         >
           <ImagePreview
