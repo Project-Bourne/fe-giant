@@ -9,11 +9,20 @@ import { CustomModal } from "@/components/ui";
 import { useRouter } from "next/router";
 import Loader from "@/components/ui/Loader";
 import Group from "@/components/dashboard/Group";
-import logo from "../../public/images/logo.png";
-import Image from "next/image";
-import RightComp from "@/components/layouts/Header/RightComp";
-import { toast } from "react-toastify";
+// import logo from "../../public/images/logo.png";
+// import Image from "next/image";
+// import RightComp from "@/components/layouts/Header/RightComp";
+// import { toast } from "react-toastify";
 import DocumentService from "@/services/documents.service";
+import {
+  setAnalyzedTotal,
+  setCollabTotal,
+  setDeepChatTotal,
+  setFactsTotal,
+  setInterrogatedTotal,
+  setSummarizedTotal,
+  setTranslatedTotal,
+} from "@/redux/reducers/documentReducer";
 
 function Index() {
   const [loading, setLoading] = useState(false);
@@ -30,6 +39,7 @@ function Index() {
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth);
   const router = useRouter();
+  const dispatch = useDispatch();
   const documentService = new DocumentService();
 
   useEffect(() => {
@@ -45,12 +55,13 @@ function Index() {
     await getTotalFactsDoc();
     await getTotalSummarisedDoc();
     await getTotalAnalyzedDoc();
-    await getTotalCollabDoc();
+    await getTotalCollabDoc(user.userInfo.uuid);
     await getTotalInterrogatedDoc();
     await getTotalDeepchats();
+    await getTotalTranslatedDoc();
   };
 
-  const BASE_URL = "http://192.81.213.226:81/";
+  const BASE_URL = "http://192.81.213.226:81";
 
   const apiRequest = async (url) => {
     if (userData.userAccessToken) {
@@ -75,6 +86,7 @@ function Index() {
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, facts: data?.data?.totalItems });
+        dispatch(setFactsTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
@@ -83,10 +95,11 @@ function Index() {
 
   const getTotalAnalyzedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(`${BASE_URL}/81/analysis/user`);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, analyzed: data.data.totalItems });
+        dispatch(setAnalyzedTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
@@ -99,18 +112,22 @@ function Index() {
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, summarized: data?.data?.totalItems });
+        dispatch(setSummarizedTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
     }
   };
 
-  const getTotalCollabDoc = async () => {
+  const getTotalCollabDoc = async (id) => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(
+        `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
+      );
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, collabs: data.data.totalItems });
+        dispatch(setCollabTotal(data?.data?.totalDocuments));
       }
     } catch (err) {
       // throw new Error(err);
@@ -119,10 +136,11 @@ function Index() {
 
   const getTotalInterrogatedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(`${BASE_URL}/87/interrogation`);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, interrogated: data.data.totalItems });
+        dispatch(setInterrogatedTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
@@ -131,17 +149,27 @@ function Index() {
 
   const getTotalDeepchats = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(`${BASE_URL}/85/deepchat`);
       if (response?.status) {
         const data = await response.json();
-        setTotal({ ...total, deep_convo: data.data.totalItems });
+        dispatch(setDeepChatTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
     }
   };
 
-  // console.log('home token', user.userAccessToken)
+  const getTotalTranslatedDoc = async () => {
+    try {
+      const response: any = await apiRequest(`${BASE_URL}/83/translation/user`);
+      if (response?.status) {
+        const data = await response.json();
+        dispatch(setTranslatedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // throw new Error(err);
+    }
+  };
 
   return (
     <React.Fragment>
