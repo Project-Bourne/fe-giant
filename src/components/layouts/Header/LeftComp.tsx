@@ -2,10 +2,18 @@ import Image from "next/image";
 import React from "react";
 import search from "../../../../public/icons/search.svg";
 import filter from "../../../../public/icons/filter.svg";
+import { useRouter } from "next/router";
 
 export const LeftComp = (props) => {
+  const router = useRouter();
   return (
     <div className="flex relative flex-row items-center w-full self-start">
+      <p
+        onClick={() => router.back()}
+        className="hover:cursor-pointer text-[13px] font-semibold pb-3"
+      >
+        &larr;&nbsp; Back
+      </p>
       {/* <div className="bg-sirp-lightGrey flex flex-row w-full mr-2 py-3 px-5 h-[45px] rounded-[12px]">
         <Image src={search} alt="Search" width={18} height={18} priority />
 
