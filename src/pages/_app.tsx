@@ -14,23 +14,17 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const { userAccessToken, isLoggedIn } = useSelector(
     (state: any) => state?.auth,
   );
+
   // const signupPage = appProps.router.pathname.includes("/auth/signup");
   // const forgotPsdPage = appProps.router.pathname.includes(
-  //   "/auth/forgot-password",
+  //   "/auth",
   // );
 
-  useEffect(() => {
-    // console.log('data', { accessToken, isLoggedIn });
-    if (!isLoggedIn || !userAccessToken) {
-      router.push("/auth/login");
-    }
-    // if (!isLoggedIn && signupPage) {
-    //   router.push("/auth/signup");
-    // }
-    // if (!isLoggedIn && forgotPsdPage) {
-    //   router.push("/auth/forgot-password");
-    // }
-  }, [userAccessToken, isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn || !userAccessToken && !appProps.router.pathname.includes("/auth")) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [userAccessToken, isLoggedIn]);
 
   // const isLayoutNeeded = appProps.router.pathname.includes("/auth");
   const isPageNotIndex =
