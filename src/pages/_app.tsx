@@ -19,18 +19,18 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   //   "/auth/forgot-password",
   // );
 
-  useEffect(() => {
-    // console.log('data', { accessToken, isLoggedIn });
-    if (!isLoggedIn || !userAccessToken) {
-      router.push("/auth/login");
-    }
-    // if (!isLoggedIn && signupPage) {
-    //   router.push("/auth/signup");
-    // }
-    // if (!isLoggedIn && forgotPsdPage) {
-    //   router.push("/auth/forgot-password");
-    // }
-  }, [userAccessToken, isLoggedIn]);
+  // useEffect(() => {
+  // console.log('data', { accessToken, isLoggedIn });
+  // if (!isLoggedIn || !userAccessToken) {
+  //   router.push("/auth/login");
+  // }
+  // if (!isLoggedIn && signupPage) {
+  //   router.push("/auth/signup");
+  // }
+  // if (!isLoggedIn && forgotPsdPage) {
+  //   router.push("/auth/forgot-password");
+  // }
+  // }, [userAccessToken, isLoggedIn]);
 
   // const isLayoutNeeded = appProps.router.pathname.includes("/auth");
   const isPageNotIndex =
