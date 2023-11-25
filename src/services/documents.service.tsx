@@ -5,7 +5,7 @@ class DocumentService {
   async getFactCheckedDocs(page = 1) {
     try {
       const response = await factCheckRequest(
-        `/facts/user`,
+        `/facts`,
         "GET",
         {},
         true,
