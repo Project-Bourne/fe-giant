@@ -106,11 +106,17 @@ function DropdownWithFlag(props: DropdownModel) {
 
   useEffect(() => {
     let cty = selectItem;
-    const countryObj = countries.filter(
-      (country) => country?.name?.toLowerCase() === cty?.toLowerCase(),
-    );
-    setCountry({ name: countryObj[0].name, flag: countryObj[0].image });
-  }, [selectItem]);
+    const countryObj = countries?.filter((country) => {
+      const countryName = country?.name;
+      return (
+        typeof cty === "string" &&
+        typeof countryName === "string" &&
+        countryName?.toLowerCase() === cty?.toLowerCase()
+      );
+    });
+
+    setCountry({ name: countryObj[0]?.name, flag: countryObj[0]?.image });
+  }, []);
 
   const dropdownRef = useRef();
   useOnClickOutside(dropdownRef, () => {

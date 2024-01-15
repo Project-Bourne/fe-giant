@@ -55,7 +55,7 @@ function Index() {
     await getTotalFactsDoc();
     await getTotalSummarisedDoc();
     await getTotalAnalyzedDoc();
-    await getTotalCollabDoc(user.userInfo.uuid);
+    await getTotalCollabDoc(user?.userInfo?.uuid);
     await getTotalInterrogatedDoc();
     await getTotalDeepchats();
     await getTotalTranslatedDoc();
