@@ -40,7 +40,7 @@ function SignUp() {
       .then((res) => {
         if (res?.status) {
           setUserRoles(res?.data);
-          setFormData({ ...formData, roleUuid: res?.data[0]?.uuid });
+          setFormData({ ...formData, roleUuid: res?.data[6]?.uuid }); // default analyst role
         }
       })
       .catch((err) => {});
@@ -156,7 +156,7 @@ function SignUp() {
           )}
         </div>
 
-        {/* user role  */}
+        {/* user role  
         <div className="mb-3 grid gap-1">
           <label>User role</label>
           <Dropdown
@@ -165,7 +165,7 @@ function SignUp() {
               setFormData({ ...formData, roleUuid: e.target.value })
             }
           />
-        </div>
+        </div> */}
 
         {/* country  */}
         <div className="mb-3 grid gap-1">
