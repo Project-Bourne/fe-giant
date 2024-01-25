@@ -5,7 +5,7 @@ let access = "";
 if (typeof window !== "undefined") {
   access =
     cookies.get("deep-access") ||
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxNWFmNzQxLTBmZTItNGQ5My05MzdmLTJkOTYyYmZhYTdhOSIsImlhdCI6MTcwNjE0OTUyMywiZXhwIjoxNzA2MTUzMTIzfQ.tpMAO59wtw5CbkK0Gz71HHRuLfzPpRzYGDQVPCU1fTU";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5MjI1ZDk1LTM1ZTktNGZhOS1iMWVlLWZmMjQyODYyYjZiZiIsImlhdCI6MTcwNjE2NDcwMywiZXhwIjoxNzA2MTY4MzAzfQ.Hn5WDeVjWzqCNfMK9JYCUX-h7HYPzJknvFkOAKILC4s";
 }
 
 const logout = () => {
