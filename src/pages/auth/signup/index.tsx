@@ -16,7 +16,7 @@ const initialFormData = {
   email: "",
   country: ["Nigeria"],
   password: "",
-  roleUuid: "",
+  roleUuid: "6",
 };
 
 function SignUp() {
