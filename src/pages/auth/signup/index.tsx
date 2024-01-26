@@ -16,7 +16,7 @@ const initialFormData = {
   email: "",
   country: ["Nigeria"],
   password: "",
-  roleUuid: "",
+  roleUuid: "6",
 };
 
 function SignUp() {
@@ -34,17 +34,17 @@ function SignUp() {
   const dispatch = useDispatch();
 
   // get user roles
-  useEffect(() => {
-    authService
-      .getRoles()
-      .then((res) => {
-        if (res?.status) {
-          setUserRoles(res?.data);
-          setFormData({ ...formData, roleUuid: res?.data[6]?.uuid }); // default analyst role
-        }
-      })
-      .catch((err) => {});
-  }, []);
+  // useEffect(() => {
+  //   authService
+  //     .getRoles()
+  //     .then((res) => {
+  //       if (res?.status) {
+  //         setUserRoles(res?.data);
+  //         setFormData({ ...formData, roleUuid: res?.data[6]?.uuid }); // default analyst role
+  //       }
+  //     })
+  //     .catch((err) => {});
+  // }, []);
 
   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 

@@ -79,6 +79,22 @@ class AuthService {
     }
   }
 
+  static async feedback(data) {
+    try {
+      const response = await request(
+        "feedback",
+        "POST",
+        data,
+        false,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async updateUserInfo(data, id) {
     try {
       const response = await request(

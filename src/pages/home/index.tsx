@@ -81,7 +81,7 @@ function Index() {
 
   const handlePageChange = async (event, page) => {
     setLoading(true);
-    setCurrentPage(page);
+    setCurrentPage(Number(page));
     try {
       const res = await documentService.getFactCheckedDocs(page);
       dispatch(setDocuments(res?.data));
