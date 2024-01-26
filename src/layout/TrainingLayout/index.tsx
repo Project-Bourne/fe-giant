@@ -4,6 +4,8 @@ import "../../styles/global.css";
 import { useRouter } from "next/router";
 import TabComp from "@/pages/settings/components/TabComp";
 import { Button, Modal } from "@mui/material";
+import AuthService from "@/services/auth.service";
+import NotificationService from "@/services/notification.service";
 
 type LayoutType = {
   children: ReactNode;
@@ -12,8 +14,24 @@ type LayoutType = {
 const TrainingLayout = ({ children }: LayoutType) => {
   const route = useRouter().pathname;
   const [open, setOpen] = React.useState(false);
+  const [module, setModule] = React.useState("");
+  const [enquiry, setEnquiry] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = async () => {
+    const data = {
+      module: module,
+      comment: enquiry,
+    };
+    try {
+      let response = await AuthService.feedback(data);
+      console.log(response);
+      NotificationService.success({ message: "Successfully Sent Enquiry" });
+    } catch (error) {
+      NotificationService.error({ message: error.message });
+    }
+  };
 
   return (
     <div className="w-full h-[100vw] bg-white">
@@ -39,25 +57,34 @@ const TrainingLayout = ({ children }: LayoutType) => {
           </div>
           <div className="grid gap-2 p-5">
             <label className="text-gray-500 font-bold">Select Module</label>
-            <select name="" id="" className="border p-2 rounded-lg">
-              <option value="">All</option>
-              <option value="">IRP</option>
-              <option value="">Analyzer</option>
-              <option value="">Fact Checker</option>
-              <option value="">Summerizer</option>
-              <option value="">Translator</option>
-              <option value="">Interrogator</option>
-              <option value="">Collab</option>
+            <select
+              name=""
+              id=""
+              className="border p-2 rounded-lg"
+              onChange={(e) => setModule(e.target.value)}
+            >
+              <option value="All">All</option>
+              <option value="IRP">IRP</option>
+              <option value="Analyzer">Analyzer</option>
+              <option value="Fact Checker">Fact Checker</option>
+              <option value="Summerizer">Summerizer</option>
+              <option value="Translator">Translator</option>
+              <option value="Interrogator">Interrogator</option>
+              <option value="Collab">Collab</option>
             </select>
           </div>
           <div className="grid gap-2 p-5">
             <label className="text-gray-500 font-bold">Write Complaint</label>
-            <textarea rows={10} className="border p-2 rounded-lg"></textarea>
+            <textarea
+              rows={10}
+              className="border p-2 rounded-lg"
+              onChange={(e) => setEnquiry(e.target.value)}
+            ></textarea>
           </div>
           <div className="px-5 flex gap-2">
             <Button
               className="bg-sirp-primary text-white"
-              onClick={handleClose}
+              onClick={handleSubmit}
             >
               Send
             </Button>{" "}
