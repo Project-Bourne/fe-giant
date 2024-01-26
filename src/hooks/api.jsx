@@ -2,7 +2,12 @@ import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
 let access = "";
+let userUUID = "";
 if (typeof window !== "undefined") {
+  userUUID = cookies.get("uuid");
+  if (userUUID === undefined) {
+    userUUID = localStorage.getItem("uuid");
+  }
   access =
     cookies.get("deep-access") ||
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxNWFmNzQxLTBmZTItNGQ5My05MzdmLTJkOTYyYmZhYTdhOSIsImlhdCI6MTcwNjE0OTUyMywiZXhwIjoxNzA2MTUzMTIzfQ.tpMAO59wtw5CbkK0Gz71HHRuLfzPpRzYGDQVPCU1fTU";
@@ -27,6 +32,7 @@ export const requestHeader = {
   "Cache-Control": "no-cache",
   "Content-Type": "application/json",
   "deep-token": access,
+  "user-id": userUUID, // user's ID
 };
 
 /**
