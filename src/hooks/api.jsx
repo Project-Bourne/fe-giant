@@ -50,7 +50,7 @@ const API_USER_URL = "http://192.81.213.226:81/80/";
 export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =
     form === true ? "multipart/form-data" : "application/json";
-  requestHeader["deep-token"] = token ? access : "";
+  requestHeader["deep-token"] = access || "";
   if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,

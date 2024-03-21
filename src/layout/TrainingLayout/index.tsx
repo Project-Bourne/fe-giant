@@ -26,7 +26,6 @@ const TrainingLayout = ({ children }: LayoutType) => {
     };
     try {
       let response = await AuthService.feedback(data);
-      console.log(response);
       NotificationService.success({ message: "Successfully Sent Enquiry" });
     } catch (error) {
       NotificationService.error({ message: error.message });
