@@ -41,7 +41,7 @@ function ArchiveContent({ data, headerborder, loading }) {
     handleModalOpen(id, title, content);
   };
   const handleDoubleClick = (id) => {
-    router.push(`/archives/${id}`);
+    router.replace(`/archives/${id}`);
   };
 
   const handleClicks = (_arg, _arg1, _arg2) => {

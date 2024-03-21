@@ -15,10 +15,11 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
     (state: any) => state?.auth,
   );
 
-  const { uuid } = useSelector((state: any) => state?.auth?.userInfo);
+  const userInfo = useSelector((state: any) => state?.auth?.userInfo);
   const cookies = new Cookies();
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && userInfo && userInfo.uuid) {
+    const { uuid } = userInfo;
     cookies.set("uuid", uuid);
     localStorage.setItem("uuid", uuid);
   }
@@ -36,7 +37,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
 
   // useEffect(() => {
   //   if (!isLoggedIn || !userAccessToken && !appProps.router.pathname.includes("/auth")) {
-  //     router.push("/auth/login");
+  //     router.replace("/auth/login");
   //   }
   // }, [userAccessToken, isLoggedIn]);
 

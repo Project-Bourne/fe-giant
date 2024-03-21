@@ -97,7 +97,7 @@ function PasswordReset() {
             NotificationService.success({
               message: "Password Recovery Successful!",
             });
-            router.push("/auth/login");
+            router.replace("/auth/login");
           })
           .catch((err) => {
             setLoading(false);

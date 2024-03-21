@@ -72,7 +72,7 @@ function Login() {
             NotificationService.success({
               message: "Login Successful!",
             });
-            router.push("/");
+            router.replace("/");
           } else {
             NotificationService.error({
               message: "Login Failed!",

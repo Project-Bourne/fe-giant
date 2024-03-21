@@ -33,25 +33,25 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
 
   const handleRoute = (id: string, to: string) => {
     if (to === "collab") {
-      router.push(`http://192.81.213.226:36/document/${id}&irp`);
+      router.replace(`http://192.81.213.226:36/document/${id}&irp`);
     }
     if (to === "analyser") {
-      router.push(`http://192.81.213.226:31/home/${id}&irp`);
+      router.replace(`http://192.81.213.226:31/home/${id}&irp`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226:32/home/${id}&irp`);
+      router.replace(`http://192.81.213.226:32/home/${id}&irp`);
     }
     if (to === "factcheck") {
-      router.push(`http://192.81.213.226:34/home/${id}&irp`);
+      router.replace(`http://192.81.213.226:34/home/${id}&irp`);
     }
     if (to === "deepchat") {
-      router.push(`http://192.81.213.226:35/home/${id}&irp`);
+      router.replace(`http://192.81.213.226:35/home/${id}&irp`);
     }
     if (to === "interrogator") {
-      router.push(`http://192.81.213.226:82/home/query/${id}&irp`);
+      router.replace(`http://192.81.213.226:82/home/query/${id}&irp`);
     }
     if (to === "translator") {
-      router.push(`http://192.81.213.226:33/home/${id}&irp`);
+      router.replace(`http://192.81.213.226:33/home/${id}&irp`);
     }
   };
 

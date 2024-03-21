@@ -18,7 +18,7 @@ function NavBarItem({ item, index }: NavBarItemType) {
   const isSelected = route.includes(item.route);
 
   return (
-    <Link href={item.route}>
+    <Link href={item.route} replace={true}>
       <div
         className={
           !isSelected

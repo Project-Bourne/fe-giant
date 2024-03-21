@@ -76,7 +76,7 @@ function Index() {
       return res;
     } else {
       // route to /auth/login
-      router.push("/auth/login");
+      router.replace("/auth/login");
     }
   };
 

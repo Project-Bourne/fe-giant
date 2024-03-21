@@ -69,7 +69,7 @@ function HomeContent({ data, headerborder, loading }) {
     handleModalOpen(id, title, content);
   };
   const handleDoubleClick = (id) => {
-    router.push(`/home/metadata/${id}`);
+    router.replace(`/home/metadata/${id}`);
   };
 
   const handleClicks = (_arg, _arg1, _arg2) => {

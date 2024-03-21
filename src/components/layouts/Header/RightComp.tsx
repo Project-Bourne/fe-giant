@@ -139,7 +139,7 @@ function RightComp(props) {
 
         <div
           className="ml-3 bg-sirp-lightGrey w-full self-center hidden md:block"
-          onClick={() => router.push("/settings/profile")}
+          onClick={() => router.replace("/settings/profile")}
         >
           <h2 className="text-sirp-grey text-[13px] capitalize">
             {userInfo?.firstName && useTruncate(userName(), 14)}

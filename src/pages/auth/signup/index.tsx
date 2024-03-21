@@ -84,7 +84,7 @@ function SignUp() {
           NotificationService.success({
             message: "Registration Successful!",
           });
-          router.push("/auth/login");
+          router.replace("/auth/login");
         } else {
           NotificationService.error({
             message: "Registration Failed!",

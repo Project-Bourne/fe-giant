@@ -8,9 +8,7 @@ if (typeof window !== "undefined") {
   if (userUUID === undefined) {
     userUUID = localStorage.getItem("uuid");
   }
-  access =
-    cookies.get("deep-access") ||
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5MjI1ZDk1LTM1ZTktNGZhOS1iMWVlLWZmMjQyODYyYjZiZiIsImlhdCI6MTcwNjI1MTQ1OCwiZXhwIjoxNzA2MjU1MDU4fQ.K4_miNv5vTUyITz0GrAgmqowd_R6VamfAWy5POgUaBs";
+  access = cookies.get("deep-access");
 }
 
 const logout = () => {
@@ -23,7 +21,7 @@ const logout = () => {
   }).then((res) => {
     cookies.remove("deep-access");
     localStorage.clear();
-    window.location.href = "/auth/login";
+    window.location.replace("/auth/login");
   });
 };
 

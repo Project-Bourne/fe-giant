@@ -97,7 +97,7 @@ function Index() {
   // };
 
   const handleAdd = () => {
-    router.push("/home/addcontent/addcontent");
+    router.replace("/home/addcontent/addcontent");
   };
 
   return (

@@ -9,7 +9,7 @@ function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
 
   const handleOnClick = (e) => {
     e.stopPropagation();
-    router.push(`${to}/${id}`);
+    router.replace(`${to}/${id}`);
   };
 
   return (

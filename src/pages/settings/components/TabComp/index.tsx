@@ -22,7 +22,7 @@ function TabComp({ item }: TabCompType) {
   const updatePath = (e: any) => {
     e.preventDefault();
     // setPath(item?.route);
-    router.push(
+    router.replace(
       {
         pathname: item?.route,
       },
