@@ -36,7 +36,7 @@ function RightComp(props) {
         localStorage.clear();
 
         removeCookie("deep-access", { path: "/" });
-        router.push("/auth/login");
+        router.replace("/auth/login");
 
         NotificationService.success({
           message: "Logout operation successful!",
