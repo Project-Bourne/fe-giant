@@ -36,7 +36,7 @@ export const NavBarContents = [
     route: "/training",
   },
   {
-    name: "Settings",
+    name: "Profile Settings",
     icon: "settings.svg",
     id: 9,
     route: "/settings",
