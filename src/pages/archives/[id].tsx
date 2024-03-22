@@ -62,13 +62,13 @@ function Meta() {
   return (
     <div className="bg-sirp-contentbg border bg-sirp-secondary2  h-[100%] mx-10 rounded-[1rem]">
       <div className="w-full flex justify-between mt-5 mb-3 px-5">
-        <Image
+        {/* <Image
           src={backArrow}
           alt="documents"
           className=" cursor-pointer"
           width={30}
           onClick={() => router.back()}
-        />
+        /> */}
 
         <ActionIcons
           showArchive={false}
