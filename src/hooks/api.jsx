@@ -20,6 +20,7 @@ const logout = () => {
     },
   }).then((res) => {
     cookies.remove("deep-access");
+    cookies.remove("uuid");
     localStorage.clear();
     window.location.replace("/auth/login");
   });
@@ -81,9 +82,9 @@ export async function request(url, method, payload, token, text, form) {
       .then((res) => {
         if (res.status === 403) {
           logout();
-          throw new Error("Access forbidden. Redirecting to login page.");
           // Redirect to the login page
-          // window.location.href = "/auth/login";
+          // window.location.replace("/auth/login");
+          throw new Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
         } else {

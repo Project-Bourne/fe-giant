@@ -39,7 +39,6 @@ function Index() {
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth);
   const router = useRouter();
-  const dispatch = useDispatch();
   const documentService = new DocumentService();
 
   useEffect(() => {
@@ -55,10 +54,9 @@ function Index() {
     await getTotalFactsDoc();
     await getTotalSummarisedDoc();
     await getTotalAnalyzedDoc();
-    await getTotalCollabDoc(user?.userInfo?.uuid);
+    await getTotalCollabDoc();
     await getTotalInterrogatedDoc();
     await getTotalDeepchats();
-    await getTotalTranslatedDoc();
   };
 
   const BASE_URL = "http://192.81.213.226:81";
@@ -95,11 +93,10 @@ function Index() {
 
   const getTotalAnalyzedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/81/analysis/user`);
+      const response: any = await apiRequest(`${BASE_URL}/`);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, analyzed: data.data.totalItems });
-        dispatch(setAnalyzedTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
@@ -119,15 +116,12 @@ function Index() {
     }
   };
 
-  const getTotalCollabDoc = async (id) => {
+  const getTotalCollabDoc = async () => {
     try {
-      const response: any = await apiRequest(
-        `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
-      );
+      const response: any = await apiRequest(`${BASE_URL}/`);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, collabs: data.data.totalItems });
-        dispatch(setCollabTotal(data?.data?.totalDocuments));
       }
     } catch (err) {
       // throw new Error(err);
@@ -136,11 +130,10 @@ function Index() {
 
   const getTotalInterrogatedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/87/interrogation`);
+      const response: any = await apiRequest(`${BASE_URL}/`);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, interrogated: data.data.totalItems });
-        dispatch(setInterrogatedTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
@@ -149,10 +142,10 @@ function Index() {
 
   const getTotalDeepchats = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/85/deepchat`);
+      const response: any = await apiRequest(`${BASE_URL}/`);
       if (response?.status) {
         const data = await response.json();
-        dispatch(setDeepChatTotal(data?.data?.totalItems));
+        setTotal({ ...total, deep_convo: data.data.totalItems });
       }
     } catch (err) {
       // throw new Error(err);

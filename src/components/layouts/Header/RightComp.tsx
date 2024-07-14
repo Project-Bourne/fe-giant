@@ -16,7 +16,7 @@ import { CustomModal } from "@/components/ui";
 function RightComp(props) {
   const { dashboard } = props;
 
-  const [, removeCookie] = useCookies(["deep-access"]);
+  const [, removeCookie] = useCookies(["deep-access", "uuid"]);
   const dispatch = useDispatch();
   const router = useRouter();
   const authService = new AuthService();
@@ -36,6 +36,7 @@ function RightComp(props) {
         localStorage.clear();
 
         removeCookie("deep-access", { path: "/" });
+        removeCookie("uuid", { path: "/" });
         router.replace("/auth/login");
 
         NotificationService.success({

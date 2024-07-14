@@ -51,7 +51,7 @@ function Group({ userData }) {
 
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:38/home")}
+                onClick={() => router.push("http://192.81.213.226:38/home")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
               >
                 Open Admin Panel
@@ -80,8 +80,8 @@ function Group({ userData }) {
           </div>
           <div className="pt-8 ">
             <button
-              // onClick={() => router.replace("http://192.81.213.226:30/home")}
-              onClick={() => router.replace("/home")}
+              // onClick={() => router.push("http://192.81.213.226:30/home")}
+              onClick={() => router.push("/home")}
               className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
             >
               Open IRP
@@ -112,7 +112,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:36/chats")}
+                onClick={() => router.push("http://192.81.213.226:36/chats")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
               >
                 Open Collab Workspace
@@ -144,7 +144,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:31/home")}
+                onClick={() => router.push("http://192.81.213.226:31/home")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Analyzer
@@ -176,7 +176,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:82/home")} // to be changed / officer
+                onClick={() => router.push("http://192.81.213.226:82/home")} // to be changed / officer
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Interrogator
@@ -208,7 +208,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:33/home")}
+                onClick={() => router.push("http://192.81.213.226:33/home")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Translator
@@ -240,7 +240,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:34/home")} //change route
+                onClick={() => router.push("http://192.81.213.226:34/home")} //change route
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Fact Checker
@@ -272,7 +272,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:32/home")}
+                onClick={() => router.push("http://192.81.213.226:32/home")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Summarizer
@@ -304,7 +304,7 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.replace("http://192.81.213.226:35/home")}
+                onClick={() => router.push("http://192.81.213.226:35/home")}
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Deep Chat

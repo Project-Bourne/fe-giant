@@ -27,8 +27,9 @@ const logout = () => {
     },
   }).then((res) => {
     cookies.remove("deep-access");
+    cookies.remove("uuid");
     localStorage.clear();
-    window.location.href = "/auth/login";
+    window.location.replace("/auth/login");
   });
 };
 

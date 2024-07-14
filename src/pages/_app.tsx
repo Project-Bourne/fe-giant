@@ -14,32 +14,23 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const { userAccessToken, isLoggedIn } = useSelector(
     (state: any) => state?.auth,
   );
-
-  const userInfo = useSelector((state: any) => state?.auth?.userInfo);
-  const cookies = new Cookies();
-
-  if (typeof window !== "undefined" && userInfo && userInfo.uuid) {
-    const { uuid } = userInfo;
-    cookies.set("uuid", uuid);
-    localStorage.setItem("uuid", uuid);
-  }
-
-  // const userAccessToken = authService.getUserAccessToken();
-
-  // const isLoggedIn = authService.isLoggedIn();
-
-  // const loginPage = appProps.router.pathname.includes("/auth/login");
-
   // const signupPage = appProps.router.pathname.includes("/auth/signup");
   // const forgotPsdPage = appProps.router.pathname.includes(
   //   "/auth",
   // );
 
-  // useEffect(() => {
-  //   if (!isLoggedIn || !userAccessToken && !appProps.router.pathname.includes("/auth")) {
-  //     router.replace("/auth/login");
-  //   }
-  // }, [userAccessToken, isLoggedIn]);
+  useEffect(() => {
+    // console.log('data', { accessToken, isLoggedIn });
+    if (!isLoggedIn || !userAccessToken) {
+      router.replace("/auth/login");
+    }
+    // if (!isLoggedIn && signupPage) {
+    //   router.push("/auth/signup");
+    // }
+    // if (!isLoggedIn && forgotPsdPage) {
+    //   router.push("/auth/forgot-password");
+    // }
+  }, [userAccessToken, isLoggedIn]);
 
   // const isLayoutNeeded = appProps.router.pathname.includes("/auth");
   const isPageNotIndex =
@@ -52,7 +43,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const LayoutWrapper = isPageNotIndex ? AppLayout : React.Fragment;
 
   return (
-    <LayoutWrapper>
+    <LayoutWrapper suppressHydrationWarning={true}>
       <Component {...pageProps} />
     </LayoutWrapper>
   );
@@ -60,7 +51,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
 
 function App({ Component, pageProps, ...appProps }) {
   return (
-    <Provider store={store}>
+    <Provider store={store} suppressHydrationWarning={true}>
       <AppWrapper Component={Component} pageProps={pageProps} {...appProps} />
     </Provider>
   );
