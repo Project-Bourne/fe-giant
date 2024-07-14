@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useWindowWidth } from "@/components/custom-hooks";
 import strips from "../../../public/svg/Strips.svg";

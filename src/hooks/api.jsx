@@ -1,4 +1,5 @@
 import { Cookies } from "react-cookie";
+// import { cookies as treats } from "next/headers";
 
 const cookies = new Cookies();
 let access = "";
@@ -22,6 +23,8 @@ const logout = () => {
     cookies.remove("deep-access");
     cookies.remove("uuid");
     localStorage.clear();
+    requestHeader["deep-token"] = "";
+    requestHeader["user-id"] = "";
     window.location.replace("/auth/login");
   });
 };
@@ -61,6 +64,13 @@ export async function request(url, method, payload, token, text, form) {
         if (res.status === 403) {
           // Redirect to the login page
           logout();
+          cookies.remove("deep-access");
+          cookies.remove("uuid");
+          localStorage.clear();
+          requestHeader["deep-token"] = "";
+          requestHeader["user-id"] = "";
+          // treats().delete("deep-access");
+          // treats().delete("uuid");
           throw new Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();
@@ -84,6 +94,13 @@ export async function request(url, method, payload, token, text, form) {
           logout();
           // Redirect to the login page
           // window.location.replace("/auth/login");
+          cookies.remove("deep-access");
+          cookies.remove("uuid");
+          localStorage.clear();
+          requestHeader["deep-token"] = "";
+          requestHeader["user-id"] = "";
+          // treats().delete("deep-access");
+          // treats().delete("uuid");
           throw new Error("Access forbidden. Redirecting to login page.");
         } else if (text === true) {
           return res.text();

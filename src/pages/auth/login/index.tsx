@@ -26,7 +26,7 @@ const intialFormData = {
 };
 
 function Login() {
-  const [, setCookie] = useCookies(["deep-access"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["deep-access"]);
   const [formData, setFormData] = useState(intialFormData);
   const [errors, setErrors] = useState(intialFormData);
   const [loading, setLoading] = useState(false);

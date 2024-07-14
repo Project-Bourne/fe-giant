@@ -1,5 +1,8 @@
+import { useRouter } from "next/router";
 import "./globals.css";
 import { Inter } from "next/font/google";
+// import { cookies } from 'next/headers'
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

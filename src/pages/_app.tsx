@@ -5,7 +5,8 @@ import "../styles/global.css";
 import { Provider, useSelector } from "react-redux";
 import { store } from "@/redux/store";
 import { useRouter } from "next/router";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
+import { browser } from "process";
 
 function AppWrapper({ Component, pageProps, ...appProps }) {
   const router = useRouter();
@@ -14,6 +15,8 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const { userAccessToken, isLoggedIn } = useSelector(
     (state: any) => state?.auth,
   );
+
+  const [cookies] = useCookies(["deep-access", "uuid"]);
   // const signupPage = appProps.router.pathname.includes("/auth/signup");
   // const forgotPsdPage = appProps.router.pathname.includes(
   //   "/auth",
@@ -21,7 +24,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
 
   useEffect(() => {
     // console.log('data', { accessToken, isLoggedIn });
-    if (!isLoggedIn || !userAccessToken) {
+    if (!isLoggedIn || !userAccessToken || !cookies["deep-access"]) {
       router.replace("/auth/login");
     }
     // if (!isLoggedIn && signupPage) {
@@ -30,7 +33,7 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
     // if (!isLoggedIn && forgotPsdPage) {
     //   router.push("/auth/forgot-password");
     // }
-  }, [userAccessToken, isLoggedIn]);
+  }, [userAccessToken, isLoggedIn, cookies]);
 
   // const isLayoutNeeded = appProps.router.pathname.includes("/auth");
   const isPageNotIndex =
@@ -43,17 +46,21 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   const LayoutWrapper = isPageNotIndex ? AppLayout : React.Fragment;
 
   return (
-    <LayoutWrapper suppressHydrationWarning={true}>
-      <Component {...pageProps} />
-    </LayoutWrapper>
+    <div suppressHydrationWarning>
+      <LayoutWrapper>
+        <Component {...pageProps} />
+      </LayoutWrapper>
+    </div>
   );
 }
 
 function App({ Component, pageProps, ...appProps }) {
   return (
-    <Provider store={store} suppressHydrationWarning={true}>
-      <AppWrapper Component={Component} pageProps={pageProps} {...appProps} />
-    </Provider>
+    <div suppressHydrationWarning>
+      <Provider store={store}>
+        <AppWrapper Component={Component} pageProps={pageProps} {...appProps} />
+      </Provider>
+    </div>
   );
 }
 

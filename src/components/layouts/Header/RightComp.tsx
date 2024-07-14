@@ -16,7 +16,10 @@ import { CustomModal } from "@/components/ui";
 function RightComp(props) {
   const { dashboard } = props;
 
-  const [, removeCookie] = useCookies(["deep-access", "uuid"]);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "deep-access",
+    "uuid",
+  ]);
   const dispatch = useDispatch();
   const router = useRouter();
   const authService = new AuthService();
@@ -29,15 +32,21 @@ function RightComp(props) {
 
   const handleLogout = async (event: any) => {
     event.stopPropagation();
+
+    await removeCookie("deep-access", { path: "/" });
+    await removeCookie("uuid", { path: "/" });
+
     const refreshToken = userAccessToken;
     authService.logout({ refreshToken }).then((res) => {
       if (res) {
         dispatch(logout());
         localStorage.clear();
-
-        removeCookie("deep-access", { path: "/" });
-        removeCookie("uuid", { path: "/" });
+        router.basePath = "/auth/login";
         router.replace("/auth/login");
+
+        if (cookies["deep-access"]) {
+          removeCookie("deep-access");
+        }
 
         NotificationService.success({
           message: "Logout operation successful!",

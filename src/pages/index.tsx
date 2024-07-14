@@ -39,6 +39,7 @@ function Index() {
   // const [reload, setReload] = useState(false);
   const user = useSelector((state: any) => state?.auth);
   const router = useRouter();
+  const dispatch = useDispatch();
   const documentService = new DocumentService();
 
   useEffect(() => {
