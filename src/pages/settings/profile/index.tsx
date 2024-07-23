@@ -38,6 +38,7 @@ const ProfileSettings = () => {
   const [isTooLarge, setIsTooLarge] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     setFirstname(userInfo?.firstName);
@@ -82,6 +83,36 @@ const ProfileSettings = () => {
   const handleUploadCancel = () => {
     setSelectedPhoto(null);
     setProfilePhoto(null);
+  };
+
+  const handleDeleteAvatar = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await fetch("http://192.81.213.226:81/80/avatar", {
+        method: "DELETE",
+        headers: {
+          "deep-token": accessToken,
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await response.json();
+
+      if (res?.status) {
+        setIsDeleting(false);
+        NotificationService.success({
+          message: "Profile picture reset successfully",
+        });
+      } else {
+        setIsDeleting(false);
+        NotificationService.error({
+          message: "Could not reset profile photo. Please try again",
+        });
+      }
+    } catch (error: any) {
+      NotificationService.error({
+        message: error.message,
+      });
+    }
   };
 
   const handlePhotoUpload = async () => {
@@ -131,7 +162,7 @@ const ProfileSettings = () => {
                 });
                 // re-fetch user info
                 getUserInfo();
-                setProfilePhoto(null);
+                setProfilePhoto(fileUrl);
               }
             } catch (err) {
               setUploading(false);
@@ -348,15 +379,17 @@ const ProfileSettings = () => {
                   </p>
                 </div>
 
-                <Image
-                  src={delete_icon}
-                  alt="delete"
-                  width={17}
-                  height={17}
-                  className="cursor-pointer mx-5"
-                  priority
-                  onClick={handleUploadCancel}
-                />
+                {isDeleting && (
+                  <Image
+                    src={delete_icon}
+                    alt="delete"
+                    width={17}
+                    height={17}
+                    className="cursor-pointer mx-5"
+                    priority
+                    onClick={handleDeleteAvatar}
+                  />
+                )}
 
                 {profilePhoto && (
                   <div

@@ -36,10 +36,7 @@ const TrainingLayout = ({ children }: LayoutType) => {
     <div className="w-full h-[100vw] bg-white">
       {/* Header */}
       <div className="flex flex-row w-full p-2 px-7 items-center justify-between border-b">
-        <h1 className="text-[18px] font-semibold">Training</h1>
-        <Button onClick={handleOpen} className="bg-sirp-primary text-white">
-          Make Enquiry
-        </Button>
+        <h1 className="text-[18px] font-semibold">Help</h1>
       </div>
       {/* modal */}
       <Modal
@@ -94,15 +91,21 @@ const TrainingLayout = ({ children }: LayoutType) => {
         </div>
       </Modal>
       {/* Settings tabs */}
-      <div className="w-[100%] flex flex-row flex-wrap items-center border-b overscroll-y-auto-">
+      {/* <div className="w-[100%] flex flex-row flex-wrap items-center border-b overscroll-y-auto-">
         {TrainingData.map((item, index) => (
           <TabComp item={item} key={index} />
         ))}
+      </div> */}
+
+      <div className="flex flex-col justify-center items-center w-full h-auto my-auto">
+        <Button onClick={handleOpen} className="bg-sirp-primary text-white">
+          Make Enquiry
+        </Button>
       </div>
 
       {/* <div className='w-full h-full overscroll-auto flex'>
         </div> */}
-      {children}
+      {/* {children} */}
     </div>
   );
 };

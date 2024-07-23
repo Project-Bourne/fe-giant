@@ -51,13 +51,13 @@ export const SettingsData = [
     id: 1,
     route: "/settings/profile",
   },
-  {
-    name: "Notification",
-    icon: "notifications.svg",
-    selectedIcon: "on.notifications.svg",
-    id: 2,
-    route: "/settings/notification",
-  },
+  // {
+  //   name: "Notification",
+  //   icon: "notifications.svg",
+  //   selectedIcon: "on.notifications.svg",
+  //   id: 2,
+  //   route: "/settings/notification",
+  // },
   // {
   //   name: "Personalization",
   //   icon: "personalization.svg",
