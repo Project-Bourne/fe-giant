@@ -127,7 +127,7 @@ function RightComp(props) {
           onClick={handleLogoutToggle}
         >
           <img
-            src={userInfo?.image || userInitials()}
+            src={userInfo?.image || userInitials() || "DS"}
             alt="userImage"
             width={25}
             height={25}

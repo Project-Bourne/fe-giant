@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate, useTruncate } from "@/components/custom-hooks";
 import Loader from "@/components/ui/Loader";
+import { capitalize } from "@mui/material";
 
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
@@ -120,7 +121,11 @@ function HomeContent({ data, headerborder, loading }) {
 
             return (
               <div key={index} className={`capitalize py-2 w-[13%]`}>
-                {author}
+                {author
+                  ? author
+                  : capitalize(
+                      new URL(rowData?.fact?.url).hostname.split(".")[1],
+                    )}
               </div>
             );
           } else if (columnItem?.key === "updatedAt") {

@@ -18,6 +18,26 @@ class DocumentService {
     }
   }
 
+  async getFilteredDocs({ page = 1, type = "title", title, url }) {
+    console.log("DETS: ", type, url);
+    let filterUrl = "";
+    if (type === "title") filterUrl += "&title=" + title;
+    if (type === "source") filterUrl += "&url=" + url;
+    try {
+      const response = await factCheckRequest(
+        `/facts?page=${page}${filterUrl.length > 1 ? filterUrl : ""}`,
+        "GET",
+        {},
+        true,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getSingleFactCheckedDoc(id) {
     try {
       const response = await factCheckRequest(
