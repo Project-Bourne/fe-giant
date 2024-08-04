@@ -167,7 +167,7 @@ function Index() {
               <Input
                 className=""
                 placeholder={`Search By ${capitalize(filterType)} ${
-                  filterType === "source" && "eg. bbc.com"
+                  filterType === "source" ? "eg. bbc.com" : ""
                 }`}
                 onChange={(e) => setFilterTerm(e.target.value)}
                 value={filterTerm}
