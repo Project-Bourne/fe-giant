@@ -12,6 +12,7 @@ import down from "../../../../public/icons/down.svg";
 import { useCookies } from "react-cookie";
 import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
 import { CustomModal } from "@/components/ui";
+import { browser } from "process";
 
 function RightComp(props) {
   const { dashboard } = props;
@@ -43,6 +44,8 @@ function RightComp(props) {
         localStorage.clear();
         router.basePath = "/auth/login";
         router.replace("/auth/login");
+        router.replace("/auth/login");
+        router.replace("/auth/login");
 
         if (cookies["deep-access"]) {
           removeCookie("deep-access");
@@ -51,6 +54,7 @@ function RightComp(props) {
         NotificationService.success({
           message: "Logout operation successful!",
         });
+        router.reload();
       } else {
         NotificationService.error({
           message: "Logout Failed!",

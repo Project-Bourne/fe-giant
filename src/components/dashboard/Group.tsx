@@ -13,9 +13,19 @@ import factcheck from "../../../public/icons/module-factcheck.svg";
 import admin from "../../../public/icons/admin.svg";
 import { useDispatch, useSelector } from "react-redux";
 import DocumentService from "@/services/documents.service";
+import { useCookies } from "react-cookie";
 
 function Group({ userData }) {
   const router = useRouter();
+  const [cookies, getCookie, removeCookie] = useCookies([
+    "deep-access",
+    "uuid",
+  ]);
+
+  useEffect(() => {
+    console.log("Cookies: ", cookies);
+    if (!cookies["deep-access"]) router.replace("/auth/login");
+  }, [cookies]);
 
   const {
     summarizedTotal,
