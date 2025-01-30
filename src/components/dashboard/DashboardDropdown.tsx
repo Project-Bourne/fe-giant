@@ -9,55 +9,65 @@ import translator from "../../../public/icons/translator.svg";
 import collab from "../../../public/icons/collab.svg";
 import analyzer from "../../../public/icons/analyzer.svg";
 import deep_chat from "../../../public/icons/deep.svg";
+import { SERVER_CONFIG } from "@/utils/env";
+import { useEffect, useState } from "react";
 
-const BASE_URL = "http://192.81.213.226";
+const BASE_URL = SERVER_CONFIG.BASE_URL;
 
 const dropdownItems = [
   {
     name: "Admin",
-    to: `${BASE_URL}:38/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_ADMIN_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.ADMIN}/home`,
     key: "admin",
     icon: admin,
   },
   {
     name: "Analyzer",
-    to: `${BASE_URL}:31/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_ANALYZER_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.ANALYZER}/home`,
     key: "analyser",
     icon: analyzer,
   },
   {
     name: "Summarizer",
-    to: `${BASE_URL}:32/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_SUMMARIZER_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.SUMMARIZER}/home`,
     key: "summarizer",
     icon: summarizer,
   },
   {
     name: "Translator",
-    to: `${BASE_URL}:33/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_TRANSLATOR_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.TRANSLATOR}/home`,
     key: "translator",
     icon: translator,
   },
   {
     name: "Fact Checker",
-    to: `${BASE_URL}:34/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_FACT_CHECKER_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.FACT_CHECKER}/home`,
     key: "fact checker",
     icon: fact_checker,
   },
   {
     name: "Collab",
-    to: `${BASE_URL}:36/chats`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_COLLAB_PORT}/chats`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.COLLAB}/chats`,
     key: "collab",
     icon: collab,
   },
   {
     name: "Interrogator",
-    to: `${BASE_URL}:82/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_INTERROGATOR_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.INTERROGATOR}/home`,
     key: "interrogator",
     icon: interrogator,
   },
   {
     name: "Deep Chat",
-    to: `${BASE_URL}:35/home`,
+    // to: `${BASE_URL}:${process.env.NEXT_PUBLIC_DEEP_CHAT_PORT}/home`,
+    to: `${BASE_URL}:${SERVER_CONFIG.PORTS.DEEP_CHAT}/home`,
     key: "deep chat",
     icon: deep_chat,
   },
@@ -67,6 +77,15 @@ function DashboardDropdown() {
   const { permissions } = useSelector(
     (state: any) => state?.auth?.userInfo?.role,
   );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // or a loading placeholder
+  }
 
   return (
     <ul className="bg-sirp-lightGrey shadow absolute top-[4rem] -right-[6.7rem] pt-1 flex md:grid grid-cols-3 rounded z-30 w-[130px] md:w-[300px]">

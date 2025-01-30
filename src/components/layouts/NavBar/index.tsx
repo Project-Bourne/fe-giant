@@ -2,9 +2,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import NavBarItem from "./NavBarItem";
 import { NavBarContents } from "@/utils/constants";
-import logo from "../../../../public/images/logo.png";
 import Link from "next/link";
-import disclaimerIcon from "../../../../public/icons/disclaimer-icon.svg";
+import { COMPANY_INFO } from "@/utils/company.constants";
 
 function NavBar() {
   const [isCrawling, setIsCrawling] = useState(false);
@@ -23,7 +22,7 @@ function NavBar() {
           className="flex flex-row w-fit mx-auto cursor-pointer mb-[.1rem]"
         >
           <Image
-            src={logo}
+            src="/images/logo.png"
             alt="IRP Logo"
             width={50}
             height={50}
@@ -72,7 +71,7 @@ function NavBar() {
         <div className="bg-gray-50 p-3 rounded">
           <h3 className="justify-center font-semibold flex items-center mb-2">
             <Image
-              src={disclaimerIcon}
+              src="/icons/disclaimer-icon.svg"
               alt="disclaimer"
               height={12}
               width={12}
@@ -85,6 +84,8 @@ function NavBar() {
             assess the output before making any consequential decisions. <br />
             Kindly be advised that the application's output may not
             comprehensively address individual needs and circumstances.
+            <br />
+            <br />© {COMPANY_INFO.copyright}
           </p>
         </div>
       </div>

@@ -1,0 +1,23 @@
+declare namespace NodeJS {
+  interface ProcessEnv {
+    NEXT_PUBLIC_SERVER_IP_ADDRESS: string;
+    // Frontend Ports
+    NEXT_PUBLIC_ADMIN_PORT: string;
+    NEXT_PUBLIC_ANALYZER_PORT: string;
+    NEXT_PUBLIC_SUMMARIZER_PORT: string;
+    NEXT_PUBLIC_TRANSLATOR_PORT: string;
+    NEXT_PUBLIC_FACT_CHECKER_PORT: string;
+    NEXT_PUBLIC_COLLAB_PORT: string;
+    NEXT_PUBLIC_INTERROGATOR_PORT: string;
+    NEXT_PUBLIC_DEEP_CHAT_PORT: string;
+    // Backend API Ports
+    NEXT_PUBLIC_ADMIN_API_PORT: string;
+    NEXT_PUBLIC_ANALYZER_API_PORT: string;
+    NEXT_PUBLIC_SUMMARIZER_API_PORT: string;
+    NEXT_PUBLIC_TRANSLATOR_API_PORT: string;
+    NEXT_PUBLIC_FACT_CHECKER_API_PORT: string;
+    NEXT_PUBLIC_COLLAB_API_PORT: string;
+    NEXT_PUBLIC_INTERROGATOR_API_PORT: string;
+    NEXT_PUBLIC_DEEP_CHAT_API_PORT: string;
+  }
+}

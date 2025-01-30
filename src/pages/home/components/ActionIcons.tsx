@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import DocumentService from "@/services/documents.service";
 import NotificationService from "@/services/notification.service";
+import { FRONTEND_ROUTES } from "@/utils/api.constants";
 
 type ActionIconsProps = {
   showArchive?: boolean;
@@ -32,27 +33,39 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
   const permissions = userInfo?.role?.permissions;
 
   const handleRoute = (id: string, to: string) => {
-    if (to === "collab") {
-      router.replace(`http://192.81.213.226:36/document/${id}&irp`);
-    }
-    if (to === "analyser") {
-      router.replace(`http://192.81.213.226:31/home/${id}&irp`);
-    }
-    if (to === "summarizer") {
-      router.replace(`http://192.81.213.226:32/home/${id}&irp`);
-    }
-    if (to === "factcheck") {
-      router.replace(`http://192.81.213.226:34/home/${id}&irp`);
-    }
-    if (to === "deepchat") {
-      router.replace(`http://192.81.213.226:35/home/${id}&irp`);
-    }
-    if (to === "interrogator") {
-      router.replace(`http://192.81.213.226:82/home/query/${id}&irp`);
-    }
-    if (to === "translator") {
-      router.replace(`http://192.81.213.226:33/home/${id}&irp`);
-    }
+    // if (to === "collab") {
+    //   router.replace(`http://192.81.213.226:36/document/${id}&irp`);
+    // }
+    // if (to === "analyser") {
+    //   router.replace(`http://192.81.213.226:31/home/${id}&irp`);
+    // }
+    // if (to === "summarizer") {
+    //   router.replace(`http://192.81.213.226:32/home/${id}&irp`);
+    // }
+    // if (to === "factcheck") {
+    //   router.replace(`http://192.81.213.226:34/home/${id}&irp`);
+    // }
+    // if (to === "deepchat") {
+    //   router.replace(`http://192.81.213.226:35/home/${id}&irp`);
+    // }
+    // if (to === "interrogator") {
+    //   router.replace(`http://192.81.213.226:82/home/query/${id}&irp`);
+    // }
+    // if (to === "translator") {
+    //   router.replace(`http://192.81.213.226:33/home/${id}&irp`);
+    // }
+
+    const routes = {
+      collab: `${FRONTEND_ROUTES.COLLAB}/document/${id}&irp`,
+      analyser: `${FRONTEND_ROUTES.ANALYZER}/home/${id}&irp`,
+      summarizer: `${FRONTEND_ROUTES.SUMMARIZER}/home/${id}&irp`,
+      factcheck: `${FRONTEND_ROUTES.FACT_CHECKER}/home/${id}&irp`,
+      deepchat: `${FRONTEND_ROUTES.DEEP_CHAT}/home/${id}&irp`,
+      interrogator: `${FRONTEND_ROUTES.INTERROGATOR}/home/query/${id}&irp`,
+      translator: `${FRONTEND_ROUTES.TRANSLATOR}/home/${id}&irp`,
+    };
+
+    router.replace(routes[to]);
   };
 
   const handleArchive = (_arg) => {

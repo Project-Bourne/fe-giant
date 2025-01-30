@@ -14,6 +14,7 @@ import admin from "../../../public/icons/admin.svg";
 import { useDispatch, useSelector } from "react-redux";
 import DocumentService from "@/services/documents.service";
 import { useCookies } from "react-cookie";
+import { SERVER_CONFIG } from "@/utils/env";
 
 function Group({ userData }) {
   const router = useRouter();
@@ -61,7 +62,11 @@ function Group({ userData }) {
 
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:38/home")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.ADMIN}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
               >
                 Open Admin Panel
@@ -122,7 +127,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:36/chats")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.COLLAB}/chats`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
               >
                 Open Collab Workspace
@@ -154,7 +163,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:31/home")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.ANALYZER}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Analyzer
@@ -186,7 +199,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:82/home")} // to be changed / officer
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.INTERROGATOR}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Interrogator
@@ -218,7 +235,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:33/home")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.TRANSLATOR}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Translator
@@ -250,7 +271,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:34/home")} //change route
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.FACT_CHECKER}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Fact Checker
@@ -282,7 +307,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:32/home")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.SUMMARIZER}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Summarizer
@@ -314,7 +343,11 @@ function Group({ userData }) {
             </div>
             <div className="pt-8 ">
               <button
-                onClick={() => router.push("http://192.81.213.226:35/home")}
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.DEEP_CHAT}/home`,
+                  )
+                }
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Deep Chat

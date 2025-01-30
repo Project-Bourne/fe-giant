@@ -18,6 +18,7 @@ import {
   setSummarizedTotal,
   setTranslatedTotal,
 } from "@/redux/reducers/documentReducer";
+import { API_ROUTES } from "@/utils/api.constants";
 
 const intialFormData = {
   email: "",
@@ -138,7 +139,9 @@ function Login() {
     }
   };
 
-  const BASE_URL = "http://192.81.213.226:81";
+  const BASE_URL = `http://${
+    process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS || "192.81.213.226"
+  }:81`;
 
   const apiRequest = async (url, token) => {
     if (token) {
@@ -156,7 +159,10 @@ function Login() {
 
   const getTotalFactsDoc = async (token) => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/84/fact/user`, token);
+      const response: any = await apiRequest(
+        `${API_ROUTES.FACT_CHECKER}/facts/user`,
+        token,
+      );
       if (response?.status) {
         const data = await response.json();
         dispatch(setFactsTotal(data?.data?.totalItems));
@@ -169,7 +175,8 @@ function Login() {
   const getTotalAnalyzedDoc = async (token) => {
     try {
       const response: any = await apiRequest(
-        `${BASE_URL}/81/analysis/user`,
+        // `${BASE_URL}/81/analysis/user`,
+        `${API_ROUTES.ANALYZER}/analysis/user`,
         token,
       );
       if (response?.status) {
@@ -184,7 +191,8 @@ function Login() {
   const getTotalSummarisedDoc = async (token) => {
     try {
       const response: any = await apiRequest(
-        `${BASE_URL}/82/summary/user`,
+        // `${BASE_URL}/82/summary/user`,
+        `${API_ROUTES.SUMMARIZER}/summary/user`,
         token,
       );
       if (response?.status) {
@@ -199,7 +207,8 @@ function Login() {
   const getTotalCollabDoc = async (id, token) => {
     try {
       const response: any = await apiRequest(
-        `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
+        // `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
+        `${API_ROUTES.COLLAB}/doc/docs/${id}`,
         token,
       );
       if (response?.ok) {
@@ -214,7 +223,8 @@ function Login() {
   const getTotalInterrogatedDoc = async (token) => {
     try {
       const response: any = await apiRequest(
-        `${BASE_URL}/87/interrogation`,
+        // `${BASE_URL}/87/interrogation`,
+        `${API_ROUTES.INTERROGATOR}/interrogation`,
         token,
       );
       if (response?.status) {
@@ -228,7 +238,11 @@ function Login() {
 
   const getTotalChats = async (token) => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/85/deepchat`, token);
+      const response: any = await apiRequest(
+        // `${BASE_URL}/85/deepchat`,
+        `${API_ROUTES.DEEP_CHAT}/deepchat`,
+        token,
+      );
       if (response?.status) {
         const data = await response.json();
         dispatch(setDeepChatTotal(data?.data?.totalItems));
@@ -241,7 +255,8 @@ function Login() {
   const getTotalTranslatedDoc = async (token) => {
     try {
       const response: any = await apiRequest(
-        `${BASE_URL}/83/translation/user`,
+        // `${BASE_URL}/83/translation/user`,
+        `${API_ROUTES.TRANSLATOR}/translation/user`,
         token,
       );
       if (response?.status) {

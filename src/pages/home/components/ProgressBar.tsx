@@ -2,15 +2,28 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function ProgressBar({ value }) {
+function ProgressBar({ value = 0 }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Show 0 during server-side rendering
+  const displayValue = mounted ? value : 0;
+
   const color =
-    value <= 20 ? "#FF0000" : value > 20 && value <= 74 ? "#FFBF00" : "#00CC99";
+    displayValue <= 20
+      ? "#FF0000"
+      : displayValue > 20 && displayValue <= 74
+      ? "#FFBF00"
+      : "#00CC99";
 
   return (
     <div>
       <CircularProgressbar
-        value={value}
-        text={`${value}%`}
+        value={displayValue}
+        text={`${displayValue}%`}
         strokeWidth={11}
         styles={{
           path: {

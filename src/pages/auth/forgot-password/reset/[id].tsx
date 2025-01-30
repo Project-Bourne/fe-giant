@@ -7,6 +7,7 @@ import NotificationService from "@/services/notification.service";
 import { useRouter } from "next/router";
 import custom_list_on from "../../../../../public/icons/custom-list-on.svg";
 import custom_list from "../../../../../public/icons/custom-list.svg";
+import { API_ROUTES } from "@/utils/api.constants";
 
 function PasswordReset() {
   const [loading, setLoading] = useState(false);
@@ -91,7 +92,7 @@ function PasswordReset() {
         body: requestBody,
       };
       try {
-        await fetch("http://192.81.213.226:81/80/reset-password", options)
+        await fetch(`${API_ROUTES.FACT_CHECKER}/reset-password`, options)
           .then((res) => {
             setLoading(false);
             NotificationService.success({
