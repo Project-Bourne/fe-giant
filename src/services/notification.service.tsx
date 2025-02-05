@@ -28,12 +28,14 @@ class NotificationService {
     const toastDelay = delay || 3000;
 
     ReactDOM.render(
-      <CustomToast
-        type={type}
-        message={message}
-        addedText={addedText}
-        position={position}
-      />,
+      (
+        <CustomToast
+          type={type}
+          message={message}
+          addedText={addedText}
+          position={position}
+        />
+      ) as any,
       container,
     );
 
