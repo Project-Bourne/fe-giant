@@ -177,7 +177,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `${BASE_URL}/81/analysis/user`,
-        `${API_ROUTES.ANALYZER}/analysis/user`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_ANALYZER_API_ROUTE}/analysis/user`,
         token,
       );
       if (response?.status) {
@@ -193,7 +193,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `${BASE_URL}/82/summary/user`,
-        `${API_ROUTES.SUMMARIZER}/summary/user`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_SUMMARIZER_API_ROUTE}/summary/user`,
         token,
       );
       if (response?.status) {
@@ -209,7 +209,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
-        `${API_ROUTES.COLLAB}/doc/docs/${id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${id}`,
         token,
       );
       if (response?.ok) {
@@ -225,7 +225,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `${BASE_URL}/87/interrogation`,
-        `${API_ROUTES.INTERROGATOR}/interrogation`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_INTERROGATOR_API_ROUTE}/interrogation`,
         token,
       );
       if (response?.status) {
@@ -241,7 +241,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `${BASE_URL}/85/deepchat`,
-        `${API_ROUTES.DEEP_CHAT}/deepchat`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_DEEP_CHAT_API_ROUTE}/deepchat`,
         token,
       );
       if (response?.status) {
@@ -257,7 +257,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `${BASE_URL}/83/translation/user`,
-        `${API_ROUTES.TRANSLATOR}/translation/user`,
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_TRANSLATOR_API_ROUTE}/translation/user`,
         token,
       );
       if (response?.status) {
