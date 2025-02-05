@@ -4,6 +4,8 @@ import Button from "@/components/ui/Button";
 import Loader from "@/components/ui/Loader";
 import ActionIcons from "../components/ActionIcons";
 
+const linkIcon = require("../../../../public/icons/link.svg");
+
 function Addcontext() {
   const [formData, setFormData] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,7 +29,7 @@ function Addcontext() {
       >
         <span className="flex align-middle justify-center mx-3">
           <Image
-            src={require("../../../../public/icons/link.svg")}
+            src={linkIcon}
             alt="upload image"
             width={20}
             height={20}
