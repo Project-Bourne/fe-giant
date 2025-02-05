@@ -19,6 +19,7 @@ import user_icon from "../../../../public/icons/userIcon.svg";
 import delete_icon from "../../../../public/icons/delete.svg";
 import edit_icon from "../../../../public/icons/edit.svg";
 import CheckIcon from "@mui/icons-material/Check";
+import { API_ROUTES } from "@/utils/api.constants";
 
 const countries = require("../../../utils/countries.json");
 
@@ -88,13 +89,17 @@ const ProfileSettings = () => {
   const handleDeleteAvatar = async () => {
     setIsDeleting(true);
     try {
-      const response = await fetch("http://192.81.213.226:81/80/avatar", {
-        method: "DELETE",
-        headers: {
-          "deep-token": accessToken,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        // "http://192.81.213.226:81/80/avatar",
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/avatar`,
+        {
+          method: "DELETE",
+          headers: {
+            "deep-token": accessToken,
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
       const res = await response.json();
 
       if (res?.status) {
@@ -126,7 +131,8 @@ const ProfileSettings = () => {
       // make request to uploads endpoint, get blob string
       try {
         const response = await fetch(
-          "http://192.81.213.226:81/89/api/v1/uploads",
+          // "http://192.81.213.226:81/89/api/v1/uploads",
+          `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_FILE_UPLOAD_API_ROUTE}/api/v1/uploads`,
           {
             method: "POST",
             body: formData,
@@ -143,7 +149,8 @@ const ProfileSettings = () => {
             const img: any = JSON.stringify({ uri: fileUrl });
             try {
               const response = await fetch(
-                "http://192.81.213.226:81/80/avatar",
+                // "http://192.81.213.226:81/80/avatar",
+                `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/avatar`,
                 {
                   method: "PUT",
                   body: img,
@@ -221,7 +228,8 @@ const ProfileSettings = () => {
   const getUserInfo = async () => {
     try {
       const response: any = await fetch(
-        "http://192.81.213.226:81/80/token/user",
+        // "http://192.81.213.226:81/80/token/user",
+        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/token/user`,
         {
           method: "GET",
           headers: {

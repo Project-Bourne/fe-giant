@@ -60,7 +60,8 @@ function Index() {
     await getTotalDeepchats();
   };
 
-  const BASE_URL = "http://192.81.213.226:81";
+  // const BASE_URL = "http://192.81.213.226:81";
+  const BASE_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}`;
 
   const apiRequest = async (url) => {
     if (userData.userAccessToken) {

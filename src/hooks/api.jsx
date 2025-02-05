@@ -14,12 +14,16 @@ if (typeof window !== "undefined") {
 
 const logout = () => {
   const access = cookies.get("deep-access");
-  fetch("http://192.81.213.226:81/80/logout", {
-    method: "POST",
-    body: {
-      refreshToken: access,
+  fetch(
+    // "http://192.81.213.226:81/80/logout",
+    `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/logout`,
+    {
+      method: "POST",
+      body: {
+        refreshToken: access,
+      },
     },
-  }).then((res) => {
+  ).then((res) => {
     cookies.remove("deep-access");
     cookies.remove("uuid");
     localStorage.clear();
@@ -49,7 +53,8 @@ export const requestHeader = {
  */
 
 // const API_USER_URL = 'http://localhost:4040/'
-const API_USER_URL = "http://192.81.213.226:81/80/";
+// const API_USER_URL = "http://192.81.213.226:81/80/";
+const API_USER_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/`;
 
 export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =

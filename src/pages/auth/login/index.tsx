@@ -106,7 +106,8 @@ function Login() {
     setLoading(true);
     try {
       const response: any = await fetch(
-        "http://192.81.213.226:81/80/token/user",
+        // "http://192.81.213.226:81/80/token/user",
+        `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/token/user`,
         {
           method: "GET",
           headers: {
@@ -139,9 +140,9 @@ function Login() {
     }
   };
 
-  const BASE_URL = `http://${
-    process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS || "192.81.213.226"
-  }:81`;
+  // const BASE_URL = `http://${
+  //   process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS || "192.81.213.226"
+  // }:81`;
 
   const apiRequest = async (url, token) => {
     if (token) {
@@ -331,6 +332,7 @@ function Login() {
             classNameStyle="text-white p-3"
             background="bg-sirp-primary"
             size="xl"
+            onClick={handleSubmit}
           />
           {/* don't have account  */}
           <p className="text-center font-light mt-5">

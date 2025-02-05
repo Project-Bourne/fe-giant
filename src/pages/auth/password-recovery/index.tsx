@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import {} from "@mui/material";
-
 import { AuthLayout } from "@/layout/index";
 import { Input, Button } from "@/components/ui";
 import Image from "next/image";

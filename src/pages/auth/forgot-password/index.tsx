@@ -56,7 +56,8 @@ function PasswordRecovery() {
 
     try {
       const response = await fetch(
-        "http://192.81.213.226:81/80/forgot-password",
+        // "http://192.81.213.226:81/80/forgot-password",
+        `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/80/forgot-password`,
         options,
       );
       setLoading(false);

@@ -4,7 +4,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
 import ProgressBar from "../components/ProgressBar";
 
-function ConfidenceSection({ fact, isLoading }) {
+interface ConfidenceSectionProps {
+  fact: any;
+  isLoading: boolean;
+}
+
+function ConfidenceSection({ fact, isLoading }: ConfidenceSectionProps) {
   const [confidence, setConfidence] = useState<any>();
 
   useEffect(() => {
@@ -38,6 +43,16 @@ function ConfidenceSection({ fact, isLoading }) {
       ? Math.ceil(parseFloat(confidence))
       : "0%";
 
+  // Convert string percentage to number and handle edge cases
+  const getNumericValue = (value: string | number): number => {
+    if (typeof value === "number") {
+      return Math.ceil(value);
+    }
+    // Remove % and convert to number
+    const numValue = parseFloat(value.replace("%", ""));
+    return isNaN(numValue) ? 0 : Math.ceil(numValue);
+  };
+
   return (
     <div className="mt-3 w-[25rem]">
       <p className="text-gray-500 mt-3 pl-10">
@@ -48,13 +63,7 @@ function ConfidenceSection({ fact, isLoading }) {
           {isLoading ? (
             <Skeleton width={50} height={50} circle />
           ) : (
-            <ProgressBar
-              value={
-                typeof confidencePercent === "string"
-                  ? confidencePercent.replace("%", "")
-                  : Math.ceil(confidencePercent)
-              }
-            /> //circular progress bar
+            <ProgressBar value={getNumericValue(confidencePercent)} />
           )}
         </div>
         <div>
@@ -82,4 +91,5 @@ function ConfidenceSection({ fact, isLoading }) {
     </div>
   );
 }
+
 export default ConfidenceSection;
