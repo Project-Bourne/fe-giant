@@ -276,7 +276,7 @@ function Login() {
         subText={"Please fill your detail to access your account"}
         isTextCenter={false}
       >
-        <form className="mt-[3rem]" onSubmit={handleSubmit}>
+        <form className="mt-[3rem]">
           {/* email  */}
           <div className="mb-3 grid gap-1">
             <label>Email</label>
