@@ -111,7 +111,7 @@ function SignUp() {
       }
       isTextCenter={false}
     >
-      <form className="mt-[1.5rem] pb-7" onSubmit={handleSubmit}>
+      <form className="mt-[1.5rem] pb-7">
         {/* first name  */}
         <div className="mb-3 grid gap-1">
           <label>First Name</label>
@@ -201,7 +201,7 @@ function SignUp() {
         {/* submit button  */}
         <Button
           value="Create account"
-          type="submit"
+          // type="submit"
           loading={loading}
           classNameStyle="text-white p-3"
           background="bg-sirp-primary"

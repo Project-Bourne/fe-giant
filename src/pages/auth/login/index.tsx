@@ -327,7 +327,7 @@ function Login() {
           {/* submit button  */}
           <Button
             value="Sign in"
-            type="submit"
+            // type="submit"
             loading={loading}
             classNameStyle="text-white p-3"
             background="bg-sirp-primary"
