@@ -4,6 +4,7 @@ import { Button } from "@/components/ui";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useRouter } from "next/router";
+import { FRONTEND_ROUTES } from "@/utils/api.constants";
 
 function DigestPreview({ title, text, id }) {
   const router = useRouter();
@@ -90,7 +91,8 @@ function DigestPreview({ title, text, id }) {
             </>
           }
           onClick={() =>
-            router.replace(`http://192.81.213.226:36/documents/${id}&digest`)
+            // router.replace(`http://192.81.213.226:36/documents/${id}&digest`)
+            router.replace(`${FRONTEND_ROUTES.COLLAB}/documents/${id}&digest`)
           }
           classNameStyle="text-white text-[14px] py-2 "
           background="bg-sirp-primary"
