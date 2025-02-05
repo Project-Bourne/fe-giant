@@ -206,6 +206,7 @@ function SignUp() {
           classNameStyle="text-white p-3"
           background="bg-sirp-primary"
           size="xl"
+          onClick={handleSubmit}
         />
         {/* don't have account  */}
         <p className="text-center font-light mt-3">
