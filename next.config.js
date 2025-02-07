@@ -6,22 +6,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // domains: [
-    //   '192.81.213.226',  // Add the IP address
-    //   'localhost',
-    //   process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS, // Also allow the environment variable IP
-    // ],
-    // localPatterns: [
-    //   {
-    //     pathname: '/images/**',
-    //   },
-    //   {
-    //     pathname: '/icons/**',
-    //   },
-    //   {
-    //     pathname: '/svg/**',
-    //   }
-    // ],
     remotePatterns: [
       {
         protocol: "http",
