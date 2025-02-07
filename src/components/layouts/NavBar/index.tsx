@@ -85,7 +85,10 @@ function NavBar() {
             Kindly be advised that the application's output may not
             comprehensively address individual needs and circumstances.
             <br />
-            <br />© {COMPANY_INFO.copyright}
+            <br />
+          </p>
+          <p className="bg-sirp-primary text-white px-2 py-1 rounded-md">
+            {COMPANY_INFO.copyright}
           </p>
         </div>
       </div>
