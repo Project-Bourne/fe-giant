@@ -36,7 +36,12 @@ function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
           </div>
         </div>
         <div className="w-full h-[40vh] p-2 bg-gray-50 overflow-y-auto  font-normal text-[13.5px] first-letter:capitalize break-all rounded">
-          <ReactMarkdown>
+          <ReactMarkdown
+            className="first-letter:capitalize text-justify leading-6 text-[1rem] mb-10"
+            components={{
+              p: ({ children }) => <p className="mb-4">{children}</p>,
+            }}
+          >
             {useTruncate(selectedItem?.content, 1100)}
           </ReactMarkdown>
         </div>

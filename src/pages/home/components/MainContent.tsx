@@ -1,14 +1,12 @@
 import { data } from "@/utils/home.constants";
 import React from "react";
-
+import ReactMarkdown from "react-markdown";
 function MainContent({
   title,
   content,
   // image,
 }) {
-  if (!content) return;
-
-  const responseArray = content.split("\n");
+  if (!content) return null;
 
   return (
     <div>
@@ -16,15 +14,14 @@ function MainContent({
         <h2 className="text-2xl capitalize mb-3">{title}</h2>
       </header>
       <main>
-        <p className="first-letter:capitalize text-justify leading-6 text-[1rem] mb-10">
-          {responseArray.map((line, index) => (
-            <React.Fragment key={index}>
-              {line}
-              {index !== responseArray.length - 1 && <br />}{" "}
-              {/* Add <br /> except for the last line */}
-            </React.Fragment>
-          ))}
-        </p>
+        <ReactMarkdown
+          className="first-letter:capitalize text-justify leading-6 text-[1rem] mb-10"
+          components={{
+            p: ({ children }) => <p className="mb-4">{children}</p>,
+          }}
+        >
+          {content}
+        </ReactMarkdown>
       </main>
     </div>
   );

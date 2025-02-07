@@ -225,7 +225,7 @@ function Index() {
 
       <div className="me:w-[100%] my-5 mr-10 flex justify-end items-center ">
         <Pagination
-          count={Math.ceil(facts?.totalItems / itemsPerPage)}
+          count={Number(Math.ceil(facts?.totalItems / itemsPerPage)) || 1}
           page={currentPage}
           onChange={handlePageChange}
           variant="outlined"

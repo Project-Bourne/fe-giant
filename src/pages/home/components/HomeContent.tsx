@@ -152,8 +152,10 @@ function HomeContent({ data, headerborder, loading }) {
                       res?.content5wh ||
                         rowData?.fact?.confidence?.content5wh ||
                         "No Content",
-                      35,
-                    )}
+                      50,
+                    )
+                      .replace(/^\* /, "")
+                      .replace(/^# /, "")}
                   </ReactMarkdown>
                 </div>
               );
