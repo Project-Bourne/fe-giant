@@ -13,6 +13,7 @@ import { useCookies } from "react-cookie";
 import DashboardDropdown from "@/components/dashboard/DashboardDropdown";
 import { CustomModal } from "@/components/ui";
 import { browser } from "process";
+import { Avatar } from "@mui/material";
 
 function RightComp(props) {
   const { dashboard } = props;
@@ -130,13 +131,22 @@ function RightComp(props) {
           className="flex flex-row items-center justify-center"
           onClick={handleLogoutToggle}
         >
-          <img
-            src={userInfo?.image || userInitials() || "DS"}
-            alt="userImage"
-            width={25}
-            height={25}
-            className="rounded-full object-fill"
-          />
+          {userInfo?.image ? (
+            <Image
+              src={userInfo?.image || userInitials() || "DS"}
+              alt="X"
+              width={25}
+              height={25}
+              className="rounded-full object-fill"
+              priority
+            />
+          ) : (
+            <div className="h-[32px] w-[32px] aspect-square rounded-full bg-sirp-lightGrey/80">
+              <p className="text-sirp-primary text-[12px] font-extrabold">
+                {userInitials()}
+              </p>
+            </div>
+          )}
 
           <Image
             src={down}

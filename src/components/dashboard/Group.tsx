@@ -104,42 +104,6 @@ function Group({ userData }) {
           </div>
         </div>
 
-        {/* collab */}
-        {permissions?.includes("collab") && (
-          <div className="mx-auto md:mx-0  rounded-[1.5rem] bg-sirp-primary  h-[12rem] mt-5  p-3">
-            <div className="flex flex-row items-center gap-3 pt-5">
-              <div>
-                <Image
-                  src={collab}
-                  alt="documents"
-                  className="cursor-pointer"
-                  width={65}
-                />
-              </div>
-              <div>
-                <p className="font-bold text-white text-4xl">
-                  {collabsTotal ?? 0}
-                </p>
-                <span className="capitalize font-light text-white text-[15px]">
-                  Total Collab Documents
-                </span>
-              </div>
-            </div>
-            <div className="pt-8 ">
-              <button
-                onClick={() =>
-                  router.push(
-                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.COLLAB}/chats`,
-                  )
-                }
-                className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
-              >
-                Open Collab Workspace
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* analyzer  */}
         {permissions?.includes("analyser") && (
           <div className="mx-auto md:mx-0  rounded-[1.5rem] bg-sirp-primary  h-[12rem] mt-5  p-3">
@@ -351,6 +315,42 @@ function Group({ userData }) {
                 className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold"
               >
                 Open Deep Chat
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* collab */}
+        {permissions?.includes("collab") && (
+          <div className="mx-auto md:mx-0  rounded-[1.5rem] bg-sirp-primary  h-[12rem] mt-5  p-3">
+            <div className="flex flex-row items-center gap-3 pt-5">
+              <div>
+                <Image
+                  src={collab}
+                  alt="documents"
+                  className="cursor-pointer"
+                  width={65}
+                />
+              </div>
+              <div>
+                <p className="font-bold text-white text-4xl">
+                  {collabsTotal ?? 0}
+                </p>
+                <span className="capitalize font-light text-white text-[15px]">
+                  Total Collab Documents
+                </span>
+              </div>
+            </div>
+            <div className="pt-8 ">
+              <button
+                onClick={() =>
+                  router.push(
+                    `${SERVER_CONFIG.BASE_URL}:${SERVER_CONFIG.PORTS.COLLAB}/chats`,
+                  )
+                }
+                className="capitalize hover:bg-sirp-secondaryContainer bg-sirp-primaryContainer w-[20rem] pb-2 pt-2 rounded-[1rem] text-white font-bold "
+              >
+                Open Collab Workspace
               </button>
             </div>
           </div>

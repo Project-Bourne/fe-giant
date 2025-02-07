@@ -2,15 +2,23 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function ProgressBar({ value = 0 }) {
-  const [mounted, setMounted] = React.useState(false);
+interface ProgressBarProps {
+  value: number;
+}
+
+function ProgressBar({ value = 0 }: ProgressBarProps) {
+  const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
-  // Show 0 during server-side rendering
-  const displayValue = mounted ? value : 0;
+  // Return null or a placeholder during SSR
+  if (!isMounted) {
+    return <div className="w-[100px] h-[100px] rounded-full bg-gray-200" />;
+  }
+
+  const displayValue = Math.ceil(Number(value) || 0);
 
   const color =
     displayValue <= 20
@@ -20,24 +28,22 @@ function ProgressBar({ value = 0 }) {
       : "#00CC99";
 
   return (
-    <div>
-      <CircularProgressbar
-        value={displayValue}
-        text={`${displayValue}%`}
-        strokeWidth={11}
-        styles={{
-          path: {
-            stroke: color,
-          },
-          trail: {
-            stroke: "#d6d6d6",
-          },
-          text: {
-            fill: "black",
-          },
-        }}
-      />
-    </div>
+    <CircularProgressbar
+      value={displayValue}
+      text={`${displayValue}%`}
+      strokeWidth={11}
+      styles={{
+        path: {
+          stroke: color,
+        },
+        trail: {
+          stroke: "#d6d6d6",
+        },
+        text: {
+          fill: "black",
+        },
+      }}
+    />
   );
 }
 
