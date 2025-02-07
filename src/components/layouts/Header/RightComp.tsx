@@ -141,8 +141,8 @@ function RightComp(props) {
               priority
             />
           ) : (
-            <div className="h-[32px] w-[32px] aspect-square rounded-full bg-sirp-lightGrey/80">
-              <p className="text-sirp-primary text-[12px] font-extrabold">
+            <div className="h-[32px] w-[32px] aspect-square flex items-center justify-center rounded-full bg-sirp-primary">
+              <p className="text-white text-[12px] font-extrabold">
                 {userInitials()}
               </p>
             </div>
