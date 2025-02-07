@@ -3,6 +3,7 @@ import { Close } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import ActionIcons from "./ActionIcons";
 import { useTruncate } from "@/components/custom-hooks";
+import ReactMarkdown from "react-markdown";
 
 function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
   const router = useRouter();
@@ -35,7 +36,9 @@ function DocumentDisplayModal({ closeModal, selectedItem, id, to }) {
           </div>
         </div>
         <div className="w-full h-[40vh] p-2 bg-gray-50 overflow-y-auto  font-normal text-[13.5px] first-letter:capitalize break-all rounded">
-          {useTruncate(selectedItem?.content, 1100)}
+          <ReactMarkdown>
+            {useTruncate(selectedItem?.content, 1100)}
+          </ReactMarkdown>
         </div>
       </div>
     </div>

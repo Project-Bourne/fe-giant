@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormatDate, useTruncate } from "@/components/custom-hooks";
 import Loader from "@/components/ui/Loader";
 import { capitalize } from "@mui/material";
-
+import ReactMarkdown from "react-markdown";
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
   const [timeState, setTimeState] = useState(true);
@@ -147,12 +147,14 @@ function HomeContent({ data, headerborder, loading }) {
                     columnItem?.key === "content" && "first-letter:capitalize"
                   }`}
                 >
-                  {useTruncate(
-                    res?.content5wh ||
-                      rowData?.fact?.confidence?.content5wh ||
-                      "No Content",
-                    35,
-                  )}
+                  <ReactMarkdown>
+                    {useTruncate(
+                      res?.content5wh ||
+                        rowData?.fact?.confidence?.content5wh ||
+                        "No Content",
+                      35,
+                    )}
+                  </ReactMarkdown>
                 </div>
               );
             }
