@@ -98,7 +98,7 @@ function DropdownWithFlag(props: DropdownModel) {
   const [dropdown, setDropdown] = useState(false);
   const [country, setCountry] = useState({
     name: "Nigeria",
-    flag: "https://flagcdn.com/ng.svg",
+    emoji: "🇳🇬",
   });
   const [filteredCountries, setFilteredCountries] = useState(countries);
   const [countrySearch, setCountrySearch] = useState("");
@@ -115,7 +115,7 @@ function DropdownWithFlag(props: DropdownModel) {
       );
     });
 
-    setCountry({ name: countryObj[0]?.name, flag: countryObj[0]?.image });
+    setCountry({ name: countryObj[0]?.name, emoji: countryObj[0]?.emoji });
   }, []);
 
   const dropdownRef = useRef();
@@ -138,8 +138,8 @@ function DropdownWithFlag(props: DropdownModel) {
     // }
   };
   // add a selected country from dropdown
-  const handleItemSelect = (country, flag) => {
-    setCountry({ name: country, flag });
+  const handleItemSelect = (country, emoji) => {
+    setCountry({ name: country, emoji });
     setDropdown(false);
     selectItem(country);
     setFilteredCountries(countries);
@@ -199,16 +199,17 @@ function DropdownWithFlag(props: DropdownModel) {
               <div
                 key={index}
                 className={`flex gap-2 px-2 py-1 hover:bg-gray-200 cursor-pointer items-center`}
-                onClick={() => handleItemSelect(item.name, item.image)}
+                onClick={() => handleItemSelect(item.name, item.emoji)}
               >
-                <Image
+                {/* <Image
                   src={item.image}
                   alt="Filter"
                   height={20}
                   width={20}
                   className="rounded-full h-[20px] w-[20px]"
                   priority
-                />
+                /> */}
+                <div className="text-[20px] font-light">{item.emoji}</div>
                 <div className="text-[15px] font-light">{item.name}</div>
               </div>
             ))}
@@ -224,14 +225,15 @@ function DropdownWithFlag(props: DropdownModel) {
         onClick={handleDropdown}
       >
         <div className="flex gap-2 items-center">
-          <Image
+          {/* <Image
             src={country.flag}
             alt="Filter"
             height={20}
             width={20}
             className="rounded-full h-[20px] w-[20px]"
             priority
-          />
+          /> */}
+          <div className="text-[20px] font-light">{country.emoji}</div>
           <div className="text-[15px] font-light">{country.name}</div>
         </div>
         <div>&#8964; </div>
