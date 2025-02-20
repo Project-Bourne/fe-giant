@@ -3,6 +3,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const data = [
+  "All",
   "Agriculture",
   "Arts and Culture",
   "Defence, Military and Security",

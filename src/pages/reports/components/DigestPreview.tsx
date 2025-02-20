@@ -5,6 +5,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useRouter } from "next/router";
 import { FRONTEND_ROUTES } from "@/utils/api.constants";
+import MainContent from "@/pages/home/components/MainContent";
+import { render } from "react-dom";
+import ReactMarkdown from "react-markdown";
 
 function DigestPreview({ title, text, id }) {
   const router = useRouter();
@@ -25,6 +28,10 @@ function DigestPreview({ title, text, id }) {
             <style>
             .watermark {
                 position: fixed;
+                display: flex;
+                flex-direction: column;
+                justify-centent: center;
+                align-items: center;
                 top: 300;
                 left: 300;
                 width: 100%;
@@ -40,19 +47,83 @@ function DigestPreview({ title, text, id }) {
       
       <body>
         <h1 class="report-title">${reportTitle}</h1>
-        <p class="report-text">${reportText}</p>
+        <div id="render-target"></div>
         ${watermarkHTML}
       </body>
       </html>
     `;
 
       const printWindow = window.open("", "_blank", "width=600,height=600");
+
       printWindow.document.open();
       printWindow.document.write(printHTML);
       printWindow.document.close();
 
       // Wait for the content to load, then trigger the print dialog
       printWindow.onload = () => {
+        const renderTarget =
+          printWindow.document.getElementById("render-target");
+        render(
+          <ReactMarkdown
+            className="text-justify text-[14px]"
+            components={{
+              p: ({ children }) => <p className="mb-4">{children}</p>,
+              h1: ({ children }) => (
+                <h1 className="text-3xl font-bold text-center">{children}</h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-2xl font-bold text-center">{children}</h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-xl font-bold text-center">{children}</h3>
+              ),
+              h4: ({ children }) => (
+                <h4 className="text-lg font-bold text-center">{children}</h4>
+              ),
+              h5: ({ children }) => (
+                <h5 className="text-base font-bold text-center">{children}</h5>
+              ),
+              h6: ({ children }) => (
+                <h6 className="text-sm font-bold text-center">{children}</h6>
+              ),
+              table: ({ children }) => (
+                <table className="w-full border-collapse border border-gray-300">
+                  {children}
+                </table>
+              ),
+              thead: ({ children }) => (
+                <thead className="bg-gray-100">{children}</thead>
+              ),
+              tbody: ({ children }) => <tbody>{children}</tbody>,
+              tr: ({ children }) => (
+                <tr className="border-b border-gray-200">{children}</tr>
+              ),
+              td: ({ children }) => <td className="p-2">{children}</td>,
+              th: ({ children }) => <th className="p-2">{children}</th>,
+              ul: ({ children }) => (
+                <ul className="list-disc pl-5">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal pl-5">{children}</ol>
+              ),
+              li: ({ children }) => <li className="mb-2">{children}</li>,
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-4 border-gray-300 pl-4 py-2 italic">
+                  {children}
+                </blockquote>
+              ),
+              code: ({ children }) => (
+                <code className="bg-gray-100 p-1 rounded">{children}</code>
+              ),
+              img: ({ src, alt }) => (
+                <img src={src} alt={alt} className="max-w-full h-auto" />
+              ),
+            }}
+          >
+            {reportText}
+          </ReactMarkdown>,
+          renderTarget,
+        );
         printWindow.print();
         printWindow.close();
       };
@@ -66,7 +137,76 @@ function DigestPreview({ title, text, id }) {
         </div> */}
         <div className="mt-3">
           <h2 className="text-center font-bold capitalize py-3">{title}</h2>
-          <p className="text-justify text-[14px]">{text}</p>
+          {/* <p className="text-justify text-[14px]">{text}</p> */}
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => <p className="mb-4">{children}</p>,
+              h1: ({ children }) => (
+                <h1 className="text-3xl font-bold text-left capitalize">
+                  {children}
+                </h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-2xl font-bold text-left capitalize">
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-xl font-bold text-left capitalize">
+                  {children}
+                </h3>
+              ),
+              h4: ({ children }) => (
+                <h4 className="text-lg font-bold text-left capitalize">
+                  {children}
+                </h4>
+              ),
+              h5: ({ children }) => (
+                <h5 className="text-base font-bold text-left capitalize">
+                  {children}
+                </h5>
+              ),
+              h6: ({ children }) => (
+                <h6 className="text-sm font-bold text-left capitalize">
+                  {children}
+                </h6>
+              ),
+              table: ({ children }) => (
+                <table className="w-full border-collapse border border-gray-300">
+                  {children}
+                </table>
+              ),
+              thead: ({ children }) => (
+                <thead className="bg-gray-100">{children}</thead>
+              ),
+              tbody: ({ children }) => <tbody>{children}</tbody>,
+              tr: ({ children }) => (
+                <tr className="border-b border-gray-200">{children}</tr>
+              ),
+              td: ({ children }) => <td className="p-2">{children}</td>,
+              th: ({ children }) => <th className="p-2">{children}</th>,
+              ul: ({ children }) => (
+                <ul className="list-disc pl-5">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal pl-5">{children}</ol>
+              ),
+              li: ({ children }) => <li className="mb-2">{children}</li>,
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-4 border-gray-300 pl-4 py-2 italic">
+                  {children}
+                </blockquote>
+              ),
+              code: ({ children }) => (
+                <code className="bg-gray-100 p-1 rounded">{children}</code>
+              ),
+              img: ({ src, alt }) => (
+                <img src={src} alt={alt} className="max-w-full h-auto" />
+              ),
+            }}
+          >
+            {text}
+          </ReactMarkdown>
         </div>
       </div>
       <div className="w-full flex justify-end py-1 gap-x-3">

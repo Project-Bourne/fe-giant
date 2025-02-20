@@ -22,6 +22,7 @@ function Header() {
 
   const handleDigestClose = (showPreview) => {
     setDigestModal(false);
+    setSecBriefModal(false);
     if (showPreview) {
       setDigestPreview(true);
     }
@@ -79,7 +80,10 @@ function Header() {
           style="bg-white md:w-[35%] w-[60%] relative rounded-xl mx-auto pt-3 px-7 pb-[2rem] md:mt-[7%] mt-[20%]"
           closeModal={() => setSecBriefModal(false)}
         >
-          <SecurityBriefModal />
+          <SecurityBriefModal
+            closeModal={handleDigestClose}
+            previewData={handleDataPreview}
+          />
         </CustomModal>
       )}
       {digestModal && (

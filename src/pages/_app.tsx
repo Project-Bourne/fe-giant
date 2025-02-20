@@ -7,6 +7,7 @@ import { store } from "@/redux/store";
 import { useRouter } from "next/router";
 import { Cookies, useCookies } from "react-cookie";
 import { browser } from "process";
+import "../polyfills";
 
 function AppWrapper({ Component, pageProps, ...appProps }) {
   const router = useRouter();
