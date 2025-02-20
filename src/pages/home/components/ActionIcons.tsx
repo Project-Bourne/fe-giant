@@ -56,13 +56,13 @@ const ActionIcons = ({ showArchive, docId, archiveId }: ActionIconsProps) => {
     // }
 
     const routes = {
-      collab: `${FRONTEND_ROUTES.COLLAB}/document/${id}&irp`,
-      analyser: `${FRONTEND_ROUTES.ANALYZER}/home/${id}&irp`,
-      summarizer: `${FRONTEND_ROUTES.SUMMARIZER}/home/${id}&irp`,
-      factcheck: `${FRONTEND_ROUTES.FACT_CHECKER}/home/${id}&irp`,
-      deepchat: `${FRONTEND_ROUTES.DEEP_CHAT}/home/${id}&irp`,
-      interrogator: `${FRONTEND_ROUTES.INTERROGATOR}/home/query/${id}&irp`,
-      translator: `${FRONTEND_ROUTES.TRANSLATOR}/home/${id}&irp`,
+      collab: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_PORT}/document/${id}&irp`,
+      analyser: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_ANALYZER_PORT}/home/${id}&irp`,
+      summarizer: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_SUMMARIZER_PORT}/home/${id}&irp`,
+      factcheck: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_FACT_CHECKER_PORT}/home/${id}&irp`,
+      deepchat: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_DEEP_CHAT_PORT}/home/${id}&irp`,
+      interrogator: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_INTERROGATOR_PORT}/home/query/${id}&irp`,
+      translator: `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_TRANSLATOR_PORT}/home/${id}&irp`,
     };
 
     router.replace(routes[to]);

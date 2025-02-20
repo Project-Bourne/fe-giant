@@ -136,40 +136,30 @@ function DigestPreview({ title, text, id }) {
           <Image src={logo} alt={"logo"} height={60} width={60} />
         </div> */}
         <div className="mt-3">
-          <h2 className="text-center font-bold capitalize py-3">{title}</h2>
+          <h2 className="text-center font-bold uppercase py-3">{title}</h2>
           {/* <p className="text-justify text-[14px]">{text}</p> */}
           <ReactMarkdown
             components={{
               p: ({ children }) => <p className="mb-4">{children}</p>,
               h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-left capitalize">
-                  {children}
-                </h1>
+                <h1 className="text-3xl font-bold text-left upp">{children}</h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-2xl font-bold text-left capitalize">
-                  {children}
-                </h2>
+                <h2 className="text-2xl font-bold text-left upp">{children}</h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-xl font-bold text-left capitalize">
-                  {children}
-                </h3>
+                <h3 className="text-xl font-bold text-left upp">{children}</h3>
               ),
               h4: ({ children }) => (
-                <h4 className="text-lg font-bold text-left capitalize">
-                  {children}
-                </h4>
+                <h4 className="text-lg font-bold text-left upp">{children}</h4>
               ),
               h5: ({ children }) => (
-                <h5 className="text-base font-bold text-left capitalize">
+                <h5 className="text-base font-bold text-left upp">
                   {children}
                 </h5>
               ),
               h6: ({ children }) => (
-                <h6 className="text-sm font-bold text-left capitalize">
-                  {children}
-                </h6>
+                <h6 className="text-sm font-bold text-left upp">{children}</h6>
               ),
               table: ({ children }) => (
                 <table className="w-full border-collapse border border-gray-300">
