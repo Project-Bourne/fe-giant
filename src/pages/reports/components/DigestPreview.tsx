@@ -142,24 +142,34 @@ function DigestPreview({ title, text, id }) {
             components={{
               p: ({ children }) => <p className="mb-4">{children}</p>,
               h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-left upp">{children}</h1>
+                <h1 className="text-3xl font-bold text-left uppercase">
+                  {children}
+                </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-2xl font-bold text-left upp">{children}</h2>
+                <h2 className="text-2xl font-bold text-left uppercase">
+                  {children}
+                </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-xl font-bold text-left upp">{children}</h3>
+                <h3 className="text-xl font-bold text-left uppercase">
+                  {children}
+                </h3>
               ),
               h4: ({ children }) => (
-                <h4 className="text-lg font-bold text-left upp">{children}</h4>
+                <h4 className="text-lg font-bold text-left uppercase">
+                  {children}
+                </h4>
               ),
               h5: ({ children }) => (
-                <h5 className="text-base font-bold text-left upp">
+                <h5 className="text-base font-bold text-left uppercase">
                   {children}
                 </h5>
               ),
               h6: ({ children }) => (
-                <h6 className="text-sm font-bold text-left upp">{children}</h6>
+                <h6 className="text-sm font-bold text-left uppercase">
+                  {children}
+                </h6>
               ),
               table: ({ children }) => (
                 <table className="w-full border-collapse border border-gray-300">
