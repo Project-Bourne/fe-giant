@@ -2,9 +2,9 @@
 /* eslint-disable react/jsx-filename-extension */
 // "use client"
 import React, { useEffect, useState } from "react";
-import { Router } from "next/router";
+// import { Router } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import AuthService from "@/services/auth.service";
+// import AuthService from "@/services/auth.service";
 import { CustomModal } from "@/components/ui";
 import { useRouter } from "next/router";
 import Loader from "@/components/ui/Loader";
@@ -64,99 +64,115 @@ function Index() {
   const BASE_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}`;
 
   const apiRequest = async (url) => {
-    if (userData.userAccessToken) {
+    if (user.userAccessToken) {
       const res = await fetch(url, {
         method: "GET",
         headers: {
-          "deep-token": userData?.userAccessToken,
+          "deep-token": user.userAccessToken,
           "Content-Type": "application/json",
         },
       });
-
       return res;
     } else {
-      // route to /auth/login
-      router.replace("/auth/login");
+      // router.replace("/auth/login");
     }
   };
 
   const getTotalFactsDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/84/fact/user`);
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_FACT_CHECKER_API_ROUTE}/fact/user`,
+      );
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, facts: data?.data?.totalItems });
         dispatch(setFactsTotal(data?.data?.totalItems));
       }
     } catch (err) {
-      // throw new Error(err);
-    }
-  };
-
-  const getTotalAnalyzedDoc = async () => {
-    try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
-      if (response?.status) {
-        const data = await response.json();
-        setTotal({ ...total, analyzed: data.data.totalItems });
-      }
-    } catch (err) {
-      // throw new Error(err);
+      // Error handling
     }
   };
 
   const getTotalSummarisedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/82/summary/user`);
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_SUMMARIZER_API_ROUTE}/summary/user`,
+      );
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, summarized: data?.data?.totalItems });
         dispatch(setSummarizedTotal(data?.data?.totalItems));
       }
     } catch (err) {
-      // throw new Error(err);
+      // Error handling
+    }
+  };
+
+  const getTotalAnalyzedDoc = async () => {
+    try {
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_ANALYZER_API_ROUTE}/analysis/user`,
+      );
+      if (response?.status) {
+        const data = await response.json();
+        setTotal({ ...total, analyzed: data?.data?.totalItems });
+        dispatch(setAnalyzedTotal(data?.data?.totalItems));
+      }
+    } catch (err) {
+      // Error handling
     }
   };
 
   const getTotalCollabDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(
+        `${BASE_URL}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${userData?.userInfo?.uuid}`,
+      );
       if (response?.status) {
         const data = await response.json();
-        setTotal({ ...total, collabs: data.data.totalItems });
+        setTotal({ ...total, collabs: data?.data?.totalItems });
+        dispatch(setCollabTotal(data?.data?.totalItems));
       }
     } catch (err) {
-      // throw new Error(err);
+      // Error handling
     }
   };
 
   const getTotalInterrogatedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_INTERROGATOR_API_ROUTE}/interrogation`,
+      );
       if (response?.status) {
         const data = await response.json();
-        setTotal({ ...total, interrogated: data.data.totalItems });
+        setTotal({ ...total, interrogated: data?.data?.totalItems });
+        dispatch(setInterrogatedTotal(data?.data?.totalItems));
       }
     } catch (err) {
-      // throw new Error(err);
+      // Error handling
     }
   };
 
   const getTotalDeepchats = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/`);
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_DEEP_CHAT_API_ROUTE}/deepchat`,
+      );
       if (response?.status) {
         const data = await response.json();
-        setTotal({ ...total, deep_convo: data.data.totalItems });
+        setTotal({ ...total, deep_convo: data?.data?.totalItems });
+        dispatch(setDeepChatTotal(data?.data?.totalItems));
       }
     } catch (err) {
-      // throw new Error(err);
+      // Error handling
     }
   };
 
   const getTotalTranslatedDoc = async () => {
     try {
-      const response: any = await apiRequest(`${BASE_URL}/83/translation/user`);
+      const response: any = await apiRequest(
+        `${BASE_URL}/${process.env.NEXT_PUBLIC_TRANSLATOR_API_ROUTE}/translation/user`,
+      );
       if (response?.status) {
         const data = await response.json();
         dispatch(setTranslatedTotal(data?.data?.totalItems));

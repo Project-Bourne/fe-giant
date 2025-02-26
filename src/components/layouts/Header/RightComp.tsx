@@ -44,9 +44,9 @@ function RightComp(props) {
         dispatch(logout());
         localStorage.clear();
         router.basePath = "/auth/login";
-        router.replace("/auth/login");
-        router.replace("/auth/login");
-        router.replace("/auth/login");
+        // router.replace("/auth/login");
+        // router.replace("/auth/login");
+        // router.replace("/auth/login");
 
         if (cookies["deep-access"]) {
           removeCookie("deep-access");
