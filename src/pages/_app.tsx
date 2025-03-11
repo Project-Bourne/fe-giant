@@ -18,6 +18,16 @@ function AppWrapper({ Component, pageProps, ...appProps }) {
   );
 
   const [cookies] = useCookies(["deep-access", "uuid"]);
+
+  /**
+   * Redirects user to login page if authentication cookies are not present
+   * This ensures protected routes are only accessible to authenticated users
+   */
+  useEffect(() => {
+    if (!cookies["deep-access"]) {
+      router.replace("/auth/login");
+    }
+  }, [cookies, router]);
   // const signupPage = appProps.router.pathname.includes("/auth/signup");
   // const forgotPsdPage = appProps.router.pathname.includes(
   //   "/auth",

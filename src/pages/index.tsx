@@ -23,7 +23,7 @@ import {
   setSummarizedTotal,
   setTranslatedTotal,
 } from "@/redux/reducers/documentReducer";
-
+import { useCookies } from "react-cookie";
 function Index() {
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<any>(null);
@@ -41,6 +41,21 @@ function Index() {
   const router = useRouter();
   const dispatch = useDispatch();
   const documentService = new DocumentService();
+  // Check if user is authenticated via cookies
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "deep-access",
+    "uuid",
+  ]);
+
+  /**
+   * Redirects user to login page if authentication cookies are not present
+   * This ensures protected routes are only accessible to authenticated users
+   */
+  useEffect(() => {
+    if (!cookies["deep-access"]) {
+      router.replace("/auth/login");
+    }
+  }, [cookies, router]);
 
   useEffect(() => {
     setUserData(user);
