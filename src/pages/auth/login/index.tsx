@@ -216,7 +216,7 @@ function Login() {
       console.log("C DOC: ", response);
       if (response?.status) {
         const data = await response.json();
-        dispatch(setCollabTotal(data?.data?.length));
+        dispatch(setCollabTotal(data?.data?.totalDocuments));
       }
     } catch (err) {
       // throw new Error(err);
