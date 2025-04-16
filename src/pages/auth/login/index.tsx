@@ -69,6 +69,7 @@ function Login() {
             getTotalAnalyzedDoc(res?.data?.accessToken);
             getTotalChats(res?.data?.accessToken);
             getTotalInterrogatedDoc(res?.data?.accessToken);
+            getTotalCollabDoc(res?.data?.uuid, res?.data?.accessToken);
 
             NotificationService.success({
               message: "Login Successful!",
@@ -209,7 +210,7 @@ function Login() {
     try {
       const response: any = await apiRequest(
         // `http://192.81.213.226:86/api/v1/doc/docs/${id}`,
-        `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${id}`,
+        `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${id}`,
         token,
       );
       console.log("C DOC: ", response);
