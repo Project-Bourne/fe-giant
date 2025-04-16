@@ -149,7 +149,7 @@ function Index() {
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, collabs: data?.data?.totalItems });
-        dispatch(setCollabTotal(data?.data?.totalItems));
+        dispatch(setCollabTotal(data?.data?.length));
       }
     } catch (err) {
       // Error handling
