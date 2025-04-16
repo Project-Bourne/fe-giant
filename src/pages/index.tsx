@@ -73,6 +73,7 @@ function Index() {
     await getTotalCollabDoc();
     await getTotalInterrogatedDoc();
     await getTotalDeepchats();
+    await getTotalTranslatedDoc();
   };
 
   // const BASE_URL = "http://192.81.213.226:81";

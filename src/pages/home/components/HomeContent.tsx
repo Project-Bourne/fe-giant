@@ -6,6 +6,8 @@ import { useFormatDate, useTruncate } from "@/components/custom-hooks";
 import Loader from "@/components/ui/Loader";
 import { capitalize } from "@mui/material";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
 function HomeContent({ data, headerborder, loading }) {
   const buttons = useSelector((state: any) => state.ui.dropdownButtons);
   const [timeState, setTimeState] = useState(true);
@@ -193,7 +195,10 @@ function HomeContent({ data, headerborder, loading }) {
                 } 
                `}
               >
-                {useTruncate(item, trcNum)}
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {useTruncate(item, trcNum)}
+                </ReactMarkdown>
+                {/* {useTruncate(item, trcNum)} */}
               </div>
             );
           } else if (columnItem?.key === "title") {
@@ -229,7 +234,10 @@ function HomeContent({ data, headerborder, loading }) {
                   columnItem?.key === "title" && "px-3 first-letter:capitalize"
                 }`}
               >
-                {useTruncate(item, trcNum)}
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {useTruncate(item, trcNum)}
+                </ReactMarkdown>
+                {/* {useTruncate(item, trcNum)} */}
               </div>
             );
           }
