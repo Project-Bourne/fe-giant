@@ -144,6 +144,8 @@ function Index() {
       const response: any = await apiRequest(
         `${BASE_URL}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${userData?.userInfo?.uuid}`,
       );
+
+      console.log("COLLAB DOC: ", response);
       if (response?.status) {
         const data = await response.json();
         setTotal({ ...total, collabs: data?.data?.totalItems });

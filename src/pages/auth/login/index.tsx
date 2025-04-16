@@ -212,9 +212,10 @@ function Login() {
         `${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_API_PORT}/api/v1/doc/docs/${id}`,
         token,
       );
-      if (response?.ok) {
+      console.log("C DOC: ", response);
+      if (response?.status) {
         const data = await response.json();
-        dispatch(setCollabTotal(data?.data?.totalDocuments));
+        dispatch(setCollabTotal(data?.data?.totalItems));
       }
     } catch (err) {
       // throw new Error(err);
